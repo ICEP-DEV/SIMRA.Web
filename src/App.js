@@ -17,6 +17,7 @@ function App() {
         <Route exact path='/level1' element={<Level1 />} />
         <Route exact path='/sanitaryInpection' element={<SanitaryInpection />} />
         <Route exact path='/data_results' element={<DataResults />} />
+      
       </Routes>
     </Router> 
   );

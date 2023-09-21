@@ -1,6 +1,7 @@
 import './SamplingData.css'
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import {Sidebar } from '../Sidebar/Sidebar';
 
 function SamplingData() {
 
@@ -32,7 +33,16 @@ function SamplingData() {
     }
 
     return (
+        <div className='hero'>
+   <div className='sidenav'>
+
+   </div>
+
+   <div className='main'>
+
+
         <div className='samplingData'>
+
             <div className='form-group'>
                 <label>Water Source</label>
                 <select className='select-sampling_data' onChange={(event)=>setWaterSource(event.target.value)}>
@@ -71,7 +81,10 @@ function SamplingData() {
                     <option value='Sunny' className="control-form">Sunny</option>
                 </select>
             </div>
-            <button className='btn btn-primary' onClick={submit_sampling_data}>Next</button>
+            <button className='btn-data' onClick={submit_sampling_data}>Next</button>
+        </div>
+        </div>
+        {/* f */}
         </div>
     );
 }
