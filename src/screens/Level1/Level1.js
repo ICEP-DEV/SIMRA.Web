@@ -1,6 +1,8 @@
 
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Sidebar  from '../Sidebar/Sidebar';
+import './Level1.css'
 function Level1() {
     const navigate = useNavigate()
     const tempdata = useLocation();
@@ -15,9 +17,20 @@ function Level1() {
         navigate('/h2s_testing', {state:{temp}})
     }
     return(
-        <div>
-            <button onClick={sanitary_survay}>Sanitary Survey</button>
-            <button onClick={h2s}>H2S</button>
+        <div className='hero-level1'>
+            <div className='sidenav'>
+<Sidebar/>
+            </div>
+            <div className='lvl1'>
+            <div className='main-level1'>
+                <div className='table3'>
+
+           
+            <button onClick={sanitary_survay} className='btn-sanitary'>Sanitary Survey</button>
+            <button onClick={h2s} className='btn-sanitary'>H2S</button>
+            </div>
+            </div>
+          </div>
         </div>
     )
 
