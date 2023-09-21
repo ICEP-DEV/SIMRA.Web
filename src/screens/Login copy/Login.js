@@ -48,7 +48,7 @@ function Login() {
                     navigate('/sampling_data', { state: { userId } })
                 }
                 else if(loginData.data.results[0].role === "municipal"){
-                    navigate('/municipality', { state: { userId } })
+                    navigate('municipality', { state: { userId } })
                 }
                 
             }
