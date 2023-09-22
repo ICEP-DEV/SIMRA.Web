@@ -48,7 +48,7 @@ function Login() {
                     navigate('/sampling_data', { state: { userId } })
                 }
                 else if(loginData.data.results[0].role === "municipal"){
-                    navigate('/municipality', { state: { userId } })
+                    navigate('municipality', { state: { userId } })
                 }
                 
             }
@@ -72,17 +72,14 @@ function Login() {
     </div>
 
     return (
-        <div className='background'>
-            <div className='login-container'>
-
-      
-            <div className='login-card'>
+        <div >
+            <div className='login template d-flex  justify-content-center align-items-center vh-100 background: #ffffff;'>
                 <div className='form_container p-5 bg-white  rounded'>
-                    {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                    <h3 className='text-center mb-5'><b>Login </b></h3>
+                    <h3 className='text-center mb-5'><b>SIMRA</b></h3>
+                    <h3 className='text-center mb-5'><b>Login here</b></h3>
                     <div className='mb-4'>
                         <label htmlFor='username' className='lables'>Username</label> <br />
-                        <input type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username'  />
+                        <input type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' className='form-control' />
                         <small>
                             
                         </small>
@@ -90,7 +87,7 @@ function Login() {
 
                     <div className='mb-5'>
                         <label htmlFor='password'>Password</label> <br />
-                        <input type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password'  />
+                        <input type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' className='form-control' />
 
                         <small>
 
@@ -113,7 +110,6 @@ function Login() {
                 </div>
 
 
-                </div>
             </div>
         </div>
     )

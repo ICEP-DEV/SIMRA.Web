@@ -5,6 +5,9 @@ import Level1 from './screens/Level1/Level1';
 import H2S from './screens/H2S/H2S';
 import SanitaryInpection from './screens/SanitaryInpection/SanitaryInpection';
 import DataResults from './screens/AnalysisResults/AnalysisResults';
+import Municipality from './screens/Municipality/Municipality';
+import Report from './screens/Report/Report'
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -18,6 +21,9 @@ function App() {
         <Route exact path='/sanitaryInpection' element={<SanitaryInpection />} />
         <Route exact path='/data_results' element={<DataResults />} />
       
+        <Route exact path='/municipality' element={<Municipality />} />
+        <Route exact path='/report' element={<Report />} />
+
       </Routes>
     </Router> 
   );
