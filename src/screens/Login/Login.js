@@ -4,9 +4,6 @@ import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
-import logo from './logo.png';
-
-console.log(logo);
 
 function Login() {
     let navigate = useNavigate();
@@ -66,31 +63,17 @@ function Login() {
 
         }
     }
-    let displayLoader = <div></div>
-    // let displaySidebar=<div></div>
+    let displayLoader = <div>
+
+    </div>
 
     return (
-        <div>
-{/* <div className='welcome'>
-                <div className='logo-login'>
-                <img src={logo} /> Simra
-                </div>
-<h1>Welcome</h1>
-SIMRA, <br></br>
-tool integrates the current water and <br></br>
-sanitation risk assessment and<br></br>
- management methods into one harmonised tool
- </div>    */}
-    
+        <div className='background'>
             <div className='login-container'>
- 
-            <div className='login-card'>
-                
-            
-      <div className='main-login'>
 
       
-                
+            <div className='login-card'>
+                <div className='form_container p-5 bg-white  rounded'>
                     {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
                     <h3 className='text-center mb-5'><b>Login </b></h3>
                     <div className='mb-4'>
@@ -115,7 +98,7 @@ sanitation risk assessment and<br></br>
                     </Loader>
                     <div className='d-grid'>
 
-                        <button className='btn btn-dark' onClick={onSuccess}>Log In</button>
+                        <button className='btn btn-dark' onClick={onSuccess}>Sign In</button>
 
                     </div>
 
@@ -124,11 +107,11 @@ sanitation risk assessment and<br></br>
                         Don't have an account ? <Link to="/signup" className='ms-2'>Sign Up</Link>
                     </small>
                 </div>
-              
-                    </div>
-          
+
+
+                </div>
             </div>
-            </div>
+        </div>
     )
 }
 
