@@ -25,8 +25,7 @@ function DataResults() {
             }
         }
 
-    }, [DataAnalysis])
-    //risk_typ
+    }, [DataAnalysis]) 
     let sanitary = <div>
         <h2>Analysis: Sanitary</h2>
         <h3>Risk Characterization</h3>
