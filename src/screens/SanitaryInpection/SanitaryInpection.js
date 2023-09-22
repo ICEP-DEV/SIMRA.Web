@@ -1,4 +1,4 @@
-
+import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import './SanitaryInpection.css'
 import { useState, useEffect } from 'react';
@@ -76,8 +76,14 @@ function SanitaryInpection() {
     }
 
     return (
-        <div className='sanitaryInpection'>
-            <div>
+        <div className='hero-all' >
+        <div className='sidenav'>
+            <Sidebar />
+        </div>
+
+        <div className='main-all'>
+            <div className='content'>
+                <div className='container-wrapper'>
                 <table className="table">
                     <thead className="thead-dark">
                         <tr>
@@ -131,6 +137,8 @@ function SanitaryInpection() {
                 </table>
                 <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-primary'>Submit</button>
             </div>
+        </div>
+        </div>
         </div>
     );
 }

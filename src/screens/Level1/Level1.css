@@ -1,0 +1,31 @@
+.main-level1{
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+    background-color: #fff;
+    border-top-left-radius: 80px 80px;
+    border-bottom-left-radius:80px 80px ;
+    position: relative;
+    height: 100vh;
+}
+.main-level1 .btn-sanitary
+{
+    width: 201px;
+    padding: 0 16px;
+  
+}
+.hero-level1
+{
+    background-color: #0063EA; 
+    min-height: 100% !important; 
+}
+.lvl1
+{
+    
+ color:#0063EA;
+ font-size: 20px;
+ height: 100vh;
+}
+.table3{
+    padding-top: 10%;
+    padding-left: 30%;
+}
