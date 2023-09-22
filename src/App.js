@@ -24,6 +24,7 @@ function App() {
         <Route exact path='/municipality' element={<Municipality />} />
         <Route exact path='/report' element={<Report />} />
 
+      
       </Routes>
     </Router> 
   );

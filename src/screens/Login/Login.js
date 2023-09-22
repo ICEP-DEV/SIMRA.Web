@@ -4,6 +4,9 @@ import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
+import logo from './logo.png';
+
+console.log(logo);
 
 function Login() {
     let navigate = useNavigate();
@@ -67,53 +70,62 @@ function Login() {
 
         }
     }
-    let displayLoader = <div>
-
-    </div>
+    let displayLoader = <div></div>
+    // let displaySidebar=<div></div>
 
     return (
-        <div className='background'>
+        <div className='all-contents'>
+
             <div className='login-container'>
+<div className='welcome'>
+                <div className='logo-login'>
+                    <img src={logo} /> Simra
+                </div>
+                <h1>Welcome</h1>
+                SIMRA, tool integrates  <br></br>
+                the current water and <br></br>
+                sanitation risk assessment <br></br>
+                and management methods <br></br>
+                into one harmonised tool<br></br>
+            </div>  
+                <div className='login-card'>
 
-      
-            <div className='login-card'>
-                <div className='form_container p-5 bg-white  rounded'>
-                    {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                    <h3 className='text-center mb-5'><b>Login </b></h3>
-                    <div className='mb-4'>
-                        <label htmlFor='username' className='lables'>Username</label> <br />
-                        <input type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username'  />
-                        <small>
-                            
-                        </small>
+                    <div className='main-login' id='main-login'>
+
+                        {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
+                        <h3 className='header-txt'><b>Login </b></h3>
+                        <div className='mb-4'>
+                            {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
+                            <input type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
+                            <small>
+
+                            </small>
+                        </div>
+
+                        <div className='mb-5'>
+                            {/* <label htmlFor='password'>Password</label> <br /> */}
+                            <input type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
+
+                            <small>
+
+                            </small>
+                        </div>
+
+                        <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                            {displayLoader}
+                        </Loader>
+                        <div className='login-grid'>
+
+                            <button className='btn-login' onClick={onSuccess}>Log In</button>
+                            <small className='txt-signup'>
+                                Don't have an account ? <Link to="/signup" className='ms-2'>Sign Up</Link>
+                            </small>
+                        </div>
+
                     </div>
 
-                    <div className='mb-5'>
-                        <label htmlFor='password'>Password</label> <br />
-                        <input type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password'  />
-
-                        <small>
-
-                        </small>
-                    </div>
-
-                    <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
-                        {displayLoader}
-                    </Loader>
-                    <div className='d-grid'>
-
-                        <button className='btn btn-dark' onClick={onSuccess}>Sign In</button>
-
-                    </div>
-
-
-                    <small>
-                        Don't have an account ? <Link to="/signup" className='ms-2'>Sign Up</Link>
-                    </small>
                 </div>
 
-
-                </div>
             </div>
         </div>
     )

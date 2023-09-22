@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './AnalysisResults.css'
 import { useLocation } from 'react-router-dom';
+import Sidebar  from '../Sidebar/Sidebar';
 
 function DataResults() {
     const tempData = useLocation()
@@ -8,14 +9,14 @@ function DataResults() {
     const [backgroundColor, setbackgroundColor] = useState('')
 
     useEffect(() => {
-        
+
         if (DataAnalysis.message !== "adedd hydrogensulfide") {
             if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
             else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
             else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
             else { setbackgroundColor("rgba(216, 0, 0, 0.986)") }
         }
-        else { 
+        else {
             if (DataAnalysis.status === true) {
                 setbackgroundColor("rgba(216, 0, 0, 0.986)")
             }
@@ -24,7 +25,7 @@ function DataResults() {
             }
         }
 
-    },[DataAnalysis])
+    }, [DataAnalysis])
     //risk_typ
     let sanitary = <div>
         <h2>Analysis: Sanitary</h2>
@@ -45,13 +46,21 @@ function DataResults() {
     </div>
     return (
 
-        <div className='AnalysisResults'>
-            {(DataAnalysis.message!== "adedd hydrogensulfide") &&(<div >
-                {sanitary}
-            </div>)}
-            {(DataAnalysis.message === "adedd hydrogensulfide") &&(<div>
-                {h2s}
-            </div>)}
+        <div className='hero-all' >
+            <div className='sidenav'>
+                <Sidebar />
+            </div>
+            <div className='main-all'>
+                <div className='content'>
+                    <div className='container-wrapper'></div>
+                    {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
+                        {sanitary}
+                    </div>)}
+                    {(DataAnalysis.message === "adedd hydrogensulfide") && (<div>
+                        {h2s}
+                    </div>)}
+                </div>
+            </div>
         </div>
     )
 }

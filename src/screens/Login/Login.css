@@ -5,28 +5,111 @@
 
     100% {}
 }
-
+.all-contents 
+{
+    background-size: 100%;
+    height: 100%;
+    padding: 3.82%;
+    background-image: url('./back.PNG');
+} 
+.background{
+    background-color: #0063EA;
+    height: 100vh;
+}
 .login {
     animation: 1s ease-out 0s 1 slideInLeft;
     padding: 40px;
 }
 .login-container
 {
+    box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
     background-color: #0063EA;
     width: 1054px;
     height: 613px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
 }
 .login-card
 {
-    width: 707px;
+    width: 727px;
     height: 613px;
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+    background-color: #fff;
+    float: right;
+    border-top-left-radius: 80px 80px;
+    border-bottom-left-radius:80px 80px ;
+}
+.login-txt 
+{
+    position: absolute;
+    left: 20%;
+    top: 20%;
 }
 input {
-    background: 0;
-    border: 0;
-    outline: none;
-    width: 80vw;
-    max-width: 400px;
-    font-size: 1.5em;
-    transition: padding 0.3s 0.2s ease;
+
+   width: 90%;
+padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-bottom: 2px solid black;
+}
+img{
+    width:50px
+}
+.side-login
+{
+height: 100%;
+width: 150px;
+position: absolute;
+left: 0;
+top: 0;
+padding-top: 40px;
+float: left;
+
+}
+.main-login
+{
+position:relative;
+top: 10%;
+margin-left: 150px;
+font-size: 18px;
+height: 613px;
+
+}
+.login-container .welcome
+{
+  position: absolute;
+  top: 65%;
+  left: 25%;  
+  color: #fff;
+}
+.welcome .logo-login 
+{
+    position: absolute;
+    top: -165%;
+}
+
+.login-grid .btn-login 
+{
+    position: absolute;
+    background-color: #0063EA;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 25%;
+    padding: 5px;
+    color: #fff;
+}
+.txt-signup
+{
+    position: absolute;
+    bottom: 15%;
+    margin-left: 2%;
+}
+.header-txt 
+{
+ margin-bottom: 10%;
 }

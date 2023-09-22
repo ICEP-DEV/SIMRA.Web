@@ -1,4 +1,4 @@
-p,
+/*p,
 li {
   text-align: justify;
 }
@@ -47,8 +47,8 @@ th {
 td {
   height: 50px;
   border: 1px solid black;
-}
-/* Can't eliminate the spacing no matter what I try */
+}*/
+/* Can't eliminate the spacing no matter what I try *//*
 .thh:first-child {
   height: 100px;
 }
@@ -74,3 +74,4 @@ td:nth-child(6) {
 td:nth-child(7) {
   background-color: #f51414;
 }
+*/
