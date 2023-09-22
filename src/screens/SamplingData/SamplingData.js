@@ -13,6 +13,8 @@ function SamplingData() {
     const [WaterSource, setWaterSource] = useState('');
     const [WaterAccessibility, setWaterAccessibility] = useState('');
     const [WeatherCondition, setWeatherCondition] = useState('');
+    const [Municipality,setMunicipality] = useState('');
+    const [Province,setProvince] = useState('');
 
     const api = 'http://localhost:3001/api/'
 
@@ -29,16 +31,22 @@ function SamplingData() {
         console.log(prov_id)
         axios.get(api + 'get_municipalities/' + prov_id).then(response => {
             setMunicipalities(response.data.results)
-
+            setProvince(response.data.results)
         }, err => {
             console.log(err)
         })
     }
     function SelectMunicipality(event) {
-        console.log(event.target.value)
+        setMunicipality(event.target.value)
     }
 
     function submit_sampling_data() {
+        if(Province === ""){
+            return
+        }
+        if(Municipality === ""){
+            return
+        }
         if (WaterSource === "") {
             return
         }
@@ -52,7 +60,8 @@ function SamplingData() {
             type: WaterSource,
             waterAccessability: WaterAccessibility,
             weatherCondition: WeatherCondition,
-            userId: UserId
+            userId: UserId,
+            muni_id: Municipality
         }
         navigate('/level1', { state: { temp } })
     }
@@ -64,12 +73,8 @@ function SamplingData() {
             </div>
 
             <div className='main-all'>
-
-
-                <div className='samplingData'>
-                    <div className='table2'>
-
-                    
+                <div className='content'>
+                    <div className='container-wrapper'>
                     <div className='form-group'>
                         <label>Province</label>
                         <select onChange={getAllMunicipalities}>

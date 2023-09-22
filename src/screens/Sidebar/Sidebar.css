@@ -8,6 +8,7 @@
 }
 .sidebar-subs{
     margin: 35% 0;
+text-align: center;
 }
 .sidenav{
     background-color: #0063EA;
@@ -17,13 +18,18 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
 
 }
 .sidenav a{
     text-decoration: none;
     padding: 15px 25px;
-    font-size: 30px;
+    font-size: 16px;
     color:#fff;
+}
+.logo
+{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
 }

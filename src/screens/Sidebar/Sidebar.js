@@ -12,30 +12,32 @@ function Sidebar() {
 
     return (
         <div className="sideBar">
-
-            <img src={logo} /><h2>Simra</h2><br></br>
+<div className="logo">
+<img src={logo} style={{marginLeft:'25px'}} />Simra<br></br>
+</div>
+           
             <div className="sidebar-subs">
-                <a href=""><FaUserAlt /> Profile</a>
+                <a href=""><FaUserAlt   size={'3rem'}/> Profile</a>
+            </div> 
+
+            <div className="sidebar-subs">
+                <a href=""><RiTestTubeLine   size={'3rem'}/>H2S</a>
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><RiTestTubeLine />H2S</a>
+                <a href=""><FcSurvey  size={'3rem'}/>Survey</a>
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><FcSurvey />Survey</a>
+                <a href=""><AiOutlineFile  size={'3rem'} />File</a>
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><AiOutlineFile />File</a>
+                <a href=""><AiOutlineVideoCameraAdd  size={'3rem'} /> Video</a>
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><AiOutlineVideoCameraAdd /> Video</a>
-            </div>
-
-            <div className="sidebar-subs">
-                <a href=""><AiOutlineLogout /> Logout</a>
+                <a href=""><AiOutlineLogout size={'3rem'}/> Logout</a>
             </div>
 
         </div>

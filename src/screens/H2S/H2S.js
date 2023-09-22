@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Sidebar from '../Sidebar/Sidebar';
 
 function H2S() {
     const navigate = useNavigate();
@@ -55,8 +56,9 @@ function H2S() {
             setSelectedOption('POSITIVE');
         }
 
-        console.log(isYellowTextVisible)
+        console.log(SamplingData)
         axios.post("http://localhost:3001/api/sampling_data", SamplingData).then((response) => {
+            console.log(response)
             var h2s_test = {
                 status: isBlackTextVisible,
                 samplingId: response.data.insertedId
@@ -67,12 +69,22 @@ function H2S() {
                     navigate("/data_results", { state: { temp } })
                 }
             })
+        }, err=>{
+            console.log(err)
         })
 
 
     };
 
     return (
+        <div className='hero-all' >
+            <div className='sidenav'>
+                <Sidebar />
+            </div>
+
+            <div className='main-all'>
+                <div className='content'>
+                    <div className='container-wrapper'></div>
         <div className='text-center mt-4'>
             {activeMenu === 'sanitary' && <div className="submenu"></div>}
             <br></br>
@@ -85,7 +97,7 @@ function H2S() {
                 <div className='text-center mt-5'>
                     <p>Choose Test Result:</p>
                     <button
-                        className={`p-3 mb-z ${selectedOption === 'NEGATIVE' ? 'bg-success' : 'bg-light'}`} style={{ marginRight: '20px' }}
+                        className={`p-3 mb-z ${selectedOption === 'NEGATIVE' ? 'bg-white' : 'bg-primary'}`} style={{ marginRight: '20px' }}
                         id="yellow"
                         name="test_color"
                         value="YELLOW"
@@ -94,7 +106,7 @@ function H2S() {
                     </button>
 
                     <button
-                        className={`p-3 mb-2 ${selectedOption === 'POSITIVE' ? 'bg-danger ' : 'bg-light'}`}
+                        className={`p-3 mb-2 ${selectedOption === 'POSITIVE' ? 'bg-dark ' : 'bg-primary'}`}
                         id="black"
                         name="test_color"
                         value="BLACK"
@@ -277,6 +289,9 @@ function H2S() {
 
 
 
+        </div>
+        </div>
+        </div>
         </div>
     );
 }
