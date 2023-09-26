@@ -20,7 +20,7 @@ const AddForm = ({ onSubmit }) => {
   const handleFormSubmit = async (values) => {
     try {
       // Your form submission logic here
-      const response = await axios.post('YOUR_API_ENDPOINT', values);
+      const response = await axios.post('', values);
       if (response.status === 200) {
         // If successful, set `successModalVisible` to true
         setSuccessModalVisible(true);
