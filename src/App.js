@@ -6,6 +6,8 @@ import H2S from './screens/H2S/H2S';
 import SanitaryInpection from './screens/SanitaryInpection/SanitaryInpection';
 import DataResults from './screens/AnalysisResults/AnalysisResults';
 import Home from './screens/Home/Home';
+import Profile from './screens/Profile/Profile';
+import VideoScreen from './screens/Video/Video';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route exact path='/sanitaryInpection' element={<SanitaryInpection />} />
         <Route exact path='/data_results' element={<DataResults />} />
         <Route exact path='/home' element={<Home/>} />
+        <Route exact path='/profile' element={<Profile/>}/>
+        <Route exact path='/video' element={<VideoScreen/>}/>
       
       </Routes>
     </Router> 

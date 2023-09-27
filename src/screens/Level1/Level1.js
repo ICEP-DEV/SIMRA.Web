@@ -17,17 +17,20 @@ function Level1() {
         navigate('/h2s_testing', {state:{temp}})
     }
     return(
-        <div className='hero-level1'>
+        <div className='hero-all'>
             <div className='sidenav'>
 <Sidebar/>
             </div>
-            <div className='lvl1'>
-            <div className='main-level1'>
-                <div className='table3'>
+        
+            <div className='main-all'>
+            <div className='content'>
+            <div className='container-wrapper'>
 
+           <div className='btn-level1'>
+           <button onClick={sanitary_survay} className='btn1'>Sanitary Survey</button>
+            <button onClick={h2s} className='btn2'>H2S</button>
+           </div>
            
-            <button onClick={sanitary_survay} className='btn-sanitary'>Sanitary Survey</button>
-            <button onClick={h2s} className='btn-sanitary'>H2S</button>
             </div>
             </div>
           </div>

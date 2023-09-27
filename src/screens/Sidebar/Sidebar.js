@@ -4,7 +4,7 @@ import { RiTestTubeLine } from "react-icons/ri";
 import { FcSurvey } from "react-icons/fc";
 import { AiOutlineFile, AiOutlineVideoCameraAdd, AiFillVideoCamera } from "react-icons/ai";
 import {GoVideo} from "react-icons/go"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import "./Sidebar.css";
 import logo from './logo.png';
 import { IconContext } from "react-icons";
@@ -21,7 +21,8 @@ function Sidebar() {
 <IconContext.Provider value={{ className: "side-icon" }}>
             <div className="sidebar-subs">
               
-                <a href=""><FaUserAlt  className="icon" /><br></br> Profile</a>
+ 
+                <Link to="/profile"><FaUserAlt  className="icon" /><br></br> Profile</Link>
             </div> 
 
             <div className="sidebar-subs">
@@ -37,7 +38,8 @@ function Sidebar() {
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><GoVideo  /> <br></br>Video</a>
+              
+                <Link to="/video"><GoVideo   className="icon" /> <br></br>Video</Link>
             </div>
 
             <div className="sidebar-subs">

@@ -1,31 +1,80 @@
-.main-level1{
-    margin-left: 200px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-    background-color: #fff;
-    border-top-left-radius: 80px 80px;
-    border-bottom-left-radius:80px 80px ;
-    position: relative;
+.content{
+
+    color:#0063EA;
+    font-size: 20px;
     height: 100vh;
-}
-.main-level1 .btn-sanitary
-{
-    width: 201px;
-    padding: 0 16px;
-  
-}
-.hero-level1
-{
-    background-color: #0063EA; 
-    min-height: 100% !important; 
-}
-.lvl1
-{
+   
+   }
+   .container-wrapper
+   {
+       padding-top: 10%;
+       padding-left: 15%;
+   }
+   .form-group{
+       display: flex;
+       flex-direction: column;
+       margin: 15px 0;
+   }
+   .hero-all
+   {
+       background-color: #0063EA; 
+      
+   }
+   
+   .main-all {
+       margin-left: 200px; /* Same as the width of the sidebar */
+       padding: 0px 10px;
+       background-color: #fff;
+       border-top-left-radius: 80px 80px;
+       border-bottom-left-radius:80px 80px ;
+       position: relative;
+   
+     }
+     select{
+       width: 50%;
+      
+     }
     
- color:#0063EA;
- font-size: 20px;
- height: 100vh;
+     .btn-level1
+     {
+       
+ overflow: hidden; /* for clearfix */
+     }
+     .btn1 .btn2{
+        display: inline-block;
+     }
+     .btn2{
+        border: 2px solid #0063EA;
+        padding: 10px 10px;
+        width: 447px;
+    border-radius: 20px 20px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #0063EA;
+    background-color: #fff;
+    margin-left: 5%;
+
+     }
+     .btn1 
+     {
+        border: 2px solid #0063EA;
+        padding: 10px 10px;
+        width: 447px;
+    border-radius: 20px 20px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #0063EA;
+    background-color: #fff;
+  
+     }
+     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+     @media screen and (max-height: 450px) {
+    
+       .main-all{margin-left: 100px;}
+.btn1{
+    width: auto;
+
 }
-.table3{
-    padding-top: 10%;
-    padding-left: 30%;
-}
+   
+     }
+     
