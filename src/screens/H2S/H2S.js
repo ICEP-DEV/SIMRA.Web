@@ -66,7 +66,7 @@ function H2S() {
             axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
                 var temp = result.data
                 if (result.data.success === true) {
-                    navigate("/data_results", { state: { temp } })
+                    navigate("/level1", { state: { temp } })
                 }
             })
         }, err=>{
