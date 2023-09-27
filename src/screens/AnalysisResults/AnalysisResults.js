@@ -47,7 +47,6 @@ function DataResults() {
 
         <div className='hero-all' >
             <div className='sidenav'>
-                <Sidebar />
             </div>
             <div className='main-all'>
                 <div className='content'>

@@ -5,12 +5,13 @@ import './SanitaryInpection.css'
 import { View, Modal, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import DataResults from '../AnalysisResults/AnalysisResults';
-import Level1 from '../Level1/Level1';
-import HS2 from '../H2S/H2S';
+import { useSelector } from 'react-redux';
+
 
 function SanitaryInpection() {
+    let user_info = useSelector((state) => state.user.value)
+    let sampling_info = useSelector((state) => state.sampling.value)
 
     const navigate = useNavigate()
 
@@ -53,7 +54,7 @@ function SanitaryInpection() {
 
     function senduseSanitaryInpectionSurvey() {
 
-        axios.post("http://localhost:3001/api/sampling_data", SamplingData).then((response) => {
+        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
             SanitaryInpectionItems.samplingId = response.data.insertedId
             var coordinates = {
                 latitude: Latitude,
@@ -65,8 +66,8 @@ function SanitaryInpection() {
             }, err => {
                 console.log(err)
             })
-            SamplingData.samplingId = response.data.insertedId
-            axios.post("http://localhost:3001/api/watersource", SamplingData).then((result) => {
+            sampling_info.samplingId = response.data.insertedId
+            axios.post("http://localhost:3001/api/watersource", sampling_info).then((result) => {
                 console.log(result)
             }, err => {
                 console.log(err)

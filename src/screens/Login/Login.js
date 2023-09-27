@@ -5,10 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
 import logo from './logo.png';
-
-console.log(logo);
+import { useDispatch, useSelector } from 'react-redux';
+import { user_details } from "../../Redux/user"
 
 function Login() {
+    let user_info = useSelector((state) => state.use)
+    const dispatch = useDispatch();
+
     let navigate = useNavigate();
     const [values, setValues] = useState({
         username: "",
@@ -44,16 +47,25 @@ function Login() {
         const loginData = await axios.post('http://localhost:3001/api/login', values)
 
         setTimeout(() => {
+            console.log(loginData)
+
             setButtonPopup(false)
             if (loginData.data.success === true) {
-                var userId = loginData.data.results[0].userId
-                if(loginData.data.results[0].role === "user"){
-                    navigate('/sampling_data', { state: { userId } })
+                user_info = {
+                    user_id: loginData.data.results[0].userId,
+                    user_role: loginData.data.results[0].role,
+                    user_level: loginData.data.results[0].level
                 }
-                else if(loginData.data.results[0].role === "municipal"){
-                    navigate('/municipality', { state: { userId } })
+                console.log(user_info)
+                dispatch(user_details(user_info))
+
+                if (loginData.data.results[0].role === "user") {
+                    navigate('/sampling_data')
                 }
-                
+                else if (loginData.data.results[0].role === "municipal") {
+                     navigate('/municipality')
+                }
+
             }
             else {
                 console.log(loginData.data.message);
@@ -77,17 +89,17 @@ function Login() {
         <div className='all-contents'>
 
             <div className='login-container'>
-<div className='welcome'>
-                <div className='logo-login'>
-                    <img src={logo} /> Simra
+                <div className='welcome'>
+                    <div className='logo-login'>
+                        <img src={logo} /> Simra
+                    </div>
+                    <h1>Welcome</h1>
+                    SIMRA, tool integrates  <br></br>
+                    the current water and <br></br>
+                    sanitation risk assessment <br></br>
+                    and management methods <br></br>
+                    into one harmonised tool<br></br>
                 </div>
-                <h1>Welcome</h1>
-                SIMRA, tool integrates  <br></br>
-                the current water and <br></br>
-                sanitation risk assessment <br></br>
-                and management methods <br></br>
-                into one harmonised tool<br></br>
-            </div>  
                 <div className='login-card'>
 
                     <div className='main-login' id='main-login'>
