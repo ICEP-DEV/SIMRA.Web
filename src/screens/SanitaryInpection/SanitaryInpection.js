@@ -16,14 +16,33 @@ function SanitaryInpection() {
     let sampling_info = useSelector((state) => state.sampling.value)
 
     //////data results
-    const [DataAnalysis, setDataAnalysis] = useState()
+    const [DataAnalysis, setDataAnalysis] = useState({})
     const [backgroundColor, setbackgroundColor] = useState('')
+
+    useEffect(() => {
+
+        if (DataAnalysis.message !== "adedd hydrogensulfide") {
+            if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
+            else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
+            else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
+            else { setbackgroundColor("rgba(216, 0, 0, 0.986)") }
+        }
+        else {
+            if (DataAnalysis.status === true) {
+                setbackgroundColor("rgba(216, 0, 0, 0.986)")
+            }
+            else {
+                setbackgroundColor("rgba(0, 128, 0, 0.719)")
+            }
+        }
+
+    }, [DataAnalysis]) 
 
     let sanitary = <div>
         <h2>Analysis: Sanitary</h2>
         <h3>Risk Characterization</h3>
         <div className='form-group'>
-            {/* <label>{DataAnalysis.risk_type}</label> */}
+            <label>{DataAnalysis.risk_type}</label>
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
         </div>
     </div>;
@@ -32,7 +51,7 @@ function SanitaryInpection() {
         <h2>Analysis: H2S</h2>
         <h3>Risk Characterization</h3>
         <div className='form-group'>
-            {/* <label>{DataAnalysis.risk_type}</label> */}
+            <label>{DataAnalysis.risk_type}</label>
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
         </div>
     </div>
@@ -44,14 +63,14 @@ function SanitaryInpection() {
     // const tempData = useLocation();
 
     const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState({
-        pitLatrine: false,
-        domesticAnimal: false,
-        diaperDisposal: false,
-        wasteWaterRelease: false,
-        openDefaction: false,
-        unprotectedWaterSource: false,
-        agriculturalActivity: false,
-        observerLaundryActivity: false,
+        pitLatrine: undefined,
+        domesticAnimal: undefined,
+        diaperDisposal: undefined,
+        wasteWaterRelease: undefined,
+        openDefaction: undefined,
+        unprotectedWaterSource: undefined,
+        agriculturalActivity: undefined,
+        observerLaundryActivity: undefined,
         samplingId: 0
     });
     const [Longitude, setLongitude] = useState('')
@@ -77,6 +96,18 @@ function SanitaryInpection() {
     // }
 
     function senduseSanitaryInpectionSurvey() {
+        //validate the radio buttons
+       console.log(SanitaryInpectionItems)
+       if(SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
+        SanitaryInpectionItems.observerLaundryActivity == undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
+        SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined){
+            console.log("all the field the must be checked");
+            initModalsing();
+            return;
+        }
+
+
+
         //Call in sampling data api
         axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
             SanitaryInpectionItems.samplingId = response.data.insertedId
@@ -108,11 +139,10 @@ function SanitaryInpection() {
             axios.post("http://localhost:3001/api/sanitary_inspection_survey", SanitaryInpectionItems)
                 .then((result) => {
                     console.log(result.data.success)
-                    var temp = result.data
-                    initModal();
-                    /*if (result.data.success === true) {
-                        console.log(temp)
-                        setDataAnalysis(temp)
+                    setDataAnalysis(result.data)
+                    // navigate("/data_results", { state: { temp } })
+
+                    if (result.data.success === true) {
                         if (DataAnalysis.message !== "adedd hydrogensulfide") {
                             if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
                             else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
@@ -127,10 +157,12 @@ function SanitaryInpection() {
                                 setbackgroundColor("rgba(0, 128, 0, 0.719)")
                             }
                         }
-                        
-                        
-                        //navigate("/data_results", { state: { temp } })
-                    }*/
+
+
+                    }
+
+                    initModal();
+
                 }, err => {
                     console.log(err)
                 })
@@ -138,8 +170,15 @@ function SanitaryInpection() {
             console.log(err)
         })
     }
+
+    const [isShowsing, invokeModalsing] = React.useState(false)
+    const initModalsing = () => {
+        return invokeModalsing(!false)
+    }
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
+
+
         return invokeModal(!false)
     }
     const [isShows, invokeModals] = React.useState(false)
@@ -151,6 +190,9 @@ function SanitaryInpection() {
     }
     const modalCloses = () => {
         return invokeModals(false)
+    }
+    const modalClosesing = () => {
+        return invokeModalsing(false)
     }
     return (
 
@@ -164,6 +206,19 @@ function SanitaryInpection() {
                     <div className='container-wrapper'></div>
                     <div className='sanitaryInpection'>
 
+                        {/* validation pop up */}
+                        <Modal show={isShowsing} onHide={modalClosesing} >
+                            <Modal.Header closeButton onClick={modalClosesing}>
+                                <Modal.Title>Analysis results</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+
+                            all the field the must be checked
+
+                            </Modal.Body>
+                            <Modal.Footer></Modal.Footer>
+                            </Modal>
+
                         {/* data results pop up */}
 
                         <Modal show={isShow} onHide={modalClose} >
@@ -172,14 +227,15 @@ function SanitaryInpection() {
                             </Modal.Header>
                             <Modal.Body>
 
+
+
                                 <div className='container-wrapper'></div>
-                                {/* {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
+                                {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
                                     {sanitary}
                                 </div>)}
                                 {(DataAnalysis.message === "adedd hydrogensulfide") && (<div>
                                     {h2s}
-                                </div>)} */}
-                                {/* <DataResults /> */}
+                                </div>)}
 
                             </Modal.Body>
                             <Modal.Footer>
