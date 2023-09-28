@@ -1,96 +1,105 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, StyleSheet } from 'react-native';
+import { View, Text, Picker, StyleSheet, TextInput, Button } from 'react-native';
 
-const qmraParameters = [
-    { studyOrganism: 'Campylobacter jejun', bestFitModel: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
-    { studyOrganism: 'E-Coli O157:H7', bestFitModel: 'Beta-Poisson', alpha: 0.4, beta: 45.9 },
-    { studyOrganism: 'Salmonella Typhi', bestFitModel: 'Beta-Poisson', alpha: 0.21, beta: 49.78 },
-    { studyOrganism: 'S. flexneri', bestFitModel: 'Beta-Poisson', alpha: 0.265, beta:  1480},
-    { studyOrganism: 'Vibrio cholerae', bestFitModel: 'Beta-Poisson', alpha:  0.169, beta: 2305 },
-    { studyOrganism: 'Cryptosporidium parvum', bestFitModel: 'exponential', aaR: 0.059 },
-    { studyOrganism: 'Entamoeba coli', bestFitModel: 'Beta-Poisson', alpha: 0.79433, beta: 5.40789, endDay: 22 },
-    { studyOrganism: 'Giardia lambia', bestFitModel: 'exponential', k: 0.01199 },
-    { studyOrganism: 'Other', startMonth: 8, startDay: 23, endMonth: 9, endDay: 22 },
-    { sign: 'Libra', startMonth: 9, startDay: 23, endMonth: 10, endDay: 22 },
-    { sign: 'Scorpio', startMonth: 10, startDay: 23, endMonth: 11, endDay: 21 },
-    { sign: 'Sagittarius', startMonth: 11, startDay: 22, endMonth: 12, endDay: 21 },
-    { sign: 'Capricorn', startMonth: 12, startDay: 22, endMonth: 12, endDay: 31 },
-  ];
-  
+const qmraParameters = {
+  'Campylobacter jejun': { model: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
+  'E-Coli O157:H7': { model: 'Beta-Poisson', alpha: 0.4, beta: 45.9 },
+  'Salmonella Typhi': { model: 'Beta-Poisson', alpha: 0.21, beta: 49.78 },
+  'S. flexneri': { model: 'Beta-Poisson', alpha: 0.265, beta: 1480 },
+  'Vibrio cholerae': { model: 'Beta-Poisson', alpha: 0.169, beta: 2305 },
+  'Cryptosporidium parvum': { model: 'exponential', r: 0.059 },
+  'Entamoeba coli': { model: 'Beta-Poisson', alpha: 0.79433, beta: 5.40789 },
+  'Giardia lambia': { model: 'exponential', k: 0.01199 },
+  'Other': { model: '', alpha: 0, beta: 0 },
+};
 
 export default function App() {
-  const [selectedOrganism, setSelectedOrganism] = useState(1);
-  const [selectedModel, setSelectedModel] = useState(1);
-  const [formulaUsed, setFormula] = useState('Unknown');
-       
-        const updateReferencePath = () => {
-        switch (selectedOrganism) {
-          case 1:
-            if (selectedModel == 1 && selectedDate <= 19) {
-              setZodiacSign('Capricorn');
-            } else if (selectedDate >= 20 && selectedDate <= 31) {
-              setZodiacSign('Aquarius');
-            }
-            break;
-          case 2:
-            if (selectedDate >= 1 && selectedDate <= 18) {
-              setZodiacSign('Aquarius');
-            } else if (selectedDate >= 19 && selectedDate <= 29) {
-              setZodiacSign('Pisces');
-            }
-            break;
-          case 3:
-            if (selectedDate >= 1 && selectedDate <= 20) {
-              setZodiacSign('Pisces');
-            } else if (selectedDate >= 21 && selectedDate <= 31) {
-              setZodiacSign('Aries');
-            }
-            break;
-          // Add cases for other months and signs here
-          default:
-            setZodiacSign('Unknown');
-        }
-      };
-      {
-        setZodiacSign(sign.sign);
-        return;
+  const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
+  const [count, setCount] = useState('');
+  const [alpha, setAlpha] = useState('');
+  const [beta, setBeta] = useState('');
+  const [model, setModel] = useState('');
+  const [result, setResult] = useState('');
+
+  const calculateResult = () => {
+    if (selectedOrganism === 'Other' && model && count && alpha && beta) {
+      let calculatedResult = 0;
+      
+      if (model === 'Beta-Poisson') {
+        
+        //calculatedResult = alpha * count + beta;
+      } else if (model === 'exponential') {
+        
+        //calculatedResult = alpha * Math.exp(beta * count);
       }
+      
+      setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
+    } else {
+      setResult('');
     }
-    setZodiacSign('Unknown');
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Zodiac Sign Selector</Text>
+      <Text style={styles.header}>QMRA Parameters</Text>
       <Picker
-        selectedValue={selectedMonth}
+        selectedValue={selectedOrganism}
         onValueChange={(itemValue) => {
-          setSelectedMonth(itemValue);
-          updateZodiacSign();
+          setSelectedOrganism(itemValue);
+          setResult('');
         }}
       >
-        <Picker.Item label="January" value={1} />
-        <Picker.Item label="February" value={2} />
-        <Picker.Item label="March" value={3} />
-        <Picker.Item label="April" value={1} />
-        <Picker.Item label="February" value={2} />
-        <Picker.Item label="March" value={3} />
-        {/* Add more months */}
-      </Picker>
-      <Picker
-        selectedValue={selectedDate}
-        onValueChange={(itemValue) => {
-          setSelectedDate(itemValue);
-          updateZodiacSign();
-        }}
-      >
-        {/* Populate the date picker dynamically based on selected month */}
-        {Array.from({ length: 31 }, (_, index) => (
-          <Picker.Item key={index} label={`${index + 1}`} value={index + 1} />
+        {Object.keys(qmraParameters).map((organism) => (
+          <Picker.Item
+            key={organism}
+            label={organism}
+            value={organism}
+          />
         ))}
+        <Picker.Item label="Other" value="Other" />
       </Picker>
-      <Text style={styles.result}>Your Zodiac Sign is: {zodiacSign}</Text>
+      {selectedOrganism === 'Other' && (
+        <>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Organism"
+            onChangeText={(text) => setSelectedOrganism(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Model"
+            onChangeText={(text) => setModel(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Count"
+            keyboardType="numeric"
+            onChangeText={(text) => setCount(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Alpha"
+            keyboardType="numeric"
+            onChangeText={(text) => setAlpha(parseFloat(text))}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Beta"
+            keyboardType="numeric"
+            onChangeText={(text) => setBeta(parseFloat(text))}
+          />
+        </>
+      )}
+      <Button
+        title="Calculate"
+        onPress={calculateResult}
+      />
+      {result !== '' && (
+        <Text style={styles.result}>{result}</Text>
+      )}
     </View>
   );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -101,6 +110,14 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     marginBottom: 20,
+  },
+  input: {
+    width: 200,
+    fontSize: 16,
+    marginBottom: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'blue',
   },
   result: {
     fontSize: 18,
