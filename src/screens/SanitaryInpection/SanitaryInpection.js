@@ -6,17 +6,60 @@ import { View, Modal, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import DataResults from '../AnalysisResults/AnalysisResults';
-import { useSelector } from 'react-redux';
 
+
+import HS2 from '../H2S/H2S';
 
 function SanitaryInpection() {
     let user_info = useSelector((state) => state.user.value)
     let sampling_info = useSelector((state) => state.sampling.value)
 
+    //////data results
+    const tempData = useLocation()
+    const [DataAnalysis, setDataAnalysis] = useState(tempData.state.temp)
+    const [backgroundColor, setbackgroundColor] = useState('')
+
+    useEffect(() => {
+
+        if (DataAnalysis.message !== "adedd hydrogensulfide") {
+            if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
+            else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
+            else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
+            else { setbackgroundColor("rgba(216, 0, 0, 0.986)") }
+        }
+        else {
+            if (DataAnalysis.status === true) {
+                setbackgroundColor("rgba(216, 0, 0, 0.986)")
+            }
+            else {
+                setbackgroundColor("rgba(0, 128, 0, 0.719)")
+            }
+        }
+
+    }, [DataAnalysis]) 
+    let sanitary = <div>
+        <h2>Analysis: Sanitary</h2>
+        <h3>Risk Characterization</h3>
+        <div className='form-group'>
+            <label>{DataAnalysis.risk_type}</label>
+            <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
+        </div>
+    </div>;
+
+    let h2s = <div>
+        <h2>Analysis: H2S</h2>
+        <h3>Risk Characterization</h3>
+        <div className='form-group'>
+            <label>{DataAnalysis.risk_type}</label>
+            <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
+        </div>
+    </div>
+    /////////////////////////////////////////
+
     const navigate = useNavigate()
 
 
-    const tempData = useLocation();
+    // const tempData = useLocation();
     const [SamplingData] = useState(tempData.state.temp)
 
     const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState({
@@ -77,8 +120,27 @@ function SanitaryInpection() {
                 .then((result) => {
                     console.log(result.data.success)
                     var temp = result.data
+
                     if (result.data.success === true) {
-                        navigate("/level1", { state: { temp } })
+                        console.log(temp)
+                        setDataAnalysis(temp)
+                        if (DataAnalysis.message !== "adedd hydrogensulfide") {
+                            if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
+                            else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
+                            else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
+                            else { setbackgroundColor("rgba(216, 0, 0, 0.986)") }
+                        }
+                        else {
+                            if (DataAnalysis.status === true) {
+                                setbackgroundColor("rgba(216, 0, 0, 0.986)")
+                            }
+                            else {
+                                setbackgroundColor("rgba(0, 128, 0, 0.719)")
+                            }
+                        }
+                        
+                        initModal(); 
+                        //navigate("/data_results", { state: { temp } })
                     }
                 }, err => {
                     console.log(err)
@@ -113,13 +175,23 @@ function SanitaryInpection() {
                     <div className='container-wrapper'></div>
                     <div className='sanitaryInpection'>
 
+                        {/* data results pop up */}
 
-                        <Modal show={isShow} onHide={modalClose}>
+                        <Modal show={isShow} onHide={modalClose} >
                             <Modal.Header closeButton onClick={modalClose}>
                                 <Modal.Title>Analysis results</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <DataResults />
+                               
+                                <div className='container-wrapper'></div>
+                                {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
+                                    {sanitary}
+                                </div>)}
+                                {(DataAnalysis.message === "adedd hydrogensulfide") && (<div>
+                                    {h2s}
+                                </div>)}
+                                {/* <DataResults /> */}
+                                  
                             </Modal.Body>
                             <Modal.Footer>
                                 {/* <Button variant="danger" onClick={initModal}>
@@ -130,6 +202,8 @@ function SanitaryInpection() {
                                 </Button>
                             </Modal.Footer>
                         </Modal>
+
+                        {/* methods pop up */}
 
                         <Modal show={isShows} onHide={modalCloses}>
                             <Modal.Header closeButton onClick={function (event) { modalClose(); modalCloses() }}>
@@ -270,7 +344,7 @@ function SanitaryInpection() {
                                 {/* <Button variant="danger" onClick={initModals}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { senduseSanitaryInpectionSurvey(); modalClose() }}>
+                                <Button variant="dark" onClick={function (event) {  modalClose();  navigate('/level1')}}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
@@ -329,7 +403,7 @@ function SanitaryInpection() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button onClick={initModal} className='btn btn-primary sanitary-submit'>Submit</button>
+                        <button onClick={function (event){ senduseSanitaryInpectionSurvey(); }} className='btn btn-primary sanitary-submit'>Submit</button>
                     </div>
                 </div>
             </div>
