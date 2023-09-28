@@ -47,16 +47,13 @@ function Login() {
         const loginData = await axios.post('http://localhost:3001/api/login', values)
 
         setTimeout(() => {
-            console.log(loginData)
-
             setButtonPopup(false)
             if (loginData.data.success === true) {
                 user_info = {
-                    user_id: loginData.data.results[0].userId,
+                    userId: loginData.data.results[0].userId,
                     user_role: loginData.data.results[0].role,
                     user_level: loginData.data.results[0].level
                 }
-                console.log(user_info)
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {

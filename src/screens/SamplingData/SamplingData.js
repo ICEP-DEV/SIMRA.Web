@@ -63,7 +63,7 @@ function SamplingData() {
             waterAccessability: WaterAccessibility,
             weatherCondition: WeatherCondition,
             muni_id: Municipality,
-            user_id:user_info.user_id
+            userId:user_info.userId
         }
 
         console.log(temp)

@@ -3,13 +3,7 @@ var initialState = {}
 
 export const samplingSlice = createSlice({
     name: "samplingInfo",
-    initialState: {value:{
-        type: "",
-        waterAccessability: "",
-        weatherCondition: "",
-        muni_id: "",
-        user_id:0,
-    }},
+    initialState: {value:{}},
     reducers: {
       sampling_details: (state, action)=> {
         state.value = action.payload
