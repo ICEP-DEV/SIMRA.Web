@@ -17,6 +17,7 @@ useEffect(() =>{
     .catch((error) => console.log(error ));
 },[] );
 
+
     return(
 <div className='hero-all' >
 
@@ -27,21 +28,24 @@ useEffect(() =>{
     <div className='main-all'>
         <div className='content'>
             <div className='container-wrapper'>
+                <div className="upload-image">
+
+                </div>
                 <div className="profile-main"> 
             <h1>My Profile</h1>
       
               
-            <div className="sub">First Name <br></br><input value={posts.firstname}/> {posts.firstname}</div>
+            <div className="sub">First Name <br></br><input  placeholder="First Name"value={posts.firstname}/> {posts.firstname}</div>
                   
-            <div  className="sub">Last Name  <br></br><input value={posts.lastname}/> {posts.lastname}</div>
+            <div  className="sub">Last Name  <br></br><input placeholder="Last Name" value={posts.lastname}/> {posts.lastname}</div>
                    
             <div  className="sub"> 
             Email  <br></br>
-            <input value={posts.mobileNo}/>{posts.mobileNo}
+            <input placeholder=" " value={posts.mobileNo}/>{posts.mobileNo}
              </div>
                     
             <div  className="sub" >
-                <input  value={posts.password} />{posts.password}
+                <input placeholder="password" value={posts.password} />{posts.password}
                 </div>
                  
               

@@ -108,9 +108,10 @@ function H2S() {
         <div className='text-center mt-4'>
             {activeMenu === 'sanitary' && <div className="submenu"></div>}
             <br></br>
+            <div className='h2s'>
             <p> Please complete H2Test </p>
 
-            <div className='d-inline p-2 bg-dark text-white mt-5' onClick={() => handleMenuClick('h2s')}>
+            <div className='h2s-button' onClick={() => handleMenuClick('h2s')}>
                 H2S TEST {completedProcessH2S && <span style={{ marginLeft: '90px' }}>{completedProcessH2S}</span>}
             </div>
             {activeMenu === 'h2s' && (
@@ -161,7 +162,7 @@ function H2S() {
                         SUBMIT
                     </button>
                     <br></br>
-
+                
                    
                     {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
                         DONE
@@ -327,6 +328,7 @@ function H2S() {
                         </div>
 
                     )}
+                 
                             </Modal.Body>
                             <Modal.Footer>
                                 {/* <Button variant="danger" onClick={initModals}>
@@ -338,9 +340,10 @@ function H2S() {
                             </Modal.Footer>
                         </Modal>
                 </div>
+                   
             )}
 
-
+</div>
 
         </div>
         </div>

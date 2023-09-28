@@ -40,6 +40,7 @@ function Login() {
             console.log("Enter password")
             return;
         }
+       
         setButtonPopup(true)
         const loginData = await axios.post('http://localhost:3001/api/login', values)
 
@@ -77,7 +78,7 @@ function Login() {
                 <div className='logo-login'>
                     <img src={logo} /> Simra
                 </div>
-                <h1>Welcome</h1>
+                <h2>Welcome</h2>
                 SIMRA, tool integrates  <br></br>
                 the current water and <br></br>
                 sanitation risk assessment <br></br>
@@ -92,7 +93,7 @@ function Login() {
                         <h3 className='header-txt'><b>Login </b></h3>
                         <div className='mb-4'>
                             {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
-                            <input type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
+                            <input className='input-login'type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
                             <small>
 
                             </small>
@@ -100,7 +101,7 @@ function Login() {
 
                         <div className='mb-5'>
                             {/* <label htmlFor='password'>Password</label> <br /> */}
-                            <input type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
+                            <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
 

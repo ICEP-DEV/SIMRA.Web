@@ -2,3 +2,41 @@
 {
     color: blue;
 }
+@media only screen and (max-width: 768px) {
+
+    .table
+    {
+       font-size: 12px;
+    }
+    .sanitaryInpection .table
+    {
+        width: 80%;
+        height: 80%;
+     color: blue;
+    }
+    .container-wrapper
+    {
+        width: 20%;
+        height: 100%;
+
+    }
+    .content
+    {
+        width: 50%;
+        height: 100%;
+      
+       
+    }
+    .anitaryInpection button{
+width: 50%;
+    }
+    .method-table
+    {
+        width: 100%;
+        font-size: 80%;
+    }
+    .text-center
+    {
+        width: 70%;
+    }
+}

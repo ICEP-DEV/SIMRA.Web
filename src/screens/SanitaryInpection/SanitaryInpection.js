@@ -107,7 +107,7 @@ function SanitaryInpection() {
 
         <div className='main-all'>
             <div className='content'>
-                <div className='container-wrapper'></div>
+                <div className='</div>'>
                   <div className='sanitaryInpection'>
 
 
@@ -136,7 +136,7 @@ function SanitaryInpection() {
                         <div className="text-center">
                             <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
 
-                            <table>
+                            <table className='method-table'>
                                 <tbody>
                                     <tr>
                                         <th>METHOD 1: Boiling water</th>
@@ -327,6 +327,7 @@ function SanitaryInpection() {
                     </tbody>
                 </table>
                 <button onClick={initModal}className='btn btn-primary'>Submit</button>
+            </div>
             </div>
         </div>
         </div></div>

@@ -1,13 +1,12 @@
 import { FaUserAlt } from "react-icons/fa";
 import {FiLogOut} from "react-icons/fi";
-import { RiTestTubeLine } from "react-icons/ri";
-import { FcSurvey } from "react-icons/fc";
-import { AiOutlineFile, AiOutlineVideoCameraAdd, AiFillVideoCamera } from "react-icons/ai";
+import { AiOutlineFile, AiFillHome} from "react-icons/ai";
 import {GoVideo} from "react-icons/go"
 import { useNavigate,Link } from 'react-router-dom';
 import "./Sidebar.css";
 import logo from './logo.png';
 import { IconContext } from "react-icons";
+
 
 console.log(logo);
 function Sidebar() {
@@ -19,6 +18,10 @@ function Sidebar() {
 <img src={logo} style={{marginLeft:'25px'}} />Simra<br></br>
 </div>
 <IconContext.Provider value={{ className: "side-icon" }}>
+
+    <div className="sidebar-subs">
+<Link to ='/home'><AiFillHome className="icon"/><br></br>Home</Link>
+    </div>
             <div className="sidebar-subs">
               
  
