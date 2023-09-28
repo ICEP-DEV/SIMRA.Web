@@ -1,6 +1,6 @@
 import axios from "axios";
 import React ,{useEffect,useState} from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import Sidebar  from '../Sidebar/Sidebar';
 import  "./Profile.css";
 function Profile (){
@@ -27,6 +27,7 @@ useEffect(() =>{
     <div className='main-all'>
         <div className='content'>
             <div className='container-wrapper'>
+                <div className="profile-main"> 
             <h1>My Profile</h1>
       
               
@@ -49,6 +50,7 @@ useEffect(() =>{
                 
 
                 <button className="btn-data">Update</button>
+                </div>
                 </div>
                 </div>
                 </div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
+import { View, Modal, Button } from 'react-bootstrap'
 
 function H2S() {
     const navigate = useNavigate();
@@ -15,6 +16,21 @@ function H2S() {
     const [isBlackTextVisible, setIsBlackTextVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
 
+
+    const [isShow, invokeModal] = React.useState(false)
+    const initModal = () => {
+        return invokeModal(!false)
+    }
+    const [isShows, invokeModals] = React.useState(false)
+    const initModals = () => {
+        return invokeModals(!false)
+    }
+    const modalClose = () => {
+        return invokeModal(false)
+    }
+    const modalCloses = () => {
+        return invokeModals(false)
+    }
 
     const handleRadioChange = (event) => {
         setSelectedOption(event.target.value);
@@ -76,6 +92,10 @@ function H2S() {
 
     };
 
+    // const navigating = () => {
+    //     navigate("/level1")
+    // }
+
     return (
         <div className='hero-all' >
             <div className='sidenav'>
@@ -122,7 +142,7 @@ function H2S() {
                                 checked={selectedOption === 'NEGATIVE'}
                                 onChange={handleRadioChange} style={{ marginRight: '10px' }}
                             />
-                            NEGATIVE
+                            WHITE
                         </label>
 
                         <label>
@@ -132,19 +152,45 @@ function H2S() {
                                 checked={selectedOption === 'POSITIVE'}
                                 onChange={handleRadioChange} style={{ marginRight: '10px' }}
                             />
-                            POSITIVE
+                            BLACK
                         </label>
                     </div>
                     <br></br>
 
-                    <button onClick={handleSubmitButton} className='d-inline p-2 bg-primary text-white mt-5' type="submit" value="Submit" style={divStyleSubmit}>
+                    <button onClick={initModal} className='d-inline p-2 bg-primary text-white mt-5' type="submit" value="Submit" style={divStyleSubmit}>
                         SUBMIT
                     </button>
                     <br></br>
 
-                    {isYellowTextVisible && (
+                   
+                    {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
+                        DONE
+                    </button> */}
+                    <Modal show={isShow} onHide={modalClose}>
+                            <Modal.Header closeButton onClick={modalClose}>
+                                <Modal.Title>Results</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                Are you sure you want to submit the results ?
+                            </Modal.Body>
+                            <Modal.Footer>
+                                {/* <Button variant="danger" onClick={initModal}>
+                            Close
+                        </Button> */}
+                                <Button variant="dark" onClick={function (event) { handleSubmitButton();  initModals()}}>
+                                    Ok
+                                </Button>
+                            </Modal.Footer>
+                    </Modal>
+
+                    <Modal show={isShows} onHide={modalCloses}>
+                            <Modal.Header closeButton onClick={function (event) { modalClose(); modalCloses() }}>
+                                <Modal.Title>Methods</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            {isYellowTextVisible && (
                         <div>
-                            <p>NO RISK !!!  ENJOY YOUR WATER!!</p>
+                            <p>NO RISK !!!  </p>
                             <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
                         </div>
                     )}
@@ -281,9 +327,16 @@ function H2S() {
                         </div>
 
                     )}
-                    <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
-                        DONE
-                    </button>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                {/* <Button variant="danger" onClick={initModals}>
+                            Close
+                        </Button> */}
+                                <Button variant="dark" onClick={function (event) {handleButtonClick(); modalClose();  }}>
+                                    Ok
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
                 </div>
             )}
 

@@ -7,6 +7,7 @@ import samplingData from '../SamplingData/SamplingData'
 
 function Home(){
     let navigate = useNavigate();
+    
 return(
     <div className='hero-all' >
     <div className='sidenav'>

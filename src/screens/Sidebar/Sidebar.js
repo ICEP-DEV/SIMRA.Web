@@ -25,13 +25,13 @@ function Sidebar() {
                 <Link to="/profile"><FaUserAlt  className="icon" /><br></br> Profile</Link>
             </div> 
 
-            <div className="sidebar-subs">
+            {/* <div className="sidebar-subs">
                 <a href=""><RiTestTubeLine   /><br></br>H2S</a>
             </div>
 
             <div className="sidebar-subs">
                 <a href=""><FcSurvey  /><br></br>Survey</a>
-            </div>
+            </div> */}
 
             <div className="sidebar-subs">
                 <a href=""><AiOutlineFile  /><br></br>File</a>
