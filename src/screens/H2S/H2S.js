@@ -7,8 +7,7 @@ import { View, Modal, Button } from 'react-bootstrap'
 function H2S() {
     const navigate = useNavigate();
 
-    const tempData = useLocation();
-    const [SamplingData] = useState(tempData.state.temp)
+    const [SamplingData] = useState({})
 
     const [activeMenu, setActiveMenu] = useState(null);
     const [completedProcessH2S, setCompletedProcessH2S] = useState('Completed 0/1');
@@ -59,6 +58,9 @@ function H2S() {
             setIsBlackTextVisible(true); // Show the positive message
         }
     };
+    const naving=()=>{
+        navigate("/level1");
+    }
     const handleButtonClick = (color) => {
         if (color === 'Yellow') {
             setIsYellowTextVisible(!isYellowTextVisible);
@@ -82,7 +84,8 @@ function H2S() {
             axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
                 var temp = result.data
                 if (result.data.success === true) {
-                    navigate("/level1", { state: { temp } })
+                    // navigate("/level1", { state: { temp } })
+                    console.log("success")
                 }
             })
         }, err=>{
@@ -177,7 +180,7 @@ function H2S() {
                                 {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { handleSubmitButton();  initModals()}}>
+                                <Button variant="dark" onClick={function (event) { handleSubmitButton();handleButtonClick();  initModals()}}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
@@ -332,7 +335,7 @@ function H2S() {
                                 {/* <Button variant="danger" onClick={initModals}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) {handleButtonClick(); modalClose();  }}>
+                                <Button variant="dark" onClick={function (event) { naving(); modalClose();  }}>
                                     Ok
                                 </Button>
                             </Modal.Footer>

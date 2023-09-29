@@ -177,8 +177,6 @@ function SanitaryInpection() {
     }
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
-
-
         return invokeModal(!false)
     }
     const [isShows, invokeModals] = React.useState(false)
@@ -389,7 +387,7 @@ function SanitaryInpection() {
                                 {/* <Button variant="danger" onClick={initModals}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { modalClose(); navigate('/level1') }}>
+                                <Button variant="dark" onClick={function (event) { modalClose();}}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
