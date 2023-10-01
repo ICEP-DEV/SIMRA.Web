@@ -13,7 +13,7 @@ const qmraParameters = {
   'Other': { model: '', alpha: 0, beta: 0 },
 };
 
-export default function App() {
+export default function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
   const [count, setCount] = useState('');
   const [alpha, setAlpha] = useState('');

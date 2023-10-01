@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native'; // Make sure to import 'Text'
+import { View, TextInput, Button, StyleSheet, Text, Modal } from 'react-native'; // Make sure to import 'Text'
 import axios from 'axios';
 import { Formik } from 'formik';
 import * as Yup from 'yup';

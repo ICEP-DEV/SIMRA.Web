@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Picker, Modal } from 'react-native';
+import { View, Text, TextInput, Button, Picker} from 'react-native';
 import axios from 'axios';
-import SuccessPopup from './SuccessPopUp';
+import SuccessPopup from './SuccessPopUp/SuccessPopUp';
+//import { useNavigate } from 'react-router-dom';
+import { useNavigation } from '@react-navigation/native';
+
 
 const UserRegistration = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +16,7 @@ const UserRegistration = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
+  const navigation = useNavigation();
 
   const handleRegistration = () => {
     // Check if the password and confirmPassword match
@@ -23,11 +27,14 @@ const UserRegistration = () => {
 
     // Clear any previous error messages
     setError(null);
+    
 
-    axios.post('http://localhost:3000/register', {username, userSurname, email, userLevel, mobileNo, password,})
+    axios.post('http://localhost:3000/api/UserRegister', {username, userSurname, email, userLevel, mobileNo, password,})
       .then((response) => {
+        
         console.log('User registered successfully');
-        // Navigate to a success screen or perform other actions as needed.
+        // Navigate 
+        navigation.navigate('../Login');
         setSuccessPopupVisible(true);
       })
       .catch((error) => {

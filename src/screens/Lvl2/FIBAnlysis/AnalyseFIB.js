@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, Button, TextInput } from 'react-native';
+import { View, Text, Picker, TextInput } from 'react-native';
 
 const FibAnalysis = () => {
   const [selectedFIB, setSelectedFIB] = useState('Select a FIB');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import AddForm from './AddForm';
+import AddForm from './Information';
 
 const Add = () => {
   const handleFormSubmit = (values) => {
