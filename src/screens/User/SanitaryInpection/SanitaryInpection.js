@@ -2,17 +2,11 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import React from 'react'
 import './SanitaryInpection.css'
-import { View, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import DataResults from '../AnalysisResults/AnalysisResults';
-
-
-import HS2 from '../H2S/H2S';
 import { useSelector } from 'react-redux';
 
 function SanitaryInpection() {
-    let user_info = useSelector((state) => state.user.value)
     let sampling_info = useSelector((state) => state.sampling.value)
 
     //////data results
@@ -57,8 +51,6 @@ function SanitaryInpection() {
     </div>
     /////////////////////////////////////////
 
-    const navigate = useNavigate()
-
 
     // const tempData = useLocation();
 
@@ -99,7 +91,7 @@ function SanitaryInpection() {
         //validate the radio buttons
        console.log(SanitaryInpectionItems)
        if(SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
-        SanitaryInpectionItems.observerLaundryActivity == undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
+        SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
         SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined){
             console.log("all the field the must be checked");
             initModalsing();
@@ -269,8 +261,6 @@ function SanitaryInpection() {
                                                         In doing so, chemical additions cease to exist in the water. However, the dead micro-organisms and impurities settle at the bottom of the water,
                                                         and boiling does not help eliminate all the impurities.
                                                         You must strain the water through a microporous sieve to completely remove the impurities.</li>
-
-
                                                 </td>
                                             </tr>
                                             <tr>
@@ -278,12 +268,9 @@ function SanitaryInpection() {
                                             </tr>
                                             <tr>
                                                 <td>
-
                                                     <li>An electric water purifier is the most trusted form of water purification found in most houses today.
                                                         A water purifier uses a multi-stage process involving UV and UF filtration, carbon block,
                                                         and modern water filtration technology that eliminates most of the chemicals and impurities, making it the purest drinking water.</li>
-
-
                                                 </td>
                                             </tr>
                                             <tr>

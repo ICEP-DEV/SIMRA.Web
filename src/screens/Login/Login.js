@@ -7,18 +7,20 @@ import Loader from '../Loader/Loader';
 import logo from './logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user"
-import { View, Modal, Button } from 'react-bootstrap'
+import {  Modal, Button } from 'react-bootstrap'
+
 
 function Login() {
     let user_info = useSelector((state) => state.use)
     const dispatch = useDispatch();
 
     let navigate = useNavigate();
+    const [ButtonPopup, setButtonPopup] = useState(false);
     const [values, setValues] = useState({
         username: "",
         password: ""
     });
-    const [ButtonPopup, setButtonPopup] = useState(false);
+  
     const handleChangeUpdate = e => {
         const { name, value } = e.target;
         setValues(prevState => ({
@@ -26,8 +28,6 @@ function Login() {
             [name]: value
         }));
     }
-
-    //  react hook form start here 
 
 
     // set up login button using gmail account
@@ -49,7 +49,6 @@ function Login() {
         }
         setButtonPopup(true)
         const loginData = await axios.post('http://localhost:3001/api/login', values)
-
         setTimeout(() => {
             setButtonPopup(false)
             if (loginData.data.success === true) {
@@ -64,7 +63,7 @@ function Login() {
                     navigate('/sampling_data')
                 }
                 else if (loginData.data.results[0].role === "municipal") {
-                     navigate('/municipality')
+                    navigate('/municipality')
                 }
 
             }
@@ -87,22 +86,20 @@ function Login() {
     // let displaySidebar=<div></div>
 
 
-// pop up modal fucntions
-const [isShow, invokeModal] = React.useState(false)
-const initModal = () => {
-    return invokeModal(!false)
-}
-const [isShows, invokeModals] = React.useState(false)
-const initModals = () => {
-    return invokeModals(!false)
-}
-const modalClose = () => {
-    return invokeModal(false)
-}
-const modalCloses = () => {
-    return invokeModals(false)
-}
-const [isShowsing, invokeModalsing] = React.useState(false)
+    // pop up modal fucntions
+    const [isShow, invokeModal] = React.useState(false)
+    const initModal = () => {
+        return invokeModal(!false)
+    }
+    const [ invokeModals] = React.useState(false)
+    const initModals = () => {
+        return invokeModals(!false)
+    }
+    const modalClose = () => {
+        return invokeModal(false)
+    }
+    
+    const [isShowsing, invokeModalsing] = React.useState(false)
     const initModalsing = () => {
         return invokeModalsing(!false)
     }
@@ -112,77 +109,77 @@ const [isShowsing, invokeModalsing] = React.useState(false)
 
     return (
         <div className='all-contents'>
-             {/*
+            {/*
                             All field should be filled
                 */}
 
-             <Modal show={isShow} onHide={modalClose} >
-                            <Modal.Header closeButton onClick={modalClose}>
-                                <Modal.Title>Login</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
+            <Modal show={isShow} onHide={modalClose} >
+                <Modal.Header closeButton onClick={modalClose}>
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
 
 
-                            All field should be filled
+                    All field should be filled
 
-                            </Modal.Body>
-                            <Modal.Footer>
-                                {/* <Button variant="danger" onClick={initModal}>
+                </Modal.Body>
+                <Modal.Footer>
+                    {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={modalClose}>
-                                    Ok
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                    <Button variant="dark" onClick={modalClose}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
             {/* data results pop up */}
 
             <Modal show={isShow} onHide={modalClose} >
-                            <Modal.Header closeButton onClick={modalClose}>
-                                <Modal.Title>login</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
+                <Modal.Header closeButton onClick={modalClose}>
+                    <Modal.Title>login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
 
 
 
-                            Enter username
+                    Enter username
 
-                            </Modal.Body>
-                            <Modal.Footer>
-                                {/* <Button variant="danger" onClick={initModal}>
+                </Modal.Body>
+                <Modal.Footer>
+                    {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={modalClose}>
-                                    Ok
-                                </Button>
-                            </Modal.Footer>
+                    <Button variant="dark" onClick={modalClose}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
             </Modal>
 
-             {/* password pop up */}
-             <Modal show={isShowsing} onHide={modalClosesing} >
-                            <Modal.Header closeButton onClick={modalClosesing}>
-                                <Modal.Title>login</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
+            {/* password pop up */}
+            <Modal show={isShowsing} onHide={modalClosesing} >
+                <Modal.Header closeButton onClick={modalClosesing}>
+                    <Modal.Title>login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
 
-                            Enter password
+                    Enter password
 
-                            </Modal.Body>
-                            <Modal.Footer>
-                            <Button variant="dark" onClick={modalClosesing}>
-                                    Ok
-                                </Button>
-                            </Modal.Footer>
-                            </Modal>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="dark" onClick={modalClosesing}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-                        
+
 
 
             <div className='login-container'>
                 <div className='welcome'>
                     <div className='logo-login'>
-                        <img src={logo} /> Simra
+                        <img src={logo} alt='logo' /> Simra
                     </div>
                     <h1>Welcome</h1>
                     SIMRA, tool integrates  <br></br>

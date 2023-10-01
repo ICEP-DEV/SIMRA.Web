@@ -1,25 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from "react-redux";
-import store from './Redux/store';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './screens/Login/Login';
-import SamplingData from './screens/SamplingData/SamplingData';
-import Level1 from './screens/Level1/Level1';
-import H2S from './screens/H2S/H2S';
-import SanitaryInpection from './screens/SanitaryInpection/SanitaryInpection';
-import DataResults from './screens/AnalysisResults/AnalysisResults';
-import Municipality from './screens/Municipality/Municipality';
-import Report from './screens/Report/Report'
+import SamplingData from './screens/User/SamplingData/SamplingData';
+import Level1 from './screens/User/Level1/Level1';
+import H2S from './screens/User/H2S/H2S';
+import SanitaryInpection from './screens/User/SanitaryInpection/SanitaryInpection';
+import DataResults from './screens/User/AnalysisResults/AnalysisResults';
+import Municipality from './screens/Municipality/Municipality/Municipality';
+import Report from './screens/Municipality/Report/Report'
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
-    <Provider store={store}>
       <Router>
         <Routes>
           <Route exact path='/' element={<Login />} />
-
           <Route exact path='/sampling_data' element={<SamplingData />} />
           <Route exact path='/h2s_testing' element={<H2S />} />
           <Route exact path='/level1' element={<Level1 />} />
@@ -29,8 +25,6 @@ function App() {
           <Route exact path='/report' element={<Report />} />
         </Routes>
       </Router>
-    </Provider>
-
   );
 }
 export default App;

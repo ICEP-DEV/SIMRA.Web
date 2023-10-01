@@ -1,11 +1,9 @@
 
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+
 import { useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import './Level1.css'
 function Level1() {
-    
     const navigate = useNavigate()
 
     function sanitary_survay() {

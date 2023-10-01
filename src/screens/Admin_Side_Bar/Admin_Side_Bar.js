@@ -6,21 +6,53 @@ import { AiOutlineFile, AiOutlineVideoCameraAdd, AiOutlineLogout } from "react-i
 import { useNavigate } from 'react-router-dom';
 import logo from './logo.png';
 import { Outlet, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { remove_details } from "../../Redux/user"
+
 function Admin_Side_Bar() {
     const navigate = useNavigate();
-    return(<div className="admin_side_bar">
-        <img src={logo} width="100" height="90"/> Simra<br></br>
-            <div className="sidebar-subs">
-                <Link to="/"><FaUserAlt /> Profile</Link>
-            </div>
+    const dispatch = useDispatch();
+    let user_info = useSelector((state) => state.user.value)
 
-            <div className="sidebar-subs">
-                <Link to="/report"><RiTestTubeLine />Report</Link>
-            </div>
+    useEffect(() => {
+        if (user_info === undefined) {
+            navigate("/")
+        }
+    }, [])
 
-            <div className="sidebar-subs">
-                <Link to="/"><AiOutlineLogout /> Logout</Link>
+    function logout() {
+        dispatch(remove_details());
+        navigate("/")
+    }
+
+    function logout() {
+        dispatch(remove_details());
+        navigate("/")
+    }
+
+    return (<div className="admin_side_bar">
+        <h2><img src={logo} /> Simra </h2>
+
+        <div className="sidebar-subs">
+            <Link to="/" className='side-bar-label'>
+                <span className='side-icon'><FaUserAlt /></span>
+                <span className='side-label'>Profile</span></Link>
+        </div>
+
+        <div className="sidebar-subs">
+            <Link to="/report" className='side-bar-label'>
+                <span className='side-icon'><RiTestTubeLine /></span>
+                <span className='side-label'>Report</span>
+            </Link>
+        </div>
+
+        <div className="sidebar-subs">
+            <div className='side-bar-label' onClick={logout} >
+                <span className='side-icon'><AiOutlineLogout size={'3rem'} /></span>
+                <span className='side-label'>Logout</span>
             </div>
+        </div>
 
     </div>)
 }

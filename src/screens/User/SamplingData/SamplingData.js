@@ -1,13 +1,12 @@
 import './SamplingData.css'
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { sampling_details } from '../../Redux/sampling_data'
+import { sampling_details } from '../../../Redux/sampling_data'
 function SamplingData() {
     let user_info = useSelector((state) => state.user.value)
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [provinces, setProvinces] = useState([])
@@ -30,7 +29,6 @@ function SamplingData() {
 
     function getAllMunicipalities(event) {
         var prov_id = event.target.value
-        console.log(prov_id)
         axios.get(api + 'get_municipalities/' + prov_id).then(response => {
             setMunicipalities(response.data.results)
             setProvince(response.data.results)
@@ -142,7 +140,6 @@ function SamplingData() {
 
                 </div>
             </div>
-            {/* f */}
         </div>
     );
 }

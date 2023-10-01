@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import { View, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 
 function H2S() {
     const navigate = useNavigate();
@@ -82,7 +82,7 @@ function H2S() {
                 samplingId: response.data.insertedId
             }
             axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
-                var temp = result.data
+               
                 if (result.data.success === true) {
                     // navigate("/level1", { state: { temp } })
                     console.log("success")
