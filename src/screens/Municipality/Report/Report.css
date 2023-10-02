@@ -1,0 +1,28 @@
+.reports{
+    display: flex;
+}
+
+.card{
+    margin: 5px;
+    font-size: 0.8em;
+}
+.card-circle{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    text-align:center;
+    justify-content: center;
+    align-items: center;
+    border: rgb(119, 118, 118) solid 1px;
+}
+
+.sanitary_score{
+    margin-top:20px;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+
+.catchment, .risk_type{
+    font-weight: 500;
+}

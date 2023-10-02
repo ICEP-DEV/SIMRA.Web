@@ -6,8 +6,8 @@ import { useState } from 'react';
 import Loader from '../Loader/Loader';
 import logo from './logo.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { user_details } from "../../Redux/user"
-import {  Modal, Button } from 'react-bootstrap'
+import { user_details } from "../../Redux/user";
+import {  Modal, Button } from 'react-bootstrap';
 
 
 function Login() {
@@ -56,12 +56,17 @@ function Login() {
                 user_info = {
                     userId: loginData.data.results[0].userId,
                     user_role: loginData.data.results[0].role,
-                    user_level: loginData.data.results[0].level
+                    user_level: loginData.data.results[0].level,
+                    user_initial: loginData.data.results[0].firstname.substring(0, 1).toUpperCase(),
+                    user_lastname: loginData.data.results[0].lastname,
+
                 }
+                console.log(loginData.data.results[0])
+                console.log(user_info)
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                    navigate('/sampling_data')
+                    navigate('/home')
                 }
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')

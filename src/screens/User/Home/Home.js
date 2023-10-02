@@ -3,8 +3,7 @@ import axios from 'axios';
 import './Home.css';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import samplingData from '../SamplingData/SamplingData'
-
+import Header from '../Header/Header';
 function Home(){
     let navigate = useNavigate();
     
@@ -15,8 +14,11 @@ return(
     </div>
 
     <div className='main-all'>
+     
         <div className='content'>
+        <Header/>
             <div className='container-wrapper'>
+       
                 <div>
                    <button className='btn-home' onClick={() => navigate("/sampling_data")}> Sampling Data</button> 
                 </div>

@@ -34,20 +34,20 @@ function Sidebar() {
                 <Link to="/" ><FaUserAlt size={'3rem'} /> Profile</Link>
             </div>
 
-            <div className="sidebar-subs">
+            {/* <div className="sidebar-subs">
                 <Link to="/" ><RiTestTubeLine />H2S</Link>
             </div>
 
             <div className="sidebar-subs">
                 <Link to="/"><RiTestTubeLine />Sanitary</Link>
-            </div>
+            </div> */}
 
             <div className="sidebar-subs">
                 <Link to="/" ><AiOutlineFile size={'3rem'} />File</Link>
             </div>
 
             <div className="sidebar-subs">
-                <Link to="/" ><AiOutlineVideoCameraAdd size={'3rem'} /> Video</Link>
+                <Link to="/Video" ><AiOutlineVideoCameraAdd size={'3rem'} /> Video</Link>
             </div>
 
             <div className="sidebar-subs">

@@ -351,3 +351,5 @@ function H2S() {
         </div>
     );
 }
+
+export default H2S;

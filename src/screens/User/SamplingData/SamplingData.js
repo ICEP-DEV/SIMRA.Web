@@ -76,6 +76,7 @@ function SamplingData() {
             </div>
 
             <div className='main-all'>
+            
                 <div className='content'>
                     <div className='container-wrapper'>
                         <div className='form-group'>
