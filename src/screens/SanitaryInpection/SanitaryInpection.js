@@ -2,31 +2,67 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import React from 'react'
 import './SanitaryInpection.css'
-import { View, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-
-import DataResults from '../AnalysisResults/AnalysisResults';
-import Level1 from '../Level1/Level1';
-import HS2 from '../H2S/H2S';
+import { useSelector } from 'react-redux';
 
 function SanitaryInpection() {
+    let sampling_info = useSelector((state) => state.sampling.value)
 
-    const navigate = useNavigate()
+    //////data results
+    const [DataAnalysis, setDataAnalysis] = useState({})
+    const [backgroundColor, setbackgroundColor] = useState('')
+
+    useEffect(() => {
+
+        if (DataAnalysis.message !== "adedd hydrogensulfide") {
+            if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
+            else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
+            else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
+            else { setbackgroundColor("rgba(216, 0, 0, 0.986)") }
+        }
+        else {
+            if (DataAnalysis.status === true) {
+                setbackgroundColor("rgba(216, 0, 0, 0.986)")
+            }
+            else {
+                setbackgroundColor("rgba(0, 128, 0, 0.719)")
+            }
+        }
+
+    }, [DataAnalysis]) 
+
+    let sanitary = <div>
+        <h2>Analysis: Sanitary</h2>
+        <h3>Risk Characterization</h3>
+        <div className='form-group'>
+            <label>{DataAnalysis.risk_type}</label>
+            <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
+        </div>
+    </div>;
+
+    let h2s = <div>
+        <h2>Analysis: H2S</h2>
+        <h3>Risk Characterization</h3>
+        <div className='form-group'>
+            <label>{DataAnalysis.risk_type}</label>
+            <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
+        </div>
+    </div>
+    /////////////////////////////////////////
 
 
-    const tempData = useLocation();
-    const [SamplingData] = useState(tempData.state.temp)
+    // const tempData = useLocation();
 
     const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState({
-        pitLatrine: false,
-        domesticAnimal: false,
-        diaperDisposal: false,
-        wasteWaterRelease: false,
-        openDefaction: false,
-        unprotectedWaterSource: false,
-        agriculturalActivity: false,
-        observerLaundryActivity: false,
+        pitLatrine: undefined,
+        domesticAnimal: undefined,
+        diaperDisposal: undefined,
+        wasteWaterRelease: undefined,
+        openDefaction: undefined,
+        unprotectedWaterSource: undefined,
+        agriculturalActivity: undefined,
+        observerLaundryActivity: undefined,
         samplingId: 0
     });
     const [Longitude, setLongitude] = useState('')
@@ -52,21 +88,41 @@ function SanitaryInpection() {
     // }
 
     function senduseSanitaryInpectionSurvey() {
+        //validate the radio buttons
+       console.log(SanitaryInpectionItems)
+       if(SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
+        SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
+        SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined){
+            console.log("all the field the must be checked");
+            initModalsing();
+            return;
+        }
 
-        axios.post("http://localhost:3001/api/sampling_data", SamplingData).then((response) => {
+
+
+        //Call in sampling data api
+        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
             SanitaryInpectionItems.samplingId = response.data.insertedId
+            // Assign to Coordinates object
             var coordinates = {
                 latitude: Latitude,
                 longitude: Longitude,
                 samplingId: response.data.insertedId
             }
+            //Call in coordinates api
             axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
                 console.log(result)
             }, err => {
                 console.log(err)
             })
-            SamplingData.samplingId = response.data.insertedId
-            axios.post("http://localhost:3001/api/watersource", SamplingData).then((result) => {
+            // Assign to watersource object
+            var watersource = {
+                samplingId: response.data.insertedId,
+                type: sampling_info.type,
+                waterAccessability: sampling_info.waterAccessability
+            }
+            //Call in watersource api
+            axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
                 console.log(result)
             }, err => {
                 console.log(err)
@@ -75,16 +131,41 @@ function SanitaryInpection() {
             axios.post("http://localhost:3001/api/sanitary_inspection_survey", SanitaryInpectionItems)
                 .then((result) => {
                     console.log(result.data.success)
-                    var temp = result.data
+                    setDataAnalysis(result.data)
+                    // navigate("/data_results", { state: { temp } })
+
                     if (result.data.success === true) {
-                        navigate("/level1", { state: { temp } })
+                        if (DataAnalysis.message !== "adedd hydrogensulfide") {
+                            if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
+                            else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
+                            else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
+                            else { setbackgroundColor("rgba(216, 0, 0, 0.986)") }
+                        }
+                        else {
+                            if (DataAnalysis.status === true) {
+                                setbackgroundColor("rgba(216, 0, 0, 0.986)")
+                            }
+                            else {
+                                setbackgroundColor("rgba(0, 128, 0, 0.719)")
+                            }
+                        }
+
+
                     }
+
+                    initModal();
+
                 }, err => {
                     console.log(err)
                 })
         }, (err) => {
             console.log(err)
         })
+    }
+
+    const [isShowsing, invokeModalsing] = React.useState(false)
+    const initModalsing = () => {
+        return invokeModalsing(!false)
     }
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
@@ -100,6 +181,9 @@ function SanitaryInpection() {
     const modalCloses = () => {
         return invokeModals(false)
     }
+    const modalClosesing = () => {
+        return invokeModalsing(false)
+    }
     return (
 
         <div className='hero-all' >
@@ -112,13 +196,37 @@ function SanitaryInpection() {
                     <div className='container-wrapper'></div>
                     <div className='sanitaryInpection'>
 
+                        {/* validation pop up */}
+                        <Modal show={isShowsing} onHide={modalClosesing} >
+                            <Modal.Header closeButton onClick={modalClosesing}>
+                                <Modal.Title>Analysis results</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
 
-                        <Modal show={isShow} onHide={modalClose}>
+                            all the field the must be checked
+
+                            </Modal.Body>
+                            <Modal.Footer></Modal.Footer>
+                            </Modal>
+
+                        {/* data results pop up */}
+
+                        <Modal show={isShow} onHide={modalClose} >
                             <Modal.Header closeButton onClick={modalClose}>
                                 <Modal.Title>Analysis results</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <DataResults />
+
+
+
+                                <div className='container-wrapper'></div>
+                                {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
+                                    {sanitary}
+                                </div>)}
+                                {(DataAnalysis.message === "adedd hydrogensulfide") && (<div>
+                                    {h2s}
+                                </div>)}
+
                             </Modal.Body>
                             <Modal.Footer>
                                 {/* <Button variant="danger" onClick={initModal}>
@@ -129,6 +237,8 @@ function SanitaryInpection() {
                                 </Button>
                             </Modal.Footer>
                         </Modal>
+
+                        {/* methods pop up */}
 
                         <Modal show={isShows} onHide={modalCloses}>
                             <Modal.Header closeButton onClick={function (event) { modalClose(); modalCloses() }}>
@@ -151,8 +261,6 @@ function SanitaryInpection() {
                                                         In doing so, chemical additions cease to exist in the water. However, the dead micro-organisms and impurities settle at the bottom of the water,
                                                         and boiling does not help eliminate all the impurities.
                                                         You must strain the water through a microporous sieve to completely remove the impurities.</li>
-
-
                                                 </td>
                                             </tr>
                                             <tr>
@@ -160,12 +268,9 @@ function SanitaryInpection() {
                                             </tr>
                                             <tr>
                                                 <td>
-
                                                     <li>An electric water purifier is the most trusted form of water purification found in most houses today.
                                                         A water purifier uses a multi-stage process involving UV and UF filtration, carbon block,
                                                         and modern water filtration technology that eliminates most of the chemicals and impurities, making it the purest drinking water.</li>
-
-
                                                 </td>
                                             </tr>
                                             <tr>
@@ -269,14 +374,14 @@ function SanitaryInpection() {
                                 {/* <Button variant="danger" onClick={initModals}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { senduseSanitaryInpectionSurvey(); modalClose() }}>
+                                <Button variant="dark" onClick={function (event) { modalClose();}}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
                         </Modal>
 
 
-
+                        <h2 className='Table-title'>Sanitary Inspection Form</h2>
                         <table className="table">
                             <thead className="thead-dark">
                                 <tr>
@@ -328,7 +433,7 @@ function SanitaryInpection() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button onClick={initModal} className='btn btn-primary sanitary-submit'>Submit</button>
+                        <button onClick={function (event) { senduseSanitaryInpectionSurvey(); }} className='btn btn-primary sanitary-submit'>Submit</button>
                     </div>
                 </div>
             </div>
