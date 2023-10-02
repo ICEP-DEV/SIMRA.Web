@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Report.css';
 import axios from 'axios';
-import AdminSideBar from '../../Admin_Side_Bar/Admin_Side_Bar'
+import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
 
 function ReportTable() {
 
@@ -128,40 +128,7 @@ function ReportTable() {
                 <label>{FoundReport.message}</label>
 
               </div>)}
-
-
             </div>
-            {/* <table className="report">
-              <thead className='tableHead'>
-                <tr>
-                  <th className="thh">Municipality(Source)</th>
-                  {Report.map((report, xid) => {
-                    <th className="thh" key={xid}>{report.muni_name}</th>
-                  })}
-                </tr>
-              </thead>
-
-              <tbody className='tableData'>
-                <tr>
-                  <td>Sanitary Score</td>
-                  {Report.map((report, xid) => {
-                    // <td key={xid}>{report}</td>
-                  })}
-                </tr>
-                <tr>
-                  <td>Score Percentage</td>
-                  {Report.map((report, xid) => {
-                    <td key={xid}>{report.total_avarage}%</td>
-                  })}
-                </tr>
-                <tr>
-                  <td>Risk Rating</td>
-                  {Report.map((report, xid) => {
-                    <td key={xid}>{report.risk_type}</td>
-                  })}
-                </tr>
-              </tbody>
-            </table> */}
           </div>
         </div>
       </div>
