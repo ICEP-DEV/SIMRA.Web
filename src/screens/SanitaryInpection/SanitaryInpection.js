@@ -326,7 +326,10 @@ function SanitaryInpection() {
                         </tr>
                     </tbody>
                 </table>
+                <div class="text-center">
                 <button onClick={initModal}className='btn btn-primary'>Submit</button>
+                </div>
+              
             </div>
             </div>
         </div>

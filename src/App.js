@@ -8,6 +8,7 @@ import DataResults from './screens/AnalysisResults/AnalysisResults';
 import Home from './screens/Home/Home';
 import Profile from './screens/Profile/Profile';
 import VideoScreen from './screens/Video/Video';
+import UserRegistration from './screens/Registration/Registration';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path='/' element={<Login />} />
+        <Route exact path ='/Login' element={<Login/>} />
         <Route exact path='/sampling_data' element={<SamplingData />} />
         <Route exact path='/h2s_testing' element={<H2S />} />
         <Route exact path='/level1' element={<Level1 />} />
@@ -23,6 +25,7 @@ function App() {
         <Route exact path='/home' element={<Home/>} />
         <Route exact path='/profile' element={<Profile/>}/>
         <Route exact path='/video' element={<VideoScreen/>}/>
+        <Route exact path='/user_Registration' element={<UserRegistration/>} />
       
       </Routes>
     </Router> 

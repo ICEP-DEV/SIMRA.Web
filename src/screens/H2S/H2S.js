@@ -179,7 +179,7 @@ function H2S() {
                             Close
                         </Button> */}
                                 <Button variant="dark" onClick={function (event) { handleSubmitButton();  initModals()}}>
-                                    Ok
+                                    yes
                                 </Button>
                             </Modal.Footer>
                     </Modal>

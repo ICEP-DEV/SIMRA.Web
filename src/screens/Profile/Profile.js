@@ -35,9 +35,9 @@ useEffect(() =>{
             <h1>My Profile</h1>
       
               
-            <div className="sub">First Name <br></br><input  placeholder="First Name"value={posts.firstname}/> {posts.firstname}</div>
+            <div className="sub">First Name <br></br><input  value={posts.firstname}/> {posts.firstname}</div>
                   
-            <div  className="sub">Last Name  <br></br><input placeholder="Last Name" value={posts.lastname}/> {posts.lastname}</div>
+            <div  className="sub">Last Name  <br></br><input  value={posts.lastname}/> {posts.lastname}</div>
                    
             <div  className="sub"> 
             Email  <br></br>
@@ -45,7 +45,7 @@ useEffect(() =>{
              </div>
                     
             <div  className="sub" >
-                <input placeholder="password" value={posts.password} />{posts.password}
+                <input placeholder="*********" value={posts.password} />{posts.password}
                 </div>
                  
               

@@ -50,7 +50,7 @@ function Login() {
             if (loginData.data.success === true) {
                 var userId = loginData.data.results[0].userId
 
-                navigate('/sampling_data', { state: { userId } })
+                navigate('/home', { state: { userId } })
             }
             else {
                 console.log(loginData.data.message);
@@ -93,7 +93,7 @@ function Login() {
                         <h3 className='header-txt'><b>Login </b></h3>
                         <div className='mb-4'>
                             {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
-                            <input className='input-login'type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
+                            <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
                             <small>
 
                             </small>

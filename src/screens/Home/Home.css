@@ -2,22 +2,24 @@
 {
    
     border: 2px solid #0063EA;
-    padding: 20px 20px;
-    width: 547px;
-border-radius: 20px 20px;
-font-size: 25px;
-font-weight: 400;
-color: #0063EA;
-background-color: #fff;
+    padding: 10px 10px;
+    width: 347px;
+    border-radius: 20px 20px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #0063EA;
+    background-color: #fff;
 }
 .home-p
 {
     margin-bottom: 8%;
+    margin-left: 8%;
 
 }
 .h1-home{
     margin-bottom: 1%;
     margin-top: 5%;
+    margin-left: 8%;
 }
 @media only screen and (max-width: 768px) {
     
