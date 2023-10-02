@@ -6,7 +6,7 @@ import AdminSideBar from '../../Admin_Side_Bar/Admin_Side_Bar'
 function ReportTable() {
 
   const [Provinces, setProvinces] = useState([])
-  const [Report, setReport] = useState([])
+  let [Reports, setReports] = useState([])
   const [GetMonths, setGetMonths] = useState([])
   const [GetYears, setGetYears] = useState([])
   const [CurrentMonth, setCurrentMonth] = useState('')
@@ -55,8 +55,8 @@ function ReportTable() {
     }
     console.log(search_report)
     var report_results = await axios.post('http://localhost:3001/api/get_monthly_reports', search_report)
-    setReport(report_results.data.results)
-    console.log(Report)
+    setReports(report_results.data.results)
+    console.log(Reports)
   }
 
   return (
@@ -93,14 +93,12 @@ function ReportTable() {
 
             <div className='reports'>
               <div className='cards'>
-              <label>jhdsjhdjhd</label>
-
-                {Report.map((report, xid) => {
+                {Reports.map((report, xid) => (
                   <div key={xid}>
                     <label>jhdsjhdjhd</label>
                     <div>muni {report.muni_name}</div>
                   </div>
-                })}
+                ))}
               </div>
             </div>
             {/* <table className="report">
