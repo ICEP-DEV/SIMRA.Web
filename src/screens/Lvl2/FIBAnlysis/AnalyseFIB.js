@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, TextInput } from 'react-native';
 
 const FibAnalysis = () => {
   const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
@@ -28,29 +27,33 @@ const FibAnalysis = () => {
   };
 
   return (
-    <View>
-      <Text>Select an FIB:</Text>
-      <Picker
-        selectedValue={selectedFIB}
-        onValueChange={(itemValue) => handleFibData(itemValue)}>
-        <Picker.Item label="Select an FIB" value="Select an FIB" />
+    <div>
+      <p>Select an FIB:</p>
+      <select
+        value={selectedFIB}
+        onChange={(event) => handleFibData(event.target.value)}
+      >
+        <option value="Select a FIB">Select an FIB</option>
         {Object.keys(fibData).map((fib) => (
-          <Picker.Item key={fib} label={fib} value={fib} />
+          <option key={fib} value={fib}>
+            {fib}
+          </option>
         ))}
-      </Picker>
-      <Text>Reference Pathogen: {referencePath}</Text>
-      <Text>Ratio: {ratio}</Text>
-      <Text>Estimated Count: {estimatedCount} </Text>
-      <Text>Enter Estimated Count:</Text>
-      <TextInput
-        keyboardType="numeric"
-        onChangeText={(text) => {
+      </select>
+      <p>Reference Pathogen: {referencePath}</p>
+      <p>Ratio: {ratio}</p>
+      <p>Estimated Count: {estimatedCount} </p>
+      <p>Enter Estimated Count:</p>
+      <input
+        type="number"
+        value={estimatedCount}
+        onChange={(event) => {
           // Parse the input as an integer and set it to the estimatedCount state
-          const count = parseInt(text, 10);
+          const count = parseInt(event.target.value, 10);
           setEstimatedCount(isNaN(count) ? 0 : count);
         }}
       />
-    </View>
+    </div>
   );
 };
 

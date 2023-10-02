@@ -18,13 +18,13 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route exact path='/user_Registration' element={<UserRegistration/>} />
         <Route exact path='/' element={<Login />} />
         <Route exact path='/sampling_data' element={<SamplingData />} />
         <Route exact path='/h2s_testing' element={<H2S />} />
         <Route exact path='/level1' element={<Level1 />} />
         <Route exact path='/sanitaryInpection' element={<SanitaryInpection />} />
         <Route exact path='/qmraApp' element={<QMRAApp/>} />
-        <Route exact path='/user_Registration' element={<UserRegistration/>} />
         <Route exact path='/data_results' element={<DataResults />} />
         <Route exact path='/fib_Analysis' element={<FibAnalysis />} />
         <Route exact path ='/add'element= {<Add/>}/>

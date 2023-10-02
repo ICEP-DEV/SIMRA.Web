@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Picker} from 'react-native';
-import axios from 'axios';
-import SuccessPopup from './SuccessPopUp/SuccessPopUp';
-//import { useNavigate } from 'react-router-dom';
-import { useNavigation } from '@react-navigation/native';
-
 
 const UserRegistration = () => {
   const [username, setUsername] = useState('');
@@ -16,7 +10,6 @@ const UserRegistration = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
-  const navigation = useNavigation();
 
   const handleRegistration = () => {
     // Check if the password and confirmPassword match
@@ -27,80 +20,72 @@ const UserRegistration = () => {
 
     // Clear any previous error messages
     setError(null);
-    
 
-    axios.post('http://localhost:3000/api/UserRegister', {username, userSurname, email, userLevel, mobileNo, password,})
-      .then((response) => {
-        
-        console.log('User registered successfully');
-        // Navigate 
-        navigation.navigate('../Login');
-        setSuccessPopupVisible(true);
-      })
-      .catch((error) => {
-        console.error('Registration error:', error);
-        
-        // Handle registration error, e.g., display an error message.
-      });
+    // Simulate registration success (Replace this with your actual registration logic)
+    setTimeout(() => {
+      console.log('User registered successfully');
+      setSuccessPopupVisible(true);
+    }, 1000);
   };
 
   const handleCloseSuccessPopup = () => {
-    setSuccessPopupVisible(false); // Hide the success pop-up
+    setSuccessPopupVisible(false);
   };
 
   return (
-    <View>
-      <Text>Username:</Text>
-      <TextInput
+    <div>
+      <p>Username:</p>
+      <input
+        type="text"
         value={username}
-        onChangeText={setUsername}
+        onChange={(e) => setUsername(e.target.value)}
       />
-      <Text>User Surname:</Text>
-      <TextInput
+      <p>User Surname:</p>
+      <input
+        type="text"
         value={userSurname}
-        onChangeText={setUserSurname}
+        onChange={(e) => setUserSurname(e.target.value)}
       />
-      <Text>Email:</Text>
-      <TextInput
+      <p>Email:</p>
+      <input
+        type="text"
         value={email}
-        onChangeText={setEmail}
+        onChange={(e) => setEmail(e.target.value)}
       />
-     <Text>User Level:</Text>
-      <Picker
-        selectedValue={userLevel}
-        onValueChange={(itemValue, itemIndex) => setUserLevel(itemValue)}
-      >
-        <Picker.Item label="Household" value="Household" />
-        <Picker.Item label="Intermediate" value="Intermediate" />
-        <Picker.Item label="Expert" value="Expert" />
-      </Picker>
-      <Text>Mobile Number:</Text>
-      <TextInput
+      <p>User Level:</p>
+      <select value={userLevel} onChange={(e) => setUserLevel(e.target.value)}>
+        <option value="Household">Household</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Expert">Expert</option>
+      </select>
+      <p>Mobile Number:</p>
+      <input
+        type="text"
         value={mobileNo}
-        onChangeText={setMobileNo}
+        onChange={(e) => setMobileNo(e.target.value)}
       />
-      <Text>Password:</Text>
-      <TextInput
-        secureTextEntry
+      <p>Password:</p>
+      <input
+        type="password"
         value={password}
-        onChangeText={setPassword}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <Text>Confirm Password:</Text>
-      <TextInput
-        secureTextEntry
+      <p>Confirm Password:</p>
+      <input
+        type="password"
         value={confirmPassword}
-        onChangeText={setConfirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      {error && <Text style={{ color: 'red' }}>{error}</Text>}
-      <Button title="Register" onPress={handleRegistration} />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <button onClick={handleRegistration}>Register</button>
 
-      <SuccessPopup
-        isVisible={isSuccessPopupVisible}
-        message="Registration Successful!"
-        onClose={handleCloseSuccessPopup}
-      />
-      
-    </View>
+      {isSuccessPopupVisible && (
+        <div>
+          <p>Registration Successful!</p>
+          <button onClick={handleCloseSuccessPopup}>Close</button>
+        </div>
+      )}
+    </div>
   );
 };
 

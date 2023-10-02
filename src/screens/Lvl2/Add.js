@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import AddForm from './Information';
 
 const Add = () => {
@@ -9,23 +8,11 @@ const Add = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Add Pathogen</Text>
+    <div className="container">
+      <h1 className="header">Add Pathogen</h1>
       <AddForm onSubmit={handleFormSubmit} />
-    </View>
+    </div>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header: {
-    fontSize: 20,
-    marginBottom: 20,
-  },
-});
 
 export default Add;

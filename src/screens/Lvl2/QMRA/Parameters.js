@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, StyleSheet, TextInput, Button } from 'react-native';
 
 const qmraParameters = {
   'Campylobacter jejun': { model: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
@@ -13,114 +12,164 @@ const qmraParameters = {
   'Other': { model: '', alpha: 0, beta: 0 },
 };
 
-export default function QMRAApp() {
+function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
   const [count, setCount] = useState('');
   const [alpha, setAlpha] = useState('');
   const [beta, setBeta] = useState('');
+  const [r, setr] = useState('');
+  const [k, setk] = useState('');
   const [model, setModel] = useState('');
   const [result, setResult] = useState('');
 
   const calculateResult = () => {
     if (selectedOrganism === 'Other' && model && count && alpha && beta) {
       let calculatedResult = 0;
-      
+
       if (model === 'Beta-Poisson') {
-        
-        //calculatedResult = alpha * count + beta;
-      } else if (model === 'exponential') {
-        
-        //calculatedResult = alpha * Math.exp(beta * count);
-      }
-      
+        calculatedResult = calculateBetaPoisson(alpha, beta, count);
+      }  if (selectedOrganism === 'Cryptosporidium parvum') {
+          calculatedResult = calculateExponentialForCryptosporidium(r, count);
+        } else if (selectedOrganism === 'Giardia lambia') {
+          calculatedResult = calculateExponentialForGiardia(k, count);
+        }
+ 
       setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
     } else {
       setResult('');
     }
   };
 
+  const calculateExponentialForCryptosporidium = (r, count) => {
+    // Implement the exponential calculation for Cryptosporidium parvum
+      // Your formula here 
+      const calculatedResult = r;
+    return calculatedResult;
+  };
+
+  const calculateExponentialForGiardia = (k, count) => {
+    // Implement the exponential calculation for Giardia lambia
+     // Your formula here 
+     const calculatedResult = k;
+    return calculatedResult;
+  };
+
+
+  const calculateBetaPoisson = (alpha, beta, count) => {
+    // Perform the Beta-Poisson calculation here  
+    const calculatedResult = 1 -[1+(count/beta)]-alpha;
+    return 1 - (1 + (count /  beta)) - alpha;
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>QMRA Parameters</Text>
-      <Picker
-        selectedValue={selectedOrganism}
-        onValueChange={(itemValue) => {
-          setSelectedOrganism(itemValue);
+    <div style={styles.container}>
+      <h1 style={styles.header}>QMRA Parameters</h1>
+      <select
+        value={selectedOrganism}
+        onChange={(e) => {
+          setSelectedOrganism(e.target.value);
           setResult('');
         }}
       >
         {Object.keys(qmraParameters).map((organism) => (
-          <Picker.Item
+          <option
             key={organism}
-            label={organism}
             value={organism}
-          />
+          >
+            {organism}
+          </option>
         ))}
-        <Picker.Item label="Other" value="Other" />
-      </Picker>
+        <option value="Other">Other</option>
+      </select>
       {selectedOrganism === 'Other' && (
         <>
-          <TextInput
+          <input
             style={styles.input}
             placeholder="Enter Organism"
-            onChangeText={(text) => setSelectedOrganism(text)}
+            onChange={(e) => setSelectedOrganism(e.target.value)}
           />
-          <TextInput
+          <input
             style={styles.input}
             placeholder="Enter Model"
-            onChangeText={(text) => setModel(text)}
+            onChange={(e) => setModel(e.target.value)}
           />
-          <TextInput
+          <input
             style={styles.input}
             placeholder="Enter Count"
-            keyboardType="numeric"
-            onChangeText={(text) => setCount(text)}
+            type="number"
+            onChange={(e) => setCount(e.target.value)}
           />
-          <TextInput
+          <input
             style={styles.input}
             placeholder="Enter Alpha"
-            keyboardType="numeric"
-            onChangeText={(text) => setAlpha(parseFloat(text))}
+            type="number"
+            step="0.01"
+            onChange={(e) => setAlpha(e.target.value)}
           />
-          <TextInput
+          <input
             style={styles.input}
             placeholder="Enter Beta"
-            keyboardType="numeric"
-            onChangeText={(text) => setBeta(parseFloat(text))}
+            type="number"
+            step="0.01"
+            onChange={(e) => setBeta(e.target.value)}
           />
+          {model === 'exponential' && (
+            <>
+              {selectedOrganism !== 'Cryptosporidium parvum' && selectedOrganism !== 'Giardia lambia' && (
+                <input
+                  style={styles.input}
+                  placeholder="Enter r"
+                  type="number"
+                  step="0.01"
+                  onChange={(e) => setr(e.target.value)}
+                />
+              )}
+              {selectedOrganism !== 'Cryptosporidium parvum' && selectedOrganism !== 'Giardia lambia' && (
+                <input
+                  style={styles.input}
+                  placeholder="Enter k"
+                  type="number"
+                  step="0.01"
+                  onChange={(e) => setk(e.target.value)}
+                />
+              )}
+            </>
+          )}
         </>
       )}
-      <Button
-        title="Calculate"
-        onPress={calculateResult}
-      />
+      <button
+        onClick={calculateResult}
+      >
+        Calculate
+      </button>
       {result !== '' && (
-        <Text style={styles.result}>{result}</Text>
+        <p style={styles.result}>{result}</p>
       )}
-    </View>
+    </div>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: '50px',
   },
   header: {
-    fontSize: 20,
-    marginBottom: 20,
+    fontSize: '20px',
+    marginBottom: '20px',
   },
   input: {
-    width: 200,
-    fontSize: 16,
-    marginBottom: 10,
-    padding: 10,
-    borderWidth: 1,
+    width: '200px',
+    fontSize: '16px',
+    marginBottom: '10px',
+    padding: '10px',
+    borderWidth: '1px',
     borderColor: 'blue',
   },
   result: {
-    fontSize: 18,
-    marginTop: 20,
+    fontSize: '18px',
+    marginTop: '20px',
   },
-});
+};
+
+export default QMRAApp;
