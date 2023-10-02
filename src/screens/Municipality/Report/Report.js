@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Report.css';
 import axios from 'axios';
-import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
+import AdminSideBar from '../../Admin_Side_Bar/Admin_Side_Bar'
 
 function ReportTable() {
 
@@ -67,7 +67,8 @@ function ReportTable() {
       </div>
       <div className='main-all'>
         <div className='content'>
-          <div className='container-wrapper'>
+          <div className='container-wrap'>
+          <h2>Sanitary risk core (percentage and risk characterization rating)</h2>
             <div className='date'>
               <select value={CurrentYear} onChange={(e) => setCurrentYear(e.target.value)}>
                 {GetYears.map((years, xid) => (
@@ -95,7 +96,8 @@ function ReportTable() {
             <div className='reports'>
               {(FoundReport.success === true) && (<div >
                 {Report.map((report, xid) => (
-                  <div className='card' key={xid}>
+                 <div className='card-rows'>
+                 <div className='card' key={xid}>
                     <div className='card-body'>
                       {/* Display colour based on average score % */}
                       {(report.total_avarage <= 25) && (
@@ -109,6 +111,7 @@ function ReportTable() {
 
                       {/* Municipality name */}
                       <div>
+                        
                         <label className='catchment'>Catchment and Source:</label><br/>
                         {report.muni_name}({report.type})
                         </div>
@@ -116,6 +119,7 @@ function ReportTable() {
                         <label className='risk_type'>Risk Type:</label><br/>
                         {report.risk_type}</div>
                     </div>
+                  </div>
                   </div>
                 ))}
               </div>)}
