@@ -31,7 +31,9 @@ function Sidebar() {
             </div>
 
             <div className="sidebar-subs">
-                <Link to="/" ><FaUserAlt size={'3rem'} /> Profile</Link>
+                <Link to="/" >
+                    <span className='side-icon'><FaUserAlt size={'3rem'} /></span><br/>
+                    <span className='side-label'> Profile</span></Link>
             </div>
 
             {/* <div className="sidebar-subs">
@@ -43,17 +45,23 @@ function Sidebar() {
             </div> */}
 
             <div className="sidebar-subs">
-                <Link to="/" ><AiOutlineFile size={'3rem'} />File</Link>
+                <Link to="/" className="inner-sidebar">
+                    <div></div>
+                    <span className='side-icon'><AiOutlineFile size={'3rem'} /></span><br/>
+                    <span className='side-label'>File</span>
+                </Link>
             </div>
 
             <div className="sidebar-subs">
-                <Link to="/Video" ><AiOutlineVideoCameraAdd size={'3rem'} /> Video</Link>
-            </div>
+                <Link to="/Video" >
+                    <span className='side-icon'><AiOutlineVideoCameraAdd size={'3rem'} /> </span><br/>
+                    <span className='side-label'>Video</span></Link>
+            </div >
 
             <div className="sidebar-subs">
-                <div onClick={logout} ><AiOutlineLogout size={'3rem'} /> Logout</div>
+                <div onClick={logout} ><AiOutlineLogout size={'3rem'} /><br/> Logout</div>
             </div>
-        </div>
+        </div >
     )
 }
 

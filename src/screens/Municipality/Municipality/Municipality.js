@@ -1,5 +1,5 @@
 import './Municipality.css'
-import AdminSideBar from '../../Admin_Side_Bar/Admin_Side_Bar'
+import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
 function Municipality() {
 
     return (

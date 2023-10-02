@@ -8,7 +8,7 @@ import logo from './logo.png';
 import { Outlet, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { remove_details } from "../../Redux/user"
+import { remove_details } from "../../../Redux/user"
 
 function Admin_Side_Bar() {
     const navigate = useNavigate();

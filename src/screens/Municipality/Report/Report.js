@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Report.css';
 import axios from 'axios';
-import AdminSideBar from '../../Admin_Side_Bar/Admin_Side_Bar'
+import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
 
 function ReportTable() {
 
   const [Provinces, setProvinces] = useState([])
-  let [Reports, setReports] = useState([])
+  const [Report, setReport] = useState([])
   const [GetMonths, setGetMonths] = useState([])
   const [GetYears, setGetYears] = useState([])
   const [CurrentMonth, setCurrentMonth] = useState('')
@@ -117,8 +117,15 @@ function ReportTable() {
                         {report.risk_type}</div>
                     </div>
                   </div>
-                })}
-              </div>
+                ))}
+              </div>)}
+              
+              {(FoundReport.success === false) && (<div >
+                <label>{FoundReport.message}</label>
+
+              </div>)}
+
+
             </div>
             {/* <table className="report">
               <thead className='tableHead'>

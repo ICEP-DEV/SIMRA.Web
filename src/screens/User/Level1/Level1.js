@@ -1,8 +1,9 @@
-
-
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import './Level1.css'
+import Header from '../Header/Header';
+import { Link } from 'react-router-dom';
+
 function Level1() {
     const navigate = useNavigate()
 
@@ -13,19 +14,28 @@ function Level1() {
         navigate('/h2s_testing')
     }
     return (
-        <div className='hero-level1'>
+        <div className='hero-all' >
             <div className='sidenav'>
                 <Sidebar />
             </div>
-            <div className='lvl1'>
-                <div className='main-level1'>
-                    <div className='table3'>
 
+            <div className='main-all'>
 
-                        <button onClick={sanitary_survay} className='btn-sanitary'>Sanitary Survey</button>
-                        <button onClick={h2s} className='btn-sanitary'>H2S</button>
+                <div className='content'>
+                    <Header />
+                    <div className='container-wrapper'>
+                        <div className='lvl1'>
+                            <div className='main-level1'>
+                                <div className='table3'>
+                                    <Link to='' className='btn btn-primary btn-sanitary'>Sanitary Survey</Link>
+                                    <Link to='' className='btn btn-success btn-sanitary'>H2S</Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     )

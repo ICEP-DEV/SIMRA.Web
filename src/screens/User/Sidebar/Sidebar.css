@@ -51,6 +51,12 @@ a.flex
     font-weight: 500;
    
 }
+
+.inner-sidebar{
+    display: flex;
+    flex-direction: column;
+}
+
 @media only screen and (max-width: 768px) {
     img{
         width: 25px;

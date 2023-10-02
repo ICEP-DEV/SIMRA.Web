@@ -12,13 +12,14 @@
 }
 .home-p
 {
-    margin-bottom: 8%;
+
+    margin-bottom: 3%;
+    margin-top: 10px;
     margin-left: 8%;
 
 }
 .h1-home{
     margin-bottom: 1%;
-    margin-top: 5%;
     margin-left: 8%;
 }
 @media only screen and (max-width: 768px) {
@@ -35,18 +36,14 @@
     .home-p
     {
         margin-bottom: 8%;
-    
+        
     }
     .h1-home{
         margin-bottom: 1%;
         margin-top: 5%;
     }
     .content{
-
-    
         font-size: 15px;
-        height: 100%;
-       
        }
        .main-all {
         margin-left: 100px; /* Same as the width of the sidebar */
