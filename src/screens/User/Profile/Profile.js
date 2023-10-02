@@ -1,22 +1,14 @@
 import axios from "axios";
-import React ,{useEffect,useState} from "react";
+import React  from "react";
 import {  useNavigate } from 'react-router-dom';
 import Sidebar  from '../Sidebar/Sidebar';
+import { useSelector } from 'react-redux';
+
 import  "./Profile.css";
 function Profile (){
     let navigate = useNavigate();
-    const [posts ,setPosts] =useState([]);
-
-useEffect(() =>{
-    axios 
-    .get("http://localhost:3001/api/login")
-    .then((result) => {
-        console.log(result.data);
-        setPosts(result.data);
-    })
-    .catch((error) => console.log(error ));
-},[] );
-
+    let user_info = useSelector((state) => state.user.value)
+   
 
     return(
 <div className='hero-all' >
@@ -35,17 +27,18 @@ useEffect(() =>{
             <h1>My Profile</h1>
       
               
-            <div className="sub">First Name <br></br><input  value={posts.firstname}/> {posts.firstname}</div>
+            <div className="sub">First Name: <label>{user_info.user_firstname}</label>
+            </div>
+            
                   
-            <div  className="sub">Last Name  <br></br><input  value={posts.lastname}/> {posts.lastname}</div>
+            <div  className="sub">Last Name:<label>{user_info.user_lastname}</label>
+            </div>
                    
-            <div  className="sub"> 
-            Email  <br></br>
-            <input placeholder=" " value={posts.mobileNo}/>{posts.mobileNo}
-             </div>
-                    
-            <div  className="sub" >
-                <input placeholder="*********" value={posts.password} />{posts.password}
+            <div  className="sub"> Mobile Number: <input class="border-0" value={user_info.user_mobileNo}/>
+            </div>
+              <div className="sub">Role: <label>{user_info.user_role}</label>
+              </div>      
+            <div  className="sub" >Password:  <input class="border border-light"value={user_info.user_password}/>
                 </div>
                  
               

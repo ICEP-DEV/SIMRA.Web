@@ -1,26 +1,37 @@
 .sidebar{
     width: 200px;
-    height: 100vh;
-    background-color: #0063EA;
+    height: 900vh;
     color: whitesmoke;
     font-size: 20px;
     margin: 0 5px 0 0;
 }
 .sidebar-subs{
-    margin: 30% 0;
-text-align: center;
+    margin: 65% 0;
+    font-size: 100%;
+    background-color: black;
 }
-.sidebar-subs a{
-    
-    display: inline-block;
-}
-.sidebar-subs a .icon
+.center-icon
 {
-    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
 }
-a.flex
+.icon-subs
 {
-    display: inline-flex;
+    width:50px;
+
+    width: 100px;
+    height: 85px;
+   text-align: center;
+
+}
+.icon-subs span
+{
+    display:block;
+    text-align: center;
+    padding: 12px 20%;
+    font-size: 16px;
+    color:#fff;
+
 }
 .side-icon
 {
@@ -29,7 +40,7 @@ a.flex
 }
 .sidenav{
     background-color: #0063EA; 
-    height: 100vh; /* Full-height: remove this if you want "auto" height */
+    height: 900vh; /* Full-height: remove this if you want "auto" height */
   width: 200px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */

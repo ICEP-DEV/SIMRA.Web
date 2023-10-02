@@ -24,35 +24,32 @@ function Sidebar() {
         dispatch(remove_details());
         navigate("/")
     }
+    
     return (
         <div className="sideBar">
             <div className="logo">
                 <img src={logo} alt="logo" style={{ marginLeft: '25px' }} />Simra<br></br>
             </div>
+      
 
             <div className="sidebar-subs">
-                <Link to="/" ><FaUserAlt size={'3rem'} /> Profile</Link>
+            <div className="icon-subs">  <Link to="/profile"  ><FaUserAlt size={'3rem'} /> <span>Profile</span></Link></div>
             </div>
 
-            {/* <div className="sidebar-subs">
-                <Link to="/" ><RiTestTubeLine />H2S</Link>
-            </div>
 
             <div className="sidebar-subs">
-                <Link to="/"><RiTestTubeLine />Sanitary</Link>
-            </div> */}
-
-            <div className="sidebar-subs">
-                <Link to="/" ><AiOutlineFile size={'3rem'} />File</Link>
+            <div className="icon-subs">  <Link to="/" ><AiOutlineFile size={'3rem'} /><span>File</span></Link></div>
             </div>
 
             <div className="sidebar-subs">
-                <Link to="/Video" ><AiOutlineVideoCameraAdd size={'3rem'} /> Video</Link>
+               
+                <div className="icon-subs"> <Link to="/video" ><AiOutlineVideoCameraAdd size={'3rem'} /> <span>Video</span></Link></div>
             </div>
 
             <div className="sidebar-subs">
-                <div onClick={logout} ><AiOutlineLogout size={'3rem'} /> Logout</div>
+                <div onClick={logout} className="icon-subs" ><AiOutlineLogout size={'3rem'} /> <span>Logout</span></div>
             </div>
+
         </div>
     )
 }

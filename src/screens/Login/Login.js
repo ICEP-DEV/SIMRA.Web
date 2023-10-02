@@ -58,8 +58,11 @@ function Login() {
                     user_role: loginData.data.results[0].role,
                     user_level: loginData.data.results[0].level,
                     user_initial: loginData.data.results[0].firstname.substring(0, 1).toUpperCase(),
+                    user_firstname: loginData.data.results[0].firstname,
                     user_lastname: loginData.data.results[0].lastname,
-
+                    user_mobileNo: loginData.data.results[0].mobileNo,
+                    user_role: loginData.data.results[0].role,
+                    user_password: loginData.data.results[0].password,
                 }
                 console.log(loginData.data.results[0])
                 console.log(user_info)
