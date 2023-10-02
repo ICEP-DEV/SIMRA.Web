@@ -48,7 +48,7 @@
     left: 20%;
     top: 20%;
 }
-input {
+.input-login {
 
    width: 90%;
 padding: 12px 20px;
@@ -112,4 +112,86 @@ height: 613px;
 .header-txt 
 {
  margin-bottom: 10%;
+}
+@media only screen and (max-width: 768px) {
+    .all-contents 
+{
+  
+    /* height: 100vh; */
+    background-size: 100%;
+    background-color: #0063EA;
+    width: 90vh;
+    position: fixed;
+} 
+
+.login-container
+{
+  
+    width: 90%;
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    position: fixed;
+}
+.login-card
+{
+    width: 60%;
+    height: 100%;
+    
+}
+
+.input-login {
+
+   width: 80%;
+font-size: 9px;
+ 
+  
+}
+
+.side-login
+{
+height: 100%;
+width: 150px;
+}
+.main-login
+{
+
+top: 10%;
+margin-left: 20%;
+font-size: 18px;
+height: 80%;
+width: 80%;
+
+}
+.login-container .welcome
+{
+    position:absolute;
+  top: 55%;
+  left: 2%;  
+  font-size: 10px;
+  width: 30%;
+ 
+}
+.welcome .logo-login 
+{
+    /* position: absolute; */
+    top: -130%;
+
+}
+
+.login-grid .btn-login 
+{
+    position: fixed;
+     width: 30%;  
+     font-size: 12px;
+     margin-left: 2%;
+}
+.txt-signup
+{
+    position:absolute;
+  
+  font-size: 11px;}
+
 }

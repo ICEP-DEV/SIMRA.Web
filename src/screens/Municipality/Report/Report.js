@@ -12,6 +12,7 @@ function ReportTable() {
   const [CurrentMonth, setCurrentMonth] = useState('')
   const [CurrentYear, setCurrentYear] = useState('')
   const [Province, setProvince] = useState('')
+  const [FoundReport, setFoundReport] = useState(false)
 
   useEffect(() => {
     var date = new Date();
@@ -53,10 +54,10 @@ function ReportTable() {
       province_id: Province,
       date: CurrentMonth + '/' + CurrentYear
     }
-    console.log(search_report)
     var report_results = await axios.post('http://localhost:3001/api/get_monthly_reports', search_report)
-    setReports(report_results.data.results)
-    console.log(Reports)
+    setReport(report_results.data.results)
+    setFoundReport(report_results.data)
+    console.log(report_results.data)
   }
 
   return (
@@ -88,17 +89,35 @@ function ReportTable() {
                 ))}
               </select>
             </div>
-            <div><button onClick={display_search_report}>Search</button></div>
+            <div><button onClick={display_search_report} className="btn btn-primary">Search</button></div>
 
 
             <div className='reports'>
-              <div className='cards'>
-                {Reports.map((report, xid) => (
-                  <div key={xid}>
-                    <label>jhdsjhdjhd</label>
-                    <div>muni {report.muni_name}</div>
+              {(FoundReport.success === true) && (<div >
+                {Report.map((report, xid) => (
+                  <div className='card' key={xid}>
+                    <div className='card-body'>
+                      {/* Display colour based on average score % */}
+                      {(report.total_avarage <= 25) && (
+                      <div className='card-circle' style={{backgroundColor:"rgba(0, 128, 0, 0.719)"}}><label className='sanitary_score'>{report.total_avarage}%</label></div>)}
+                      {(report.total_avarage >= 26 && report.total_avarage <= 50) && (
+                      <div className='card-circle' style={{backgroundColor:"rgba(255, 255, 0, 0.733)"}}><label className='sanitary_score'>{report.total_avarage}%</label></div>)}
+                      {(report.total_avarage >= 51 && report.total_avarage <= 75) && (
+                      <div className='card-circle' style={{backgroundColor:"rgb(201, 199, 105)"}}><label className='sanitary_score'>{report.total_avarage}%</label></div>)}
+                      {(report.total_avarage >= 76) && (
+                      <div className='card-circle' style={{backgroundColor:"rgb(201, 199, 105)"}}><label className='sanitary_score'>{report.total_avarage}%</label></div>)}
+
+                      {/* Municipality name */}
+                      <div>
+                        <label className='catchment'>Catchment and Source:</label><br/>
+                        {report.muni_name}({report.type})
+                        </div>
+                      <div>
+                        <label className='risk_type'>Risk Type:</label><br/>
+                        {report.risk_type}</div>
+                    </div>
                   </div>
-                ))}
+                })}
               </div>
             </div>
             {/* <table className="report">

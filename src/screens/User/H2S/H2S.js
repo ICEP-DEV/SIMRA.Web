@@ -352,4 +352,4 @@ function H2S() {
     );
 }
 
-export default H2S
+export default H2S;

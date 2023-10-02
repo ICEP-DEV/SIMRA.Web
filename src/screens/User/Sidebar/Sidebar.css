@@ -1,4 +1,4 @@
-.sidebar {
+.sidebar{
     width: 200px;
     height: 100vh;
     background-color: #0063EA;
@@ -6,43 +6,105 @@
     font-size: 20px;
     margin: 0 5px 0 0;
 }
-
-.sidebar-subs {
-    margin: 35% 0;
-    text-align: center;
-    color: white;
+.sidebar-subs{
+    margin: 30% 0;
+text-align: center;
 }
-
-.sidebar-subs:hover{
-    cursor: pointer;
+.sidebar-subs a{
+    
+    display: inline-block;
 }
-
-.sidenav {
-    background-color: #0063EA;
-    height: 100vh;
-    /* Full-height: remove this if you want "auto" height */
-    width: 200px;
-    /* Set the width of the sidebar */
-    position: fixed;
-    /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    /* Stay at the top */
-    left: 0;
-    padding-top: 20px;
+.sidebar-subs a .icon
+{
+    vertical-align: middle;
+}
+a.flex
+{
+    display: inline-flex;
+}
+.side-icon
+{
+    font-size: 3rem;
+    vertical-align: middle;
+}
+.sidenav{
+    background-color: #0063EA; 
+    height: 100vh; /* Full-height: remove this if you want "auto" height */
+  width: 200px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  padding-top: 20px;
 
 }
-
-.sidenav a {
+.sidenav a{
     text-decoration: none;
     padding: 15px 25px;
     font-size: 16px;
-    color: #fff;
+    color:#fff;
 }
-
-.logo {
+.logo
+{
     font-size: 18px;
     color: #fff;
     font-weight: 500;
+   
+}
+@media only screen and (max-width: 768px) {
+    img{
+        width: 25px;
+    }
+    .logo{
+        font:10px;
+        font-weight: 100;
+        
+    } 
+    .sidebar{
+
+       width: 20%;
+       height: 100vh;
+    }
+    .sidebar-subs{
+        margin: 0;
+    text-align: center;
+    }
+    .sidebar-subs a{
+        
+        display: inline-block;
+    }
+    .sidebar-subs a .icon
+    {
+        vertical-align: middle;
+    }
+    a.flex
+    {
+        display: inline-flex;
+    }
+    .side-icon
+    {
+        font-size: 1.2rem;
+        vertical-align: middle;
+    }
+    .sidenav{
+      
+    height: auto; /* Full-height: remove this if you want "auto" height */
+      width: 100px; /* Set the width of the sidebar */
+      position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+     height: 100vh;
+    
+    }
+    .sidenav a{
+        text-decoration: none;
+       
+        font-size: 10px;
+      
+    }
+    .logo
+    {
+        font-size: 18px;
+        color: #fff;
+        font-weight: 500;
+    }
+
 }
