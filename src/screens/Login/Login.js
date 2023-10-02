@@ -5,16 +5,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
 import logo from './logo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { user_details } from "../../Redux/user"
+import {  Modal, Button } from 'react-bootstrap'
 
-console.log(logo);
 
 function Login() {
+    let user_info = useSelector((state) => state.use)
+    const dispatch = useDispatch();
+
     let navigate = useNavigate();
+    const [ButtonPopup, setButtonPopup] = useState(false);
     const [values, setValues] = useState({
         username: "",
         password: ""
     });
-    const [ButtonPopup, setButtonPopup] = useState(false);
+  
     const handleChangeUpdate = e => {
         const { name, value } = e.target;
         setValues(prevState => ({
@@ -23,34 +29,44 @@ function Login() {
         }));
     }
 
-    //  react hook form start here 
-
 
     // set up login button using gmail account
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
             console.log("All field should be filled")
+            initModal();
             return;
         }
         if (values.username === "") {
-            console.log("Enter username")
+            console.log("Enter username");
+            initModals();
             return;
         }
         if (values.password === "") {
-            console.log("Enter password")
+            console.log("Enter password");
+            initModalsing();
             return;
         }
        
         setButtonPopup(true)
         const loginData = await axios.post('http://localhost:3001/api/login', values)
-
         setTimeout(() => {
-
             setButtonPopup(false)
             if (loginData.data.success === true) {
-                var userId = loginData.data.results[0].userId
+                user_info = {
+                    userId: loginData.data.results[0].userId,
+                    user_role: loginData.data.results[0].role,
+                    user_level: loginData.data.results[0].level
+                }
+                dispatch(user_details(user_info))
 
-                navigate('/home', { state: { userId } })
+                if (loginData.data.results[0].role === "user") {
+                    navigate('/sampling_data')
+                }
+                else if (loginData.data.results[0].role === "municipal") {
+                    navigate('/municipality')
+                }
+
             }
             else {
                 console.log(loginData.data.message);
@@ -70,21 +86,109 @@ function Login() {
     let displayLoader = <div></div>
     // let displaySidebar=<div></div>
 
+
+    // pop up modal fucntions
+    const [isShow, invokeModal] = React.useState(false)
+    const initModal = () => {
+        return invokeModal(!false)
+    }
+    const [ invokeModals] = React.useState(false)
+    const initModals = () => {
+        return invokeModals(!false)
+    }
+    const modalClose = () => {
+        return invokeModal(false)
+    }
+    
+    const [isShowsing, invokeModalsing] = React.useState(false)
+    const initModalsing = () => {
+        return invokeModalsing(!false)
+    }
+    const modalClosesing = () => {
+        return invokeModalsing(false)
+    }
+
     return (
         <div className='all-contents'>
+            {/*
+                            All field should be filled
+                */}
+
+            <Modal show={isShow} onHide={modalClose} >
+                <Modal.Header closeButton onClick={modalClose}>
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+
+                    All field should be filled
+
+                </Modal.Body>
+                <Modal.Footer>
+                    {/* <Button variant="danger" onClick={initModal}>
+                            Close
+                        </Button> */}
+                    <Button variant="dark" onClick={modalClose}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* data results pop up */}
+
+            <Modal show={isShow} onHide={modalClose} >
+                <Modal.Header closeButton onClick={modalClose}>
+                    <Modal.Title>login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+
+
+                    Enter username
+
+                </Modal.Body>
+                <Modal.Footer>
+                    {/* <Button variant="danger" onClick={initModal}>
+                            Close
+                        </Button> */}
+                    <Button variant="dark" onClick={modalClose}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* password pop up */}
+            <Modal show={isShowsing} onHide={modalClosesing} >
+                <Modal.Header closeButton onClick={modalClosesing}>
+                    <Modal.Title>login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    Enter password
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="dark" onClick={modalClosesing}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+
+
 
             <div className='login-container'>
-<div className='welcome'>
-                <div className='logo-login'>
-                    <img src={logo} /> Simra
+                <div className='welcome'>
+                    <div className='logo-login'>
+                        <img src={logo} alt='logo' /> Simra
+                    </div>
+                    <h1>Welcome</h1>
+                    SIMRA, tool integrates  <br></br>
+                    the current water and <br></br>
+                    sanitation risk assessment <br></br>
+                    and management methods <br></br>
+                    into one harmonised tool<br></br>
                 </div>
-                <h2>Welcome</h2>
-                SIMRA, tool integrates  <br></br>
-                the current water and <br></br>
-                sanitation risk assessment <br></br>
-                and management methods <br></br>
-                into one harmonised tool<br></br>
-            </div>  
                 <div className='login-card'>
 
                     <div className='main-login' id='main-login'>

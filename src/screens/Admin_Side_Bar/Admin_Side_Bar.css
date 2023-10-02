@@ -1,0 +1,44 @@
+.admin_side_bar {
+    width: 200px;
+    height: 100%;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.side-bar-label {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.admin_side_bar img{
+    height: 70px;
+    width: 80px;
+}
+
+.sidebar-subs {
+    margin: 35% 0;
+    color: white;
+}
+
+.sidebar-subs:hover {
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+
+}
+
+.sidenav a {
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 30px;
+    color: #fff;
+}

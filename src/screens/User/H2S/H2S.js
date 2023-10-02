@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import { View, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 
 function H2S() {
     const navigate = useNavigate();
 
-    const tempData = useLocation();
-    const [SamplingData] = useState(tempData.state.temp)
+    const [SamplingData] = useState({})
 
     const [activeMenu, setActiveMenu] = useState(null);
     const [completedProcessH2S, setCompletedProcessH2S] = useState('Completed 0/1');
@@ -59,6 +58,9 @@ function H2S() {
             setIsBlackTextVisible(true); // Show the positive message
         }
     };
+    const naving=()=>{
+        navigate("/level1");
+    }
     const handleButtonClick = (color) => {
         if (color === 'Yellow') {
             setIsYellowTextVisible(!isYellowTextVisible);
@@ -80,9 +82,10 @@ function H2S() {
                 samplingId: response.data.insertedId
             }
             axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
-                var temp = result.data
+               
                 if (result.data.success === true) {
-                    navigate("/level1", { state: { temp } })
+                    // navigate("/level1", { state: { temp } })
+                    console.log("success")
                 }
             })
         }, err=>{
@@ -108,10 +111,9 @@ function H2S() {
         <div className='text-center mt-4'>
             {activeMenu === 'sanitary' && <div className="submenu"></div>}
             <br></br>
-            <div className='h2s'>
             <p> Please complete H2Test </p>
 
-            <div className='h2s-button' onClick={() => handleMenuClick('h2s')}>
+            <div className='d-inline p-2 bg-dark text-white mt-5' onClick={() => handleMenuClick('h2s')}>
                 H2S TEST {completedProcessH2S && <span style={{ marginLeft: '90px' }}>{completedProcessH2S}</span>}
             </div>
             {activeMenu === 'h2s' && (
@@ -162,7 +164,7 @@ function H2S() {
                         SUBMIT
                     </button>
                     <br></br>
-                
+
                    
                     {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
                         DONE
@@ -178,8 +180,8 @@ function H2S() {
                                 {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { handleSubmitButton();  initModals()}}>
-                                    yes
+                                <Button variant="dark" onClick={function (event) { handleSubmitButton();handleButtonClick();  initModals()}}>
+                                    Ok
                                 </Button>
                             </Modal.Footer>
                     </Modal>
@@ -191,7 +193,7 @@ function H2S() {
                             <Modal.Body>
                             {isYellowTextVisible && (
                         <div>
-                            <p>NO RISK !!!  </p>
+                            <p>NO RISK !!!  ENJOY YOUR WATER!!</p>
                             <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
                         </div>
                     )}
@@ -328,22 +330,20 @@ function H2S() {
                         </div>
 
                     )}
-                 
                             </Modal.Body>
                             <Modal.Footer>
                                 {/* <Button variant="danger" onClick={initModals}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) {handleButtonClick(); modalClose();  }}>
+                                <Button variant="dark" onClick={function (event) { naving(); modalClose();  }}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
                         </Modal>
                 </div>
-                   
             )}
 
-</div>
+
 
         </div>
         </div>
@@ -351,5 +351,3 @@ function H2S() {
         </div>
     );
 }
-
-export default H2S
