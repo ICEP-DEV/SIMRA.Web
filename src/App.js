@@ -16,6 +16,7 @@ import Survay_Report from './screens/Municipality/Survay_Report/Survay_Report'
 import Logs from './screens/User/Logs/Logs';
 import H2S_Report from './screens/Municipality/H2S_Report/H2S_Report';
 import Report from './screens/Municipality/Report/Report';
+import Signup from './screens/Registration/Registration'
 
 import './App.css';
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/Login' element={<Login />} />
+        <Route exact path='/signup' element={<Signup/>}/>
         <Route exact path='/sampling_data' element={<SamplingData />} />
         <Route exact path='/h2s_testing' element={<H2S />} />
         <Route exact path='/level1' element={<Level1 />} />

@@ -1,10 +1,10 @@
 import './Admin_Side_Bar.css'
-import { RiTestTubeLine } from "react-icons/ri";
+// import { RiTestTubeLine } from "react-icons/ri";
 import { BiSolidReport } from "react-icons/bi";
 import { AiOutlineLogout, AiFillHome } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import logo from './logo.png';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { remove_details } from "../../../Redux/user"

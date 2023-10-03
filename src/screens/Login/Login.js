@@ -61,8 +61,7 @@ function Login() {
                     user_firstname: loginData.data.results[0].firstname,
                     user_lastname: loginData.data.results[0].lastname,
                     user_mobileNo: loginData.data.results[0].mobileNo,
-                    user_role: loginData.data.results[0].role,
-                    user_password: loginData.data.results[0].password,
+                    user_password: loginData.data.results[0].password
                 }
                 console.log(loginData.data.results[0])
                 console.log(user_info)
@@ -182,16 +181,19 @@ function Login() {
                 </Modal.Footer>
             </Modal>
             <div className='login-container'>
-                <div className='welcome'>
-                    <div className='logo-login'>
+                <div className='welcome' >
+                    <div className="logo-login">
                         <img src={logo} alt='logo' /> Simra
                     </div>
+                    <div class="align-bottom">
                     <h1>Welcome</h1>
                     SIMRA, tool integrates  <br></br>
                     the current water and <br></br>
                     sanitation risk assessment <br></br>
                     and management methods <br></br>
                     into one harmonised tool<br></br>
+                    </div>
+                  
                 </div>
                 <div className='login-card'>
 
@@ -212,7 +214,9 @@ function Login() {
                             <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
-
+                            <div class="checkbox">
+    <label><input type="checkbox"/> Remember me</label>
+  </div>
                             </small>
                         </div>
 
