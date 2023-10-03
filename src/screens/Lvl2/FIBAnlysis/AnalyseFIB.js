@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const FibAnalysis = () => {
-  const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
-  const [referencePath, setReferencePath] = useState('');
-  const [ratio, setRatio] = useState(0);
-  const [estimatedCount, setEstimatedCount] = useState(0); 
+    const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
+    const [referencePath, setReferencePath] = useState('');
+    const [ratio, setRatio] = useState(0);
+    const [estimatedCount, setEstimatedCount] = useState(0); 
+    const [userCount, setUserCount] = useState(0);
+    const [roundedEstimatedCount, setRoundedEstimatedCount] = useState(0);
 
   const fibData = {
     'E.coli': { referencePath: 'Campylobacter', ratio: 0.66, estimatedCount: 0 },
@@ -13,12 +15,30 @@ const FibAnalysis = () => {
     'Clostridium': { referencePath: 'Giardia', ratio: 0.8, estimatedCount: 0 },
   };
 
+  // Function to calculate estimated count
+  const calculateEstimatedCount = () => {
+    const count = parseInt(userCount, 10);
+    if (!isNaN(count)) {
+      const estimated = count * ratio;
+      setEstimatedCount(estimated);
+      setRoundedEstimatedCount(Math.round(estimated)); // Round the estimated count
+    } else {
+      setEstimatedCount(0);
+      setRoundedEstimatedCount(0);
+    }
+  };
+
+  useEffect(() => {
+    calculateEstimatedCount();
+  }, [userCount, ratio]);
+
   const handleFibData = (fib) => {
     setSelectedFIB(fib);
     if (fibData[fib]) {
       setReferencePath(fibData[fib].referencePath);
       setRatio(fibData[fib].ratio);
-      // You can update the estimated count here based on user input or any other logic
+      // Calculate estimated count based on user input
+      calculateEstimatedCount();
     } else {
       setReferencePath('');
       setRatio(0);
@@ -42,17 +62,14 @@ const FibAnalysis = () => {
       </select>
       <p>Reference Pathogen: {referencePath}</p>
       <p>Ratio: {ratio}</p>
-      <p>Estimated Count: {estimatedCount} </p>
-      <p>Enter Estimated Count:</p>
+      <p>Enter The Count:</p>
       <input
         type="number"
-        value={estimatedCount}
-        onChange={(event) => {
-          // Parse the input as an integer and set it to the estimatedCount state
-          const count = parseInt(event.target.value, 10);
-          setEstimatedCount(isNaN(count) ? 0 : count);
-        }}
+        value={userCount}
+        onChange={(event) => setUserCount(event.target.value)}
       />
+      <p> Count: {estimatedCount} </p>
+      <p>Estimated Count: {roundedEstimatedCount} </p>
     </div>
   );
 };
