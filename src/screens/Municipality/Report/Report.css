@@ -7,10 +7,15 @@
     width: 50%;
 }
 
+
 .decript_summary{
     width: 40%;
 }
 
 .view_summary{
     width: 10%;
+}
+
+.pie_chart img, .decript_summary img{
+    width: 250px;
 }

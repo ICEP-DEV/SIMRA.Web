@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PieChart } from 'react-minimal-pie-chart';
-
+import sanitary from './sanitary.PNG';
+import sanitary_data from './sanitary_data.PNG';
+import H2S from './H2S.PNG';
+import H2S_data from './H2S_data.PNG';
 function Report() {
 
     let [SummaryValues, setSummaryValues] = useState([])
@@ -34,10 +37,10 @@ function Report() {
                                 <h2>Sanitary Survey</h2>
                                 <div className="summary_sanitary_report">
                                     <div className='pie_chart'>
-                                        jhjhjhjjhjhjh
+                                        <img src={sanitary} alt='sanitary'/>
                                     </div>
                                     <div className='decript_summary'>
-                                        fdghhhfgggnngnng
+                                        <img src={sanitary_data} alt="summary" />
                                     </div>
                                     <div className='view_summary'>
                                         <Link to='/sanitary_report'>View</Link>
@@ -46,10 +49,10 @@ function Report() {
                                 <h2>H2S</h2>
                                 <div className="summary_h2s_report">
                                     <div className='pie_chart'>
-                                        jhjhjhjjhjhjh
+                                        <img src={H2S} alt="h2s" />
                                     </div>
                                     <div className='decript_summary'>
-                                        fdghhhfgggnngnng
+                                    <img src={H2S_data} alt="summary" />
                                     </div>
                                     <div className='view_summary'>
                                         <Link to='/sanitary_report'>View</Link>

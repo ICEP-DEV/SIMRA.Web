@@ -1,18 +1,27 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import { Modal, Button } from 'react-bootstrap'
+import { useSelector } from 'react-redux';
 
 function H2S() {
     const navigate = useNavigate();
+    let sampling_info = useSelector((state) => state.sampling.value)
 
-    const [SamplingData] = useState({})
     const [isYellowTextVisible, setIsYellowTextVisible] = useState(false);
     const [isBlackTextVisible, setIsBlackTextVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
-
+    const [Longitude, setLongitude] = useState('')
+    const [Latitude, setLatitude] = useState('')
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            setLongitude(longitude)
+            setLatitude(latitude)
+        })
+    })
 
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
@@ -70,13 +79,40 @@ function H2S() {
             setSelectedOption('POSITIVE');
         }
 
-        console.log(SamplingData)
-        axios.post("http://localhost:3001/api/sampling_data", SamplingData).then((response) => {
+        console.log(sampling_info)
+        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
             console.log(response)
             var h2s_test = {
                 status: isBlackTextVisible,
                 samplingId: response.data.insertedId
             }
+
+            // Assign to Coordinates object
+            var coordinates = {
+                latitude: Latitude,
+                longitude: Longitude,
+                samplingId: response.data.insertedId
+            }
+            //Call in coordinates api
+            axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+                console.log(result)
+            }, err => {
+                console.log(err)
+            })
+
+             // Assign to watersource object
+             var watersource = {
+                samplingId: response.data.insertedId,
+                type: sampling_info.type,
+                waterAccessability: sampling_info.waterAccessability
+            }
+            //Call in watersource api
+            axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+                console.log(result)
+            }, err => {
+                console.log(err)
+            })
+
             axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
 
                 if (result.data.success === true) {
@@ -106,7 +142,7 @@ function H2S() {
                     <Header />
                     <div className='container-wrapper'>
                         <div className='h2s'>
-                        <h2>Hydrogen Sulfide(H2S)</h2>
+                            <h2>Hydrogen Sulfide(H2S)</h2>
                             <div className='text-center mt-5'>
                                 <h3>Choose Test Result:</h3>
                                 <button
@@ -154,9 +190,9 @@ function H2S() {
                                 <button onClick={initModal} className='d-inline p-2 bg-primary text-white' type="submit" value="Submit" style={divStyleSubmit}>
                                     SUBMIT
                                 </button>
-                                <div style={{marginTop:'25px', textAlign:'left'}}>
+                                <div style={{ marginTop: '25px', textAlign: 'left' }}>
                                     <p>
-                                    Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
+                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
                                     </p>
                                 </div>
 

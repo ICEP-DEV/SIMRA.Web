@@ -29,7 +29,7 @@ const UserRegistration = () => {
     setError(null);
     
 
-    axios.post('http://localhost:3000/api/UserRegister', {username, userSurname, email, userLevel, mobileNo, password,})
+    axios.post('http://localhost:3001/api/UserRegister', {username, userSurname, email, userLevel, mobileNo, password,})
       .then((response) => {
         
         console.log('User registered successfully');

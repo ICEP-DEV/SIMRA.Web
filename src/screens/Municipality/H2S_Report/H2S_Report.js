@@ -1,8 +1,18 @@
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
 import Header from '../../User/Header/Header';
+import './H2S_Report.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function H2S_Report(){
-    return(
+function H2S_Report() {
+    const [H2SReport,setH2SReport] = useState([])
+    useEffect(()=>{
+        axios.get("http://localhost:3001/api/get_all_summary_h2s").then(response => {
+            console.log(response.data.rows)
+            setH2SReport(response.data.rows)
+        })
+    },[])
+    return (
         <div className='hero-all' >
             <div className='sidenav'>
                 <AdminSideBar />
@@ -11,6 +21,27 @@ function H2S_Report(){
                 <div className='content'>
                     <Header />
                     <div className='container-wrapper'>
+                        <table>
+                            <tr>
+                                <th>Municipality</th>
+                                <th>Sample  source</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Samling date​</th>
+                                <th>Presence/Absence</th>
+                            </tr>
+                            {H2SReport.map((report,xid)=>(
+                                <tr key={xid}>
+                                <td>{report.muni_name}</td>
+                                <td>{report.type}</td>
+                                <td>{report.longitude}</td>
+                                <td>{report.latitude}</td>
+                                <td>{report.sample_date}</td>
+                                <td>{report.status}</td>
+                            </tr>
+                            ))}
+                            
+                        </table>
                     </div>
                 </div>
             </div>
