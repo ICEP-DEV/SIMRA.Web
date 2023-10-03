@@ -43,14 +43,14 @@ function QMRAApp() {
   const calculateExponentialForCryptosporidium = (r, count) => {
     // Implement the exponential calculation for Cryptosporidium parvum
       // Your formula here 
-      const calculatedResult = r;
+      const calculatedResult = 1 - Math.pow(2.71828, -r * count);
     return calculatedResult;
   };
 
   const calculateExponentialForGiardia = (k, count) => {
     // Implement the exponential calculation for Giardia lambia
      // Your formula here 
-     const calculatedResult = k;
+     const calculatedResult = 1 - Math.pow(2.71828, -k * count);;
     return calculatedResult;
   };
 
