@@ -1,0 +1,16 @@
+.summary_sanitary_report, .summary_h2s_report{
+    display: flex;
+    margin: 20px 0;
+}
+
+.pie_chart{
+    width: 50%;
+}
+
+.decript_summary{
+    width: 40%;
+}
+
+.view_summary{
+    width: 10%;
+}
