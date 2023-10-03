@@ -35,17 +35,17 @@ useEffect(() =>{
             <h1>My Profile</h1>
       
               
-            <div className="sub">First Name <br></br><input  value={posts.firstname}/> {posts.firstname}</div>
+            <div className="sub">First Name <br></br><input className="profile-input" value={posts.firstname}/> {posts.firstname}</div>
                   
-            <div  className="sub">Last Name  <br></br><input  value={posts.lastname}/> {posts.lastname}</div>
+            <div  className="sub">Last Name  <br></br><input className="profile-input" value={posts.lastname}/> {posts.lastname}</div>
                    
             <div  className="sub"> 
             Email  <br></br>
-            <input placeholder=" " value={posts.mobileNo}/>{posts.mobileNo}
+            <input placeholder=" " className="profile-input" value={posts.mobileNo}/>{posts.mobileNo}
              </div>
                     
             <div  className="sub" >
-                <input placeholder="*********" value={posts.password} />{posts.password}
+                <input placeholder="*********" className="profile-input" value={posts.password} />{posts.password}
                 </div>
                  
               

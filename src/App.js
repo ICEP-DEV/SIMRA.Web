@@ -12,7 +12,10 @@ import Profile from './screens/User/Profile/Profile';
 import VideoScreen from './screens/User/Video/Video';
 import UserRegistration from './screens/Registration/Registration';
 import Municipality from './screens/Municipality/Municipality/Municipality';
-import Report from './screens/Municipality/Report/Report'
+import Survay_Report from './screens/Municipality/Survay_Report/Survay_Report'
+import Logs from './screens/User/Logs/Logs';
+import H2S_Report from './screens/Municipality/H2S_Report/H2S_Report';
+import Report from './screens/Municipality/Report/Report';
 
 import './App.css';
 function App() {
@@ -31,6 +34,9 @@ function App() {
         <Route exact path='/video' element={<VideoScreen />} />
         <Route exact path='/user_Registration' element={<UserRegistration />} />
         <Route exact path='/municipality' element={<Municipality />} />
+        <Route exact path='/sanitary_report' element={<Survay_Report />} />
+        <Route exact path='/logs' element={<Logs />} />
+        <Route exact path='/h2s_report' element={<H2S_Report />} />
         <Route exact path='/report' element={<Report />} />
       </Routes>
     </Router>

@@ -1,18 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import './Level1.css'
 import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Level1() {
-    const navigate = useNavigate()
-
-    function sanitary_survay() {
-        navigate('/sanitaryInpection')
-    }
-    function h2s() {
-        navigate('/h2s_testing')
-    }
+    let user_info = useSelector((state) => state.user.value)
+    console.log(user_info)
     return (
         <div className='hero-all' >
             <div className='sidenav'>
@@ -25,11 +19,26 @@ function Level1() {
                     <Header />
                     <div className='container-wrapper'>
                         <div className='lvl1'>
+                            <h2>Level 1 (Basic Level)</h2>
                             <div className='main-level1'>
                                 <div className='table3'>
-                                    <Link to='' className='btn btn-primary btn-sanitary'>Sanitary Survey</Link>
-                                    <Link to='' className='btn btn-success btn-sanitary'>H2S</Link>
+                                    <Link to='/sanitaryInpection' className='btn btn-primary btn-sanitary'>Sanitary Survey</Link>
+                                    <Link to='/h2s_testing' className='btn btn-success btn-sanitary'>H2S</Link>
                                 </div>
+                            </div>
+                            <div className='level1-desccription'>
+                                <p>
+                                This level is suitable for situations where limited resources are available. 
+                                </p>
+                                <p>
+                                The H2S test can provide a simple indication of potential faecal contamination based on the presence of the gas. 
+                                </p>
+                                <p>
+                                The sanitary survey involves assessing the sanitation practices and conditions in the area, providing insights into potential sources of contamination. 
+                                </p>
+                                <p>
+                                This level is helpful in conducting a preliminary assessment of microbial risks and identifying areas that require further investigation.
+                                </p>
                             </div>
                         </div>
                     </div>

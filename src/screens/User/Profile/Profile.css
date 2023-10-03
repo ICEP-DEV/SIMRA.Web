@@ -4,8 +4,9 @@
     color: black;
   
 }
-input{
-width: 500px;
+
+.profile-input{
+ width: 500px;
 border: none;
 border-bottom: 2px solid black;
 }

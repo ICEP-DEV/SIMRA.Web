@@ -1,8 +1,7 @@
 import './Admin_Side_Bar.css'
-import { FaUserAlt } from "react-icons/fa";
 import { RiTestTubeLine } from "react-icons/ri";
-import { FcSurvey } from "react-icons/fc";
-import { AiOutlineFile, AiOutlineVideoCameraAdd, AiOutlineLogout } from "react-icons/ai";
+import { BiSolidReport } from "react-icons/bi";
+import { AiOutlineLogout, AiFillHome } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import logo from './logo.png';
 import { Outlet, Link } from "react-router-dom";
@@ -21,9 +20,12 @@ function Admin_Side_Bar() {
         }
     }, [])
 
-    function logout() {
-        dispatch(remove_details());
-        navigate("/")
+    function home() {
+        navigate("/municipality")
+    }
+
+    function report() {
+        navigate("/report")
     }
 
     function logout() {
@@ -31,30 +33,39 @@ function Admin_Side_Bar() {
         navigate("/")
     }
 
-    return (<div className="admin_side_bar">
-        <h2><img src={logo} /> Simra </h2>
-
-        <div className="sidebar-subs">
-            <Link to="/" className='side-bar-label'>
-                <span className='side-icon'><FaUserAlt /></span>
-                <span className='side-label'>Profile</span></Link>
-        </div>
-
-        <div className="sidebar-subs">
-            <Link to="/report" className='side-bar-label'>
-                <span className='side-icon'><RiTestTubeLine /></span>
-                <span className='side-label'>Report</span>
+    return (
+        <div className="admin_side_bar">
+            <Link to='/municipality'>
+                <h2><img src={logo} /> Simra </h2>
             </Link>
-        </div>
 
-        <div className="sidebar-subs">
-            <div className='side-bar-label' onClick={logout} >
-                <span className='side-icon'><AiOutlineLogout size={'3rem'} /></span>
-                <span className='side-label'>Logout</span>
+
+            <div className="sidebar-subs">
+                <div className='side-bar-label' onClick={home}>
+                    <span className='side-icon'><AiFillHome /></span>
+                    <span className='side-label'>Home</span></div>
             </div>
-        </div>
 
-    </div>)
+            <div className="sidebar-subs report-dropdown">
+                <div className='side-bar-label dropbtn' onClick={report}>
+                    <span className='side-icon'><BiSolidReport /></span>
+                    <span className='side-label'>Report</span>
+                </div>
+                <div className='dropdown-content'>
+                    <Link to='/sanitary_report'>Sanitary Survey</Link>
+                    <Link to='/h2s_report'>H2S</Link>
+                </div>
+
+            </div>
+
+            <div className="sidebar-subs">
+                <div className='side-bar-label' onClick={logout} >
+                    <span className='side-icon'><AiOutlineLogout size={'3rem'} /></span>
+                    <span className='side-label'>Logout</span>
+                </div>
+            </div>
+
+        </div>)
 }
 
 export default Admin_Side_Bar

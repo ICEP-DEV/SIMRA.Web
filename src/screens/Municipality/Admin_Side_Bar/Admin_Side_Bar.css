@@ -5,10 +5,19 @@
     font-size: 20px;
 }
 
+.admin_side_bar h2{
+    margin-left: 10px;
+}
+
 .side-bar-label {
     display: flex;
     flex-direction: column;
 
+}
+
+.side-label{
+    font-size: 1em;
+    font-weight: 400;
 }
 
 .admin_side_bar img{
@@ -42,3 +51,21 @@
     font-size: 30px;
     color: #fff;
 }
+
+
+
+.report-dropdown{
+    position: relative;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0 rgba(0, 0, 0, 0, 2);
+    z-index: 1;
+}
+
+.report-dropdown:hover .dropdown-content{display: block;}

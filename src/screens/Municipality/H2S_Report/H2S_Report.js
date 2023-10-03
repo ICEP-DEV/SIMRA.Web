@@ -1,9 +1,8 @@
-import './Municipality.css'
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
 import Header from '../../User/Header/Header';
-function Municipality() {
 
-    return (
+function H2S_Report(){
+    return(
         <div className='hero-all' >
             <div className='sidenav'>
                 <AdminSideBar />
@@ -19,4 +18,4 @@ function Municipality() {
     )
 }
 
-export default Municipality
+export default H2S_Report

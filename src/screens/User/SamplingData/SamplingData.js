@@ -2,6 +2,7 @@ import './SamplingData.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
+import Header from '../Header/Header';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { sampling_details } from '../../../Redux/sampling_data'
@@ -76,8 +77,9 @@ function SamplingData() {
             </div>
 
             <div className='main-all'>
-            
+
                 <div className='content'>
+                    <Header />
                     <div className='container-wrapper'>
                         <div className='form-group'>
                             <label>Province</label>

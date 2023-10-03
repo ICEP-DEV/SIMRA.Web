@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 import logo from './logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
-import {  Modal, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 
 function Login() {
@@ -20,7 +20,7 @@ function Login() {
         username: "",
         password: ""
     });
-  
+
     const handleChangeUpdate = e => {
         const { name, value } = e.target;
         setValues(prevState => ({
@@ -47,7 +47,7 @@ function Login() {
             initModalsing();
             return;
         }
-       
+
         setButtonPopup(true)
         const loginData = await axios.post('http://localhost:3001/api/login', values)
         setTimeout(() => {
@@ -58,8 +58,11 @@ function Login() {
                     user_role: loginData.data.results[0].role,
                     user_level: loginData.data.results[0].level,
                     user_initial: loginData.data.results[0].firstname.substring(0, 1).toUpperCase(),
+                    user_firstname: loginData.data.results[0].firstname,
                     user_lastname: loginData.data.results[0].lastname,
-
+                    user_mobileNo: loginData.data.results[0].mobileNo,
+                    user_role: loginData.data.results[0].role,
+                    user_password: loginData.data.results[0].password,
                 }
                 console.log(loginData.data.results[0])
                 console.log(user_info)
@@ -97,14 +100,14 @@ function Login() {
     const initModal = () => {
         return invokeModal(!false)
     }
-    const [ invokeModals] = React.useState(false)
+    const [invokeModals] = React.useState(false)
     const initModals = () => {
         return invokeModals(!false)
     }
     const modalClose = () => {
         return invokeModal(false)
     }
-    
+
     const [isShowsing, invokeModalsing] = React.useState(false)
     const initModalsing = () => {
         return invokeModalsing(!false)
@@ -178,10 +181,6 @@ function Login() {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-
             <div className='login-container'>
                 <div className='welcome'>
                     <div className='logo-login'>

@@ -1,113 +1,140 @@
-.sidebar{
+.sidebar {
+
     width: 200px;
-    height: 100vh;
-    background-color: #0063EA;
+    height: 100%;
     color: whitesmoke;
     font-size: 20px;
-    margin: 0 5px 0 0;
 }
-.sidebar-subs{
+
+.sideBar h2{
+    margin-left: 10px;
+}
+
+
+.sideBar img{
+    height: 70px;
+    width: 80px;
+}
+
+.sidebar-subs {
     margin: 30% 0;
-text-align: center;
+    text-align: center;
 }
-.sidebar-subs a{
-    
+
+.sidebar-subs a {
+
     display: inline-block;
 }
-.sidebar-subs a .icon
-{
+
+.sidebar-subs a .icon {
     vertical-align: middle;
 }
-a.flex
-{
+
+a.flex {
     display: inline-flex;
 }
-.side-icon
-{
+
+.side-icon {
     font-size: 3rem;
     vertical-align: middle;
 }
-.sidenav{
-    background-color: #0063EA; 
-    height: 100vh; /* Full-height: remove this if you want "auto" height */
-  width: 200px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  padding-top: 20px;
+
+.sidenav {
+    background-color: #0063EA;
+    height: 100vh;
+    /* Full-height: remove this if you want "auto" height */
+    width: 200px;
+    /* Set the width of the sidebar */
+    position: fixed;
+    /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    left: 0;
+    padding-top: 20px;
 
 }
-.sidenav a{
+
+.sidenav a {
     text-decoration: none;
     padding: 15px 25px;
     font-size: 16px;
-    color:#fff;
+    color: #fff;
 }
-.logo
-{
+
+.logo {
     font-size: 18px;
     color: #fff;
     font-weight: 500;
-   
+
 }
 
-.inner-sidebar{
+.inner-sidebar {
     display: flex;
     flex-direction: column;
 }
 
 @media only screen and (max-width: 768px) {
-    img{
+    img {
         width: 25px;
     }
-    .logo{
-        font:10px;
-        font-weight: 100;
-        
-    } 
-    .sidebar{
 
-       width: 20%;
-       height: 100vh;
+    .logo {
+        font: 10px;
+        font-weight: 100;
+
     }
-    .sidebar-subs{
+
+    .sidebar {
+
+        width: 20%;
+        height: 100vh;
+    }
+
+    .sidebar-subs {
         margin: 0;
-    text-align: center;
+        text-align: center;
     }
-    .sidebar-subs a{
-        
+
+    .sidebar-subs a {
+
         display: inline-block;
     }
-    .sidebar-subs a .icon
-    {
+
+    .sidebar-subs a .icon {
         vertical-align: middle;
     }
-    a.flex
-    {
+
+    a.flex {
         display: inline-flex;
     }
-    .side-icon
-    {
+
+    .side-icon {
         font-size: 1.2rem;
         vertical-align: middle;
     }
-    .sidenav{
-      
-    height: auto; /* Full-height: remove this if you want "auto" height */
-      width: 100px; /* Set the width of the sidebar */
-      position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-     height: 100vh;
-    
+
+    .sidenav {
+
+        height: auto;
+        /* Full-height: remove this if you want "auto" height */
+        width: 100px;
+        /* Set the width of the sidebar */
+        position: fixed;
+        /* Fixed Sidebar (stay in place on scroll) */
+        height: 100vh;
+
     }
-    .sidenav a{
+
+    .sidenav a {
         text-decoration: none;
-       
+
         font-size: 10px;
-      
+
     }
-    .logo
-    {
+
+    .logo {
         font-size: 18px;
         color: #fff;
         font-weight: 500;
