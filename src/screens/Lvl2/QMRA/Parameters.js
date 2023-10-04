@@ -23,8 +23,7 @@ function QMRAApp() {
   const [result, setResult] = useState('');
 
   const calculateResult = () => {
-    if (selectedOrganism === 'Other' && model && count && alpha && beta) {
-      let calculatedResult = 0;
+    let calculatedResult = 0;
 
       if (model === 'Beta-Poisson') {
         calculatedResult = calculateBetaPoisson(alpha, beta, count);
@@ -33,6 +32,9 @@ function QMRAApp() {
         } else if (selectedOrganism === 'Giardia lambia') {
           calculatedResult = calculateExponentialForGiardia(k, count);
         }
+      
+        if (selectedOrganism === 'Other' && model && count && alpha && beta) {
+          
  
       setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
     } else {
@@ -58,7 +60,7 @@ function QMRAApp() {
   const calculateBetaPoisson = (alpha, beta, count) => {
     // Perform the Beta-Poisson calculation here  
     const calculatedResult = 1 -[1+(count/beta)]-alpha;
-    return 1 - (1 + (count /  beta)) - alpha;
+    return calculatedResult;
   };
 
   return (
@@ -67,7 +69,9 @@ function QMRAApp() {
       <select
         value={selectedOrganism}
         onChange={(e) => {
-          setSelectedOrganism(e.target.value);
+          const selectedValue = e.target.value;
+          setSelectedOrganism(selectedValue);
+          setModel(qmraParameters[selectedValue].model);
           setResult('');
         }}
       >

@@ -11,10 +11,35 @@ const UserRegistration = () => {
   const [error, setError] = useState(null);
   const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
 
+  const handleUserLevelChange = (selectedLevel) => {
+    // Update the userLevel state when a checkbox is selected
+    setUserLevel(selectedLevel);
+  };
+
   const handleRegistration = () => {
     // Check if the password and confirmPassword match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
+      return;
+    }
+
+    if (!username || !userSurname) {
+      setError('First names and surnames are required');
+      return;
+    }
+
+    if (!userLevel) {
+      setError('Please select a user level');
+      return;
+    }
+
+    if (!mobileNo) {
+      setError('Please enter a registered phone number');
+      return;
+    }
+
+    if (!email) {
+      setError('Please enter an Email');
       return;
     }
 
@@ -34,7 +59,7 @@ const UserRegistration = () => {
 
   return (
     <div>
-      <p>Username:</p>
+      <p>First Name:</p>
       <input
         type="text"
         value={username}
@@ -53,11 +78,33 @@ const UserRegistration = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <p>User Level:</p>
-      <select value={userLevel} onChange={(e) => setUserLevel(e.target.value)}>
-        <option value="Household">Household</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Expert">Expert</option>
-      </select>
+      <label>
+        <input
+          type="checkbox"
+          value="Household"
+          checked={userLevel === 'Household'}
+          onChange={() => handleUserLevelChange('Household')}
+        />
+        Household
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          value="Intermediate"
+          checked={userLevel === 'Intermediate'}
+          onChange={() => handleUserLevelChange('Intermediate')}
+        />
+        Intermediate
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          value="Expert"
+          checked={userLevel === 'Expert'}
+          onChange={() => handleUserLevelChange('Expert')}
+        />
+        Expert
+      </label>
       <p>Mobile Number:</p>
       <input
         type="text"

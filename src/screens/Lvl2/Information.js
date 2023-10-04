@@ -9,7 +9,11 @@ const validationSchema = Yup.object().shape({
   river: Yup.string().required('Name of river is required'),
   samplePoint: Yup.string().required('Sampling Point is required'),
   sampleCode: Yup.string().required('Sample Code is required'),
-  count: Yup.string().required('Count/100ml is required'),
+  count: Yup.object().shape({
+    cycle1: Yup.string().required('Cycle 1 is required'),
+    cycle2: Yup.string().required('Cycle 2 is required'),
+    cycle3: Yup.string().required('Cycle 3 is required'),
+  }),
 });
 
 const AddForm = ({ onSubmit }) => {
@@ -23,8 +27,11 @@ const AddForm = ({ onSubmit }) => {
       river: '',
       samplePoint: '',
       sampleCode: '',
-      count: '',
+      count: {
+        cycle1: '', 
+        cycle2: '', 
     },
+  },
     validationSchema,
     onSubmit: async (values) => {
       try {
@@ -106,17 +113,51 @@ const AddForm = ({ onSubmit }) => {
         <div className="errorText">{formik.errors.sampleCode}</div>
       )}
 
-      <input
-        type="text"
-        name="count"
-        placeholder="Count/100ml"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.count}
-      />
-      {formik.touched.count && formik.errors.count && (
-        <div className="errorText">{formik.errors.count}</div>
-      )}
+<div className="countContainer">
+  <div className="countHeader">Count/100ml</div>
+
+  <div className="cycleInput">
+    <input
+      type="text"
+      name="count.cycle1"
+      placeholder="Cycle 1"
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values.count.cycle1}
+    />
+    {formik.touched.count?.cycle1 && formik.errors.count?.cycle1 && (
+      <div className="errorText">{formik.errors.count.cycle1}</div>
+    )}
+  </div>
+
+  <div className="cycleInput">
+    <input
+      type="text"
+      name="count.cycle2"
+      placeholder="Cycle 2"
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values.count.cycle2}
+    />
+    {formik.touched.count?.cycle2 && formik.errors.count?.cycle2 && (
+      <div className="errorText">{formik.errors.count.cycle2}</div>
+    )}
+  </div>
+
+  <div className="cycleInput">
+    <input
+      type="text"
+      name="count.cycle3"
+      placeholder="Cycle 3"
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values.count.cycle3}
+    />
+    {formik.touched.count?.cycle3 && formik.errors.count?.cycle3 && (
+      <div className="errorText">{formik.errors.count.cycle3}</div>
+    )}
+  </div>
+</div>
 
       <button type="submit" onClick={formik.handleSubmit}>
         Submit
