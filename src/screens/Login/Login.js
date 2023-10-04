@@ -212,7 +212,10 @@ function Login() {
                             <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
-
+                            <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                              </div>
                             </small>
                         </div>
 

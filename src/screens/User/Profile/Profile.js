@@ -3,15 +3,11 @@ import React  from "react";
 import Sidebar  from '../Sidebar/Sidebar';
 import { useSelector } from 'react-redux';
 import  "./Profile.css";
-import Water from './water.png'
-import { useState } from 'react';
+
 function Profile (){
 
     let user_info = useSelector((state) => state.user.value)
-    const [values, setValues] = React.useState({
-        password: "",
-        showPassword: false,
-    });
+ 
 
     return(
 <div className='hero-all' >

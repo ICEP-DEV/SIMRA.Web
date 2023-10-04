@@ -82,14 +82,15 @@ height: 613px;
 .login-container .welcome
 {
   position: absolute;
-  top: 65%;
+
   left: 25%;  
   color: #fff;
 }
 .welcome .logo-login 
 {
-    position: absolute;
-    top: -165%;
+
+ margin-bottom: 340px;
+ margin-top: 10%;
 }
 
 .login-grid .btn-login 
@@ -168,7 +169,7 @@ width: 80%;
 .login-container .welcome
 {
     position:absolute;
-  top: 55%;
+
   left: 2%;  
   font-size: 10px;
   width: 30%;
