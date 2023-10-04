@@ -1,4 +1,5 @@
-import { AiOutlineFile, AiOutlineVideoCameraAdd, AiOutlineLogout,AiFillHome } from "react-icons/ai";
+import { AiOutlineFile, AiOutlineLogout,AiFillHome,AiFillVideoCamera } from "react-icons/ai";
+import {FaUserAlt} from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import "./Sidebar.css";
 import logo from './logo.png';
@@ -21,7 +22,9 @@ function Sidebar() {
     function home(){
         navigate("/home")
     }
-
+    function profile(){
+        navigate("/profile")
+    }
     function files() {
         navigate("/logs")
     }
@@ -40,27 +43,31 @@ function Sidebar() {
                 <h2><img src={logo} alt="logo"/> Simra </h2>
             </Link>
 
-            <div className="sidebar-subs">
+             <div className="sidebar-subs">
                 <div  className='side-bar-label' onClick={home} >
-                    <span className='side-icon'><AiFillHome size={'3rem'} /></span>
+                    <span className='side-icon'><AiFillHome size={'2rem'} /></span>
+                    <span className='side-label'> Home</span></div>
+            </div> 
+            <div className="sidebar-subs">
+                <div  className='side-bar-label' onClick={profile} >
+                    <span className='side-icon'><FaUserAlt size={'2rem'} /></span>
                     <span className='side-label'> Profile</span></div>
             </div>
-
             <div className="sidebar-subs">
                 <div  className='side-bar-label' onClick={files}>
-                    <span className='side-icon'><AiOutlineFile size={'3rem'} /></span>
+                    <span className='side-icon'><AiOutlineFile size={'2rem'} /></span>
                     <span className='side-label'>File</span>
                 </div>
             </div>
 
             <div  className="sidebar-subs">
                 <div  className='side-bar-label' onClick={videos} >
-                    <span className='side-icon'><AiOutlineVideoCameraAdd size={'3rem'} /> </span>
+                    <span className='side-icon'><AiFillVideoCamera size={'2rem'} /> </span>
                     <span className='side-label'>Video</span></div>
             </div >
 
             <div className="sidebar-subs">
-                <div onClick={logout} ><AiOutlineLogout size={'3rem'} /><br /> Logout</div>
+                <div onClick={logout} ><AiOutlineLogout size={'2rem'} /><br /> Logout</div>
             </div>
         </div >
     )

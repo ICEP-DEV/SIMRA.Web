@@ -42,21 +42,22 @@ function Admin_Side_Bar() {
 
             <div className="sidebar-subs">
                 <div className='side-bar-label' onClick={home}>
-                    <span className='side-icon'><AiFillHome /></span>
+                    <span className='side-icon'><AiFillHome size={'3rem'} /></span>
                     <span className='side-label'>Home</span></div>
             </div>
 
             <div className="sidebar-subs report-dropdown">
                 <div className='side-bar-label dropbtn' onClick={report}>
-                    <span className='side-icon'><BiSolidReport /></span>
+                    <span className='side-icon'><BiSolidReport size={'3rem'} /></span>
                     <span className='side-label'>Report</span>
                 </div>
                 <div className='dropdown-content'>
-                    <Link to='/sanitary_report'>Sanitary Survey</Link>
-                    <Link to='/h2s_report'>H2S</Link>
+                    <Link className='dropdown-link' to='/sanitary_report'>Sanitary Survey</Link><br></br>
+                    <Link className='dropdown-link' to='/h2s_report'>H2S</Link>
                 </div>
 
             </div>
+      
 
             <div className="sidebar-subs">
                 <div className='side-bar-label' onClick={logout} >

@@ -22,8 +22,8 @@ function Level1() {
                             <h2>Level 1 (Basic Level)</h2>
                             <div className='main-level1'>
                                 <div className='table3'>
-                                    <Link to='/sanitaryInpection' className='btn btn-primary btn-sanitary'>Sanitary Survey</Link>
-                                    <Link to='/h2s_testing' className='btn btn-success btn-sanitary'>H2S</Link>
+                                    <Link to='/sanitaryInpection' class="btn btn-primary btn-sanitary">Sanitary Survey</Link>
+                                    <Link to='/h2s_testing' className='btn btn-primary btn-sanitary'>H2S</Link>
                                 </div>
                             </div>
                             <div className='level1-desccription'>

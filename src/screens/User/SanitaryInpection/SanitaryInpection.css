@@ -4,8 +4,10 @@
 }
 
 .table{
-    margin-top: 100px;
-    margin-left: 100px;
+  
+    margin-left: 5%;
+    margin-top: 5%;
+    display:inline-block;
 }
 
 .sanitary-submit{

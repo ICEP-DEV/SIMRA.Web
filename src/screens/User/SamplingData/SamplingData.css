@@ -1,11 +1,14 @@
 .content{
   font-size: 20px;
   min-height: 100vh;
+
  
  }
  .container-wrapper
  {
      padding-left: 5%;
+
+  
  }
  .form-group{
      display: flex;
@@ -24,8 +27,7 @@
      background-color: #fff;
      border-top-left-radius: 80px 80px;
      border-bottom-left-radius:80px 80px ;
-     position: relative;
- 
+  
    }
    
    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

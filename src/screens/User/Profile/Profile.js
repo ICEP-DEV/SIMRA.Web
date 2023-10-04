@@ -1,22 +1,17 @@
-import axios from "axios";
-import React ,{useEffect,useState} from "react";
-import {  useNavigate } from 'react-router-dom';
+
+import React  from "react";
 import Sidebar  from '../Sidebar/Sidebar';
+import { useSelector } from 'react-redux';
 import  "./Profile.css";
+import Water from './water.png'
+import { useState } from 'react';
 function Profile (){
-    let navigate = useNavigate();
-    const [posts ,setPosts] =useState([]);
 
-useEffect(() =>{
-    axios 
-    .get("http://localhost:3001/api/login")
-    .then((result) => {
-        console.log(result.data);
-        setPosts(result.data);
-    })
-    .catch((error) => console.log(error ));
-},[] );
-
+    let user_info = useSelector((state) => state.user.value)
+    const [values, setValues] = React.useState({
+        password: "",
+        showPassword: false,
+    });
 
     return(
 <div className='hero-all' >
@@ -28,24 +23,25 @@ useEffect(() =>{
     <div className='main-all'>
         <div className='content'>
             <div className='container-wrapper'>
-                <div className="upload-image">
-
-                </div>
+                
                 <div className="profile-main"> 
+                
             <h1>My Profile</h1>
       
               
-            <div className="sub">First Name <br></br><input className="profile-input" value={posts.firstname}/> {posts.firstname}</div>
+            <div className="sub">First Name <br></br><input className="profile-input" value={user_info.user_firstname} /></div>
                   
-            <div  className="sub">Last Name  <br></br><input className="profile-input" value={posts.lastname}/> {posts.lastname}</div>
+            <div  className="sub ">Last Name  <br></br><input className="profile-input" value={user_info.user_lastname}/> </div>
                    
             <div  className="sub"> 
-            Email  <br></br>
-            <input placeholder=" " className="profile-input" value={posts.mobileNo}/>{posts.mobileNo}
+            Mobile Number: <br></br>
+            <input  className="profile-input" value={user_info.user_mobileNo}/>
              </div>
                     
             <div  className="sub" >
-                <input placeholder="*********" className="profile-input" value={posts.password} />{posts.password}
+              Password:  <br></br>
+                <input type="password" className="profile-input" value={user_info.user_password} />
+               
                 </div>
                  
               
@@ -54,7 +50,9 @@ useEffect(() =>{
                 
 
                 <button className="btn-data">Update</button>
+                
                 </div>
+                
                 </div>
                 </div>
                 </div>

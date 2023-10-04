@@ -433,7 +433,7 @@ function SanitaryInpection() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button onClick={function (event) { senduseSanitaryInpectionSurvey(); }} className='btn btn-primary sanitary-submit'>Submit</button>
+                        <button onClick={function (event) { senduseSanitaryInpectionSurvey(); }} className='btn btn-primary btn-lg mb-3'>Submit</button>
                     </div>
                 </div>
             </div>

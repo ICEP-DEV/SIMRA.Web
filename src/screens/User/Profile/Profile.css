@@ -10,11 +10,17 @@
 border: none;
 border-bottom: 2px solid black;
 }
-.profile-main
+/* .profile-main
 {
-    margin-left:500px;
-}
+    margin-left:30%;
 
+} */
+.profile-main h1{
+ 
+  
+    margin-bottom: 55px;
+
+}
 @media only screen and (max-width: 768px) {
     
     .sub{

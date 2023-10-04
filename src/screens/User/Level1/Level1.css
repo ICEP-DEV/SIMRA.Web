@@ -7,3 +7,30 @@
     height: 50px;
     border-radius: 12px;
 }
+.lvl1 h2
+{
+
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+  
+}
+.btn-lvl1
+{
+    text-align: center;
+    background-color: #034694;
+    color: #fff;
+    padding: 10px 10px;
+     border-radius: 10px 10px;
+   
+}
+.table3 Link
+{
+    text-decoration: none;
+}
