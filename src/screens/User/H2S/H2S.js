@@ -15,6 +15,7 @@ function H2S() {
     const [selectedOption, setSelectedOption] = useState(null);
     const [Longitude, setLongitude] = useState('')
     const [Latitude, setLatitude] = useState('')
+    const [IsContiminated, setIsContiminated] = useState(false);
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
             const { latitude, longitude } = position.coords;
@@ -38,9 +39,14 @@ function H2S() {
         return invokeModals(false)
     }
 
-    const handleRadioChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
+    const handleChangeUpdate = e => {
+        setIsContiminated((currentState) => ({
+            ...currentState,
+            [e.target.name]: Boolean(e.target.value),
+        }))
+        console.log(IsContiminated)
+
+    }
 
     const divStyleSubmit = {
         backgroundColor: 'blue',
@@ -55,38 +61,14 @@ function H2S() {
     // };
 
     const handleSubmitButton = () => {
-        // Handle submission here, you can use the selectedOption state.
-        console.log(`Selected Option: ${selectedOption}`);
-        if (selectedOption === 'NEGATIVE') {
-            setIsYellowTextVisible(true); // Show the negative message
-            setIsBlackTextVisible(false); // Hide the positive message
-        } else if (selectedOption === 'POSITIVE') {
-            setIsYellowTextVisible(false); // Hide the negative message
-            setIsBlackTextVisible(true); // Show the positive message
-        }
+        
     };
     const naving = () => {
         navigate("/level1");
     }
     const handleButtonClick = (color) => {
-        if (color === 'Yellow') {
-            setIsYellowTextVisible(!isYellowTextVisible);
-            setIsBlackTextVisible(false);
-            setSelectedOption('NEGATIVE');
-        } else if (color === 'Black') {
-            setIsBlackTextVisible(!isBlackTextVisible);
-            setIsYellowTextVisible(false);
-            setSelectedOption('POSITIVE');
-        }
 
-        console.log(sampling_info)
         axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
-            console.log(response)
-            var h2s_test = {
-                status: isBlackTextVisible,
-                samplingId: response.data.insertedId
-            }
-
             // Assign to Coordinates object
             var coordinates = {
                 latitude: Latitude,
@@ -113,6 +95,10 @@ function H2S() {
                 console.log(err)
             })
 
+            var h2s_test = {
+                status: IsContiminated.isContiminated,
+                samplingId: response.data.insertedId
+            }
             axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
 
                 if (result.data.success === true) {
@@ -166,10 +152,12 @@ function H2S() {
                                     <label style={{ marginRight: '10px' }}>
                                         <input
                                             type="radio"
-                                            value="NEGATIVE"
-                                            checked={selectedOption === 'NEGATIVE'}
-                                            onChange={handleRadioChange} style={{ marginRight: '10px' }}
+                                            value=''
+                                            // checked={selectedOption === 'NEGATIVE'}
+                                            // onChange={handleRadioChange} style={{ marginRight: '10px' }}
+                                            onChange={handleChangeUpdate}
                                             className='test-results'
+                                            name='isContiminated'
                                         />
                                         WHITE
                                     </label>
@@ -177,10 +165,12 @@ function H2S() {
                                     <label>
                                         <input
                                             type="radio"
-                                            value="POSITIVE"
-                                            checked={selectedOption === 'POSITIVE'}
-                                            onChange={handleRadioChange} style={{ marginRight: '10px' }}
+                                            value='true'
+                                            // checked={selectedOption === 'POSITIVE'}
+                                            // onChange={handleRadioChange} style={{ marginRight: '10px' }}
+                                            onChange={handleChangeUpdate}
                                             className='test-results'
+                                            name='isContiminated'
                                         />
                                         BLACK
                                     </label>
@@ -212,7 +202,7 @@ function H2S() {
                             Close
                         </Button> */}
                                         <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
-                                            Ok
+                                       yes
                                         </Button>
                                     </Modal.Footer>
                                 </Modal>
@@ -222,14 +212,14 @@ function H2S() {
                                         <Modal.Title>Methods</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        {isYellowTextVisible && (
+                                        {IsContiminated.IsContiminated == false && (
                                             <div>
-                                                <p>NO RISK !!!  ENJOY YOUR WATER!!</p>
+                                                <p>NO RISK !!!  </p>
                                                 <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
                                             </div>
                                         )}
 
-                                        {isBlackTextVisible && (
+                                        {IsContiminated.IsContiminated == true && (
                                             <div className="text-center">
                                                 <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
 

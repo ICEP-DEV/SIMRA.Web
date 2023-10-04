@@ -2,11 +2,8 @@ import Sidebar from '../Sidebar/Sidebar';
 import './Level1.css'
 import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 function Level1() {
-    let user_info = useSelector((state) => state.user.value)
-    console.log(user_info)
     return (
         <div className='hero-all' >
             <div className='sidenav'>
