@@ -5,7 +5,7 @@ import "./Sidebar.css";
 import logo from './logo.png';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { remove_details } from "../../../Redux/user"
+import { remove_details } from "../../../../Redux/user"
 
 function Sidebar() {
     const navigate = useNavigate();

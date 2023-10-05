@@ -1,6 +1,6 @@
 import './Report.css'
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
-import Header from '../../User/Header/Header';
+import Header from '../../Header/Header';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import sanitary from './sanitary.PNG';
 import sanitary_data from './sanitary_data.PNG';
 import H2S from './H2S.PNG';
 import H2S_data from './H2S_data.PNG';
+
 function Report() {
 
     let [SummaryValues, setSummaryValues] = useState([])
@@ -31,7 +32,8 @@ function Report() {
                 <div className='content'>
                     <Header />
                     <div className='container-wrapper'>
-                        <div className='summary_report'>
+                        
+                        {/* <div className='summary_report'>
                             <h2>Report Summary</h2>
                             <div className='inner_summary_report'>
                                 <h2>Sanitary Survey</h2>
@@ -59,7 +61,7 @@ function Report() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

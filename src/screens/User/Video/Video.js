@@ -1,5 +1,6 @@
 import React from "react";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../Level1/Sidebar/Sidebar";
+import Header from '../../Header/Header';
 import "./Video.css";
 
 function VideoScreen(){

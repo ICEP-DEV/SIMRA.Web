@@ -1,6 +1,6 @@
 
 import React  from "react";
-import Sidebar  from '../Sidebar/Sidebar';
+import Sidebar  from '../Level1/Sidebar/Sidebar';
 import { useSelector } from 'react-redux';
 import  "./Profile.css";
 

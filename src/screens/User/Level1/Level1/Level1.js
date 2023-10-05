@@ -1,6 +1,6 @@
 import Sidebar from '../Sidebar/Sidebar';
 import './Level1.css'
-import Header from '../Header/Header';
+import Header from '../../../Header/Header';
 import { Link } from 'react-router-dom';
 
 function Level1() {

@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../Sidebar/Sidebar';
-import Header from '../Header/Header';
+import Sidebar from '../Level1/Sidebar/Sidebar';
+import Header from '../../Header/Header';
 function Home() {
     let navigate = useNavigate();
 

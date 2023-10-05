@@ -1,6 +1,6 @@
 import './Municipality.css'
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
-import Header from '../../User/Header/Header';
+import Header from '../../Header/Header';
 import drink from './girldrinking.png'
 function Municipality() {
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import Header from '../Header/Header';
+import Header from '../../../Header/Header';
 import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 
