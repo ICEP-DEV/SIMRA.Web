@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 import { useNavigate } from 'react-router-dom';
