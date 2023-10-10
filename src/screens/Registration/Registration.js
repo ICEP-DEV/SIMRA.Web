@@ -1,140 +1,104 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import "./Registration.css"
-// import SuccessPopup from './SuccessPopUp/SuccessPopUp';
-//import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import axios from 'axios'
+import './Registration.css'
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Loader from '../Loader/Loader';
 import logo from './logo.png';
 
-import {  useNavigate } from 'react-router-dom';
-const UserRegistration = () => {
-  const [username, setUsername] = useState('');
-  const [userSurname, setUserSurname] = useState('');
-  const [email, setEmail] = useState('');
-  const [userLevel, setUserLevel] = useState('Household');
-  const [mobileNo, setMobileNo] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
-  const navigation = useNavigate();
 
-  const handleRegistration = () => {
-    // Check if the password and confirmPassword match
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
 
-    // Clear any previous error messages
-    setError(null);
-    
 
-    axios.post('http://localhost:3000/api/UserRegister', {username, userSurname, email, userLevel, mobileNo, password,})
-      .then((response) => {
-        
-        console.log('User registered successfully');
-        // Navigate 
-        navigation.navigate('../Login');
-        setSuccessPopupVisible(true);
-      })
-      .catch((error) => {
-        console.error('Registration error:', error);
-        
-        // Handle registration error, e.g., display an error message.
-      });
-  };
+function Signup() {
+ 
+  
 
-//   const handleCloseSuccessPopup = () => {
-//     setSuccessPopupVisible(false); // Hide the success pop-up
-//   };
+    let navigate = useNavigate();
+ return(
 
-  return (
-    <div className='all-contents'>
 
-    <div className='reg-container'>
-<div className='welcome'>
-        <div className='logo-login'>
-        <img /> Simra
+  <div className='all-contents'>
+
+            <div className='login-container'>
+                <div className='welcome'>
+                    <div className='logo-login'>
+                        <img src={logo} alt='logo' /> Simra
+                    </div>
+                    <h1>Welcome</h1>
+                    SIMRA, tool integrates  <br></br>
+                    the current water and <br></br>
+                    sanitation risk assessment <br></br>
+                    and management methods <br></br>
+                    into one harmonised tool<br></br>
                 </div>
-                <h2>Welcome</h2>
-                SIMRA, tool integrates  <br></br>
-                the current water and <br></br>
-                sanitation risk assessment <br></br>
-                and management methods <br></br>
-                into one harmonised tool<br></br>
-            </div>  
-            <div className='reg-card'>
+                <div className='login-card'>
 
-            <div className='main-reg' id='main-login'>
-<h3 className='header-txt'><b>Create An Account</b></h3>
-<div>
-First Name:
-    <input className='input-login' value={username} onChangeText={setUsername}/>
-</div>
-<div>
-    Last Name:
-    <input className='input-login' value={userSurname}
-        onChangeText={setUserSurname}/>
-</div>
-<div>
-    Email:
-    <input className='input-login' value={email} onChangeText={setEmail}/>
-</div>
-<div>
-    Password:
-    <input  className='input-login' secureTextEntry
-        value={password}
-        onChangeText={setPassword}/>
-</div>
-<div>
-    Confirm Password:
-    <input className='input-login' secureTextEntry
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}/>
-</div>
-<div>
-  
-    <label> User Level:</label>
-    <select className='select-sampling_data'  >
-    <option value='' className="control-form">---Select---</option>
-    <option value='' className="control-form">Household</option>
-    <option value='' className="control-form">Intermediate</option>
-    <option value='' className="control-form">Expert</option>
-    </select>
-                    
-</div>
-<div>
-    Mobile Number:
-    <input  value={mobileNo}
-        onChangeText={setMobileNo}/>
-</div>
+                    <div className='main-login' id='main-login'>
+
+                      
+                        <h3 className='header-txt mb-4'><b>Create An Account</b></h3>
+                        <div className='mb-1'>
+                          
+                            <input className='input-login w-75 ' type="username" name='username'  placeholder='First Name' />
+                            <small>
+
+                            </small>
+                        </div>
+                        <div className='mb-1'>
+                       
+                            <input className='input-login  w-75' type="username" o name='username'  placeholder='Lastname' />
+                            <small>
+
+                            </small>
+                        </div>
+
+                        <div className='mb-1'>
+                        
+                            <input className='input-login  w-75' type="username"  name='username' placeholder='Mobile Number' />
+                            <small>
+
+                            </small>
+                        </div>
 
 
-    <button className='btn-reg' title="Register" onPress={handleRegistration}>Create Account</button>
-      
-      
-    </div>
-    </div>
+                        <div className='mb-1 text-center'>
+                      <label >  Select Level</label> 
+                           <div className='d-flex justify-content-between'>
+                            <div className='radio-level p-1 d-inline '><label><input type="radio"/>Household</label></div>
+                            <div className='radio-level p-1 d-inline '><label><input type="radio"/>Intermediate</label></div>
+                            <div className='radio-level p-1 d-inline' ><label><input type="radio"/>Expert</label></div>
+                           </div>
+                        </div>
+                        <div className='d-flex justify-content-between'>
+                        <div className='mb-1'>
+                            <input className='input-login w-100 float-start' type="password" name='password'  placeholder='Password' />
 
-   </div>
-   </div>
-    
-    //  <Text>User Level:</Text>
-    //   <Picker
-    //   selectedValue={userLevel}
-    //  onValueChange={(itemValue, itemIndex) => setUserLevel(itemValue)}
-    //  >
-    //    <Picker.Item label="Household" value="Household" />
-    //     <Picker.Item label="Intermediate" value="Intermediate" />
-    //     <Picker.Item label="Expert" value="Expert" />
-    //  </Picker>
-   
-     
-    
+                        </div>
 
-    
-  
-  );
-};
+                        <div className='mb-3'>
+                           
+                            <input className='input-login w-100 ' type="password"  name='password'  placeholder=' confirm Password' />
 
-export default UserRegistration;
+                            
+                        </div>
+                        </div>
+                        
+                        
+                        <div className='login-grid'>
+
+                            <button className='btn-login'>Sign Up</button>
+                            <small className='txt-signup'>
+                                Already have an account ? <Link to="/Login" className='ms-2'>Sign In</Link>
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+       </div>
+    )
+}
+
+export default Signup
