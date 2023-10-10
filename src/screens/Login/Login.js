@@ -61,7 +61,7 @@ function Login() {
                     user_firstname: loginData.data.results[0].firstname,
                     user_lastname: loginData.data.results[0].lastname,
                     user_mobileNo: loginData.data.results[0].mobileNo,
-                    user_role: loginData.data.results[0].role,
+                //    user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
                 }
                 console.log(loginData.data.results[0])

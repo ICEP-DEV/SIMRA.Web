@@ -258,7 +258,7 @@ export default function QMRAApp() {
             {organism}
           </option>
         ))}
-        <option value="Other">Other</option>
+        <option value="Campylobacter jejun">Campylobacter jejun</option>
       </select>
       {selectedOrganism !== 'Other' && model === 'Beta-Poisson' && (
         <div>

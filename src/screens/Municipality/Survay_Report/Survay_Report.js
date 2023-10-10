@@ -3,7 +3,7 @@ import './Survay_Report.css';
 import axios from 'axios';
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
 
-function Survay_Report() {
+function SurvayReport() {
 
   const [Provinces, setProvinces] = useState([])
   const [Report, setReport] = useState([])
@@ -151,4 +151,4 @@ function Survay_Report() {
   );
 }
 
-export default Survay_Report;
+export default SurvayReport;

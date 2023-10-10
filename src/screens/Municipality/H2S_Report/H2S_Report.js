@@ -4,7 +4,7 @@ import './H2S_Report.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function H2S_Report() {
+function H2SReport() {
     const [H2SReport, setH2SReport] = useState([])
     const [IsDataLoaded,setIsDataLoaded] = useState(false)
     useEffect(() => {
@@ -56,4 +56,4 @@ function H2S_Report() {
     )
 }
 
-export default H2S_Report
+export default H2SReport
