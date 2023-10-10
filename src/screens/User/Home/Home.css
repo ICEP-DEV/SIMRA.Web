@@ -1,3 +1,14 @@
+
+*
+{
+    font-family: 'Prata';
+}
+.home-background
+{
+    background-image: url('./back.PNG');
+    width: 70%;
+    height: 70vh;
+}
 .btn-home
 {
    
@@ -21,6 +32,10 @@
 .h1-home{
     margin-bottom: 1%;
     margin-left: 8%;
+}
+.home-body
+{
+    font-size: 25px;
 }
 @media only screen and (max-width: 768px) {
     
