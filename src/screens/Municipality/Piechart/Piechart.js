@@ -1,37 +1,42 @@
-import './PieChart.css'
-import React from 'react';
-import { Pie } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react';
+import { Chart } from 'primereact/chart';
+import { useNavigate } from 'react-router-dom';
 
-const chartData = {
-    labels: ['Label 1', 'Label 2', 'Label 3'],
-    values: [30, 40, 30], 
-    colors: ['#FF5733', '#33FF57', '#5733FF'], 
-  };
-
-  return (
-    <div className="pie">
-      <h1>Pie Chart</h1>
-      <PieChart data={chartData} />
-    </div>
-  );
-
-
-const PieChart = ({ data }) => {
-  return (
-    <div>
-      <Pie
-        data={{
-          labels: data.labels, // An array of labels
-          datasets: [
+const PieChart = () => {
+    const navigate = useNavigate();
+    const chartData = {
+        labels: ['High Risk', 'No Risk', 'Medium Risk'],
+        datasets: [
             {
-              data: data.values, // An array of data values
-              backgroundColor: data.colors, // An array of colors
-            },
-          ],
-        }}
-      />
-    </div>
-  );
-};
+                data: [200, 50, 100],
+                backgroundColor: [
+                    "red",
+                    "green",
+                    "yellow"
+                ],
+                hoverBackgroundColor: [
+                    "#bd0d0d",
+                    "#12fa63",
+                    "#FFB74D"
+                ]
+            }
+        ]
+    };
 
+    const lightOptions = {
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#495057'
+                }
+            }
+        }
+    };
+
+    return (
+        <div className="card p-jc-center">
+            <Chart type="pie" data={chartData} options={lightOptions} style={{ position: 'relative', width: '60%', alignContent: 'center' }} />
+        </div>
+    )
+}
 export default PieChart;

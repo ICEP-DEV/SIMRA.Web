@@ -25,26 +25,6 @@ const UserRegistration = () => {
       return;
     }
 
-    if (!username || !userSurname) {
-      setError('First names and surnames are required');
-      return;
-    }
-
-    if (!userLevel) {
-      setError('Please select a user level');
-      return;
-    }
-
-    if (!mobileNo) {
-      setError('Please enter a registered phone number');
-      return;
-    }
-
-    if (!email) {
-      setError('Please enter an Email');
-      return;
-    }
-
     // Clear any previous error messages
     setError(null);
     
@@ -100,40 +80,6 @@ First Name:
     Email:
     <input className='input-login' value={email} onChangeText={setEmail}/>
 </div>
-<p>User Level:</p>
-      <label>
-        <input
-          type="checkbox"
-          value="Household"
-          checked={userLevel === 'Household'}
-          onChange={() => handleUserLevelChange('Household')}
-        />
-        Household
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="Intermediate"
-          checked={userLevel === 'Intermediate'}
-          onChange={() => handleUserLevelChange('Intermediate')}
-        />
-        Intermediate
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="Expert"
-          checked={userLevel === 'Expert'}
-          onChange={() => handleUserLevelChange('Expert')}
-        />
-        Expert
-      </label>
-      <p>Mobile Number:</p>
-      <input
-        type="text"
-        value={mobileNo}
-        onChange={(e) => setMobileNo(e.target.value)}
-      />
 <div>
     Password:
     <input  className='input-login' secureTextEntry
