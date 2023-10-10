@@ -1,6 +1,6 @@
-import React from 'react';
 
-const SuccessPopup = ({ isVisible, message, onClose }) => {
+
+//const SuccessPopup = ({ isVisible, message, onClose }) => {
   const modalStyle = {
     display: isVisible ? 'block' : 'none',
     position: 'fixed',
@@ -29,6 +29,26 @@ const SuccessPopup = ({ isVisible, message, onClose }) => {
       </div>
     </div>
   );
+};
+
+export default SuccessPopup;
+import React from 'react';
+import { View, Text, Modal } from 'react-native';
+import { View, Modal, Button } from 'react-bootstrap';
+
+const SuccessPopup = ({ isVisible, message, onClose }) => {
+//   return (
+//     <Modal
+//       isVisible={isVisible}
+//       animationIn="fadeIn"
+//       animationOut="fadeOut"
+//       onBackdropPress={onClose}
+//     >
+//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//         <Text>{message}</Text>
+//       </View>
+//     </Modal>
+//   );
 };
 
 export default SuccessPopup;

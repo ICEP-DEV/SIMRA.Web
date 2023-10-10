@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import "./Registration.css"
+// import SuccessPopup from './SuccessPopUp/SuccessPopUp';
+//import { useNavigate } from 'react-router-dom';
+import logo from './logo.png';
 
+import {  useNavigate } from 'react-router-dom';
 const UserRegistration = () => {
   const [username, setUsername] = useState('');
   const [userSurname, setUserSurname] = useState('');
@@ -10,11 +16,7 @@ const UserRegistration = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
-
-  const handleUserLevelChange = (selectedLevel) => {
-    // Update the userLevel state when a checkbox is selected
-    setUserLevel(selectedLevel);
-  };
+  const navigation = useNavigate();
 
   const handleRegistration = () => {
     // Check if the password and confirmPassword match
@@ -45,39 +47,60 @@ const UserRegistration = () => {
 
     // Clear any previous error messages
     setError(null);
+    
 
-    // Simulate registration success (Replace this with your actual registration logic)
-    setTimeout(() => {
-      console.log('User registered successfully');
-      setSuccessPopupVisible(true);
-    }, 1000);
+    axios.post('http://localhost:3001/api/UserRegister', {username, userSurname, email, userLevel, mobileNo, password,})
+      .then((response) => {
+        
+        console.log('User registered successfully');
+        // Navigate 
+        navigation.navigate('../Login');
+        setSuccessPopupVisible(true);
+      })
+      .catch((error) => {
+        console.error('Registration error:', error);
+        
+        // Handle registration error, e.g., display an error message.
+      });
   };
 
-  const handleCloseSuccessPopup = () => {
-    setSuccessPopupVisible(false);
-  };
+//   const handleCloseSuccessPopup = () => {
+//     setSuccessPopupVisible(false); // Hide the success pop-up
+//   };
 
   return (
-    <div>
-      <p>First Name:</p>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <p>User Surname:</p>
-      <input
-        type="text"
-        value={userSurname}
-        onChange={(e) => setUserSurname(e.target.value)}
-      />
-      <p>Email:</p>
-      <input
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <p>User Level:</p>
+    <div className='all-contents'>
+
+    <div className='reg-container'>
+<div className='welcome'>
+        <div className='logo-login'>
+        <img /> Simra
+                </div>
+                <h2>Welcome</h2>
+                SIMRA, tool integrates  <br></br>
+                the current water and <br></br>
+                sanitation risk assessment <br></br>
+                and management methods <br></br>
+                into one harmonised tool<br></br>
+            </div>  
+            <div className='reg-card'>
+
+            <div className='main-reg' id='main-login'>
+<h3 className='header-txt'><b>Create An Account</b></h3>
+<div>
+First Name:
+    <input className='input-login' value={username} onChangeText={setUsername}/>
+</div>
+<div>
+    Last Name:
+    <input className='input-login' value={userSurname}
+        onChangeText={setUserSurname}/>
+</div>
+<div>
+    Email:
+    <input className='input-login' value={email} onChangeText={setEmail}/>
+</div>
+<p>User Level:</p>
       <label>
         <input
           type="checkbox"
@@ -111,28 +134,60 @@ const UserRegistration = () => {
         value={mobileNo}
         onChange={(e) => setMobileNo(e.target.value)}
       />
-      <p>Password:</p>
-      <input
-        type="password"
+<div>
+    Password:
+    <input  className='input-login' secureTextEntry
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <p>Confirm Password:</p>
-      <input
-        type="password"
+        onChangeText={setPassword}/>
+</div>
+<div>
+    Confirm Password:
+    <input className='input-login' secureTextEntry
         value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button onClick={handleRegistration}>Register</button>
+        onChangeText={setConfirmPassword}/>
+</div>
+<div>
+  
+    <label> User Level:</label>
+    <select className='select-sampling_data'  >
+    <option value='' className="control-form">---Select---</option>
+    <option value='' className="control-form">Household</option>
+    <option value='' className="control-form">Intermediate</option>
+    <option value='' className="control-form">Expert</option>
+    </select>
+                    
+</div>
+<div>
+    Mobile Number:
+    <input  value={mobileNo}
+        onChangeText={setMobileNo}/>
+</div>
 
-      {isSuccessPopupVisible && (
-        <div>
-          <p>Registration Successful!</p>
-          <button onClick={handleCloseSuccessPopup}>Close</button>
-        </div>
-      )}
+
+    <button className='btn-reg' title="Register" onPress={handleRegistration}>Create Account</button>
+      
+      
     </div>
+    </div>
+
+   </div>
+   </div>
+    
+    //  <Text>User Level:</Text>
+    //   <Picker
+    //   selectedValue={userLevel}
+    //  onValueChange={(itemValue, itemIndex) => setUserLevel(itemValue)}
+    //  >
+    //    <Picker.Item label="Household" value="Household" />
+    //     <Picker.Item label="Intermediate" value="Intermediate" />
+    //     <Picker.Item label="Expert" value="Expert" />
+    //  </Picker>
+   
+     
+    
+
+    
+  
   );
 };
 
