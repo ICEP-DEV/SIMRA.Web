@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import axios from 'axios';
 import "./Registration.css"
 import SuccessPopup from './SuccessPopUp/SuccessPopUp';
@@ -212,6 +212,187 @@ const UserRegistration = () => {
    
     
   
+  );
+};
+
+export default UserRegistration; */
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import "./Registration.css"
+import SuccessPopup from './SuccessPopUp/SuccessPopUp';
+import { useNavigate } from 'react-router-dom';
+import logo from './logo.png';
+
+const UserRegistration = () => {
+  const [formData, setFormData] = useState({
+    username: '',
+    userSurname: '',
+    email: '',
+    userLevel: 'Household',
+    mobileNo: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [error, setError] = useState(null);
+  const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
+  const navigation = useNavigate();
+
+  const handleUserLevelChange = (selectedLevel) => {
+    setFormData({ ...formData, userLevel: selectedLevel });
+  };
+
+  const handleRegistration = () => {
+    setError(null); // Clear any previous error messages
+
+    // Check if the password and confirmPassword match
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    if (!formData.username || !formData.userSurname) {
+      setError('First name and surname are required');
+      return;
+    }
+
+    if (!formData.userLevel) {
+      setError('Please select a user level');
+      return;
+    }
+
+    if (!formData.mobileNo) {
+      setError('Please enter a registered phone number');
+      return;
+    }
+
+    if (!formData.email) {
+      setError('Please enter an email');
+      return;
+    }
+
+    // Make an Axios POST request for user registration
+    axios
+      .post('http://localhost:3001/api/UserRegister', formData)
+      .then((response) => {
+        console.log('User registered successfully');
+        setSuccessPopupVisible(true);
+        navigation('/Login'); // Use '/' for relative path
+      })
+      .catch((error) => {
+        console.error('Registration error:', error);
+        setError('Registration failed. Please try again.');
+      });
+  };
+
+  const handleCloseSuccessPopup = () => {
+    setSuccessPopupVisible(false);
+  };
+
+  return (
+    <div className='all-contents'>
+      <div className='reg-container'>
+        <div className='welcome'>
+          <div className='logo-login'>
+            <img src={logo} alt="Simra Logo" /> Simra
+          </div>
+          <h2>Welcome</h2>
+          SIMRA, a tool that integrates the current water and sanitation risk assessment and management methods into one harmonized tool.
+        </div>
+        <div className='reg-card'>
+          <div className='main-reg' id='main-login'>
+            <h3 className='header-txt'><b>Create An Account</b></h3>
+            <div>
+              <p>First Name:</p>
+              <input
+                type="text"
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+              />
+            </div>
+            <div>
+              <p>User Surname:</p>
+              <input
+                type="text"
+                value={formData.userSurname}
+                onChange={(e) => setFormData({ ...formData, userSurname: e.target.value })}
+              />
+            </div>
+            <div>
+              <p>Email:</p>
+              <input
+                type="text"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+            </div>
+            <div>
+              <p>Mobile Number:</p>
+              <input
+                type="text"
+                value={formData.mobileNo}
+                onChange={(e) => setFormData({ ...formData, mobileNo: e.target.value })}
+              />
+            </div>
+            <div>
+              <p>User Level:</p>
+              <label>
+                <input
+                  type="radio"
+                  value="Household"
+                  checked={formData.userLevel === 'Household'}
+                  onChange={() => handleUserLevelChange('Household')}
+                />
+                Household
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="Intermediate"
+                  checked={formData.userLevel === 'Intermediate'}
+                  onChange={() => handleUserLevelChange('Intermediate')}
+                />
+                Intermediate
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="Expert"
+                  checked={formData.userLevel === 'Expert'}
+                  onChange={() => handleUserLevelChange('Expert')}
+                />
+                Expert
+              </label>
+            </div>
+            <div>
+              <p>Password:</p>
+              <input
+                type="password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              />
+            </div>
+            <div>
+              <p>Confirm Password:</p>
+              <input
+                type="password"
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+              />
+            </div>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <button className='btn-reg' onClick={handleRegistration}>Create Account</button>
+            {isSuccessPopupVisible && (
+              <div>
+                <p>Registration Successful!</p>
+                <button onClick={handleCloseSuccessPopup}>Close</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
