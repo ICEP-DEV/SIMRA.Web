@@ -46,24 +46,6 @@ const FibAnalysis = () => {
     }
   };
 
-  const submitFibData = async (values) => {
-    try {
-      // Your form submission logic here
-      const response = await axios.post('', values);
-      if (response.status === 200) {
-        // If successful, set `successModalVisible` to true
-        handleFibData.setReferencePath()
-        setSuccessModalVisible(true);
-      } else {
-        setErrorModalVisible(true);
-      }
-    } catch (error) {
-      // If there's an error, set `errorModalVisible` to true
-      console.error('', error);
-      setErrorModalVisible(true);
-    }
-  },
-
   return (
     <div>
       <p>Select an FIB:</p>

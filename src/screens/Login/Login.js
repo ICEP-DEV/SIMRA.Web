@@ -69,11 +69,23 @@ function Login() {
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                    navigate('/home')
+                  
+                    if (loginData.data.results[0].level === 1)
+                    {
+                        navigate('/home')
+                    }
+                    else if (loginData.data.results[0].level === 2)
+                    {
+                        navigate('/Level2')
+                    }
                 }
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')
                 }
+                // else if (loginData.data.results[0].role === "level2")
+                // {
+                //     navigate('/Level2')
+                // }
 
             }
             else {
@@ -226,7 +238,7 @@ function Login() {
 
                             <button className='btn-login' onClick={onSuccess}>Log In</button>
                             <small className='txt-signup'>
-                                Don't have an account ? <Link to="/signup" className='ms-2'>Sign Up</Link>
+                                Don't have an account ? <Link to="/user_Registration" className='ms-2'>Sign Up</Link>
                             </small>
                         </div>
 
