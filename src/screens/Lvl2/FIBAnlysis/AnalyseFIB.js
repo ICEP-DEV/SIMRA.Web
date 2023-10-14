@@ -48,20 +48,33 @@ const FibAnalysis = () => {
 
   return (
     <div>
-      <p>Select an FIB:</p>
+      <p>Select an FIB Indicator:</p>
       <select
         value={selectedFIB}
         onChange={(event) => handleFibData(event.target.value)}
       >
-        <option value="Select a FIB">Select an FIB</option>
+        <option value="Other">Select an FIB</option>
         {Object.keys(fibData).map((fib) => (
           <option key={fib} value={fib}>
             {fib}
           </option>
         ))}
       </select>
-      <p>Reference Pathogen: {referencePath}</p>
-      <p>Ratio: {ratio}</p>
+      
+      <table>
+        <tbody>
+          <tr>
+            <th>Indicator</th>
+            <th>Ratio</th>
+          </tr>
+          <tr>
+            <td>{referencePath}</td>
+            <td>{ratio}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>  </br>
       <p>Enter The Count:</p>
       <input
         type="number"
