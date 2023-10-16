@@ -17,11 +17,7 @@ import Logs from './screens/User/Level1/Logs/Logs';
 import H2SReport from './screens/Municipality/H2S_Report/H2S_Report';
 import Report from './screens/Municipality/Report/Report';
 import Level2 from './screens/Lvl2/Level2/Level2';
-import Information from './screens/Lvl2/Information';
-import FibAnalysis from './screens/Lvl2/FIBAnlysis/AnalyseFIB';
-import QMRAApp from './screens/Lvl2/QMRA/Parameters';
-
-
+import FIB from './screens/Lvl2/FIBAnlysis/AnalyseFIB'
 
 import './App.css';
 function App() {
@@ -45,9 +41,7 @@ function App() {
         <Route exact path='/h2s_report' element={<H2SReport />} />
         <Route exact path='/report' element={<Report />} />
         <Route exact path='/level2' element={<Level2/>}/>
-        <Route exact path='/addForm' element={<Information />}/>
-        <Route exact path='/analyseFib' element={<FibAnalysis/>}/>
-        <Route exact path='/qmra' element={<QMRAApp/>}/>
+        <Route exact path='/fib' element={<FIB/>}/>
       </Routes>
     </Router>
   );

@@ -78,6 +78,10 @@ function Login() {
                     {
                         navigate('/Level2')
                     }
+                    else if (loginData.data.results[0].level===3)
+                    {
+                navigate('/Level3')
+                }
                 }
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')

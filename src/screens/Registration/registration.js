@@ -228,7 +228,6 @@ const UserRegistration = () => {
   const [formData, setFormData] = useState({
     username: '',
     userSurname: '',
-    email: '',
     userLevel: 'Household',
     mobileNo: '',
     password: '',
@@ -267,11 +266,7 @@ const UserRegistration = () => {
       return;
     }
 
-    if (!formData.email) {
-      setError('Please enter an email');
-      return;
-    }
-
+   
     // Make an Axios POST request for user registration
     axios
       .post('http://localhost:3001/api/UserRegister', formData)
@@ -292,7 +287,7 @@ const UserRegistration = () => {
 
   return (
     <div className='all-contents'>
-      <div className='reg-container'>
+    <div className='login-container'>
         <div className='welcome'>
           <div className='logo-login'>
             <img src={logo} alt="Simra Logo" /> Simra
@@ -300,36 +295,35 @@ const UserRegistration = () => {
           <h2>Welcome</h2>
           SIMRA, a tool that integrates the current water and sanitation risk assessment and management methods into one harmonized tool.
         </div>
-        <div className='reg-card'>
+        <div className='login-card'>
           <div className='main-reg' id='main-login'>
             <h3 className='header-txt'><b>Create An Account</b></h3>
             <div>
-              <p>First Name:</p>
+            
               <input
+              className='input-login'
+              placeholder='First Name'
                 type="text"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               />
             </div>
             <div>
-              <p>User Surname:</p>
+              
               <input
+              className='input-login'
+              placeholder='Last Name'
                 type="text"
                 value={formData.userSurname}
                 onChange={(e) => setFormData({ ...formData, userSurname: e.target.value })}
               />
             </div>
+          
             <div>
-              <p>Email:</p>
+          
               <input
-                type="text"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
-            </div>
-            <div>
-              <p>Mobile Number:</p>
-              <input
+              placeholder='Mobile Number'
+              className='input-login'
                 type="text"
                 value={formData.mobileNo}
                 onChange={(e) => setFormData({ ...formData, mobileNo: e.target.value })}
@@ -366,16 +360,20 @@ const UserRegistration = () => {
               </label>
             </div>
             <div>
-              <p>Password:</p>
+             
               <input
+              placeholder='Password'
+             className='input-login'
                 type="password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
             <div>
-              <p>Confirm Password:</p>
+             
               <input
+              placeholder='Confirm Password'
+              className='input-login'
                 type="password"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}

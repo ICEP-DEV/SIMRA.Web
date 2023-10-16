@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../../Header/Header';
+import SideBar_l2 from '../SideBar_l2/SideBar_l2'
 
 const FibAnalysis = () => {
     const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
@@ -13,7 +15,6 @@ const FibAnalysis = () => {
     'Coliform': { referencePath: 'Cryptosporidium', ratio: 1, estimatedCount: 0 },
     'Enterococcus': { referencePath: 'Campylobacter', ratio: 0.01, estimatedCount: 0 },
     'Clostridium': { referencePath: 'Giardia', ratio: 0.8, estimatedCount: 0 },
-    'Other':{ referencePath: ' ', ratio: 0.0, estimatedCount: 0},
   };
 
   // Function to calculate estimated count
@@ -48,42 +49,60 @@ const FibAnalysis = () => {
   };
 
   return (
+    <div className='hero-all' >
+    <div className='sidenav'>
+        <SideBar_l2  />
+    </div>
+
+    <div className='main-all'>
+
+        <div className='content'>
+            <Header />
+            <div className='container-wrapper'>
     <div>
       <p>Select an FIB Indicator:</p>
       <select
+      className=' form-select-lg mb-3'
         value={selectedFIB}
         onChange={(event) => handleFibData(event.target.value)}
       >
-        <option value="Other">Select a FIB</option>
+        <option value="Other">Select an FIB</option>
         {Object.keys(fibData).map((fib) => (
           <option key={fib} value={fib}>
             {fib}
           </option>
         ))}
       </select>
-      
-      <table>
+      <div className='table-responsive-lg'> 
+
+   
+      <table className=' w-100'>
         <tbody>
           <tr>
-            <th>Indicator</th>
-            <th>Ratio</th>
+            <th scope='col'>Indicator</th>
+            <th  scope='col'>Ratio</th>
           </tr>
           <tr>
-            <td>{referencePath}</td>
-            <td>{ratio}</td>
+            <td >{referencePath}</td>
+            <td >{ratio}</td>
           </tr>
         </tbody>
       </table>
-
+      </div>
       <br></br>
       <p>Enter The Count:</p>
       <input
+      className='sr-only'
         type="number"
         value={userCount}
         onChange={(event) => setUserCount(event.target.value)}
       />
       <p> Count: {estimatedCount} </p>
       <p>Estimated Count: {roundedEstimatedCount} </p>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 };

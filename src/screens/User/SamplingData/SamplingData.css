@@ -17,17 +17,20 @@
  }
  .hero-all
  {
-     background-color: #0063EA; 
-    
+     /* background-color: #0063EA;  */
+     background: rgb(10,20,140);
+     background: linear-gradient(90deg, rgba(10,20,140,1) 0%, rgba(10,76,140,1) 40%, rgba(0,121,255,1) 78%);
+    color: #fff;
  }
  
  .main-all {
      margin-left: 200px; /* Same as the width of the sidebar */
      padding: 0px 10px;
-     background-color: #fff;
-     border-top-left-radius: 80px 80px;
-     border-bottom-left-radius:80px 80px ;
-  
+     /* background-color: #fff; */
+     /* border-bottom-right-radius: 400px 300px; */
+     /* border-bottom-left-radius:80px 80px ; */
+
+          
    }
    
    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

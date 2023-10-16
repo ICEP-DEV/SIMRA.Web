@@ -138,7 +138,7 @@ function SamplingData() {
                                 <option value='Sunny' className="control-form">Sunny</option>
                             </select>
                         </div>
-                        <button className='btn-data' onClick={submit_sampling_data}>Next</button>
+                        <button className='btn btn-primary btn-lg btn-block' onClick={submit_sampling_data}>Next</button>
                     </div>
 
                 </div>

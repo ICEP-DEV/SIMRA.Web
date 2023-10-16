@@ -24,11 +24,11 @@ function Admin_Side_Bar() {
     }, [])
 
     function Profile() {
-        navigate("/")
+        navigate("/profile")
     }
 
-    function fbi() {
-        navigate("/")
+    function fib() {
+        navigate("/fib")
     }
     function count() {
         navigate("/")
@@ -50,24 +50,24 @@ function Admin_Side_Bar() {
 
     return (
         <div className="lvl2side_bar ">
-            <Link to='/municipality'>
+            <Link to='/Level2'>
                 <h2><img src={logo} /> Simra </h2>
             </Link>
 
 
             <div className="sidebar-subs">
-                <div className='side-bar-label' >
+                <div className='side-bar-label' onClick={Profile}>
                 <span className='side-icon'><AiOutlineUser size={'2rem'} /></span>
                     <span className='side-label'>Profile</span></div>
             </div>
             <div className="sidebar-subs">
-                <div className='side-bar-label' >
+                <div className='side-bar-label' onClick={fib}>
                    <span className="side-icon"><BiData size={'2rem'}/></span>
                     <span className='side-label'>FIB</span></div>
             </div>
             
             <div className="sidebar-subs">
-                <div className='side-bar-label' >
+                <div className='side-bar-label'  >
                 <span className="side-icon"> <BsCheckSquare size={'2rem'}/></span>
                     <span className='side-label'>Risk Characterization</span></div>
             </div>
@@ -75,7 +75,7 @@ function Admin_Side_Bar() {
             <div className="sidebar-subs ">
                 <div className='side-bar-label '>
                 <span className="side-icon"> <CiCalculator2 size={'2rem'}/></span>
-                    <span className='side-label'>Run QMRA</span></div>
+                    <span className='side-label'> QMRA</span></div>
                 </div>
       
 
