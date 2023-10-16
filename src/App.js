@@ -16,6 +16,9 @@ import Survay_Report from './screens/Municipality/Survay_Report/Survay_Report'
 import Logs from './screens/User/Level1/Logs/Logs';
 import H2S_Report from './screens/Municipality/H2S_Report/H2S_Report';
 import Report from './screens/Municipality/Report/Report';
+import H2S_Logs_Report from './screens/User/Logs/H2S_Logs_Reports/H2S_Logs_Reports'
+import Sanitary_Survay_Logs_Report from './screens/User/Logs/Sanitary_Survay_Logs_Reports/Sanitary_Survay_Logs_Reports'
+
 
 import './App.css';
 function App() {
@@ -38,6 +41,8 @@ function App() {
         <Route exact path='/logs' element={<Logs />} />
         <Route exact path='/h2s_report' element={<H2S_Report />} />
         <Route exact path='/report' element={<Report />} />
+        <Route exact path='/h2s_logs_report' element={<H2S_Logs_Report />} />
+        <Route exact path='/sanitary_survay_logs_report' element={<Sanitary_Survay_Logs_Report />} />
       </Routes>
     </Router>
   );

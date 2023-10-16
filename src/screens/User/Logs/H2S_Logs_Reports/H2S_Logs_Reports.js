@@ -1,19 +1,16 @@
-import './Logs.css'
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../../Level1/Sidebar/Sidebar';
 import Header from '../../../Header/Header';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
-function Logs() {
+function H2S_Logs_Reports() {
 
     let user_info = useSelector((state) => state.user.value)
     const [Logs, setLogs] = useState([]);
     const [FullLogs, setFullLogs] = useState([]);
     const [Filter, setFilter] = useState('')
     const [FilterInput, setFilterInput] = useState('')
-    const [FilterStartDate, setFilterStartDate] = useState('')
-    const [FilterEnddate, setFilterEnddate] = useState('')
 
 
 
@@ -22,16 +19,16 @@ function Logs() {
         console.log(event)
     }
     useEffect(() => {
+
         async function getLogs() {
-            var logs = await axios.get('http://localhost:3001/api/get_userhistory_h2s/' + user_info.userId);
+            var userId = user_info.userId
+            var logs = await axios.get('http://localhost:3001/api/get_userhistory_h2s/' + userId);
             if (logs.data.success) {
                 setFullLogs(logs.data.result)
                 setLogs(logs.data.result)
             }
-            setLogs(logs.data)
         }
         console.log(FullLogs)
-
         getLogs()
     })
 
@@ -126,6 +123,7 @@ function Logs() {
 
                         <div className='display_user_log'>
                             <table >
+                                <thead>
                                     <th>Sample Date</th>
                                     <th>Province Name</th>
                                     <th>Municipality Name</th>
@@ -133,6 +131,7 @@ function Logs() {
                                     <th>weather Condition</th>
                                     <th>Risk Type</th>
                                     <th>Status</th>
+                                </thead>
                                 <tbody>
                                     {Logs.map((log, xid) => (
                                         <tr key={xid}>
@@ -157,5 +156,4 @@ function Logs() {
     )
 
 }
-
-export default Logs;
+export default H2S_Logs_Reports

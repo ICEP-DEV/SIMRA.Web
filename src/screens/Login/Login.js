@@ -8,11 +8,14 @@ import logo from './logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
     let user_info = useSelector((state) => state.use)
     const dispatch = useDispatch();
+
+ 
 
     let navigate = useNavigate();
     const [ButtonPopup, setButtonPopup] = useState(false);
@@ -34,17 +37,45 @@ function Login() {
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
             console.log("All field should be filled")
-            initModal();
+            toast.warn("All field should be filled!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if (values.username === "") {
             console.log("Enter username");
-            initModals();
+            toast.warn("Enter username!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if (values.password === "") {
             console.log("Enter password");
-            initModalsing();
+            toast.warn("Enter password!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+
             return;
         }
 
@@ -77,6 +108,16 @@ function Login() {
 
             }
             else {
+            toast.warn(loginData.data.message+"!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
                 console.log(loginData.data.message);
             }
 
@@ -118,6 +159,7 @@ function Login() {
 
     return (
         <div className='all-contents'>
+             <ToastContainer />
             {/*
                             All field should be filled
                 */}
@@ -212,9 +254,9 @@ function Login() {
                             <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                            <div className="form-check">
+                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                             <label className="form-check-label" for="exampleCheck1">Remember me</label>
                               </div>
                             </small>
                         </div>
