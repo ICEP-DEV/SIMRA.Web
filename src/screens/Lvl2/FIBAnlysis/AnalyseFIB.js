@@ -13,6 +13,7 @@ const FibAnalysis = () => {
     'Coliform': { referencePath: 'Cryptosporidium', ratio: 1, estimatedCount: 0 },
     'Enterococcus': { referencePath: 'Campylobacter', ratio: 0.01, estimatedCount: 0 },
     'Clostridium': { referencePath: 'Giardia', ratio: 0.8, estimatedCount: 0 },
+    'Other':{ referencePath: ' ', ratio: 0.0, estimatedCount: 0},
   };
 
   // Function to calculate estimated count
@@ -53,7 +54,7 @@ const FibAnalysis = () => {
         value={selectedFIB}
         onChange={(event) => handleFibData(event.target.value)}
       >
-        <option value="Other">Select an FIB</option>
+        <option value="Other">Select a FIB</option>
         {Object.keys(fibData).map((fib) => (
           <option key={fib} value={fib}>
             {fib}
@@ -74,7 +75,7 @@ const FibAnalysis = () => {
         </tbody>
       </table>
 
-      <br>  </br>
+      <br></br>
       <p>Enter The Count:</p>
       <input
         type="number"

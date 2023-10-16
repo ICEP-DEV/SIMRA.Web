@@ -210,6 +210,7 @@ export default function QMRAApp() {
       let calculatedResult = 0;
 
       if (model === 'Beta-Poisson') {
+        console.log(model);
         calculatedResult = calculateBetaPoisson(alpha, beta, count);
       } if (selectedOrganism === 'Cryptosporidium parvum' && model === 'exponential') {
         calculatedResult = calculateExponentialForCryptosporidium(r, count);
@@ -242,6 +243,36 @@ export default function QMRAApp() {
     const calculatedResult = 1 - (1 + (count / beta)) - alpha;
     return calculatedResult;
   };
+  const methods=(e)=>{
+    if(e==='Campylobacter jejun'){
+      console.log(qmraParameters['Campylobacter jejun']);
+    }
+    else if(e==='E-Coli O157:H7'){
+      console.log(qmraParameters['E-Coli O157:H7']);
+    }
+    else if(e==='Salmonella Typhi'){
+      console.log(qmraParameters['Salmonella Typhi']);
+    }
+    else if(e==='S. flexneri'){
+      console.log(qmraParameters['S. flexneri']);
+    }
+    else if(e==='Vibrio cholerae'){
+      console.log(qmraParameters['Vibrio cholerae']);
+    }
+    else if(e==='Cryptosporidium parvum'){
+      console.log(qmraParameters['Cryptosporidium parvum']);
+    }
+    else if(e==='Entamoeba coli'){
+      console.log(qmraParameters['Entamoeba coli']);
+    }
+    else if(e==='Giardia lambia'){
+      console.log(qmraParameters['Giardia lambia']);
+    }
+    else if(e==='Other'){
+      console.log(qmraParameters['Other']);
+    }
+
+  }
 
   return (
     <div style={styles.container}>
@@ -251,6 +282,8 @@ export default function QMRAApp() {
         onChange={(e) => {
           setSelectedOrganism(e.target.value);
           setResult('');
+          // {e.target.value === 'Campylobacter jejun'? (console.log(qmraParameters['Campylobacter jejun'])):(console.log('null'))}
+          methods(e.target.value)
         }}
       >
         {Object.keys(qmraParameters).map((organism) => (
@@ -260,6 +293,7 @@ export default function QMRAApp() {
         ))}
         <option value="Campylobacter jejun">Campylobacter jejun</option>
       </select>
+
       {selectedOrganism !== 'Other' && model === 'Beta-Poisson' && (
         <div>
           <label>Selected Model: {model}</label>
@@ -286,6 +320,7 @@ export default function QMRAApp() {
           />
         </div>
       )}
+
       {(selectedOrganism === 'Cryptosporidium parvum' || selectedOrganism === 'Giardia lambia') && model === 'exponential' && (
         <div>
           <input
@@ -313,6 +348,7 @@ export default function QMRAApp() {
           )}
         </div>
       )}
+
       {selectedOrganism === 'Other' && (
         <div>
           <input
