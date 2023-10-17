@@ -11,7 +11,7 @@ function H2S_Logs_Reports() {
     const [FullLogs, setFullLogs] = useState([]);
     const [Filter, setFilter] = useState('')
     const [FilterInput, setFilterInput] = useState('')
-
+    let [IsFoundData, setIsFoundData] = useState(false)
 
 
     function handleFilter(event) {
@@ -26,9 +26,9 @@ function H2S_Logs_Reports() {
             if (logs.data.success) {
                 setFullLogs(logs.data.result)
                 setLogs(logs.data.result)
+                setIsFoundData(logs.data.success)
             }
         }
-        console.log(FullLogs)
         getLogs()
     })
 
@@ -72,7 +72,7 @@ function H2S_Logs_Reports() {
         }
     }
 
-    let filter = <div className='filter'>
+    let Filter_Data= <div className='filter'>
         <div className='select_filter'>
             <label>Filter</label>
             <select className='filter' onChange={(event) => { handleFilter(event.target.value) }}>
@@ -106,6 +106,33 @@ function H2S_Logs_Reports() {
 
     </div>
 
+    // H2S report list
+    let H2S_Logs = <div>
+        <table >
+                <th>Sample Date</th>
+                <th>Province Name</th>
+                <th>Municipality Name</th>
+                <th>Water Accessability</th>
+                <th>weather Condition</th>
+                <th>Risk Type</th>
+                <th>Status</th>
+            <tbody>
+                {Logs.map((log, xid) => (
+                    <tr key={xid}>
+                        <td>{log.sample_date}</td>
+                        <td>{log.province_name}</td>
+                        <td>{log.muni_name}</td>
+                        <td>{log.waterAccessability}</td>
+                        <td>{log.weatherCondition}</td>
+                        <td>{log.risk_type}</td>
+                        <td>{log.status}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+
+
     return (
         <div className='hero-all' >
             <div className='sidenav'>
@@ -118,36 +145,17 @@ function H2S_Logs_Reports() {
                     <Header />
                     <div className='container-wrapper'>
                         <div className='filter_div'>
-                            <filter>{filter}</filter>
+                            <filter>{Filter_Data}</filter>
                         </div>
+                        {IsFoundData === true && (
+                            <div className='display_user_log'>
+                                {H2S_Logs}
+                            </div>
+                        )}
 
-                        <div className='display_user_log'>
-                            <table >
-                                <thead>
-                                    <th>Sample Date</th>
-                                    <th>Province Name</th>
-                                    <th>Municipality Name</th>
-                                    <th>Water Accessability</th>
-                                    <th>weather Condition</th>
-                                    <th>Risk Type</th>
-                                    <th>Status</th>
-                                </thead>
-                                <tbody>
-                                    {Logs.map((log, xid) => (
-                                        <tr key={xid}>
-                                            <td>{log.sample_date}</td>
-                                            <td>{log.province_name}</td>
-                                            <td>{log.muni_name}</td>
-                                            <td>{log.waterAccessability}</td>
-                                            <td>{log.weatherCondition}</td>
-                                            <td>{log.risk_type}</td>
-                                            <td>{log.status}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-
+                        {IsFoundData === false && (
+                            <h2>No logs found</h2>
+                        )}
                     </div>
                 </div>
             </div>
