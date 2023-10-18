@@ -9,14 +9,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
     let user_info = useSelector((state) => state.use)
     const dispatch = useDispatch();
 
- 
 
+    let [RegisterPopUp, setRegisterPopUp] = useState(false);
     let navigate = useNavigate();
     const [ButtonPopup, setButtonPopup] = useState(false);
     const [values, setValues] = useState({
@@ -32,7 +33,6 @@ function Login() {
         }));
     }
 
-
     // set up login button using gmail account
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
@@ -46,7 +46,7 @@ function Login() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
             return;
         }
         if (values.username === "") {
@@ -60,7 +60,7 @@ function Login() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
             return;
         }
         if (values.password === "") {
@@ -74,7 +74,7 @@ function Login() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
 
             return;
         }
@@ -108,15 +108,15 @@ function Login() {
 
             }
             else {
-            toast.warn(loginData.data.message+"!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+                toast.warn(loginData.data.message + "!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
                 });
                 console.log(loginData.data.message);
             }
@@ -159,7 +159,7 @@ function Login() {
 
     return (
         <div className='all-contents'>
-             <ToastContainer />
+            <ToastContainer />
             {/*
                             All field should be filled
                 */}
@@ -254,22 +254,25 @@ function Login() {
                             <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
-                            <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                             <label className="form-check-label" for="exampleCheck1">Remember me</label>
-                              </div>
+                                <div className="form-check">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                    <label className="form-check-label" for="exampleCheck1">Remember me</label>
+                                </div>
                             </small>
                         </div>
 
                         <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
                             {displayLoader}
                         </Loader>
+                        <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} />
                         <div className='login-grid'>
 
                             <button className='btn-login' onClick={onSuccess}>Log In</button>
+                            
                             <small className='txt-signup'>
-                                Don't have an account ? <Link to="/signup" className='ms-2'>Sign Up</Link>
+                                Don't have an account ? <button onClick={() =>setRegisterPopUp(true)} className='ms-2'>Sign Up</button>
                             </small>
+
                         </div>
 
                     </div>
