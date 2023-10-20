@@ -211,7 +211,6 @@ export default function QMRAApp() {
   useEffect(() => {
     axios.get("http://localhost:3001/api/reference_pathogens").then(respond => {
       console.log(respond.data)
-      setTempPathogen(respond.data.reference_pathogens)
       setPathogen(respond.data.reference_pathogens)
       setIsfoundPath(respond.data.success)
     }, error => {
@@ -239,13 +238,17 @@ export default function QMRAApp() {
   };
 
   function selectPathogen(event) {
+    var filtered = []
+    // console.log(event)
+    filtered.push(Pathogen.filter((value) => value.pathogen === event))
+    /*setTempPathogen(Pathogen.filter((value) => {
+      value.pathogen.toLocaleLowerCase() === event.toLocaleLowerCase()
+    }))*/
+    console.log(filtered[0][0])
+    setTempPathogen(filtered[0][0])
+    
 
-    setTempPathogen(Pathogen)
-     var filtered = []
-     filtered.push(TempPathogen.filter((value) => {
-      value.pathogen.toLocaleLowerCase().includes(event.toLocaleLowerCase())
-    })) 
-    console.log(filtered)
+
   }
 
   const calculateExponentialForCryptosporidium = (r, count) => {
@@ -393,8 +396,8 @@ export default function QMRAApp() {
         </th>
         <tbody>
           <tr>
-            <td>Anything </td>
-            <td>Best fit Model</td>
+            <td>{TempPathogen.pathogen} </td>
+            <td>{TempPathogen.best_fit_model}</td>
             <td>Parameter</td>
           </tr>
         </tbody>
