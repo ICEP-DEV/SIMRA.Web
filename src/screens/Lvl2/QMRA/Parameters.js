@@ -205,40 +205,47 @@ export default function QMRAApp() {
   const [k, setK] = useState('');
   const [model, setModel] = useState('');
   const [result, setResult] = useState('');
-  const [Pathogen, setPathogen]  = useState([]);
+  const [Pathogen, setPathogen] = useState([]);
+  const [TempPathogen, setTempPathogen] = useState([]);
   const [IsfoundPath, setIsfoundPath] = useState(false);
-  useEffect(()=>{
-    axios.get("http://localhost:3001/api/reference_pathogens").then(respond =>{
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/reference_pathogens").then(respond => {
       console.log(respond.data)
+      setTempPathogen(respond.data.reference_pathogens)
       setPathogen(respond.data.reference_pathogens)
       setIsfoundPath(respond.data.success)
-    }, error=>{
+    }, error => {
       console.log(error)
     })
-    
-  },[])
+
+  }, [])
   const calculateResult = () => {
     console.log(selectedOrganism)
-   /* if (selectedOrganism === 'Other' && model && count && alpha && beta) {
-      let calculatedResult = 0;
-
-      if (model === 'Beta-Poisson') {
-        calculatedResult = calculateBetaPoisson(alpha, beta, count);
-      } if (selectedOrganism === 'Cryptosporidium parvum' && model === 'exponential') {
-        calculatedResult = calculateExponentialForCryptosporidium(r, count);
-      } else if (selectedOrganism === 'Giardia lambia' && model === 'exponential') {
-        calculatedResult = calculateExponentialForGiardia(k, count);
-      }
-
-      setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
-    } else {
-      setResult('');
-    }*/
+    /* if (selectedOrganism === 'Other' && model && count && alpha && beta) {
+       let calculatedResult = 0;
+ 
+       if (model === 'Beta-Poisson') {
+         calculatedResult = calculateBetaPoisson(alpha, beta, count);
+       } if (selectedOrganism === 'Cryptosporidium parvum' && model === 'exponential') {
+         calculatedResult = calculateExponentialForCryptosporidium(r, count);
+       } else if (selectedOrganism === 'Giardia lambia' && model === 'exponential') {
+         calculatedResult = calculateExponentialForGiardia(k, count);
+       }
+ 
+       setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
+     } else {
+       setResult('');
+     }*/
   };
 
-  function selectPathogen(event){
-    console.log(event)
+  function selectPathogen(event) {
 
+    setTempPathogen(Pathogen)
+     var filtered = []
+     filtered.push(TempPathogen.filter((value) => {
+      value.pathogen.toLocaleLowerCase().includes(event.toLocaleLowerCase())
+    })) 
+    console.log(filtered)
   }
 
   const calculateExponentialForCryptosporidium = (r, count) => {
@@ -276,7 +283,7 @@ export default function QMRAApp() {
             {organism.pathogen}
           </option>
         ))}
-        
+
         {/* <option value="Campylobacter jejun">Campylobacter jejun</option> */}
       </select>
       {/* {selectedOrganism  (
@@ -375,23 +382,23 @@ export default function QMRAApp() {
       <button onClick={calculateResult}>Calculate</button>
       {result !== '' && <p style={styles.result}>{result}</p>}
       <table>
-          <th>
-            Pathogen
-          </th>
-          <th>
-            Best Fit model
-          </th>
-          <th>
-            Parameters
-          </th>
-          <tbody>
-            <tr>
-              <td>Anything </td>
-              <td>Best fit Model</td>
-              <td>Parameter</td>
-            </tr>
-          </tbody>
-        </table>
+        <th>
+          Pathogen
+        </th>
+        <th>
+          Best Fit model
+        </th>
+        <th>
+          Parameters
+        </th>
+        <tbody>
+          <tr>
+            <td>Anything </td>
+            <td>Best fit Model</td>
+            <td>Parameter</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
