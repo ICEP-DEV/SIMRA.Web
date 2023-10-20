@@ -42,21 +42,21 @@
 }
 .reg-container .welcome
 {
-  
   top: 75%;
   left: 15%;  
   color: #fff;
 }
+
 .welcome .logo-login 
 {
-  
     top: -255%;
 }
 .txt-signup
 {
-    position: absolute;
     bottom: 15%;
-    margin-left: 2%;
+    /* margin-left: 2%; */
+    margin-top: 20px;
+    text-align: center;
 }
 
 

@@ -20,6 +20,17 @@ function Login() {
     let [RegisterPopUp, setRegisterPopUp] = useState(false);
     let navigate = useNavigate();
     const [ButtonPopup, setButtonPopup] = useState(false);
+    // Register state variables
+    const [Email, setEmail] = useState('')
+    const [Firstname, setFirstname] = useState('')
+    const [Lastname, setLastname] = useState('')
+    const [PhoneNumber, setPhoneNumber] = useState('')
+    const [Password, setPassword] = useState('')
+    const [RePassword, setRePassword] = useState('')
+    const [Level, setLevel] = useState('')
+
+
+
     const [values, setValues] = useState({
         username: "",
         password: ""
@@ -135,6 +146,10 @@ function Login() {
     let displayLoader = <div></div>
     // let displaySidebar=<div></div>
 
+    function handleRegistration(){
+        console.log(Email,Firstname,Lastname,PhoneNumber,Password, RePassword, Level)
+    }
+
 
     // pop up modal fucntions
     const [isShow, invokeModal] = React.useState(false)
@@ -156,6 +171,52 @@ function Login() {
     const modalClosesing = () => {
         return invokeModalsing(false)
     }
+
+    let RegisterForm = <div>
+        <div className='register-form'>
+            <h3 className='header-txt'><b>Create An Account</b></h3>
+            <div className='form-group'>
+                <label>First Name:</label>
+                <input type="text" className='control-form' onChange={(event) => setFirstname(event.target.value)} />
+            </div>
+            <div className='form-group'>
+                <label>Last Name:</label>
+                <input type="text" className="control-form" onChange={(event) => setLastname(event.target.value)} />
+            </div>
+            <div className='form-group'>
+                <label>Email:</label>
+                <input type="email" className="control-form" onChange={(event) => setEmail(event.target.value)} />
+            </div>
+            <div className='form-group'>
+                <label>Mobile Number:</label>
+                <input type="number" className="control-form" onChange={(event) => setPhoneNumber(event.target.value)} />
+            </div>
+            <div className='form-group'>
+                <label>Password:</label>
+                <input type="password" className="control-form" onChange={(event) => setPassword(event.target.value)} />
+            </div>
+            <div className='form-group'>
+                <label>Confirm Password:</label>
+                <input type="password" className="control-form" onChange={(event) => setRePassword(event.target.value)} />
+            </div>
+            <div className='form-group'>
+
+                <label> User Level:</label>
+                <select className='select-sampling_data control-form' onChange={(event) => setLevel(event.target.value)} >
+                    <option value='' className="control-form" disabled selected>---Select---</option>
+                    <option value='1' className="control-form">Level One (Household)</option>
+                    <option value='2' className="control-form">Level Two (Intermediate)</option>
+                    <option value='3' className="control-form">Level Three (Expert)</option>
+                </select>
+
+            </div>
+
+
+            <button className='btn-reg' title="Register" onClick={handleRegistration}>Create Account</button>
+
+
+        </div>
+    </div>
 
     return (
         <div className='all-contents'>
@@ -264,13 +325,15 @@ function Login() {
                         <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
                             {displayLoader}
                         </Loader>
-                        <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} />
+                        <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} >
+                            {RegisterForm}
+                        </Register>
                         <div className='login-grid'>
 
                             <button className='btn-login' onClick={onSuccess}>Log In</button>
-                            
+
                             <small className='txt-signup'>
-                                Don't have an account ? <button onClick={() =>setRegisterPopUp(true)} className='ms-2'>Sign Up</button>
+                                Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='ms-2'>Sign Up</button>
                             </small>
 
                         </div>

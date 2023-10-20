@@ -98,6 +98,11 @@ img {
     margin-top: 10%;
 }
 
+.login-grid{
+    display: flex;
+    flex-direction: column;
+}
+
 .login-grid .btn-login {
     background-color: #0063EA;
     width: 150px;
@@ -185,6 +190,7 @@ img {
 
     .txt-signup {
         font-size: 11px;
+        margin-top: 100px;
     }
 
 }
