@@ -182,8 +182,9 @@ const styles = {
 export default QMRAApp;
  */
 import React, { useState } from 'react';
-
-const qmraParameters = {
+import { useEffect } from 'react';
+import axios from 'axios';
+/*const qmraParameters = {
   'Campylobacter jejun': { model: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
   'E-Coli O157:H7': { model: 'Beta-Poisson', alpha: 0.4, beta: 45.9 },
   'Salmonella Typhi': { model: 'Beta-Poisson', alpha: 0.21, beta: 49.78 },
@@ -193,7 +194,7 @@ const qmraParameters = {
   'Entamoeba coli': { model: 'Beta-Poisson', alpha: 0.79433, beta: 5.40789 },
   'Giardia lambia': { model: 'exponential', k: 0.01199 },
   'Other': { model: '', alpha: 0, beta: 0 },
-};
+};*/
 
 export default function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
@@ -204,9 +205,21 @@ export default function QMRAApp() {
   const [k, setK] = useState('');
   const [model, setModel] = useState('');
   const [result, setResult] = useState('');
-
+  const [Pathogen, setPathogen]  = useState([]);
+  const [IsfoundPath, setIsfoundPath] = useState(false);
+  useEffect(()=>{
+    axios.get("http://localhost:3001/api/reference_pathogens").then(respond =>{
+      console.log(respond.data)
+      setPathogen(respond.data.reference_pathogens)
+      setIsfoundPath(respond.data.success)
+    }, error=>{
+      console.log(error)
+    })
+    
+  },[])
   const calculateResult = () => {
-    if (selectedOrganism === 'Other' && model && count && alpha && beta) {
+    console.log(selectedOrganism)
+   /* if (selectedOrganism === 'Other' && model && count && alpha && beta) {
       let calculatedResult = 0;
 
       if (model === 'Beta-Poisson') {
@@ -220,8 +233,13 @@ export default function QMRAApp() {
       setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
     } else {
       setResult('');
-    }
+    }*/
   };
+
+  function selectPathogen(event){
+    console.log(event)
+
+  }
 
   const calculateExponentialForCryptosporidium = (r, count) => {
     // Implement the exponential calculation for Cryptosporidium parvum
@@ -247,46 +265,53 @@ export default function QMRAApp() {
     <div style={styles.container}>
       <h1 style={styles.header}>QMRA Parameters</h1>
       <select
-        value={selectedOrganism}
+        // value={selectedOrganism}
         onChange={(e) => {
-          setSelectedOrganism(e.target.value);
+          selectPathogen(e.target.value);
           setResult('');
         }}
       >
-        {Object.keys(qmraParameters).map((organism) => (
-          <option key={organism} value={organism}>
-            {organism}
+        {Pathogen.map((organism, xid) => (
+          <option key={xid} value={organism.pathogen}>
+            {organism.pathogen}
           </option>
         ))}
-        <option value="Campylobacter jejun">Campylobacter jejun</option>
+        
+        {/* <option value="Campylobacter jejun">Campylobacter jejun</option> */}
       </select>
-      {selectedOrganism !== 'Other' && model === 'Beta-Poisson' && (
-        <div>
-          <label>Selected Model: {model}</label>
-          <input
-            style={styles.input}
-            placeholder="Enter Count"
-            type="number"
-            value={count}
-            onChange={(e) => setCount(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Alpha"
-            type="number"
-            value={alpha}
-            onChange={(e) => setAlpha(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Beta"
-            type="number"
-            value={beta}
-            onChange={(e) => setBeta(e.target.value)}
-          />
+      {/* {selectedOrganism  (
+        
+        <div class="row">
+          <div class="column" style="background-color:#aaa;">
+            <h2>Reference Pathogen</h2>
+              
+            onChange={(e) => {
+          const selectedValue = e.target.value;
+          setSelectedOrganism(selectedValue);}}
+
+          </div>
+          <div class="column" style="background-color:#bbb;">
+            <h2>Best Fit Model</h2>
+              
+            onChange={(e) => {
+          const selectedValue = e.target.value;
+          setModel([selectedValue].model);
+        }}
+
+          </div>
+          <div class="column" style="background-color:#ccc;">
+            <h2>Parameters</h2>
+
+            onChange={(e) => {
+          const selectedValue = e.target.value;
+          setResult('');
+        }}
+
+          </div>
         </div>
-      )}
-      {(selectedOrganism === 'Cryptosporidium parvum' || selectedOrganism === 'Giardia lambia') && model === 'exponential' && (
+
+      )} */}
+      {/* {(selectedOrganism === 'Cryptosporidium parvum' || selectedOrganism === 'Giardia lambia') && model === 'exponential' && (
         <div>
           <input
             style={styles.input}
@@ -346,9 +371,27 @@ export default function QMRAApp() {
             onChange={(e) => setBeta(e.target.value)}
           />
         </div>
-      )}
+      )} */}
       <button onClick={calculateResult}>Calculate</button>
       {result !== '' && <p style={styles.result}>{result}</p>}
+      <table>
+          <th>
+            Pathogen
+          </th>
+          <th>
+            Best Fit model
+          </th>
+          <th>
+            Parameters
+          </th>
+          <tbody>
+            <tr>
+              <td>Anything </td>
+              <td>Best fit Model</td>
+              <td>Parameter</td>
+            </tr>
+          </tbody>
+        </table>
     </div>
   );
 }
