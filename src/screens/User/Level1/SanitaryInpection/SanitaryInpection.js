@@ -5,13 +5,23 @@ import './SanitaryInpection.css'
 import { Modal, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import PooUp from '../../../Pop_Up/Pop_Up'
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import methods from '../../../../Data/methods';
+import { useNavigate } from 'react-router-dom';
 
 function SanitaryInpection() {
+    var navigate = useNavigate()
     let sampling_info = useSelector((state) => state.sampling.value)
-
     //////data results
     const [DataAnalysis, setDataAnalysis] = useState({})
     const [backgroundColor, setbackgroundColor] = useState('')
+    let [SelectPopUp, setSelectPopUp] = useState(false);
+    const [Methods, setMethods] = useState(methods)
 
     useEffect(() => {
 
@@ -30,7 +40,7 @@ function SanitaryInpection() {
             }
         }
 
-    }, [DataAnalysis]) 
+    }, [DataAnalysis])
 
     let sanitary = <div>
         <h2>Analysis: Sanitary</h2>
@@ -89,16 +99,23 @@ function SanitaryInpection() {
 
     function senduseSanitaryInpectionSurvey() {
         //validate the radio buttons
-       console.log(SanitaryInpectionItems)
-       if(SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
-        SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
-        SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined){
-            console.log("all the field the must be checked");
-            initModalsing();
+
+        if (SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
+            SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
+            SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined) {
+            toast.warn("All the field the must be checked!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            //initModalsing();
             return;
         }
-
-
 
         //Call in sampling data api
         axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
@@ -130,7 +147,6 @@ function SanitaryInpection() {
 
             axios.post("http://localhost:3001/api/sanitary_inspection_survey", SanitaryInpectionItems)
                 .then((result) => {
-                    console.log(result.data.success)
                     setDataAnalysis(result.data)
                     // navigate("/data_results", { state: { temp } })
 
@@ -149,10 +165,9 @@ function SanitaryInpection() {
                                 setbackgroundColor("rgba(0, 128, 0, 0.719)")
                             }
                         }
-
-
                     }
 
+                    // setSelectPopUp(true)
                     initModal();
 
                 }, err => {
@@ -161,7 +176,25 @@ function SanitaryInpection() {
         }, (err) => {
             console.log(err)
         })
+
     }
+
+    let display_methods = <div className="box box_with_carousel">
+        <Carousel useKeyboardArrows={true}>
+            {Methods.map((method, xid) => (
+                <div className="slide" key={xid}>
+                    <h1>Method: {method.id}</h1>
+                    <h3>{method.method}</h3><br />
+                    <label>{method.description}</label>
+                    <div className='method_img'>
+                        <img src={method.image} alt={method.method} className='image_method_class' />
+                    </div>
+
+                </div>
+            ))}
+        </Carousel>
+        <button className='btn btn-primary' onClick={() => navigate('/level1')}>OK</button>
+    </div>
 
     const [isShowsing, invokeModalsing] = React.useState(false)
     const initModalsing = () => {
@@ -196,6 +229,10 @@ function SanitaryInpection() {
                     <div className='container-wrapper'></div>
                     <div className='sanitaryInpection'>
 
+                        {/* Pop up test methods */}
+                        <PooUp trigger={SelectPopUp} setTrigger={setSelectPopUp}>
+                            {display_methods}
+                        </PooUp>
                         {/* validation pop up */}
                         <Modal show={isShowsing} onHide={modalClosesing} >
                             <Modal.Header closeButton onClick={modalClosesing}>
@@ -203,11 +240,11 @@ function SanitaryInpection() {
                             </Modal.Header>
                             <Modal.Body>
 
-                            all the field the must be checked
+                                all the field the must be checked
 
                             </Modal.Body>
                             <Modal.Footer></Modal.Footer>
-                            </Modal>
+                        </Modal>
 
                         {/* data results pop up */}
 
@@ -374,7 +411,7 @@ function SanitaryInpection() {
                                 {/* <Button variant="danger" onClick={initModals}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { modalClose();}}>
+                                <Button variant="dark" onClick={function (event) { modalClose(); }}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
@@ -433,7 +470,9 @@ function SanitaryInpection() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button onClick={function (event) { senduseSanitaryInpectionSurvey(); }} className='btn btn-primary btn-lg mb-3'>Submit</button>
+                        {/* <button onClick={function (event) { senduseSanitaryInpectionSurvey(); }} className='btn btn-primary btn-lg mb-3'>Submit</button> */}
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-primary btn-lg mb-3'>Submit</button>
+
                     </div>
                 </div>
             </div>

@@ -126,8 +126,6 @@ function Login() {
                     theme: "light",
                 });
             }
-
-
         }, 2000);
 
 
@@ -144,7 +142,7 @@ function Login() {
 
     // register function
     function handleRegistration() {
-        
+
         // Empty values
         if (Email === "") {
             toast.warn("Enyer email address!", {

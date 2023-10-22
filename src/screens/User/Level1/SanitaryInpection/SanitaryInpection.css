@@ -41,3 +41,20 @@
 .yes_risk{
     background-color: rgba(216, 0, 0, 0.986);
 }
+
+.box_with_carousel{
+    height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.method_img{
+    height: 300px;
+    width: 90%;
+}
+
+.image_method_class{
+    height: 300px;
+    width: 50%;
+}
