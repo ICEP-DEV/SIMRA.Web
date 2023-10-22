@@ -98,7 +98,7 @@ img {
     margin-top: 10%;
 }
 
-.login-grid{
+.login-grid {
     display: flex;
     flex-direction: column;
 }
@@ -115,6 +115,10 @@ img {
 
 .header-txt {
     margin-bottom: 10%;
+}
+
+.register-form{
+    min-height: 100vh;
 }
 
 @media only screen and (max-width: 768px) {
@@ -141,15 +145,11 @@ img {
     .login-card {
         width: 60%;
         height: 100%;
-
     }
 
     .input-login {
-
         width: 80%;
         font-size: 9px;
-
-
     }
 
     .side-login {

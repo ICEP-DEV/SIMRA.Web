@@ -47,7 +47,6 @@ function Login() {
     // set up login button using gmail account
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
-            console.log("All field should be filled")
             toast.warn("All field should be filled!", {
                 position: "top-right",
                 autoClose: 5000,
@@ -61,7 +60,6 @@ function Login() {
             return;
         }
         if (values.username === "") {
-            console.log("Enter username");
             toast.warn("Enter username!", {
                 position: "top-right",
                 autoClose: 5000,
@@ -75,7 +73,6 @@ function Login() {
             return;
         }
         if (values.password === "") {
-            console.log("Enter password");
             toast.warn("Enter password!", {
                 position: "top-right",
                 autoClose: 5000,
@@ -107,7 +104,6 @@ function Login() {
                     user_password: loginData.data.results[0].password,
                 }
                 console.log(loginData.data.results[0])
-                console.log(user_info)
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
@@ -129,7 +125,6 @@ function Login() {
                     progress: undefined,
                     theme: "light",
                 });
-                console.log(loginData.data.message);
             }
 
 
@@ -146,8 +141,216 @@ function Login() {
     let displayLoader = <div></div>
     // let displaySidebar=<div></div>
 
-    function handleRegistration(){
-        console.log(Email,Firstname,Lastname,PhoneNumber,Password, RePassword, Level)
+
+    // register function
+    function handleRegistration() {
+        
+        // Empty values
+        if (Email === "") {
+            toast.warn("Enyer email address!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+        if (Firstname === "") {
+            toast.warn("Enyer firstname!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+        if (Lastname === "") {
+            toast.warn("Enyer lastname!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+        if (PhoneNumber === "") {
+            toast.warn("Enyer phone number!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+        if (Password === "") {
+            toast.warn("Enyer password!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+        if (RePassword === "") {
+            toast.warn("Enyer password confirmation!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+        if (Level === "") {
+            toast.warn("Select level!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+
+        // Match Password
+        if (Password !== RePassword) {
+            toast.warn("Passwords does not match!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+
+        // validate strong password
+        var regPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+        if (!Password.match(regPass)) {
+            toast.warn("Enter strong password!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+
+        // validate email address
+        var validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!Email.match(validEmail)) {
+            toast.warn("Enter valid email address!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+
+        // validate phone number
+        if (PhoneNumber.length !== 10) {
+            toast.warn("Enter correct phone number!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return;
+        }
+
+        var register_form = {
+            email: Email,
+            firstname: Firstname,
+            lastname: Lastname,
+            mobileNo: PhoneNumber,
+            password: Password,
+            level: Level
+        }
+
+        axios.post("http://localhost:3001/api/registration", register_form).then((respond) => {
+            if (respond.data.success === true) {
+                toast.success(respond.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setTimeout(() => {
+                    setRegisterPopUp(false)
+                }, 2000)
+
+            }
+            else {
+                toast.error(respond.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        }, (error) => {
+            console.log(error)
+        })
     }
 
 
