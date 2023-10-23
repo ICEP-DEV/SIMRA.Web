@@ -1,5 +1,6 @@
-import { AiOutlineFile, AiOutlineLogout,AiFillHome,AiFillVideoCamera } from "react-icons/ai";
-import {FaUserAlt} from "react-icons/fa";
+import { AiOutlineFile, AiOutlineLogout, AiFillHome, AiFillVideoCamera } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
+import { BiSolidReport } from "react-icons/bi";
 import { Link, useNavigate } from 'react-router-dom';
 import "./Sidebar.css";
 import logo from './logo.png';
@@ -19,10 +20,10 @@ function Sidebar() {
         }
     }, [])
 
-    function home(){
+    function home() {
         navigate("/home")
     }
-    function profile(){
+    function profile() {
         navigate("/profile")
     }
     function files() {
@@ -40,28 +41,33 @@ function Sidebar() {
     return (
         <div className="sideBar">
             <Link to='/home'>
-                <h2><img src={logo} alt="logo"/> Simra </h2>
+                <h2><img src={logo} alt="logo" /> Simra </h2>
             </Link>
 
-             <div className="sidebar-subs">
-                <div  className='side-bar-label' onClick={home} >
+            <div className="sidebar-subs">
+                <div className='side-bar-label' onClick={home} >
                     <span className='side-icon'><AiFillHome size={'2rem'} /></span>
                     <span className='side-label'> Home</span></div>
-            </div> 
+            </div>
             <div className="sidebar-subs">
-                <div  className='side-bar-label' onClick={profile} >
+                <div className='side-bar-label' onClick={profile} >
                     <span className='side-icon'><FaUserAlt size={'2rem'} /></span>
                     <span className='side-label'> Profile</span></div>
             </div>
-            <div className="sidebar-subs">
-                <div  className='side-bar-label' onClick={files}>
-                    <span className='side-icon'><AiOutlineFile size={'2rem'} /></span>
-                    <span className='side-label'>File</span>
+            <div className="sidebar-subs report-dropdown">
+                <div className='side-bar-label dropbtn' onClick={files}>
+                    <span className='side-icon'><BiSolidReport size={'3rem'} /></span>
+                    <span className='side-label'>Report</span>
                 </div>
+                <div className='dropdown-content'>
+                    <Link className='dropdown-link' to='/sanitary_survay_logs_report'>Sanitary Survey</Link><br></br>
+                    <Link className='dropdown-link' to='/h2s_logs_report'>H2S</Link>
+                </div>
+
             </div>
 
-            <div  className="sidebar-subs">
-                <div  className='side-bar-label' onClick={videos} >
+            <div className="sidebar-subs">
+                <div className='side-bar-label' onClick={videos} >
                     <span className='side-icon'><AiFillVideoCamera size={'2rem'} /> </span>
                     <span className='side-label'>Video</span></div>
             </div >

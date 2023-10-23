@@ -1,0 +1,16 @@
+import './Pop_Up.css';
+
+function Loader(props) {
+    return (props.trigger) ? (
+        <div className="register-popup">
+            <div className="register-popup-inner">
+                <div className="popup-inner-header">
+                    <label className="popup-btn-rotate" onClick={() => props.setTrigger(false)}><h2>X</h2></label>
+                </div>
+                {props.children}
+            </div>
+        </div>
+    ) : "";
+}
+
+export default Loader;

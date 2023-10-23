@@ -1,11 +1,10 @@
-import './Logs.css'
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../../Level1/Sidebar/Sidebar';
 import Header from '../../../Header/Header';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
-function Logs() {
+function H2S_Logs_Reports() {
 
     let user_info = useSelector((state) => state.user.value)
     const [Logs, setLogs] = useState([]);
@@ -73,7 +72,7 @@ function Logs() {
         }
     }
 
-    let Filter_ = <div className='filter'>
+    let Filter_Data= <div className='filter'>
         <div className='select_filter'>
             <label>Filter</label>
             <select className='filter' onChange={(event) => { handleFilter(event.target.value) }}>
@@ -145,11 +144,24 @@ function Logs() {
                 <div className='content'>
                     <Header />
                     <div className='container-wrapper'>
+                        <div className='filter_div'>
+                            <filter>{Filter_Data}</filter>
+                        </div>
+                        {IsFoundData === true && (
+                            <div className='display_user_log'>
+                                {H2S_Logs}
+                            </div>
+                        )}
+
+                        {IsFoundData === false && (
+                            <h2>No logs found</h2>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
 
     )
+
 }
-export default Logs;
+export default H2S_Logs_Reports

@@ -23,7 +23,7 @@
     box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
     background-color: #0063EA;
     width: 1054px;
-    height: 813px;
+    height: 500px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -42,19 +42,69 @@
 }
 .reg-container .welcome
 {
-  
   top: 75%;
   left: 15%;  
   color: #fff;
 }
+
 .welcome .logo-login 
 {
-  
     top: -255%;
 }
 .txt-signup
 {
-    position: absolute;
     bottom: 15%;
-    margin-left: 2%;
+    /* margin-left: 2%; */
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+/*-------------------------------------------------------------------*/
+
+
+.register-popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-popup-inner{
+    padding: 70px;
+    width: 100%;
+    max-width: 640px;
+    background-color: white;
+    position: relative;
+}
+
+.popup-inner-header {
+    position: absolute;
+    font-size: 2em;
+    transform: translate(-50%, -50%);
+    text-align: right;
+    top: 15px;
+    right: 15px;
+}
+
+.popup-btn-rotate:hover{
+    animation: rotate 1s linear;
+    cursor: pointer;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
