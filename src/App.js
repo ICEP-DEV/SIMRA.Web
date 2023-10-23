@@ -12,13 +12,13 @@ import Profile from './screens/User/Profile/Profile';
 import VideoScreen from './screens/User/Video/Video';
 import UserRegistration from './screens/Registration/Registration';
 import Municipality from './screens/Municipality/Municipality/Municipality';
-import Survay_Report from './screens/Municipality/Survay_Report/Survay_Report'
+import Survay_Report from './screens/Municipality/Survay_Report/Survay_Report';
 import Logs from './screens/User/Level1/Logs/Logs';
 import H2S_Report from './screens/Municipality/H2S_Report/H2S_Report';
 import Report from './screens/Municipality/Report/Report';
-import H2S_Logs_Report from './screens/User/Logs/H2S_Logs_Reports/H2S_Logs_Reports'
-import Sanitary_Survay_Logs_Report from './screens/User/Logs/Sanitary_Survay_Logs_Reports/Sanitary_Survay_Logs_Reports'
-
+import H2S_Logs_Report from './screens/User/Logs/H2S_Logs_Reports/H2S_Logs_Reports';
+import Sanitary_Survay_Logs_Report from './screens/User/Logs/Sanitary_Survay_Logs_Reports/Sanitary_Survay_Logs_Reports';
+import Qmra_results from './screens/Level2/qmra/qmra_results';
 
 import './App.css';
 function App() {
@@ -43,6 +43,8 @@ function App() {
         <Route exact path='/report' element={<Report />} />
         <Route exact path='/h2s_logs_report' element={<H2S_Logs_Report />} />
         <Route exact path='/sanitary_survay_logs_report' element={<Sanitary_Survay_Logs_Report />} />
+        <Route exact path='/qmra_results' element={<Qmra_results />} />
+
       </Routes>
     </Router>
   );

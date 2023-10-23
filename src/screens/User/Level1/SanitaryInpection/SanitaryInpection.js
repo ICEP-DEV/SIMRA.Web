@@ -23,7 +23,6 @@ function SanitaryInpection() {
     const [backgroundColor, setbackgroundColor] = useState('')
     let [SelectPopUp, setSelectPopUp] = useState(false);
     const [Methods, setMethods] = useState(methods)
-    const [check, setCheck] = useState(false);
     useEffect(() => {
 
         if (DataAnalysis.message !== "adedd hydrogensulfide") {
@@ -60,12 +59,7 @@ function SanitaryInpection() {
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
         </div>
     </div>
-    /////////////////////////////////////////
-
-
-    // const tempData = useLocation();
-
-    const [pitLatrine, setpitLatrine] = useState(false)
+    
     const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState(
         {
             pitLatrine: false,
@@ -90,18 +84,14 @@ function SanitaryInpection() {
     })
 
     const handleChangeUpdate = (e) => {
-
-        
-
+        let sanitary = SanitaryInpectionItems;
+        sanitary[e.target.value] = e.target.checked;
+        setSanitaryInpectionItems(sanitary)
     }
-
-    // function sanitaryI(){
-    //     navigate("/sanitaryInpection", { state: { temp } })
-    // }
-
+    
     function senduseSanitaryInpectionSurvey() {
         //validate the radio buttons
-        console.log(check)
+        console.log(SanitaryInpectionItems)
         if (SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
             SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
             SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined) {
@@ -120,7 +110,7 @@ function SanitaryInpection() {
         }
 
         //Call in sampling data api
-        /*axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
             SanitaryInpectionItems.samplingId = response.data.insertedId
             // Assign to Coordinates object
             var coordinates = {
@@ -177,7 +167,7 @@ function SanitaryInpection() {
                 })
         }, (err) => {
             console.log(err)
-        })*/
+        })
 
     }
 
@@ -279,146 +269,6 @@ function SanitaryInpection() {
 
                         {/* methods pop up */}
 
-                        <Modal show={isShows} onHide={modalCloses}>
-                            <Modal.Header closeButton onClick={function (event) { modalClose(); modalCloses() }}>
-                                <Modal.Title>Methods</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <div className="text-center">
-                                    <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
-
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>METHOD 1: Boiling water</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>The simplest method to purify water is to boil it for a good time.
-                                                        High temperatures cause the bacteria and virus to dissipate, removing all impurities from the water.
-                                                        In doing so, chemical additions cease to exist in the water. However, the dead micro-organisms and impurities settle at the bottom of the water,
-                                                        and boiling does not help eliminate all the impurities.
-                                                        You must strain the water through a microporous sieve to completely remove the impurities.</li>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 2: Water Purifier</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <li>An electric water purifier is the most trusted form of water purification found in most houses today.
-                                                        A water purifier uses a multi-stage process involving UV and UF filtration, carbon block,
-                                                        and modern water filtration technology that eliminates most of the chemicals and impurities, making it the purest drinking water.</li>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 3: Reverse Osmosis</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>An RO Purifier proves to be one of the best methods of purifying water.
-                                                        Reverse Osmosis forces water through a semipermeable membrane and removes contaminants.
-                                                        The TDS Controller and Mineraliser Technology, like the one found in an A. O. Smith RO UV Water Purifier,
-                                                        help retain the necessary nutrients while doing away with harmful impurities.</li>
-
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 4: Water Chlorination</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>It is an older technique used usually during an emergency, wherein a mild bleach with approximately 5% chlorine is added to the water.
-                                                        This mixture works as an oxidant and quickly kills microorganisms, making water safe for consumption.</li>
-
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 5: Distillation</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>Distillation is a water purification process involving collecting the condensed water after evaporation,
-                                                        ensuring that water is free of contaminants. However, this isn’t as effective as an RO filter because it is time-consuming and eliminates minerals.</li>
-
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 6: Iodine Addition</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>Iodine is a red chemical that is easily available as a tablet or a liquid. It is extremely powerful as it kills bacteria and viruses.
-                                                        However, it adds an unpleasant taste and can be fatal if taken in high doses.
-                                                        Therefore, it should only be used if you don’t have access to a better method of purification like an electric water purifier.</li>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 7:  Solar Purification</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>An RO Purifier proves to be one of the best methods of purifying water.
-                                                        Reverse Osmosis forces water through a semipermeable membrane and removes contaminants.
-                                                        The TDS Controller and Mineraliser Technology, like the one found in an A. O. Smith RO UV Water Purifier,
-                                                        help retain the necessary nutrients while doing away with harmful impurities.</li>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 8:  Clay Vessel Filtration</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <li>Way before people had access to an RO or UV Purifier, they used clay pots which purified muddy water,
-                                                        by blocking out the mud and allowing pure, potable water to pass through. This method is still used in some rural regions.</li>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 9: UV Radiation</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <li>Water is exposed to a UV Light that kills microorganisms, thereby preventing it from breeding further.
-                                                        But if not coupled with an RO Filter, UV Radiation alone cannot remove impurities and heavy metals.</li>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>METHOD 10: Desalination</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <li>This method is used when water with a certain level of salinity needs to be filtered. This process is helpful.</li>
-
-
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                {/* <Button variant="danger" onClick={initModals}>
-                            Close
-                        </Button> */}
-                                <Button variant="dark" onClick={function (event) { modalClose(); }}>
-                                    Ok
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
-
                         {/* <input class="form-check-input" type="checkbox" value='true' role="switch" id="flexSwitchCheckDefault" onChange={(e) => setCheck(e.target.value)} name="check" /> */}
 
                         <div className='table'>
@@ -429,49 +279,57 @@ function SanitaryInpection() {
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>1. Are There pit-latrines?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" value='pitLatrine' role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='pitLatrine' checked={SanitaryInpectionItems.pitLatrine} />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value="pitLatrine" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>2. Are There any domestic animals observer?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='domesticAnimal' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value="domesticAnimal" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>3. Diapers Disposal?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='diaperDisposal' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value="diaperDisposal" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>4. Release of wastewater?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='wasteWaterRelease' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value="wasteWaterRelease" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>5. Open defaction?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='openDefaction' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value='openDefaction' />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>6. Is the water source unprotected?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='unprotectedWaterSource' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value='unprotectedWaterSource' />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>7. Agricultural Activities?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='agriculturalActivity' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value='agriculturalActivity' />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>8. Observer laundry Activities?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='observerLaundryActivity' />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                        name='SanitaryInpectionItems' value='observerLaundryActivity' />
                                 </label>
                             </div>
 
