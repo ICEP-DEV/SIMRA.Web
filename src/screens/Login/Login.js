@@ -107,13 +107,13 @@ function Login() {
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                    if(loginData.data.results[0].level === 1){
+                    if (loginData.data.results[0].level === 1) {
                         navigate('/home')
                     }
-                    else if(loginData.data.results[0].level === 2){
+                    else if (loginData.data.results[0].level === 2) {
                         navigate('/')
                     }
-                    
+
                 }
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')
@@ -417,12 +417,11 @@ function Login() {
                 </select>
 
             </div>
-
-
-            <button className='btn-reg' title="Register" onClick={handleRegistration}>Create Account</button>
-
-
         </div>
+        <div className='form-group'>
+            <button className='btn btn-primary' onClick={handleRegistration}>Create Account</button>
+        </div>
+
     </div>
 
     return (

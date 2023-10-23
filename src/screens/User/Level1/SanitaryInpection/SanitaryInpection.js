@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import methods from '../../../../Data/methods';
 import { useNavigate } from 'react-router-dom';
+import { BiSolidCommentCheck } from 'react-icons/bi';
 
 function SanitaryInpection() {
     var navigate = useNavigate()
@@ -22,7 +23,7 @@ function SanitaryInpection() {
     const [backgroundColor, setbackgroundColor] = useState('')
     let [SelectPopUp, setSelectPopUp] = useState(false);
     const [Methods, setMethods] = useState(methods)
-
+    const [check, setCheck] = useState(false);
     useEffect(() => {
 
         if (DataAnalysis.message !== "adedd hydrogensulfide") {
@@ -64,17 +65,20 @@ function SanitaryInpection() {
 
     // const tempData = useLocation();
 
-    const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState({
-        pitLatrine: undefined,
-        domesticAnimal: undefined,
-        diaperDisposal: undefined,
-        wasteWaterRelease: undefined,
-        openDefaction: undefined,
-        unprotectedWaterSource: undefined,
-        agriculturalActivity: undefined,
-        observerLaundryActivity: undefined,
-        samplingId: 0
-    });
+    const [pitLatrine, setpitLatrine] = useState(false)
+    const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState(
+        {
+            pitLatrine: false,
+            domesticAnimal: false,
+            diaperDisposal: false,
+            wasteWaterRelease: false,
+            openDefaction: false,
+            unprotectedWaterSource: false,
+            agriculturalActivity: false,
+            observerLaundryActivity: false,
+            samplingId: 0
+        }
+    );
     const [Longitude, setLongitude] = useState('')
     const [Latitude, setLatitude] = useState('')
     useEffect(() => {
@@ -85,11 +89,9 @@ function SanitaryInpection() {
         })
     })
 
-    const handleChangeUpdate = e => {
-        setSanitaryInpectionItems((currentState) => ({
-            ...currentState,
-            [e.target.name]: Boolean(e.target.value),
-        }))
+    const handleChangeUpdate = (e) => {
+
+        
 
     }
 
@@ -99,7 +101,7 @@ function SanitaryInpection() {
 
     function senduseSanitaryInpectionSurvey() {
         //validate the radio buttons
-
+        console.log(check)
         if (SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
             SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
             SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined) {
@@ -118,7 +120,7 @@ function SanitaryInpection() {
         }
 
         //Call in sampling data api
-        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+        /*axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
             SanitaryInpectionItems.samplingId = response.data.insertedId
             // Assign to Coordinates object
             var coordinates = {
@@ -175,7 +177,7 @@ function SanitaryInpection() {
                 })
         }, (err) => {
             console.log(err)
-        })
+        })*/
 
     }
 
@@ -269,7 +271,7 @@ function SanitaryInpection() {
                                 {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={initModals}>
+                                <Button variant="dark" onClick={function (event) { modalClose(); setSelectPopUp(true) }}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
@@ -417,9 +419,67 @@ function SanitaryInpection() {
                             </Modal.Footer>
                         </Modal>
 
+                        {/* <input class="form-check-input" type="checkbox" value='true' role="switch" id="flexSwitchCheckDefault" onChange={(e) => setCheck(e.target.value)} name="check" /> */}
 
+                        <div className='table'>
+                            <div className='form-header'>
+                                <label className='header_form_label questinare'>Questionare</label>
+                                <label className='header_form_label yes_no'>No/Yes</label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>1. Are There pit-latrines?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" value='pitLatrine' role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='pitLatrine' checked={SanitaryInpectionItems.pitLatrine} />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>2. Are There any domestic animals observer?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='domesticAnimal' />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>3. Diapers Disposal?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='diaperDisposal' />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>4. Release of wastewater?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='wasteWaterRelease' />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>5. Open defaction?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='openDefaction' />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>6. Is the water source unprotected?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='unprotectedWaterSource' />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>7. Agricultural Activities?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='agriculturalActivity' />
+                                </label>
+                            </div>
+                            <div className='form_content'>
+                                <label className='header_form_label questinare'>8. Observer laundry Activities?</label>
+                                <label className='header_form_label yes_no form-check form-switch'>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate} name='observerLaundryActivity' />
+                                </label>
+                            </div>
 
-                        <table className="table">
+                        </div>
+                        {/* <table className="table">
+                            <div class="form-check form-switch">
+
+                            </div>
                             <thead className="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
@@ -429,7 +489,7 @@ function SanitaryInpection() {
                             </thead>
                             <tbody className='tbody'>
                                 <tr>
-                                    <th scope="row">1. Are There pit-latrines?</th>
+                                    <th scope="row">1. Are There pit-latrines?</th>                                    
                                     <td><input type='radio' onChange={handleChangeUpdate} value='true' name='pitLatrine' /></td>
                                     <td><input type='radio' onChange={handleChangeUpdate} value='' name='pitLatrine' /></td>
                                 </tr>
@@ -469,12 +529,14 @@ function SanitaryInpection() {
                                     <td><input type='radio' onChange={handleChangeUpdate} value='' name='observerLaundryActivity' /></td>
                                 </tr>
                             </tbody>
-                        </table>
-                        {/* <button onClick={function (event) { senduseSanitaryInpectionSurvey(); }} className='btn btn-primary btn-lg mb-3'>Submit</button> */}
+                        </table> */}
                         <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-primary btn-lg mb-3'>Submit</button>
 
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     );
