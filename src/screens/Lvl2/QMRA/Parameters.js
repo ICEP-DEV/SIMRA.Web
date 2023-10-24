@@ -1,218 +1,43 @@
-/* import React, { useState } from 'react';
-
-const qmraParameters = {
-  'Campylobacter jejun': { model: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
-  'E-Coli O157:H7': { model: 'Beta-Poisson', alpha: 0.4, beta: 45.9 },
-  'Salmonella Typhi': { model: 'Beta-Poisson', alpha: 0.21, beta: 49.78 },
-  'S. flexneri': { model: 'Beta-Poisson', alpha: 0.265, beta: 1480 },
-  'Vibrio cholerae': { model: 'Beta-Poisson', alpha: 0.169, beta: 2305 },
-  'Cryptosporidium parvum': { model: 'exponential', r: 0.059 },
-  'Entamoeba coli': { model: 'Beta-Poisson', alpha: 0.79433, beta: 5.40789 },
-  'Giardia lambia': { model: 'exponential', k: 0.01199 },
-  'Other': { model: '', alpha: 0, beta: 0 },
-};
-
-function QMRAApp() {
-  const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
-  const [count, setCount] = useState('');
-  const [alpha, setAlpha] = useState('');
-  const [beta, setBeta] = useState('');
-  const [r, setr] = useState('');
-  const [k, setk] = useState('');
-  const [model, setModel] = useState('');
-  const [result, setResult] = useState('');
-
-  const calculateResult = () => {
-    if (selectedOrganism === 'Other' && model && count && alpha && beta) {
-      let calculatedResult = 0;
-
-      if (model === 'Beta-Poisson') {
-        calculatedResult = calculateBetaPoisson(alpha, beta, count);
-      }  if (selectedOrganism === 'Cryptosporidium parvum') {
-          calculatedResult = calculateExponentialForCryptosporidium(r, count);
-        } else if (selectedOrganism === 'Giardia lambia') {
-          calculatedResult = calculateExponentialForGiardia(k, count);
-        }
- 
-      setResult(`Calculated Result: ${calculatedResult}`);
-    } else {
-      setResult('');
-    }
-  };
-
-  const calculateExponentialForCryptosporidium = (r, count) => {
-    // Implement the exponential calculation for Cryptosporidium parvum
-      // Your formula here 
-      const calculatedResult = 1 - Math.pow(2.71828, -r * count);
-    return calculatedResult;
-  };
-
-  const calculateExponentialForGiardia = (k, count) => {
-    // Implement the exponential calculation for Giardia lambia
-     // Your formula here 
-     const calculatedResult = 1 - Math.pow(2.71828, -k * count);;
-    return calculatedResult;
-  };
-
-
-  const calculateBetaPoisson = (alpha, beta, count) => {
-    // Perform the Beta-Poisson calculation here  
-    const calculatedResult = 1 -[1+(count/beta)]-alpha;
-    return calculatedResult;
-  };
-
-  const calculateOther = () => {
-    // Perform other calculations here
-  }
-
-  return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>QMRA Parameters</h1>
-      <select
-        value={selectedOrganism}
-        onChange={(e) => {
-          const selectedValue = e.target.value;
-          setSelectedOrganism(selectedValue);
-          setModel(qmraParameters[selectedValue].model);
-          setResult('');
-        }}
-      >
-        {Object.keys(qmraParameters).map((organism) => (
-          <option
-            key={organism}
-            value={organism}
-          >
-            {organism}
-          </option>
-        ))}
-
-        <option value="Other">Other</option>
-      </select>
-      {selectedOrganism === 'Other' && (
-        <>
-          <input
-            style={styles.input}
-            placeholder="Enter Organism"
-            onChange={(e) => setSelectedOrganism(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Model"
-            onChange={(e) => setModel(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Count"
-            type="number"
-            onChange={(e) => setCount(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Alpha"
-            type="number"
-            step="0.01"
-            onChange={(e) => setAlpha(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Beta"
-            type="number"
-            step="0.01"
-            onChange={(e) => setBeta(e.target.value)}
-          />
-          {model === 'exponential' && (
-            <>
-              {selectedOrganism !== 'Cryptosporidium parvum' && (
-                <input
-                  style={styles.input}
-                  placeholder="Enter r"
-                  type="number"
-                  step="0.01"
-                  onChange={(e) => setr(e.target.value)}
-                />
-              )}
-              {selectedOrganism !== 'Giardia lambia' && (
-                <input
-                  style={styles.input}
-                  placeholder="Enter k"
-                  type="number"
-                  step="0.01"
-                  onChange={(e) => setk(e.target.value)}
-                />
-              )}
-            </>
-          )}
-        </>
-      )}
-      <button
-        onClick={calculateResult}
-      >
-        Calculate
-      </button>
-      {result !== '' && (
-        <p style={styles.result}>{result}</p>
-      )}
-    </div>
-  );
-}
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    marginTop: '50px',
-  },
-  header: {
-    fontSize: '20px',
-    marginBottom: '20px',
-  },
-  input: {
-    width: '200px',
-    fontSize: '16px',
-    marginBottom: '10px',
-    padding: '10px',
-    borderWidth: '1px',
-    borderColor: 'blue',
-  },
-  result: {
-    fontSize: '18px',
-    marginTop: '20px',
-  },
-};
-
-export default QMRAApp;
- */
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-/*const qmraParameters = {
-  'Campylobacter jejun': { model: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
-  'E-Coli O157:H7': { model: 'Beta-Poisson', alpha: 0.4, beta: 45.9 },
-  'Salmonella Typhi': { model: 'Beta-Poisson', alpha: 0.21, beta: 49.78 },
-  'S. flexneri': { model: 'Beta-Poisson', alpha: 0.265, beta: 1480 },
-  'Vibrio cholerae': { model: 'Beta-Poisson', alpha: 0.169, beta: 2305 },
-  'Cryptosporidium parvum': { model: 'exponential', r: 0.059 },
-  'Entamoeba coli': { model: 'Beta-Poisson', alpha: 0.79433, beta: 5.40789 },
-  'Giardia lambia': { model: 'exponential', k: 0.01199 },
-  'Other': { model: '', alpha: 0, beta: 0 },
-};*/
+import { useSelector } from 'react-redux';
 
 export default function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
   const [count, setCount] = useState('');
   const [alpha, setAlpha] = useState('');
   const [beta, setBeta] = useState('');
-  const [r, setR] = useState('');
-  const [k, setK] = useState('');
-  const [model, setModel] = useState('');
+  const [n50, setN50] = useState('');
+  const [Constant, setConstant] = useState('');
+  const [Parameters, setParameters] = useState([]);
   const [result, setResult] = useState('');
   const [Pathogen, setPathogen] = useState([]);
   const [TempPathogen, setTempPathogen] = useState([]);
   const [IsfoundPath, setIsfoundPath] = useState(false);
+  const [bestFit, setBestFit] = useState('')
+  const [Longitude, setLongitude] = useState('')
+  const [Latitude, setLatitude] = useState('')
+
+  let estimated = useSelector((state) => state.fib.value)
+  let sampling_info = useSelector((state) => state.sampling.value)
+
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+      setLongitude(longitude)
+      setLatitude(latitude)
+    })
     axios.get("http://localhost:3001/api/reference_pathogens").then(respond => {
-      console.log(respond.data)
+      //  console.log(respond.data.reference_pathogens)
+
+      //setParameters(respond.data.reference_pathogens[0].parameter[0])
       setPathogen(respond.data.reference_pathogens)
+      console.log(Pathogen, "state");
+
       setIsfoundPath(respond.data.success)
+      // const filteredParameters = response.Pathogen.filter(item => item.parameters === beta);
+      // setAlpha(filteredParameters)
     }, error => {
       console.log(error)
     })
@@ -220,56 +45,91 @@ export default function QMRAApp() {
   }, [])
   const calculateResult = () => {
     console.log(selectedOrganism)
-    /* if (selectedOrganism === 'Other' && model && count && alpha && beta) {
-       let calculatedResult = 0;
- 
-       if (model === 'Beta-Poisson') {
-         calculatedResult = calculateBetaPoisson(alpha, beta, count);
-       } if (selectedOrganism === 'Cryptosporidium parvum' && model === 'exponential') {
-         calculatedResult = calculateExponentialForCryptosporidium(r, count);
-       } else if (selectedOrganism === 'Giardia lambia' && model === 'exponential') {
-         calculatedResult = calculateExponentialForGiardia(k, count);
-       }
- 
-       setResult(`Model Type: ${model}, Calculated Result: ${calculatedResult}`);
-     } else {
-       setResult('');
-     }*/
+
   };
 
   function selectPathogen(event) {
     var filtered = []
     // console.log(event)
     filtered.push(Pathogen.filter((value) => value.pathogen === event))
-    /*setTempPathogen(Pathogen.filter((value) => {
-      value.pathogen.toLocaleLowerCase() === event.toLocaleLowerCase()
-    }))*/
-    console.log(filtered[0][0])
+
+    console.log(filtered[0][0].pathogen)
+    setSelectedOrganism(filtered[0][0].pathogen)
     setTempPathogen(filtered[0][0])
+    setParameters(filtered[0][0].parameter[0])
+    if (filtered[0][0].best_fit_model === 'exponential') {
+      setConstant(filtered[0][0].parameter[0].constant)
+    }
+    if (filtered[0][0].best_fit_model === 'beta-poisson') {
+      setBeta(filtered[0][0].parameter[0].beta)
+      setAlpha(filtered[0][0].parameter[0].alpha)
+      setN50(filtered[0][0].parameter[0].n50)
+    }
+
+  }
+  function sendQmra() {
+    console.log('beta', beta)
+    console.log('alpha', alpha)
+    console.log('constant', Constant)
+    console.log('N50', n50)
+    console.log(selectedOrganism)
+
+    var qmra_data = {
+      beta: beta,
+      alpha: alpha,
+      constant: Constant,
+      n50: n50,
+      organism: selectedOrganism,
+      fib: estimated.estimatedCount
+    }
+
+
+     //Call in sampling data api
+     axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+      qmra_data.samplingId = response.data.insertedId
+      // Assign to Coordinates object
+      var coordinates = {
+          latitude: Latitude,
+          longitude: Longitude,
+          samplingId: response.data.insertedId
+      }
+      //Call in coordinates api
+      axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+          console.log(result)
+      }, err => {
+          console.log(err)
+      })
+      // Assign to watersource object
+      var watersource = {
+          samplingId: response.data.insertedId,
+          type: sampling_info.type,
+          waterAccessability: sampling_info.waterAccessability
+      }
+      //Call in watersource api
+      axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+          console.log(result)
+      }, err => {
+          console.log(err)
+      })
+
+      axios.post("http://localhost:3001/api/QMRA",qmra_data )
+          .then((result) => {
+              console.log(result.data.success)
+
+          }, err => {
+              console.log(err)
+          })
+  }, (err) => {
+      console.log(err)
+  })
+
+
     
 
+    console.log(qmra_data)
 
   }
 
-  const calculateExponentialForCryptosporidium = (r, count) => {
-    // Implement the exponential calculation for Cryptosporidium parvum
-    // Your formula here 
-    const calculatedResult = 1 - Math.pow(2.71828, -r * count);
-    return calculatedResult;
-  };
-
-  const calculateExponentialForGiardia = (k, count) => {
-    // Implement the exponential calculation for Giardia lambia
-    // Your formula here 
-    const calculatedResult = 1 - Math.pow(2.71828, -k * count);
-    return calculatedResult;
-  };
-
-  const calculateBetaPoisson = (alpha, beta, count) => {
-    // Perform the Beta-Poisson calculation here  
-    const calculatedResult = 1 - (1 + (count / beta)) - alpha;
-    return calculatedResult;
-  };
 
   return (
     <div style={styles.container}>
@@ -281,110 +141,17 @@ export default function QMRAApp() {
           setResult('');
         }}
       >
+        <option value='' disabled selected>--- Select ---- </option>
         {Pathogen.map((organism, xid) => (
           <option key={xid} value={organism.pathogen}>
             {organism.pathogen}
           </option>
         ))}
 
-        {/* <option value="Campylobacter jejun">Campylobacter jejun</option> */}
       </select>
-      {/* {selectedOrganism  (
-        
-        <div class="row">
-          <div class="column" style="background-color:#aaa;">
-            <h2>Reference Pathogen</h2>
-              
-            onChange={(e) => {
-          const selectedValue = e.target.value;
-          setSelectedOrganism(selectedValue);}}
-
-          </div>
-          <div class="column" style="background-color:#bbb;">
-            <h2>Best Fit Model</h2>
-              
-            onChange={(e) => {
-          const selectedValue = e.target.value;
-          setModel([selectedValue].model);
-        }}
-
-          </div>
-          <div class="column" style="background-color:#ccc;">
-            <h2>Parameters</h2>
-
-            onChange={(e) => {
-          const selectedValue = e.target.value;
-          setResult('');
-        }}
-
-          </div>
-        </div>
-
-      )} */}
-      {/* {(selectedOrganism === 'Cryptosporidium parvum' || selectedOrganism === 'Giardia lambia') && model === 'exponential' && (
-        <div>
-          <input
-            style={styles.input}
-            placeholder="Enter r"
-            type="number"
-            value={r}
-            onChange={(e) => setR(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Count"
-            type="number"
-            value={count}
-            onChange={(e) => setCount(e.target.value)}
-          />
-          {selectedOrganism === 'Giardia lambia' && (
-            <input
-              style={styles.input}
-              placeholder="Enter k"
-              type="number"
-              value={k}
-              onChange={(e) => setK(e.target.value)}
-            />
-          )}
-        </div>
-      )}
-      {selectedOrganism === 'Other' && (
-        <div>
-          <input
-            style={styles.input}
-            placeholder="Enter Organism"
-            onChange={(e) => setSelectedOrganism(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Model"
-            onChange={(e) => setModel(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Count"
-            type="number"
-            onChange={(e) => setCount(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Alpha"
-            type="number"
-            step="0.01"
-            onChange={(e) => setAlpha(e.target.value)}
-          />
-          <input
-            style={styles.input}
-            placeholder="Enter Beta"
-            type="number"
-            step="0.01"
-            onChange={(e) => setBeta(e.target.value)}
-          />
-        </div>
-      )} */}
       <button onClick={calculateResult}>Calculate</button>
       {result !== '' && <p style={styles.result}>{result}</p>}
-      <table>
+      <table id='table'>
         <th>
           Pathogen
         </th>
@@ -395,13 +162,45 @@ export default function QMRAApp() {
           Parameters
         </th>
         <tbody>
-          <tr>
+          {(TempPathogen.best_fit_model !== '') && (<tr>
+
             <td>{TempPathogen.pathogen} </td>
             <td>{TempPathogen.best_fit_model}</td>
-            <td>Parameter</td>
-          </tr>
+            <td>{(TempPathogen.best_fit_model === 'exponential') && (<label>constant {Parameters.constant}</label>)}
+
+              {(TempPathogen.best_fit_model === 'beta-poisson') && (<label>alpha {Parameters.alpha},
+                <span>
+                  {(Parameters.beta) && (<label>beta {Parameters.beta}</label>)}
+                  {(!Parameters.beta) && (<label>N50 {Parameters.n50}</label>)}
+                </span>
+              </label>)}
+            </td>
+          </tr>)}
+          {(TempPathogen.best_fit_model === '') && (<tr>
+            <td><input type='text'></input></td>
+            <td><select onChange={(e) => {
+              setBestFit(e.target.value)
+            }} >
+              <option value='beta-poisson'>beta-poisson </option>
+              <option value='exponential'>exponential </option>
+            </select></td>
+            <td>
+              {(bestFit === 'beta-poisson') && (<span>
+                <input type='text' placeholder='alpha'></input>
+                <input type='text' placeholder='beta'></input>
+              </span>)}
+
+              {(bestFit === 'exponential') && (<span>
+                <input type='text' placeholder='constant'></input>
+
+              </span>)}
+
+            </td>
+          </tr>)}
+
         </tbody>
       </table>
+      <button onClick={sendQmra}></button>
     </div>
   );
 }

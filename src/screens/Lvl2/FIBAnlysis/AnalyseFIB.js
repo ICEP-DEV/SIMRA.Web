@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Header from '../../Header/Header';
-import SideBar_l2 from '../SideBar_l2/SideBar_l2'
+import SideBar_l2 from '../SideBar_l2/SideBar_l2';
+import { fib_details } from '../../../Redux/fib';
+import { useNavigate } from 'react-router-dom';
 
 const FibAnalysis = () => {
-    const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
-    const [referencePath, setReferencePath] = useState('');
-    const [ratio, setRatio] = useState(0);
-    const [estimatedCount, setEstimatedCount] = useState(0); 
-    const [userCount, setUserCount] = useState(0);
-    const [roundedEstimatedCount, setRoundedEstimatedCount] = useState(0);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
+  const [referencePath, setReferencePath] = useState('');
+  const [ratio, setRatio] = useState(0);
+  const [estimatedCount, setEstimatedCount] = useState(0);
+  const [userCount, setUserCount] = useState(0);
+  const [roundedEstimatedCount, setRoundedEstimatedCount] = useState(0);
+
 
   const fibData = {
     'E.coli': { referencePath: 'Campylobacter', ratio: 0.66, estimatedCount: 0 },
@@ -28,6 +34,16 @@ const FibAnalysis = () => {
       setEstimatedCount(0);
       setRoundedEstimatedCount(0);
     }
+  };
+
+  const sendValue = () => {
+
+    var fib_info = {
+      estimatedCount: roundedEstimatedCount
+    }
+    dispatch(fib_details(fib_info))
+    navigate('/qmra')
+
   };
 
   useEffect(() => {
@@ -50,59 +66,61 @@ const FibAnalysis = () => {
 
   return (
     <div className='hero-all' >
-    <div className='sidenav'>
-        <SideBar_l2  />
-    </div>
+      <div className='sidenav'>
+        <SideBar_l2 />
+      </div>
 
-    <div className='main-all'>
+      <div className='main-all'>
 
         <div className='content'>
-            <Header />
-            <div className='container-wrapper'>
-    <div>
-      <p>Select an FIB Indicator:</p>
-      <select
-      className=' form-select-lg mb-3'
-        value={selectedFIB}
-        onChange={(event) => handleFibData(event.target.value)}
-      >
-        <option value="Other">Select an FIB</option>
-        {Object.keys(fibData).map((fib) => (
-          <option key={fib} value={fib}>
-            {fib}
-          </option>
-        ))}
-      </select>
-      <div className='table-responsive-lg'> 
+          <Header />
+          <div className='container-wrapper'>
+            <div>
+              <p>Select an FIB Indicator:</p>
+              <select
+                className=' form-select-lg mb-3'
+                value={selectedFIB}
+                onChange={(event) => handleFibData(event.target.value)}
+              >
+                <option value="" selected>---Select an FIB---</option>
 
-   
-      <table className=' w-100'>
-        <tbody>
-          <tr>
-            <th scope='col'>Indicator</th>
-            <th  scope='col'>Ratio</th>
-          </tr>
-          <tr>
-            <td >{referencePath}</td>
-            <td >{ratio}</td>
-          </tr>
-        </tbody>
-      </table>
+                {Object.keys(fibData).map((fib) => (
+                  <option key={fib} value={fib}>
+                    {fib}
+                  </option>
+                ))}
+              </select>
+              <div className='table-responsive-lg'>
+
+
+                <table className=' w-100'>
+                  <tbody>
+                    <tr>
+                      <th scope='col'>Indicator</th>
+                      <th scope='col'>Ratio</th>
+                    </tr>
+                    <tr>
+                      <td >{referencePath}</td>
+                      <td >{ratio}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br></br>
+              <p>Enter The Count:</p>
+              <input
+                className='sr-only'
+                type="number"
+                value={userCount}
+                onChange={(event) => setUserCount(event.target.value)}
+              />
+              <p> Count: {estimatedCount} </p>
+              <p>Estimated Count: {roundedEstimatedCount} </p>
+            </div>
+            <button onClick={sendValue}>Save Value</button>
+          </div>
+        </div>
       </div>
-      <br></br>
-      <p>Enter The Count:</p>
-      <input
-      className='sr-only'
-        type="number"
-        value={userCount}
-        onChange={(event) => setUserCount(event.target.value)}
-      />
-      <p> Count: {estimatedCount} </p>
-      <p>Estimated Count: {roundedEstimatedCount} </p>
-    </div>
-    </div>
-    </div>
-    </div>
     </div>
   );
 };

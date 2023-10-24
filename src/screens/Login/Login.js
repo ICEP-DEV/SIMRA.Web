@@ -11,7 +11,6 @@ import { Modal, Button } from 'react-bootstrap';
 
 
 function Login() {
-    let user_info = useSelector((state) => state.use)
     const dispatch = useDispatch();
 
     let navigate = useNavigate();
@@ -53,7 +52,7 @@ function Login() {
         setTimeout(() => {
             setButtonPopup(false)
             if (loginData.data.success === true) {
-                user_info = {
+                var user_info = {
                     userId: loginData.data.results[0].userId,
                     user_role: loginData.data.results[0].role,
                     user_level: loginData.data.results[0].level,
@@ -61,7 +60,7 @@ function Login() {
                     user_firstname: loginData.data.results[0].firstname,
                     user_lastname: loginData.data.results[0].lastname,
                     user_mobileNo: loginData.data.results[0].mobileNo,
-                //    user_role: loginData.data.results[0].role,
+                    //    user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
                 }
                 console.log(loginData.data.results[0])
@@ -69,19 +68,16 @@ function Login() {
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                  
-                    if (loginData.data.results[0].level === 1)
-                    {
+
+                    if (loginData.data.results[0].level === 1) {
                         navigate('/home')
                     }
-                    else if (loginData.data.results[0].level === 2)
-                    {
+                    else if (loginData.data.results[0].level === 2) {
                         navigate('/Level2')
                     }
-                    else if (loginData.data.results[0].level===3)
-                    {
-                navigate('/Level3')
-                }
+                    else if (loginData.data.results[0].level === 3) {
+                        navigate('/Level3')
+                    }
                 }
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')
@@ -228,10 +224,10 @@ function Login() {
                             <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                              </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                </div>
                             </small>
                         </div>
 
