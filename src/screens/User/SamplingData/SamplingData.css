@@ -15,11 +15,6 @@
      flex-direction: column;
      margin: 15px 0;
  }
- .hero-all
- {
-     background-color: #0063EA; 
-    
- }
  
  .main-all {
      margin-left: 200px; /* Same as the width of the sidebar */

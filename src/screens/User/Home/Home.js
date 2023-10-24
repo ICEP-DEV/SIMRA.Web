@@ -19,28 +19,28 @@ function Home() {
                 <div className='content'>
                     <Header />
                     <div className='container-wrapper'>
-<div className='home-background'>
+                        <div className='home-background'>
 
 
-                       
-<div className='mb-5 text-center display-6 ml-5'>
-<label className='mt-5'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
-</div>
 
-        <div className='home-body text-center mb-5'>
-        SIMRA, tool integrates the current water and sanitation risk assessment and management methods into one harmonised tool
-            </div>           
-            <div className='text-center'>
-                            <button className='btn-home' onClick={() => navigate("/sampling_data")}> Sampling Data</button>
-                        </div> 
+                            <div className='mb-5 text-center display-6 ml-5'>
+                                <label className='mt-5'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
+                            </div>
+
+                            <div className='home-body text-center mb-5'>
+                                SIMRA, tool integrates the current water and sanitation risk assessment and management methods into one harmonised tool
+                            </div>
+                            <div className='text-center'>
+                                <button className='btn-home' onClick={() => navigate("/sampling_data")}> Sampling Data</button>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
-
-
-
-
                 </div>
             </div>
-        </div>
         </div>
     )
 }
