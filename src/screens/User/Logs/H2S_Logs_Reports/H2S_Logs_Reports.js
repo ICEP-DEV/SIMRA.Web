@@ -12,6 +12,9 @@ function H2S_Logs_Reports() {
     const [Filter, setFilter] = useState('')
     const [FilterInput, setFilterInput] = useState('')
     let [IsFoundData, setIsFoundData] = useState(false)
+    const [StartDate, setStartDate] = useState('')
+    const [FinalDate, setFinalDate] = useState('')
+
 
 
     function handleFilter(event) {
@@ -34,7 +37,14 @@ function H2S_Logs_Reports() {
 
     function filter_table() {
         var tempLogs = FullLogs
-        console.log(tempLogs)
+        
+        var initial = new Date(StartDate)
+        var final = new Date(FinalDate)
+
+        var start = initial.getDate().toString().padStart(2, '0')+'/'+initial.getMonth().toString().padStart(2, '0')+'/'+initial.getFullYear()
+        var end = final.getDate().toString().padStart(2, '0')+'/'+final.getMonth().toString().padStart(2, '0')+'/'+final.getFullYear()
+        console.log(start)
+        console.log(end)
         if (Filter.toLocaleLowerCase() === "province") {
             setLogs(tempLogs.filter((value) => {
                 return value.province_name.toLocaleLowerCase().includes(FilterInput.toLocaleLowerCase());
@@ -70,6 +80,13 @@ function H2S_Logs_Reports() {
                 return value.status.toLocaleLowerCase().includes(FilterInput.toLocaleLowerCase());
             }))
         }
+
+        if (Filter.toLocaleLowerCase() === "date") {
+            setLogs(tempLogs.filter((value) => {
+                console.log( (value.sample_date))
+                return  value.sample_date >= start &&  value.sample_date <=  end;
+            }))
+        }
     }
 
     let Filter_Data= <div className='filter'>
@@ -90,8 +107,8 @@ function H2S_Logs_Reports() {
             {Filter === "province" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
             {Filter === "date" && (
                 <div>
-                    <label>Start<input type='date' className='control-form form-date' /></label>
-                    <label>End<input type='date' className='control-form form-date' /></label>
+                    <label>Start<input type='date' className='control-form form-date' onChange={(event) => setStartDate(event.target.value)}/></label>
+                    <label>End<input type='date' className='control-form form-date' onChange={(event) => setFinalDate(event.target.value)}/></label>
                 </div>
             )}
             {Filter === "----" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
