@@ -1,0 +1,79 @@
+.admin_side_bar {
+    width: 200px;
+    height: 100%;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.admin_side_bar h2{
+    margin-left: 10px;
+}
+
+.side-bar-label {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.side-label{
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.admin_side_bar img{
+    height: 70px;
+    width: 80px;
+}
+
+.sidebar-subs {
+    margin: 35% 0;
+    color: white;
+}
+
+.sidebar-subs:hover {
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+
+}
+
+.sidenav a {
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 30px;
+    color: #fff;
+}
+
+
+
+.report-dropdown{
+    position: relative;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    color:#0063EA;
+    width: 90%;
+    box-shadow: 0px 8px 16px 0 rgba(0, 0, 0, 0, 2);
+    z-index: 1;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+.dropdown-content .dropdown-link
+{
+    font-size: 18px;
+    color:#0063EA;
+}
+
+.report-dropdown:hover .dropdown-content{display: block;}

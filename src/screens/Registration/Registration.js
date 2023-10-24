@@ -1,104 +1,62 @@
-import React from 'react'
-import axios from 'axios'
-import './Registration.css'
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import Loader from '../Loader/Loader';
+import React, { useState } from 'react';
+import axios from 'axios';
+import "./Registration.css"
+// import SuccessPopup from './SuccessPopUp/SuccessPopUp';
+//import { useNavigate } from 'react-router-dom';
 import logo from './logo.png';
+import { useNavigate } from 'react-router-dom';
+const UserRegistration = (props) => {
+  const [username, setUsername] = useState('');
+  const [userSurname, setUserSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [userLevel, setUserLevel] = useState('Household');
+  const [mobileNo, setMobileNo] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
+  const navigation = useNavigate();
+
+  const handleRegistration = () => {
+    // Check if the password and confirmPassword match
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    // Clear any previous error messages
+    setError(null);
 
 
+    axios.post('http://localhost:3001/api/UserRegister', { username, userSurname, email, userLevel, mobileNo, password, })
+      .then((response) => {
 
+        console.log('User registered successfully');
+        // Navigate 
+        navigation.navigate('../Login');
+        setSuccessPopupVisible(true);
+      })
+      .catch((error) => {
+        console.error('Registration error:', error);
 
-function Signup() {
- 
-  
+        // Handle registration error, e.g., display an error message.
+      });
+  };
 
-    let navigate = useNavigate();
- return(
+  //   const handleCloseSuccessPopup = () => {
+  //     setSuccessPopupVisible(false); // Hide the success pop-up
+  //   };
 
+  return (props.trigger) ? (
+    <div className="register-popup">
+      <div className="register-popup-inner">
+        <div className="popup-inner-header">
+          <label className="popup-btn-rotate" onClick={() => props.setTrigger(false)}><h2>X</h2></label>
+        </div>
+        {props.children}
+      </div>
+    </div>
+  ) : "";
+};
 
-  <div className='all-contents'>
-
-            <div className='login-container'>
-                <div className='welcome'>
-                    <div className='logo-login'>
-                        <img src={logo} alt='logo' /> Simra
-                    </div>
-                    <h1>Welcome</h1>
-                    SIMRA, tool integrates  <br></br>
-                    the current water and <br></br>
-                    sanitation risk assessment <br></br>
-                    and management methods <br></br>
-                    into one harmonised tool<br></br>
-                </div>
-                <div className='login-card'>
-
-                    <div className='main-login' id='main-login'>
-
-                      
-                        <h3 className='header-txt mb-4'><b>Create An Account</b></h3>
-                        <div className='mb-1'>
-                          
-                            <input className='input-login w-75 ' type="username" name='username'  placeholder='First Name' />
-                            <small>
-
-                            </small>
-                        </div>
-                        <div className='mb-1'>
-                       
-                            <input className='input-login  w-75' type="username" o name='username'  placeholder='Lastname' />
-                            <small>
-
-                            </small>
-                        </div>
-
-                        <div className='mb-1'>
-                        
-                            <input className='input-login  w-75' type="username"  name='username' placeholder='Mobile Number' />
-                            <small>
-
-                            </small>
-                        </div>
-
-
-                        <div className='mb-1 text-center'>
-                      <label >  Select Level</label> 
-                           <div className='d-flex justify-content-between'>
-                            <div className='radio-level p-1 d-inline '><label><input type="radio"/>Household</label></div>
-                            <div className='radio-level p-1 d-inline '><label><input type="radio"/>Intermediate</label></div>
-                            <div className='radio-level p-1 d-inline' ><label><input type="radio"/>Expert</label></div>
-                           </div>
-                        </div>
-                        <div className='d-flex justify-content-between'>
-                        <div className='mb-1'>
-                            <input className='input-login w-100 float-start' type="password" name='password'  placeholder='Password' />
-
-                        </div>
-
-                        <div className='mb-3'>
-                           
-                            <input className='input-login w-100 ' type="password"  name='password'  placeholder=' confirm Password' />
-
-                            
-                        </div>
-                        </div>
-                        
-                        
-                        <div className='login-grid'>
-
-                            <button className='btn-login'>Sign Up</button>
-                            <small className='txt-signup'>
-                                Already have an account ? <Link to="/Login" className='ms-2'>Sign In</Link>
-                            </small>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-       </div>
-    )
-}
-
-export default Signup
+export default UserRegistration;
