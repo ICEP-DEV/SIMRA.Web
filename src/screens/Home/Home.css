@@ -7,10 +7,7 @@ color: #fff;
      background-image: url('./dwater.avif');
 
 }
-.img-section-2
-{
-    width: 300px;
-}
+
 .para
 {
     font-size: larger;
@@ -29,24 +26,24 @@ section {
 {
    
  width: 100%;
- height: 60vh;
+ height: 70vh;
  color: #fff;
 }
 .section-1 
 {
-    margin: em 0 0.5em 0;
+  margin: em 0 0.5em 0; 
 	color: #f9fafa;
 	font-weight: normal;
 	font-family: 'Ultra', sans-serif;   
 	font-size: 50px;
 	line-height: 62px;
 	text-transform: uppercase;
-	/* text-shadow: 0 2px white, 0 3px #777; */
+
 }
 .section-2
 {
     width: 100%;
-    /* background-color:rgb(10,20,140); */
+   
     background-color: #4f5e37;
     display: flex;
   justify-content: start;
@@ -58,7 +55,7 @@ section {
 .section-3
 {
     width: 100%;
-    background-color:#7a9155;
+    background-color:#fff;
  
 }
 
@@ -79,6 +76,15 @@ section {
     transform: translate(85%, 60%);
     /* background-color:rgb(10,20,140); */
   }
+  .user-text
+  {
+    width: 100%;
+    background-color: rgba(24, 22, 22, 0.493);
+    border-top: 5px solid black;
+    text-align: center;
+   
+  margin-top: 10%;
+  }
   .card-contact
   {
    
@@ -86,7 +92,7 @@ section {
 
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255,0.07);
+    background-color: #a5c473e1;
     border:  rgba(255, 255, 255,0.1);
     backdrop-filter: blur(10px);
     border-radius: 5px;
@@ -102,7 +108,7 @@ width: 80%;
   }
   .card-contact .input {
     background-color: rgba(255, 255, 255,0.07);
-    color: #fff;
+    color: #a5c47327;
     border: none;
     border-radius: 2px;
     height: 25px;
@@ -143,7 +149,7 @@ width: 80%;
     font-size: 20px;
     font-weight: 400;
     background-color: black;
-    color: #fff;
+    color: #a5c473;
     /* box-shadow: 0px 0px 40px 2px #fff; */
     text-transform: uppercase;
   margin-bottom: 5%;

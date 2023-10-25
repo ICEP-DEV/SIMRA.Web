@@ -1,11 +1,12 @@
 import React from "react";
-import { AiFillPushpin, AiFillPhone } from 'react-icons/ai';
+import { AiFillPushpin, AiFillPhone,AiOutlineCopyrightCircle} from 'react-icons/ai';
+import {ImLocation} from 'react-icons/im'
 import { HiOutlineMail } from 'react-icons/hi';
 import { CiLocationOn } from 'react-icons/ci';
 import './Footer.css';
 function Footer() {
   return (
-    <div>
+    <div >
       <div className='contact-info'>
         <div id="address" className="contact_detail">
           <h2>Location</h2>
@@ -39,7 +40,7 @@ function Footer() {
 
       </div>
 
-      <label className="end_footer" >copyright@Icep</label>
+      <label className="end_footer" ><AiOutlineCopyrightCircle/>Copyright ICEP. All rights Reserved</label>
     </div>
   )
 }

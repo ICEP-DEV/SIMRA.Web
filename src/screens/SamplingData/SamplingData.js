@@ -82,9 +82,9 @@ function SamplingData() {
             longitude: Longitude
         }
         dispatch(sampling_details(temp))
-        if (Latitude === '' || Longitude === '') {
-            PopUpAlertMessage(true)
-        }
+        // if (Latitude === '' || Longitude === '') {
+        //     PopUpAlertMessage(true)
+        // }
 
         if (user_info.user_level === 1) {
             navigate('/h2s_survey')
@@ -188,7 +188,7 @@ function SamplingData() {
                             <option value='Sunny' className="control-form">Sunny</option>
                         </select>
                     </div>
-                    <button className='btn btn-dark btn-lg btn-block w-25' onClick={submit_sampling_data}>Next</button>
+                    <button className='btn btn-dark btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
 
             </div>

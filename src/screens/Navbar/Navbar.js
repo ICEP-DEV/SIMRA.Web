@@ -49,12 +49,13 @@ function Navbar() {
 
     return (
         <div className="topnav">
-            <div className="navbar-subs "><div className="wrapper"></div>
-                <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
+            
             <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
             <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
+            
             <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
-
+            <div className="navbar-subs "><div className="wrapper"></div>
+                <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
             <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
             {/* <div className="navbar-subs dropdown">
                 <span className="nav-label">Levels</span>
@@ -68,6 +69,7 @@ function Navbar() {
                     <Link className='dropdown-link' to=''>Level 2</Link>
                 </span>)}
             </div> */}
+               <div className="navbar-subs" onClick={report}><span className="nav-label">Events</span></div>
             <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
 
 

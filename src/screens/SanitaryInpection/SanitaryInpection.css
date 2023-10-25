@@ -1,4 +1,14 @@
-
+.sanitaryInpection
+{
+    background-color: #a5c473;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 70vh;
+}
 .table{
     display:inline-block;
     margin: 5px 50px;
@@ -79,7 +89,11 @@
 }
 
 #sanitary_description{
-    text-align: left;
-    background-color: #87976b71;
+  
+  color: #76865cad;
+  text-align: center;
 
+}
+.sanitary_description ul li{
+    list-style-type: circle;
 }

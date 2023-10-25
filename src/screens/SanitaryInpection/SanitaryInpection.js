@@ -233,7 +233,7 @@ function SanitaryInpection() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <div className='container-wrapper'></div>
+                 
                     <div className='sanitaryInpection'>
 
                         {/* Pop up test methods */}

@@ -26,17 +26,29 @@ function Home() {
 <label className='mt-5'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
 </div> */}
       <section className='section-1'>
-        <div className='mb-5 text-center display-6 ml-5'>
-          <label className='mt-5'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
-          <br></br>
-          <label>House hold Level</label>
+      <MovingComponent
+          type="slideInFromTop"
+          duration="1000ms"
+          delay="0.5s"
+          direction="normal"
+          timing="ease"
+          iteration="1"
+          fillMode="none">
+           <div className='user-text d-flex mb-5 text-center display-6 ml-5'>
+        <label className='mt-5 text-center'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
         </div>
-        <div class="curve"></div>
+        </MovingComponent>
+      
+      
       </section>
       {/**About simra */}
-      <section className='section-2'>
+      <section className='section-2 px-5'>
+<h1>Information</h1>
+        <div className='row gx-5 align-items-center'>
 
-        <MovingComponent
+ 
+<div className='col-lg-6 order-lg-2'>
+<MovingComponent
           type="fadeInFromLeft"
           duration="1000ms"
           delay="0.2s"
@@ -44,14 +56,22 @@ function Home() {
           timing="ease"
           iteration="1"
           fillMode="none">
-          <p className='para d-flex justify-content-start'>
+          <p className='para ' style={{color:'white'}}>
             Ensuring safe drinking water for all<br></br>
 
             Empower yourself: monitor your water quality at home.<br></br>
+            <br></br>
             “Everyone has the right to have access to sufficient food and water.” </p>
 
         </MovingComponent>
-        {/* <img className='img-section-2' src={dwater}/> */}
+</div>
+       <div className='col-lg-6 order-lg-2'>
+        <div className='p-5'>
+        <img className='img-fluid rounded-circle' style={{width:'400px' ,height:'400px'}} src={dwater}/>
+        </div>
+     
+       </div>
+       </div>
       </section>
       {/** contact us*/}
       <section className='section-3'>
