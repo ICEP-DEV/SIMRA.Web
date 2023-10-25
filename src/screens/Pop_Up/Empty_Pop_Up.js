@@ -1,11 +1,10 @@
-import './Pop_Up.css';
+import './Pop_Up_Level2.css';
 
-function Pop_Up_Level3(props) {
+function Empty_Pop_Up(props) {
     return (props.trigger) ? (
         <div className="register-popup">
             <div className="register-popup-inner">
                 <div className="popup-inner-header">
-                    <label className='x_close' style={{color:'black', marginTop:"35px", fontSize:"1em"}} onClick={() => props.setTrigger(false)}><h2>X</h2></label>
                 </div>
                 {props.children}
             </div>
@@ -13,4 +12,4 @@ function Pop_Up_Level3(props) {
     ) : "";
 }
 
-export default Pop_Up_Level3;
+export default Empty_Pop_Up;

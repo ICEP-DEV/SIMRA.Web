@@ -5,7 +5,11 @@ import { useSelector } from 'react-redux';
 import Navbar from '..//Navbar/Navbar';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer';
-import Popup from '../Pop_Up/Pop_Up'
+import Popup from '../Pop_Up/Pop_Up';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
   const [count, setCount] = useState('');
@@ -120,8 +124,18 @@ export default function QMRAApp() {
         .then((result) => {
           console.log(result)
           if (result.data.success == true) {
+            toast.success("Successfully tested, the results will display on popup....", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+          });
             setPopupoResults(true)
-            setProbabilityOfInfection(result.data.totalQmra)
+            setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
 
           }
 
@@ -136,8 +150,10 @@ export default function QMRAApp() {
 
   }
 
-  let popalert = <div>
+  let popalert = <div style={{color:'black'}}>
     probability of infection is {ProbabilityOfInfection}
+    <br />
+    <button onClick={() => setPopupoResults(false)} className='btn btn-primary'>OK</button>
   </div>
   return (
 

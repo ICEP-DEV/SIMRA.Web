@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
-import PopUpAlert from '../Pop_Up/Pop_Up'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { sampling_details } from '../../Redux/sampling_data'
 import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../Loader/Loader';
+
 
 function SamplingData() {
     let user_info = useSelector((state) => state.user.value)
@@ -24,9 +27,10 @@ function SamplingData() {
     const [Province, setProvince] = useState('');
     const [Longitude, setLongitude] = useState('')
     const [Latitude, setLatitude] = useState('')
-    const [PopUpAlertMessage, setPopUpAlertMessage] = useState(false)
     let [Level2UserPopUp, setLevel2UserPopUp] = useState(false);
     let [Level3UserPopUp, setLevel3UserPopUp] = useState(false);
+    const [ButtonPopup, setButtonPopup] = useState(false);
+
 
     const api = 'http://localhost:3001/api/'
 
@@ -57,19 +61,70 @@ function SamplingData() {
     }
 
     function submit_sampling_data() {
+        setButtonPopup(true)
         if (Province === "") {
+            toast.warn(`Select Province`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (Municipality === "") {
+            toast.warn(`Select Municipality`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (WaterSource === "") {
+            toast.warn(`Select Water Source`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (WaterAccessibility === "") {
+            toast.warn(`Select Water Accessibility`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (WeatherCondition === "") {
+            toast.warn(`Select Weather Condition`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         var temp = {
@@ -82,36 +137,46 @@ function SamplingData() {
             longitude: Longitude
         }
         dispatch(sampling_details(temp))
+
         if (Latitude === '' || Longitude === '') {
-            PopUpAlertMessage(true)
+            toast.warn(`Cannot detect your location you can proceed with the application but you will not
+            get the results and we wont be able to capture your information provided!`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
 
-        if (user_info.user_level === 1) {
-            navigate('/h2s_survey')
-        }
-        else if (user_info.user_level === 2) {
-            setLevel2UserPopUp(true)
-        }
-        else if (user_info.user_level === 3) {
-            setLevel3UserPopUp(true)
-        }
+        setTimeout(() => {
+            setButtonPopup(false)
+            if (user_info.user_level === 1) {
+                navigate('/h2s_survey')
+            }
+            else if (user_info.user_level === 2) {
+                setLevel2UserPopUp(true)
+            }
+            else if (user_info.user_level === 3) {
+                setLevel3UserPopUp(true)
+            }
+        }, 6000)
+
     }
 
-    let AlertMessage = <div>
-        <p>Cannot detect your location you can proceed with the application but it will not
-            get the results and we wont be able to capture your information provided</p>
-        <br />
-        <button className='btn btn-success' onClick={() => navigate('/level1')}></button>
-    </div>
+
 
     const leve2popup = <div>
-        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
-        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
+        <button className='level_popup level1_class' onClick={() => navigate('/h2s_survey')}>Level One(Household)</button>
+        <button className='level_popup level2_class' onClick={() => navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
     </div>
 
     const leve3popup = <div>
-        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
-        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
+        <button className='level_popup level1_class' onClick={() => navigate('/h2s_survey')}>Level One(Household)</button>
+        <button className='level_popup level2_class' onClick={() => navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
         <button className='level_popup level3_class'>Level Three(Expert)</button>
     </div>
 
@@ -121,10 +186,11 @@ function SamplingData() {
             <div className='content'>
                 <Header />
                 <div className='container-wrapper'>
+                    <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                        <div></div>
+                    </Loader>
+                    <ToastContainer />
                     <h2>Sampling Data</h2>
-                    <PopUpAlert trigger={PopUpAlertMessage} setTrigger={setPopUpAlertMessage} >
-                        {AlertMessage}
-                    </PopUpAlert>
                     <Level2PopUp trigger={Level2UserPopUp} setTrigger={setLevel2UserPopUp}>
                         {leve2popup}
                     </Level2PopUp>

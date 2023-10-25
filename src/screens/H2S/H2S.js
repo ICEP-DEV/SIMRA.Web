@@ -18,8 +18,6 @@ function H2S() {
     let sampling_info = useSelector((state) => state.sampling.value)
     const [Methods, setMethods] = useState(methods)
     const [selectedOption, setSelectedOption] = useState({ isFound: false });
-    const [Longitude, setLongitude] = useState('')
-    const [Latitude, setLatitude] = useState('')
     const [IsContiminated, setIsContiminated] = useState(false);
     const [ResultsStatus, setResultsStatus] = useState(false);
 
@@ -31,6 +29,21 @@ function H2S() {
 
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
+        //check for location
+        /*if (!sampling_info.longitude || !sampling_info.latitude) {
+            toast.error("Won't able to proceed since we could not get your location!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }*/
+
         return invokeModal(!false)
     }
     const [isShows, invokeModals] = React.useState(false)
@@ -38,19 +51,11 @@ function H2S() {
         return invokeModals(!false)
     }
     const modalClose = () => {
-        return invokeModal(false)
+        handleButtonClick()
+        //return invokeModal(false)
     }
     const modalCloses = () => {
         return invokeModals(false)
-    }
-
-    const handleChangeUpdate = e => {
-        setIsContiminated((currentState) => ({
-            ...currentState,
-            [e.target.name]: Boolean(e.target.value),
-        }))
-        console.log(IsContiminated)
-
     }
 
     const divStyleSubmit = {
@@ -72,67 +77,51 @@ function H2S() {
         navigate("/h2s_survey");
     }
 
-    const handleButtonClick = (color) => {
-        console.log(selectedOption)
-        if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could get your location!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            return;
-        }
+    async function handleButtonClick()  {
+        console.log(sampling_info)
 
-        else {
-            axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
-                // Assign to Coordinates object
-                var coordinates = {
-                    latitude: sampling_info.latitude,
-                    longitude: sampling_info.longitude,
-                    samplingId: response.data.insertedId
-                }
-                //Call in coordinates api
-                axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
-                    console.log(result)
-                }, err => {
-                    console.log(err)
-                })
-
-                // Assign to watersource object
-                var watersource = {
-                    samplingId: response.data.insertedId,
-                    type: sampling_info.type,
-                    waterAccessability: sampling_info.waterAccessability
-                }
-                //Call in watersource api
-                axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
-                    console.log(result)
-                }, err => {
-                    console.log(err)
-                })
-
-                var h2s_test = {
-                    status: selectedOption.isFound,
-                    samplingId: response.data.insertedId
-                }
-                axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
-
-                    if (result.data.success === true) {
-                        console.log(result.data.status)
-                        setResultsStatus(result.data.status)
-                        // navigate("/level1", { state: { temp } })
-                    }
-                })
+        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then(async (response) => {
+            // Assign to Coordinates object
+            var coordinates = {
+                latitude: sampling_info.latitude,
+                longitude: sampling_info.longitude,
+                samplingId: response.data.insertedId
+            }
+            //Call in coordinates api
+            axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+                console.log(result)
             }, err => {
                 console.log(err)
             })
 
-        }
+            // Assign to watersource object
+            var watersource = {
+                samplingId: response.data.insertedId,
+                type: sampling_info.type,
+                waterAccessability: sampling_info.waterAccessability
+            }
+            //Call in watersource api
+            axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+                console.log(result)
+            }, err => {
+                console.log(err)
+            })
+
+            var h2s_test = {
+                status: selectedOption.isFound,
+                samplingId: response.data.insertedId
+            }
+           await axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
+
+                if (result.data.success === true) {
+                    console.log(selectedOption.isFound)
+                    setResultsStatus(selectedOption.isFound)
+                }
+            })
+        }, err => {
+            console.log(err)
+        })
+
     };
 
     let display_methods = <div className="box box_with_carousel">
@@ -208,7 +197,7 @@ function H2S() {
                                         {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                        <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
+                                        <Button variant="dark" onClick={function (event) { initModals() }}>
                                             yes
                                         </Button>
                                     </Modal.Footer>
@@ -238,7 +227,7 @@ function H2S() {
                                         {/* <Button variant="danger" onClick={initModals}>
                             
                         </Button> */}
-                                        <Button variant="dark" onClick={function (event) {naving(); modalClose(); }}>
+                                        <Button variant="dark" onClick={function (event) { naving(); modalClose(); }}>
                                             Ok
                                         </Button>
                                     </Modal.Footer>

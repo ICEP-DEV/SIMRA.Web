@@ -8,7 +8,6 @@ function Loader(props) {
                 <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status">
                         <span className="visually-hidden" style={{width:100, height:100}}>Loading...</span>
-                        {props.children}
                     </div>
                 </div>
             </div>

@@ -108,7 +108,7 @@ function SanitaryInpection() {
         }
 
         if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could get your location!", {
+            toast.error("Won't able to proceed since we could not get your location!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,

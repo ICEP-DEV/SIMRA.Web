@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
+import Register from '../Registration/Registration'
 
 function Login() {
     let user_info = useSelector((state) => state.use)
