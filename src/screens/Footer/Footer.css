@@ -1,0 +1,14 @@
+
+.contact-info{
+    display: flex;
+    background-color:#a5c473;
+
+}
+
+.contact_detail{
+    margin: 0 20px;
+}
+
+.end_footer{
+    justify-content: center;
+}

@@ -1,0 +1,85 @@
+
+.table{
+    display:inline-block;
+    margin: 5px 50px;
+}
+
+.sanitary-submit{
+    width: 100%;
+}
+.risk_parce{
+    height: 10%;
+    width: 100%;
+}
+
+.low_risk{
+    background-color: rgba(0, 128, 0, 0.719);
+}
+
+.medium_risk {
+    background-color: rgba(255, 255, 0, 0.733);
+}
+
+.high_risk {
+    background-color: rgb(201, 199, 105);
+}
+
+.very_high_risk {
+    background-color: rgba(216, 0, 0, 0.986);
+}
+
+.no_risk{
+    background-color: rgba(0, 128, 0, 0.719);
+}
+
+.yes_risk{
+    background-color: rgba(216, 0, 0, 0.986);
+}
+
+.box_with_carousel{
+    height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.method_img{
+    height: 300px;
+    width: 90%;
+}
+
+.image_method_class{
+    height: 300px;
+    width: 50%;
+}
+.slide
+{
+    color: black;
+}
+
+
+/*///////////////////////////////////////////////////////////////////////////////////*/
+
+.form-header, .form_content{
+    display: flex;
+    margin-top: 10px;
+}
+
+.form-header{
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.questinare{
+    width: 50%;
+    font-weight: 600;
+}
+
+.yes_no{
+    width: 30%;
+}
+
+#sanitary_description{
+    text-align: left;
+    background-color: #87976b71;
+
+}
