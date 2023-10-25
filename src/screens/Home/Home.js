@@ -2,8 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { HiOutlineMail } from 'react-icons/hi';
-import { AiFillPushpin, AiFillPhone } from 'react-icons/ai';
-import { CiLocationOn } from 'react-icons/ci';
+import glassofwater from'../../assets/glassofwater.jpg';
 import dwater from './dirtywater.jpeg';
 import './Home.css';
 import { useSelector } from 'react-redux';
@@ -71,6 +70,34 @@ function Home() {
         </div>
      
        </div>
+       </div>
+       <div className='row gx-5 align-items-center'>
+       <div className='col-lg-6 order-lg-2'>
+        <div className='p-5'>
+        <img className='img-fluid rounded-circle' style={{width:'400px' ,height:'400px'}} src={glassofwater}/>
+        </div>
+     
+       </div>
+ {/*** */}
+<div className='col-lg-6 order-lg-2'>
+<MovingComponent
+          type="fadeInFromRight"
+          duration="1000ms"
+          delay="0.2s"
+          direction="normal"
+          timing="ease"
+          iteration="1"
+          fillMode="none">
+          <p className='para ' style={{color:'white'}}>
+            <h4>Is your water safe for drinking purposes? </h4>
+          While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
+           Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
+           Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
+            </p>
+
+        </MovingComponent>
+</div>
+       
        </div>
       </section>
       {/** contact us*/}

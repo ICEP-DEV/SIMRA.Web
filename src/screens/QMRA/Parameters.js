@@ -172,9 +172,10 @@ export default function QMRAApp() {
 
             </select>
             <br></br>
-            <button className='btn btn-dark w-25 mt-5 mb-4' onClick={calculateResult}>Calculate</button>
+            <button className='btn btn-light btn-lg mt-5 mb-4' onClick={calculateResult}>Calculate</button>
+
             {result !== '' && <p style={styles.result}>{result}</p>}
-            <table id='table'>
+            <table id='table' className='table-bordered'>
               <th>
                 Pathogen
               </th>
@@ -184,7 +185,7 @@ export default function QMRAApp() {
               <th>
                 Parameters
               </th>
-              <tbody>
+              <tbody >
                 {(TempPathogen.best_fit_model !== '') && (<tr>
 
                   <td>{TempPathogen.pathogen} </td>
@@ -223,7 +224,7 @@ export default function QMRAApp() {
 
               </tbody>
             </table>
-            <button className='btn btn-dark w-25 mt-5' onClick={sendQmra}>Submit</button>
+            <button className='btn btn-light btn-lg mt-5' onClick={sendQmra}>Submit</button>
           </div>
         </div>
       </div>

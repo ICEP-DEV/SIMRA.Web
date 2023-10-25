@@ -74,10 +74,10 @@ const FibAnalysis = () => {
         <div className='content'>
           <Header />
           <div className='container-wrapper'>
-            <div>
+            <div className='mt-5'>
 
               <select
-                className='form-select-lg mb-3'
+                className='form-select-lg mb-3 mt-5'
                 value={selectedFIB}
                 onChange={(event) => handleFibData(event.target.value)}
               >
@@ -89,13 +89,13 @@ const FibAnalysis = () => {
                   </option>
                 ))}
               </select>
-              <div className='table-responsive-lg d-flex justify-content-center'>
+              <div className='table-responsive-lg d-flex justify-content-center '>
 
 
-                <table className=' w-75'>
+                <table className='table-bordered w-75 '>
                   <tbody>
                     <tr>
-                      <th scope='col'>Indicator</th>
+                      <th scope='col border'>Indicator</th>
                       <th scope='col'>Ratio</th>
                     </tr>
                     <tr>
@@ -116,7 +116,7 @@ const FibAnalysis = () => {
               <p> Count: {estimatedCount} </p>
               <p>Estimated Count: {roundedEstimatedCount} </p>
             </div>
-            <button onClick={sendValue}>Save Value</button>
+            <button className='btn btn-light btn-lg' onClick={sendValue}>Save Value</button>
           </div>
         </div>
       </div>
