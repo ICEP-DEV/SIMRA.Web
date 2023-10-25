@@ -1,31 +1,57 @@
-.main-level1{
-    margin-left: 200px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-    background-color: #fff;
-    border-top-left-radius: 80px 80px;
-    border-bottom-left-radius:80px 80px ;
-    position: relative;
-    height: 100vh;
+.table3{
+    text-align: center;
 }
-.main-level1 .btn-sanitary
+.btn-sanitary{
+    margin: 50px;
+    width: 200px;
+    height: 50px;
+    border-radius: 12px;
+}
+.img-h2s
 {
-    width: 201px;
-    padding: 0 16px;
+    width: 20%;
+    height: 150px;
+}
+.card-h2s
+{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 250px;
+    height: 350px;
+    
+}
+.lvl1 h2
+{
+
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
   
 }
-.hero-level1
+.btn-lvl1
 {
-    background-color: #0063EA; 
-    min-height: 100% !important; 
+    text-align: center;
+    background-color: #034694;
+    color: #fff;
+    padding: 10px 10px;
+     border-radius: 10px 10px;
+   
 }
-.lvl1
+.table3 Link
 {
-    
- color:#0063EA;
- font-size: 20px;
- height: 100vh;
+    text-decoration: none;
 }
-.table3{
-    padding-top: 10%;
-    padding-left: 30%;
+
+#level_description{
+    text-align: left;
+}
+
+.align-items-start{
+    display: flex;
+    flex-direction: row;
 }
