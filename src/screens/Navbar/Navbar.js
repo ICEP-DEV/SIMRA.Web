@@ -13,22 +13,22 @@ function Navbar() {
     const dispatch = useDispatch();
     const [UserType, setUserType] = useState(0)
     // const [SamplingInfo, setSamplingInfo] = useState({})
-    let [IsFoundSamplingData,setIsFoundSamplingData] = useState(true);
+    let [IsFoundSamplingData, setIsFoundSamplingData] = useState(true);
     let user_info = useSelector((state) => state.user.value)
     let sampling_info = useSelector((state) => state.sampling.value)
 
     useEffect(() => {
-        if (user_info === undefined) {
-            navigate("/")
-        }
-        else {
+        if (user_info !== undefined) {
             setUserType(user_info.user_level)
-            console.log(user_info.user_level)
-            console.log(sampling_info)
-            if(sampling_info != undefined){
+            console.log('user',user_info.user_level)
+            console.log('sampling info',sampling_info)
+            if (sampling_info != undefined) {
                 setIsFoundSamplingData(false)
             }
             console.log(IsFoundSamplingData)
+        }
+        else {
+            navigate("/")
         }
     }, [])
 
@@ -36,9 +36,6 @@ function Navbar() {
         navigate("/profile")
     }
 
-    function report() {
-        navigate("/logs")
-    }
     function data() {
         navigate("/sampling_data")
     }
@@ -50,12 +47,9 @@ function Navbar() {
         navigate("/")
     }
 
-
-
     function logout() {
         dispatch(remove_details());
         dispatch(remove_sample_details())
-
         navigate("/")
     }
 
@@ -69,12 +63,12 @@ function Navbar() {
                 <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
                 <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
 
-                <div className="navbar-subs dropdown"  hidden={IsFoundSamplingData}>
+                <div className="navbar-subs dropdown" hidden={IsFoundSamplingData}>
                     {sampling_info !== undefined && <div>
                         <span className="nav-label dropbtn">Levels</span>
                         <ul class="dropdown-content">
-                        {(UserType === 1 || UserType === 2 || UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>Level 1</li>
+                            {(UserType === 1 || UserType === 2 || UserType === 3) && (<span>
+                                <Link className='dropdown-link' to='/h2s_survey'>Level 1</Link>
                             </span>)}
                             {(UserType === 2 || UserType === 3) && (<span>
                                 <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li>
@@ -96,7 +90,7 @@ function Navbar() {
                     <Link className='dropdown-link' to=''>Level 2</Link>
                 </span>)}
             </div> */}
-                <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
+                <div className="navbar-subs" onClick={() => navigate('/h2s_logs')}><span className="nav-label">Report</span></div>
 
                 <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
             </div>

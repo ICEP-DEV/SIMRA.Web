@@ -12,6 +12,9 @@ import Municipality from './screens/Municipality/Municipality';
 import Report from './screens/Municipality_Report/Report'
 import Survay_Report from './screens/Survay_Report/Survay_Report';
 import H2S_Report from './screens/H2S_Report/H2S_Report';
+import User_H2S_Logs from './screens/User_H2S_Logs/User_H2S_Logs';
+import User_Sanitary_Survay_Logs_Reports from './screens/User_Sanitary_Survay_Logs_Reports/User_Sanitary_Survay_Logs_Reports';
+import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -34,9 +37,10 @@ function App() {
         <Route exact path='/municipality' element={<Report />} />
         <Route exact path='/sanitary_report' element={<Survay_Report />} />
         <Route exact path='/h2s_report' element={<H2S_Report />} />
+        {/* <Route exact path='/user_logs' element={<User_Logs />} /> */}
+        <Route exact path='/h2s_logs' element={<User_H2S_Logs />} />
+        <Route exact path='/survay_logs' element={<User_Sanitary_Survay_Logs_Reports />} />
 
-        
-        
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
       

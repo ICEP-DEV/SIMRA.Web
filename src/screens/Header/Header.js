@@ -1,11 +1,21 @@
 import { useSelector } from 'react-redux';
 import './Header.css';
 import { FaUserAlt } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 function Header() {
-    let user_info = useSelector((state) => state.user.value)
+    const navigate = useNavigate();
+    let user_info = useSelector((state) => state.user.value);
+    useEffect(() => {
+        console.log(user_info)
+        if (user_info === undefined) {
+            navigate("/");
+            return;
+        }
+    }, [])
+
     return (
         
             <div className="userHeader" ><Link className=""to="/profile">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { HiOutlineMail } from 'react-icons/hi';
@@ -13,6 +13,11 @@ function Home() {
   let navigate = useNavigate();
   let user_info = useSelector((state) => state.user.value)
 
+  useEffect(()=>{
+    if(user_info === undefined){
+      navigate('/')
+    }
+  })
   return (
     <div className='hero' >
 
