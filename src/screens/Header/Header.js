@@ -9,7 +9,7 @@ function Header() {
     return (
         
             <div className="userHeader" ><Link className=""to="/profile">
-                <FaUserAlt color="#fff" className='user_profile' /><label style={{color:'white'}}>{user_info.user_initial} {user_info.user_lastname}</label>
+                <FaUserAlt color="#0059D4" className='user_profile' /><label style={{color:'#0059D4'}}>{user_info.user_initial} {user_info.user_lastname}</label>
             </Link></div>
         
 

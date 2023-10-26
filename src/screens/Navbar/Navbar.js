@@ -12,6 +12,7 @@ function Navbar() {
     const [UserType, setUserType] = useState(0)
     let user_info = useSelector((state) => state.user.value)
     useEffect(() => {
+        console.log(user_info)
         if (user_info === undefined) {
             navigate("/")
         }

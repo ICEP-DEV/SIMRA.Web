@@ -133,7 +133,7 @@ function SamplingData() {
                     </Level3PopUp>
                     <div className='form-group'>
                         {/* <label>Province</label> */}
-                        <select className='form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
+                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
                             <option>Select Province</option>
                             {provinces.map((prov, xid) => (
                                 <option key={xid} className="control-form" value={prov.province_id} >{prov.province_name}</option>
@@ -143,7 +143,7 @@ function SamplingData() {
 
                     <div className='form-group'>
                         {/* <label>Municipality</label> */}
-                        <select className='form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
+                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
                             <option>Select Municipality</option>
                             {Municipalities.map((muni, xid) => (
                                 <option key={xid} className="control-form" value={muni.muni_id} >{muni.muni_name}</option>
@@ -188,7 +188,7 @@ function SamplingData() {
                             <option value='Sunny' className="control-form">Sunny</option>
                         </select>
                     </div>
-                    <button className='btn btn-dark btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
+                    <button className='btn btn-primary btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
 
             </div>

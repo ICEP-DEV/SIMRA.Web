@@ -12,6 +12,7 @@ import Municipality from './screens/Municipality/Municipality';
 import Report from './screens/Municipality_Report/Report'
 import Survay_Report from './screens/Survay_Report/Survay_Report';
 import H2S_Report from './screens/H2S_Report/H2S_Report';
+import LandingPage from './screens/LandingPage/LandingPage';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -21,7 +22,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<Login />} />
+        <Route exact path='/' element={<LandingPage />} />
+        <Route exact path='/login' element={<Login />} />
         <Route exact path='/home' element={<Home />} />
         <Route exact path='/sampling_data' element={<SamplingData />} />
         <Route exact path='/h2s_survey' element={<Level1 />} />

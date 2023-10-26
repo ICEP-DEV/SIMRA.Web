@@ -41,42 +41,7 @@ function Level1() {
                     </div>
                 </div>
 
-<section>
-<div className='level1-desccription'>
-                            <label> How can I do H2S test?</label>
-                            <div className='row align-items-start justify-content-around'>
-                                <div className='card-h2s col'>
-                                    <img className='img-h2s' src={borehole} />
-                                    <h5>Step 1</h5>
-                                    <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
-                                </div>
-                                <div className='card-h2s col'>
-                                    <img className='img-h2s ' src={tests} />
-                                    <h5>Step 2</h5>
-                                    <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
-                                </div>
-                                <div className='card-h2s col'>
-                                    <img className='img-h2s' src={tube} />
-                                    <h5>Step 3</h5>
-                                    <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
-                                </div>
-                                <div className='card-h2s col'>
-                                    <img className='img-h2s' src={borehole} />
-                                    <h5>Step 4</h5>
-                                    <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
-                                </div>
-                                <div className='card-h2s col'>
-                                    <img className='img-h2s' src={borehole} />
-                                    <h5>Step 5</h5>
-                                    <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
-                                </div>
 
-
-
-
-                            </div>
-                        </div>
-</section>
             </div>
             <footer>
                 <Footer />

@@ -1,8 +1,9 @@
 
 .contact-info{
     display: flex;
-    background-color:#4f5e37;
+    background-color:#0059D4;
     text-align: center;
+    color: #fff;
  
    
     
@@ -21,7 +22,8 @@
 
 .end_footer{
     text-align: center;
-    background-color:#4f5e37;
+    background-color:#0059D4;
     width: 100%;
-    
+    color: #fff;
+ 
 }

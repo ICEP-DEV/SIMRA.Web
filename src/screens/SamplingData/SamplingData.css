@@ -4,12 +4,32 @@
 
  
  }
+ .select-sampling_data
+ {
+  border: 1px solid #0059D4;
+ }
+ .select-sampling_data:hover
+ {
+  background-color: #0059D4;
+  color: white;
+ }
+ .control-form
+ {
+ background-color: #fff;
+ color: black;
+ }
+ .control-form:hover
+ {
+  
+  color: #0059D4;
+ }
  .container-wrapper
  {  
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: #4f5e37;
+  /* background-color: #4f5e37; */
+  color: darkslategray;
   width: 90%;
   height: 70vh;
   text-align: center;
@@ -35,7 +55,7 @@
  {
      /* background-color: #0063EA;  */
      background-color: #ffffff;
-    color: #fff;
+   
  }
 
  .level_popup{
