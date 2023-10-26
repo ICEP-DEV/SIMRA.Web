@@ -78,6 +78,11 @@ table {
     padding: 5px;
 }
 
+._th, ._td{
+    width: 40%;
+}
+
+
 .search_date{
     display: flex;
 }

@@ -12,6 +12,7 @@ function Survay_Report() {
 
   const [Provinces, setProvinces] = useState([])
   const [Report, setReport] = useState([])
+  const [Municipalities, setMunicipalities] = useState([])
   const [StoredReport, setStoredReport] = useState([])
   let [TotalRecord, setTotalRecord] = useState(0)
   const [startDate, setStartDate] = useState('')
@@ -20,13 +21,13 @@ function Survay_Report() {
 
   const api = "http://localhost:3001/api/"
   useEffect(() => {
-
-    axios.get(api + 'get_survey_stats/2023-06-30/2023-10-25').then((response) => {
+    var date = new Date()
+    var current_date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+    axios.get(api + 'get_survey_stats/2023-06-30/' + current_date.toString()).then((response) => {
       setStoredReport(response.data.result)
       setReport(response.data.result)
       setFoundReport(response.data.success)
       setTotalRecord(response.data.result.length)
-      console.log(response.data)
     })
 
     axios.get(api + "get_provinces").then(response => {
@@ -35,6 +36,8 @@ function Survay_Report() {
     }, err => {
       console.log(err)
     })
+
+
   }, []);
 
   function display_search_report() {
@@ -66,25 +69,53 @@ function Survay_Report() {
       return;
     }
     axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate).then((response) => {
+      setTotalRecord(0)
       setReport(response.data.result)
       setStoredReport(response.data.result)
       setFoundReport(response.data.success)
-      setTotalRecord(response.data.result.length)
-      console.log(response.data)
+      if (response.data.success === true) {
+        setTotalRecord(response.data.result.length)
+      }
     })
   }
 
   function filter_by_province(_province) {
-    console.log(_province)
+    var count = 0
     var temp_array = StoredReport
-    var k = 0
+
+    axios.get(api + "get_municipalities/" + _province).then(response => {
+      setMunicipalities(response.data.results)
+
+    }, err => {
+      console.log(err)
+    })
     setReport(temp_array.filter(value => {
-      k++
       return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase())
     }))
-    setTotalRecord(Report.length)
-    console.log(k)
+
+    for (var k = 0; k < StoredReport.length; k++) {
+      if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
+        count++
+      }
+    }
+    setTotalRecord(count)
   }
+
+  function filter_by_municipality(_muni) {
+    var temp_array = StoredReport
+    var count = 0
+
+    setReport(temp_array.filter(value => {
+      return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase())
+    }))
+    for (var k = 0; k < Report.length; k++) {
+      if (Report[k].muni_id.toLocaleLowerCase() === _muni.toLocaleLowerCase()) {
+        count++
+      }
+    }
+    setTotalRecord(count)
+  }
+
   return (
     <div className='hero-all'>
       <Admin_NavBar />
@@ -111,7 +142,6 @@ function Survay_Report() {
               <div id='filter_by_province'>
                 <span className='survey_province'>
                   <label>Province</label>
-
                   <select onChange={(e) => filter_by_province(e.target.value)}>
                     <option value=''>Province</option>
                     {Provinces.map((province, xid) => (
@@ -119,43 +149,49 @@ function Survay_Report() {
                     ))}
                   </select>
                 </span>
+                <span className='survey_province'>
+                  <label>Municipalities</label>
+                  <select onChange={(e) => filter_by_municipality(e.target.value)}>
+                    <option value=''>Province</option>
+                    {Municipalities.map((muni, xid) => (
+                      <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
+                    ))}
+                  </select>
+                </span>
               </div>
-              <div id='stats_summary' style={{color:'black'}}>
+              <div id='stats_summary' style={{ color: 'black' }}>
                 <h3>Total Records: {TotalRecord}</h3>
               </div>
 
             </div>
-
-
-
+            
             <div className='reports'>
-              {(FoundReport === true) && (<div >
+              {(FoundReport === true) && (
                 <table className="table survay_table">
                   <tr className="survey_tr">
-                    <th className="survey_th">Municipalities</th>
+                    <th className="survey_th _th">Municipalities</th>
                     <th className="survey_th">Date</th>
-                    <th className="survey_th">Catchment Area</th>
-                    <th className="survey_th">Total Average</th>
-                    <th className="survey_th">Risk Type</th>
+                    <th className="survey_th ">Catchment Area</th>
+                    <th className="survey_th ">Total Average</th>
+                    <th className="survey_th ">Risk Type</th>
                   </tr>
 
                   {Report.map((report, xid) => (
-                    <tr key={xid} className="survey_tr">
-                      <td className="survey_td">{report.muni_name}</td>
+                    <tr key={xid} className="survey_tr" scope="row">
+                      <td className="survey_td _td">{report.muni_name}</td>
                       <td className="survey_td">{report.created_date}</td>
                       <td className="survey_td">{report.type}</td>
                       <td className="survey_td">{report.total_avarage}</td>
                       <td className="survey_td">{report.risk_type}</td>
                     </tr>
                   ))}
-
                 </table>
-              </div>)}
+              )}
 
-              {(FoundReport.success === false) && (<div >
+              {/* {(FoundReport.success === false) && (<div >
                 <label>{FoundReport.message}</label>
 
-              </div>)}
+              </div>)} */}
             </div>
           </div>
         </div>
