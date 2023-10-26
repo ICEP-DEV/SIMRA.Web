@@ -1,0 +1,10 @@
+
+.form_content_switch{
+    position: relative;
+}
+
+#flexSwitchCheckDefault{
+    position: absolute;
+    left: 50%;
+    width: 5%;
+}

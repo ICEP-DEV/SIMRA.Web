@@ -1,19 +1,33 @@
 import './Municipality.css'
-import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import Admin_Side_Bar from '../Admin_Side_Bar/Admin_Side_Bar'
+import Footer from '../Footer/Footer';
+import Admin_NavBar from '../Admin_NavBar/Admin_NavBar';
+import Header from '../Header/Header';
+import drink from './girldrinking.png'
+import { FaTooth } from 'react-icons/fa';
+import tapwater from '../../assets/tapwater.jpg';
 function Municipality() {
-    
+
     return (
-        <div className="body">
-            <div className="content">
-                <div className="left">
-                <Admin_Side_Bar />
-                </div>
-                <div className="right">
-                <label>right content</label>
+        <div className='hero-all' >
+            <Admin_NavBar />
+            <div className='content-municipalities'>
+                <Header />
+                <div className='container-wrapper'>
+                    <div>
+                        <img src={drink} className='home-img d-flex justify-content-start' />
+                    </div>
+                    <section>
+                        {/* <img className='home-img d-flex justify-content-start'
+                    src={tapwater} style={{width:'150px'}}/> */}
+                        <p className='d-flex justify-content-start'>
+                            "Promoting a clean environment, ensuring safe water, and fostering good health."
+                        </p>
+                    </section>
                 </div>
             </div>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     )
 }

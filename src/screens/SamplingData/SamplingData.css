@@ -1,15 +1,31 @@
 .content{
-
-  color:#0063EA;
   font-size: 20px;
-  height: 100vh;
+  min-height: 100vh;
+
  
  }
  .container-wrapper
- {
-     padding-top: 10%;
-     padding-left: 20%;
+ {  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #4f5e37;
+  width: 90%;
+  height: 70vh;
+  text-align: center;
  }
+ h2
+ {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: 400;
+  word-spacing: 1px;
+  line-height: 1.5em;
+  padding-bottom: 15px;
+ font-family: "Playfair Display", serif;
+ }
+
+
  .form-group{
      display: flex;
      flex-direction: column;
@@ -17,19 +33,29 @@
  }
  .hero-all
  {
-     background-color: #0063EA; 
-    
+     /* background-color: #0063EA;  */
+     background-color: #ffffff;
+    color: #fff;
  }
- 
- .main-all {
-     margin-left: 200px; /* Same as the width of the sidebar */
-     padding: 0px 10px;
-     background-color: #fff;
-     border-top-left-radius: 80px 80px;
-     border-bottom-left-radius:80px 80px ;
-     position: relative;
- 
-   }
+
+ .level_popup{
+  margin: 5px 25px;
+  border-radius: 12px;
+
+ }
+
+ .level1_class{
+  background-color: #76865cad;
+ }
+
+ .level2_class{
+  background-color: #50524dad;
+ }
+
+ .level3_class{
+  background-color: #b6dd7cad;
+ }
+
    
    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
    @media screen and (max-height: 450px) {

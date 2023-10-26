@@ -1,21 +1,33 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Sidebar from '../Sidebar/Sidebar';
-import { View, Modal, Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
+import { Modal, Button } from 'react-bootstrap'
+import { useSelector } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Carousel } from "react-responsive-carousel";
+import methods from '../../Data/methods';
+import './H2S.css'
+
 
 function H2S() {
     const navigate = useNavigate();
+    let sampling_info = useSelector((state) => state.sampling.value)
+    const [Methods, setMethods] = useState(methods)
+    const [selectedOption, setSelectedOption] = useState({ isFound: false });
+    const [Longitude, setLongitude] = useState('')
+    const [Latitude, setLatitude] = useState('')
+    const [IsContiminated, setIsContiminated] = useState(false);
+    const [ResultsStatus, setResultsStatus] = useState(false);
 
-    const tempData = useLocation();
-    const [SamplingData] = useState(tempData.state.temp)
-
-    const [activeMenu, setActiveMenu] = useState(null);
-    const [completedProcessH2S, setCompletedProcessH2S] = useState('Completed 0/1');
-    const [isYellowTextVisible, setIsYellowTextVisible] = useState(false);
-    const [isBlackTextVisible, setIsBlackTextVisible] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
-
+    const handleChangeOption = (e) => {
+        let option = selectedOption;
+        option[e.target.value] = e.target.checked;
+        setSelectedOption(option)
+    }
 
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
@@ -32,9 +44,14 @@ function H2S() {
         return invokeModals(false)
     }
 
-    const handleRadioChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
+    const handleChangeUpdate = e => {
+        setIsContiminated((currentState) => ({
+            ...currentState,
+            [e.target.name]: Boolean(e.target.value),
+        }))
+        console.log(IsContiminated)
+
+    }
 
     const divStyleSubmit = {
         backgroundColor: 'blue',
@@ -44,309 +61,200 @@ function H2S() {
         textAlign: 'center',
     };
 
-    const handleMenuClick = (menu) => {
-        setActiveMenu(menu === activeMenu ? null : menu);
-    };
+    // const handleMenuClick = (menu) => {
+    //     setActiveMenu(menu === activeMenu ? null : menu);
+    // };
 
     const handleSubmitButton = () => {
-        // Handle submission here, you can use the selectedOption state.
-        console.log(`Selected Option: ${selectedOption}`);
-        if (selectedOption === 'NEGATIVE') {
-            setIsYellowTextVisible(true); // Show the negative message
-            setIsBlackTextVisible(false); // Hide the positive message
-        } else if (selectedOption === 'POSITIVE') {
-            setIsYellowTextVisible(false); // Hide the negative message
-            setIsBlackTextVisible(true); // Show the positive message
-        }
+
     };
+    const naving = () => {
+        navigate("/h2s_survey");
+    }
+
     const handleButtonClick = (color) => {
-        if (color === 'Yellow') {
-            setIsYellowTextVisible(!isYellowTextVisible);
-            setCompletedProcessH2S('Completed 1/1');
-            setIsBlackTextVisible(false);
-            setSelectedOption('NEGATIVE');
-        } else if (color === 'Black') {
-            setIsBlackTextVisible(!isBlackTextVisible);
-            setCompletedProcessH2S('Completed 1/1');
-            setIsYellowTextVisible(false);
-            setSelectedOption('POSITIVE');
+        console.log(selectedOption)
+        if (!sampling_info.longitude || !sampling_info.latitude) {
+            toast.error("Won't able to proceed since we could get your location!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
         }
 
-        console.log(SamplingData)
-        axios.post("http://localhost:3001/api/sampling_data", SamplingData).then((response) => {
-            console.log(response)
-            var h2s_test = {
-                status: isBlackTextVisible,
-                samplingId: response.data.insertedId
-            }
-            axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
-                var temp = result.data
-                if (result.data.success === true) {
-                    navigate("/level1", { state: { temp } })
+        else {
+            axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+                // Assign to Coordinates object
+                var coordinates = {
+                    latitude: sampling_info.latitude,
+                    longitude: sampling_info.longitude,
+                    samplingId: response.data.insertedId
                 }
+                //Call in coordinates api
+                axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+                    console.log(result)
+                }, err => {
+                    console.log(err)
+                })
+
+                // Assign to watersource object
+                var watersource = {
+                    samplingId: response.data.insertedId,
+                    type: sampling_info.type,
+                    waterAccessability: sampling_info.waterAccessability
+                }
+                //Call in watersource api
+                axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+                    console.log(result)
+                }, err => {
+                    console.log(err)
+                })
+
+                var h2s_test = {
+                    status: selectedOption.isFound,
+                    samplingId: response.data.insertedId
+                }
+                axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
+
+                    if (result.data.success === true) {
+                        console.log(result.data.status)
+                        setResultsStatus(result.data.status)
+                        // navigate("/level1", { state: { temp } })
+                    }
+                })
+            }, err => {
+                console.log(err)
             })
-        }, err=>{
-            console.log(err)
-        })
 
-
+        }
     };
 
-    // const navigating = () => {
-    //     navigate("/level1")
-    // }
+    let display_methods = <div className="box box_with_carousel">
+        <Carousel useKeyboardArrows={true}>
+            {Methods.map((method, xid) => (
+                <div className="slide" key={xid}>
+                    <h1>Method: {method.id}</h1>
+                    <h3>{method.method}</h3><br />
+                    <label style={{ color: 'black' }}>{method.description}</label>
+                    <div className='method_img'>
+                        <img src={method.image} alt={method.method} className='image_method_class' />
+                    </div>
+
+                </div>
+            ))}
+        </Carousel>
+    </div>
 
     return (
         <div className='hero-all' >
-            <div className='sidenav'>
-                <Sidebar />
-            </div>
 
+            <Navbar />
             <div className='main-all'>
+                <ToastContainer />
                 <div className='content'>
-                    <div className='container-wrapper'></div>
-        <div className='text-center mt-4'>
-            {activeMenu === 'sanitary' && <div className="submenu"></div>}
-            <br></br>
-            <p> Please complete H2Test </p>
+                    <Header />
+                    <div className='container-wrapper'>
+                        <div className='h2s'>
+                            <h2>Hydrogen Sulfide(H2S)</h2>
+                            <div className='text-center mt-5'>
+                                <h3>Choose Test Result:</h3>
 
-            <div className='d-inline p-2 bg-dark text-white mt-5' onClick={() => handleMenuClick('h2s')}>
-                H2S TEST {completedProcessH2S && <span style={{ marginLeft: '90px' }}>{completedProcessH2S}</span>}
-            </div>
-            {activeMenu === 'h2s' && (
-                <div className='text-center mt-5'>
-                    <p>Choose Test Result:</p>
-                    <button
-                        className={`p-3 mb-z ${selectedOption === 'NEGATIVE' ? 'bg-white' : 'bg-primary'}`} style={{ marginRight: '20px' }}
-                        id="yellow"
-                        name="test_color"
-                        value="YELLOW"
+                                <div className='form_content form_content_switch'>
+                                    <label className='header_form_label yes_no form-check form-switch'>
+                                        <input className="form-check-input switch_h2s" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeOption}
+                                            name='selectedOption' value="isFound" />
+                                    </label>
+                                </div>
+                                <div>
+                                    <label style={{ marginRight: '10px' }}>
 
-                    >
-                    </button>
+                                        WHITE
+                                    </label>
 
-                    <button
-                        className={`p-3 mb-2 ${selectedOption === 'POSITIVE' ? 'bg-dark ' : 'bg-primary'}`}
-                        id="black"
-                        name="test_color"
-                        value="BLACK"
+                                    <label>
 
-                    >
-                    </button>
+                                        BLACK
+                                    </label>
+                                </div>
+                                <br></br>
 
-                    <div>
-                        <label style={{ marginRight: '10px' }}>
-                            <input
-                                type="radio"
-                                value="NEGATIVE"
-                                checked={selectedOption === 'NEGATIVE'}
-                                onChange={handleRadioChange} style={{ marginRight: '10px' }}
-                            />
-                            WHITE
-                        </label>
+                                <button onClick={initModal} className='d-inline p-2 bg-primary text-white' type="submit" value="Submit" style={divStyleSubmit}>
+                                    SUBMIT
+                                </button>
+                                <div style={{ marginTop: '25px', textAlign: 'left' }}>
+                                    <p>
+                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
+                                    </p>
+                                </div>
 
-                        <label>
-                            <input
-                                type="radio"
-                                value="POSITIVE"
-                                checked={selectedOption === 'POSITIVE'}
-                                onChange={handleRadioChange} style={{ marginRight: '10px' }}
-                            />
-                            BLACK
-                        </label>
-                    </div>
-                    <br></br>
 
-                    <button onClick={initModal} className='d-inline p-2 bg-primary text-white mt-5' type="submit" value="Submit" style={divStyleSubmit}>
-                        SUBMIT
-                    </button>
-                    <br></br>
-
-                   
-                    {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
+                                {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
                         DONE
                     </button> */}
-                    <Modal show={isShow} onHide={modalClose}>
-                            <Modal.Header closeButton onClick={modalClose}>
-                                <Modal.Title>Results</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                Are you sure you want to submit the results ?
-                            </Modal.Body>
-                            <Modal.Footer>
-                                {/* <Button variant="danger" onClick={initModal}>
+                                <Modal show={isShow} onHide={modalClose}>
+                                    <Modal.Header closeButton onClick={modalClose}>
+                                        <Modal.Title>Results</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        Are you sure you want to submit the results ?
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) { handleSubmitButton();  initModals()}}>
-                                    Ok
-                                </Button>
-                            </Modal.Footer>
-                    </Modal>
+                                        <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
+                                            yes
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
 
-                    <Modal show={isShows} onHide={modalCloses}>
-                            <Modal.Header closeButton onClick={function (event) { modalClose(); modalCloses() }}>
-                                <Modal.Title>Methods</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                            {isYellowTextVisible && (
-                        <div>
-                            <p>NO RISK !!!  ENJOY YOUR WATER!!</p>
-                            <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
-                        </div>
-                    )}
+                                <Modal show={isShows} onHide={modalCloses}>
+                                    <Modal.Header closeButton onClick={function (event) { modalClose(); modalCloses() }}>
+                                        <Modal.Title>Methods</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        {ResultsStatus == false && (
+                                            <div>
+                                                <p>NO RISK !!!  </p>
+                                                <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
+                                            </div>
+                                        )}
 
-                    {isBlackTextVisible && (
-                        <div className="text-center">
-                            <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
+                                        {ResultsStatus == true && (
+                                            <div className="text-center">
+                                                <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
+                                                {display_methods}
+                                            </div>
 
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>METHOD 1: Boiling water</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>The simplest method to purify water is to boil it for a good time.
-                                                High temperatures cause the bacteria and virus to dissipate, removing all impurities from the water.
-                                                In doing so, chemical additions cease to exist in the water. However, the dead micro-organisms and impurities settle at the bottom of the water,
-                                                and boiling does not help eliminate all the impurities.
-                                                You must strain the water through a microporous sieve to completely remove the impurities.</li>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 2: Water Purifier</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>An electric water purifier is the most trusted form of water purification found in most houses today.
-                                                A water purifier uses a multi-stage process involving UV and UF filtration, carbon block,
-                                                and modern water filtration technology that eliminates most of the chemicals and impurities, making it the purest drinking water.</li>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 3: Reverse Osmosis</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>An RO Purifier proves to be one of the best methods of purifying water.
-                                                Reverse Osmosis forces water through a semipermeable membrane and removes contaminants.
-                                                The TDS Controller and Mineraliser Technology, like the one found in an A. O. Smith RO UV Water Purifier,
-                                                help retain the necessary nutrients while doing away with harmful impurities.</li>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 4: Water Chlorination</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>It is an older technique used usually during an emergency, wherein a mild bleach with approximately 5% chlorine is added to the water.
-                                                This mixture works as an oxidant and quickly kills microorganisms, making water safe for consumption.</li>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 5: Distillation</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>Distillation is a water purification process involving collecting the condensed water after evaporation,
-                                                ensuring that water is free of contaminants. However, this isn’t as effective as an RO filter because it is time-consuming and eliminates minerals.</li>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 6: Iodine Addition</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>Iodine is a red chemical that is easily available as a tablet or a liquid. It is extremely powerful as it kills bacteria and viruses.
-                                                However, it adds an unpleasant taste and can be fatal if taken in high doses.
-                                                Therefore, it should only be used if you don’t have access to a better method of purification like an electric water purifier.</li>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 7:  Solar Purification</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>An RO Purifier proves to be one of the best methods of purifying water.
-                                                Reverse Osmosis forces water through a semipermeable membrane and removes contaminants.
-                                                The TDS Controller and Mineraliser Technology, like the one found in an A. O. Smith RO UV Water Purifier,
-                                                help retain the necessary nutrients while doing away with harmful impurities.</li>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 8:  Clay Vessel Filtration</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-
-                                            <li>Way before people had access to an RO or UV Purifier, they used clay pots which purified muddy water,
-                                                by blocking out the mud and allowing pure, potable water to pass through. This method is still used in some rural regions.</li>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 9: UV Radiation</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <li>Water is exposed to a UV Light that kills microorganisms, thereby preventing it from breeding further.
-                                                But if not coupled with an RO Filter, UV Radiation alone cannot remove impurities and heavy metals.</li>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>METHOD 10: Desalination</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <li>This method is used when water with a certain level of salinity needs to be filtered. This process is helpful.</li>
-
-
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                    )}
-                            </Modal.Body>
-                            <Modal.Footer>
-                                {/* <Button variant="danger" onClick={initModals}>
-                            Close
+                                        )}
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        {/* <Button variant="danger" onClick={initModals}>
+                            
                         </Button> */}
-                                <Button variant="dark" onClick={function (event) {handleButtonClick(); modalClose();  }}>
-                                    Ok
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                                        <Button variant="dark" onClick={function (event) {naving(); modalClose(); }}>
+                                            Ok
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
                 </div>
-            )}
-
-
-
-        </div>
-        </div>
-        </div>
+            </div>
+            <footer><Footer /> </footer>
         </div>
     );
 }
 
-export default H2S
+export default H2S;
