@@ -15,6 +15,7 @@ const FibAnalysis = () => {
   const [estimatedCount, setEstimatedCount] = useState(0);
   const [userCount, setUserCount] = useState(0);
   const [roundedEstimatedCount, setRoundedEstimatedCount] = useState(0);
+  const [IsCustomized, setIsCustomized] = useState(false);
 
 
   const fibData = {
@@ -22,11 +23,20 @@ const FibAnalysis = () => {
     'Coliform': { referencePath: 'Cryptosporidium', ratio: 1, estimatedCount: 0 },
     'Enterococcus': { referencePath: 'Campylobacter', ratio: 0.01, estimatedCount: 0 },
     'Clostridium': { referencePath: 'Giardia', ratio: 0.8, estimatedCount: 0 },
+    'other': { referencePath: 'other', ratio: 0, estimatedCount: 0 }
   };
+
+  useEffect(() => {
+    calculateEstimatedCount();
+  }, [userCount, ratio]);
 
   // Function to calculate estimated count
   const calculateEstimatedCount = () => {
+    setIsCustomized(false)
     const count = parseInt(userCount, 10);
+    if (referencePath === 'other') {
+      setIsCustomized(true)
+    }
     if (!isNaN(count)) {
       const estimated = count * ratio;
       setEstimatedCount(estimated);
@@ -39,17 +49,33 @@ const FibAnalysis = () => {
 
   const sendValue = () => {
 
-    var fib_info = {
-      estimatedCount: roundedEstimatedCount
+    if (referencePath === '') {
+      return
     }
+    if (referencePath === 'other') {
+      if (referencePath === '' || ratio === 0) {
+        return
+      }
+    }
+
+    if (userCount === 0) {
+
+      return
+    }
+    var fib_info = {
+      indicator: referencePath,
+      count_indicator: userCount,
+      estimatedCount: roundedEstimatedCount,
+      ratio: ratio,
+      is_customized: IsCustomized
+    }
+    console.log(fib_info)
     dispatch(fib_details(fib_info))
     navigate('/qmra')
 
   };
 
-  useEffect(() => {
-    calculateEstimatedCount();
-  }, [userCount, ratio]);
+
 
   const handleFibData = (fib) => {
     setSelectedFIB(fib);
@@ -98,10 +124,14 @@ const FibAnalysis = () => {
                       <th scope='col'>Indicator</th>
                       <th scope='col'>Ratio</th>
                     </tr>
-                    <tr>
+                    {referencePath !== 'other' && <tr>
                       <td >{referencePath}</td>
                       <td >{ratio}</td>
-                    </tr>
+                    </tr>}
+                    {referencePath === 'other' && <tr>
+                      <td ><input type='text' placeholder='Indicator' onClick={(e) => setReferencePath(e.target.value)} style={{backgroundColor:"white"}} /></td>
+                      <td ><input type='text' placeholder='Ratio' onClick={(e) => setRatio(e.target.value)} style={{backgroundColor:"white"}}/></td>
+                    </tr>}
                   </tbody>
                 </table>
               </div>

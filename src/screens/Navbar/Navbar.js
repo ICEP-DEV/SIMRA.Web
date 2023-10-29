@@ -12,7 +12,6 @@ function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [UserType, setUserType] = useState(0)
-    // const [SamplingInfo, setSamplingInfo] = useState({})
     let [IsFoundSamplingData, setIsFoundSamplingData] = useState(true);
     let user_info = useSelector((state) => state.user.value)
     let sampling_info = useSelector((state) => state.sampling.value)
@@ -20,12 +19,9 @@ function Navbar() {
     useEffect(() => {
         if (user_info !== undefined) {
             setUserType(user_info.user_level)
-            console.log('user',user_info.user_level)
-            console.log('sampling info',sampling_info)
             if (sampling_info != undefined) {
                 setIsFoundSamplingData(false)
             }
-            console.log(IsFoundSamplingData)
         }
         else {
             navigate("/")
@@ -68,11 +64,13 @@ function Navbar() {
                         <span className="nav-label dropbtn">Levels</span>
                         <ul class="dropdown-content">
                             {(UserType === 1 || UserType === 2 || UserType === 3) && (<span>
-                                <Link className='dropdown-link' to='/h2s_survey'>Level 1</Link>
+                                <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>Level 1</li><br/>
                             </span>)}
                             {(UserType === 2 || UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li>
-                                <li className='dropdown-link' to=''>Level 3</li>
+                                <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li><br/>
+                            </span>)}
+                            {(UserType === 3) && (<span>
+                                <li className='dropdown-link' onClick={() => navigate('')}>Level 3</li>
                             </span>)}
                         </ul>
 

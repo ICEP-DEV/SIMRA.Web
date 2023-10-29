@@ -13,10 +13,10 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
   const [count, setCount] = useState('');
-  const [alpha, setAlpha] = useState('');
-  const [beta, setBeta] = useState('');
-  const [n50, setN50] = useState('');
-  const [Constant, setConstant] = useState('');
+  const [alpha, setAlpha] = useState(null);
+  const [beta, setBeta] = useState(null);
+  const [n50, setN50] = useState(null);
+  const [Constant, setConstant] = useState(null);
   const [Parameters, setParameters] = useState([]);
   const [result, setResult] = useState('');
   const [Pathogen, setPathogen] = useState([]);
@@ -26,12 +26,13 @@ export default function QMRAApp() {
   const [Longitude, setLongitude] = useState('')
   const [Latitude, setLatitude] = useState('')
 
-  let estimated = useSelector((state) => state.fib.value)
+  let indicator_info = useSelector((state) => state.fib.value)
   let sampling_info = useSelector((state) => state.sampling.value)
   let [ProbabilityOfInfection, setProbabilityOfInfection] = useState(0)
   let [PopupoResults, setPopupoResults] = useState(false)
 
   useEffect(() => {
+    console.log(indicator_info)
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
       setLongitude(longitude)
@@ -61,8 +62,6 @@ export default function QMRAApp() {
     var filtered = []
     // console.log(event)
     filtered.push(Pathogen.filter((value) => value.pathogen === event))
-
-    console.log(filtered[0][0].pathogen)
     setSelectedOrganism(filtered[0][0].pathogen)
     setTempPathogen(filtered[0][0])
     setParameters(filtered[0][0].parameter[0])
@@ -74,9 +73,15 @@ export default function QMRAApp() {
       setAlpha(filtered[0][0].parameter[0].alpha)
       setN50(filtered[0][0].parameter[0].n50)
     }
+    
 
   }
   function sendQmra() {
+    if(beta === undefined){setBeta(null)}
+    if(alpha === undefined){ setAlpha(null)}
+    if(Constant === undefined){setConstant(null)}
+    if(n50 === undefined){setN50(null)}
+
     console.log('beta', beta)
     console.log('alpha', alpha)
     console.log('constant', Constant)
@@ -88,8 +93,11 @@ export default function QMRAApp() {
       alpha: alpha,
       constant: Constant,
       n50: n50,
-      organism: selectedOrganism,
-      fib: estimated.estimatedCount
+      count_indicator: indicator_info.count_indicator,
+      indicator: indicator_info.indicator,
+      estimatedCount: indicator_info.estimatedCount,
+      ratio: indicator_info.ratio,
+      is_customized: indicator_info.is_customized
     }
 
     //Call in sampling data api
@@ -120,7 +128,7 @@ export default function QMRAApp() {
         console.log(err)
       })
 
-      axios.post("http://localhost:3001/api/QMRA", qmra_data)
+      axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
         .then((result) => {
           console.log(result)
           if (result.data.success == true) {
@@ -146,7 +154,7 @@ export default function QMRAApp() {
       console.log(err)
     })
 
-    console.log(qmra_data)
+    //console.log(qmra_data)
 
   }
 
