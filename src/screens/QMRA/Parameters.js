@@ -22,14 +22,22 @@ export default function QMRAApp() {
   const [Pathogen, setPathogen] = useState([]);
   const [TempPathogen, setTempPathogen] = useState([]);
   const [IsfoundPath, setIsfoundPath] = useState(false);
-  const [bestFit, setBestFit] = useState('')
-  const [Longitude, setLongitude] = useState('')
-  const [Latitude, setLatitude] = useState('')
+  const [bestFit, setBestFit] = useState('');
+  const [Longitude, setLongitude] = useState('');
+  const [Latitude, setLatitude] = useState('');
+  let [IsCustomizePathogen, setIsCustomizePathogen] = useState(false);
+  let indicator_info = useSelector((state) => state.fib.value);
+  let sampling_info = useSelector((state) => state.sampling.value);
+  let [ProbabilityOfInfection, setProbabilityOfInfection] = useState(0);
+  let [PopupoResults, setPopupoResults] = useState(false);
+  let [Selectedathogen, setSelectedathogen] = useState('');
+  let [IsLikelihood, setIsLikelihood] = useState(false);
+  let [IsLikelihoodTested, setIsLikelihoodTested] = useState(false);
+  let [DurationType, setDurationType] = useState('');
+  let [QmraId, setQmraId] = useState(0);
+  let [LikelihoodMessage, setLikelihoodMessage] = useState('');
 
-  let indicator_info = useSelector((state) => state.fib.value)
-  let sampling_info = useSelector((state) => state.sampling.value)
-  let [ProbabilityOfInfection, setProbabilityOfInfection] = useState(0)
-  let [PopupoResults, setPopupoResults] = useState(false)
+  
 
   useEffect(() => {
     console.log(indicator_info)
@@ -53,6 +61,7 @@ export default function QMRAApp() {
     })
 
   }, [])
+
   const calculateResult = () => {
     console.log(selectedOrganism)
 
@@ -60,7 +69,12 @@ export default function QMRAApp() {
 
   function selectPathogen(event) {
     var filtered = []
+    setIsCustomizePathogen(false)
+    if (event === 'other') {
+      setIsCustomizePathogen(true)
+    }
     // console.log(event)
+    setSelectedathogen(event)
     filtered.push(Pathogen.filter((value) => value.pathogen === event))
     setSelectedOrganism(filtered[0][0].pathogen)
     setTempPathogen(filtered[0][0])
@@ -73,21 +87,21 @@ export default function QMRAApp() {
       setAlpha(filtered[0][0].parameter[0].alpha)
       setN50(filtered[0][0].parameter[0].n50)
     }
-    
+
 
   }
   function sendQmra() {
-    if(beta === undefined){setBeta(null)}
-    if(alpha === undefined){ setAlpha(null)}
-    if(Constant === undefined){setConstant(null)}
-    if(n50 === undefined){setN50(null)}
+    if (beta === undefined) { setBeta(null) }
+    if (alpha === undefined) { setAlpha(null) }
+    if (Constant === undefined) { setConstant(null) }
+    if (n50 === undefined) { setN50(null) }
 
     console.log('beta', beta)
     console.log('alpha', alpha)
     console.log('constant', Constant)
     console.log('N50', n50)
     console.log(selectedOrganism)
-
+    console.log(sampling_info)
     var qmra_data = {
       beta: beta,
       alpha: alpha,
@@ -95,9 +109,12 @@ export default function QMRAApp() {
       n50: n50,
       count_indicator: indicator_info.count_indicator,
       indicator: indicator_info.indicator,
-      estimatedCount: indicator_info.estimatedCount,
+      estimated_count: indicator_info.estimatedCount,
       ratio: indicator_info.ratio,
-      is_customized: indicator_info.is_customized
+      is_customized: indicator_info.is_customized,
+      is_customize_Pathogen: IsCustomizePathogen,
+      pathogen: Selectedathogen,
+      samplingId: sampling_info.userId
     }
 
     //Call in sampling data api
@@ -111,7 +128,6 @@ export default function QMRAApp() {
       }
       //Call in coordinates api
       axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
-        console.log(result)
       }, err => {
         console.log(err)
       })
@@ -123,15 +139,13 @@ export default function QMRAApp() {
       }
       //Call in watersource api
       axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
-        console.log(result)
       }, err => {
         console.log(err)
       })
 
       axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
         .then((result) => {
-          console.log(result)
-          if (result.data.success == true) {
+          if (result.data.success === true) {
             toast.success("Successfully tested, the results will display on popup....", {
               position: "top-right",
               autoClose: 5000,
@@ -141,9 +155,10 @@ export default function QMRAApp() {
               draggable: true,
               progress: undefined,
               theme: "light",
-          });
+            });
             setPopupoResults(true)
             setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
+            setQmraId(result.data.qmra_id)
 
           }
 
@@ -153,25 +168,59 @@ export default function QMRAApp() {
     }, (err) => {
       console.log(err)
     })
-
-    //console.log(qmra_data)
-
   }
 
-  let popalert = <div style={{color:'black'}}>
+  async function likelihood() {
+    var data = {
+      probability_of_infection: ProbabilityOfInfection,
+      duration_type: DurationType
+    }
+
+    var resultsOfLikelihood = await axios.put('http://localhost:3001/api/likelihood_test/'+QmraId, data)
+    setIsLikelihoodTested(resultsOfLikelihood.data.success)
+    console.log(resultsOfLikelihood.data.success)
+    if(resultsOfLikelihood.data.success === true){
+      setLikelihoodMessage('Likelihood of infections is '+ resultsOfLikelihood.data.likelihood_of_infection)
+    }
+    else{
+      setLikelihoodMessage('Could not get the likelihood of infections')
+    }
+  }
+
+  let popalert = <div style={{ color: 'black' }}>
     probability of infection is {ProbabilityOfInfection}
     <br />
-    <button onClick={() => setPopupoResults(false)} className='btn btn-primary'>OK</button>
+    You would like to complete the likelihood test
+    <div>
+      <button onClick={() => setIsLikelihood(true)}>Yes</button>
+      <button onClick={() => setPopupoResults(false)} className='btn btn-primary'>Cancel</button>
+    </div>
+    {IsLikelihood === true && (
+      <div>
+        <select onChange={(event) => setDurationType(event.target.value)}>
+          <option value=''>--- Select Duration Type ---</option>
+          <option value='yearly'>Yearly</option>
+          <option value='monthly'>Monthly</option>
+          <option value='quartely'>Quartely</option>
+          <option value='weekly'>Weekly</option>
+          <option value='daily'>Daily</option>
+        </select>
+        <button onClick={likelihood}>Submit</button>
+        {IsLikelihoodTested === true && (
+          <label>{LikelihoodMessage}</label>
+        )}
+
+      </div>
+
+    )}
   </div>
   return (
-
     <div className='hero-all' >
       {/* <div className='sidenav'>
         <Sidebar />
     </div> */}
       <Navbar />
-
-
+      <ToastContainer />
       <div className='content'>
         <Header />
         <Popup trigger={PopupoResults} setTrigger={setPopupoResults}>
