@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 const FibAnalysis = () => {
     const api = 'http://localhost:3001/api/'
     //const api = 'maker_genes'
-    const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
+    const [SelectedMaker, setSelectedMaker] = useState('Select a FIB');
     const [referencePath, setReferencePath] = useState('');
     const [ratio, setRatio] = useState(0);
     const [estimatedCount, setEstimatedCount] = useState(0); 
@@ -36,8 +36,9 @@ const FibAnalysis = () => {
     calculateEstimatedCount();
   }, [userCount, ratio]);
 
-  const handlemstselection = (fib) => {
-    setSelectedFIB(fib);
+  const handlemstselection = (makerno) => {
+    console.log(Makers[makerno])
+    setSelectedMaker(makerno);
    /* if (fibData[fib]) {
       setReferencePath(fibData[fib].referencePath);
       setRatio(fibData[fib].ratio);
