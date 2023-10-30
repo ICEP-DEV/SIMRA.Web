@@ -64,31 +64,29 @@ function Navbar() {
                         <span className="nav-label dropbtn">Levels</span>
                         <ul class="dropdown-content">
                             {(UserType === 1 || UserType === 2 || UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>Level 1</li><br/>
+                                <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>Level 1</li>
                             </span>)}
                             {(UserType === 2 || UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li><br/>
+                                <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li>
                             </span>)}
                             {(UserType === 3) && (<span>
                                 <li className='dropdown-link' onClick={() => navigate('')}>Level 3</li>
                             </span>)}
                         </ul>
-
                     </div>}
                 </div>
-                {/* <div className="navbar-subs dropdown">
-                <span className="nav-label">Levels</span>
-                {UserType === 2 && (<span>
-                    <Link className='dropdown-link' to=''>Level 1</Link>
-                    <Link className='dropdown-link' to=''>Level 2</Link>
-                </span>)}
-                {UserType === 3 && (<span>
-                    <Link className='dropdown-link' to=''>Level 1</Link>
-                    <Link className='dropdown-link' to=''>Level 2</Link>
-                    <Link className='dropdown-link' to=''>Level 2</Link>
-                </span>)}
-            </div> */}
-                <div className="navbar-subs" onClick={() => navigate('/h2s_logs')}><span className="nav-label">Report</span></div>
+                <div className="navbar-subs dropdown"><span className="nav-label dropbtn">Report</span>
+                    <ul class="dropdown-content">
+                        <li className='dropdown-link' onClick={() => navigate('/h2s_logs')}>H2S</li>
+                        <li className='dropdown-link' onClick={() => navigate('/survay_logs')}>Sanitary</li>
+                        {(UserType === 2 || UserType === 3) && (<span>
+                            <li className='dropdown-link' onClick={() => navigate('/qmra_logs')}>QMRA</li>
+                        </span>)}
+                        {( UserType === 3) && (<span>
+                            <li className='dropdown-link'>MST</li>
+                        </span>)}                        
+                    </ul>
+                </div>
 
                 <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
             </div>
