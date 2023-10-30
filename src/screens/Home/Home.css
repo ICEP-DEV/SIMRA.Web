@@ -179,5 +179,55 @@ width: 80%;
     width: 400px;
    }
    }
+
+   @media (max-width: 768px) {
+    h1{
+      font-size: 2em;
+    }
+    .section-2{
+      
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      min-height: 100vh;
+      
+    }
+    .section-2 .row{
+      
+  
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      /* min-height: 100vh; */
+      
+    }
+    .section-2 p{
+      
+      text-align: center;
+      font-size: 16px;
+      
+    }
+    .section-2 h4{
+      
+      text-align: center;
+      
+    }
+    
+    .section-2 .p-5 img
+    {
+      
+  
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+     
+      
+    }
+  
+  
+   
+   }
  
   

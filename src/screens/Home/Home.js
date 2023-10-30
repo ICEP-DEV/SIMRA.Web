@@ -21,52 +21,53 @@ function Home() {
 
 
 
-      {/* <div className='mb-5 text-center display-6 ml-5'>
-<label className='mt-5'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
-</div> */}
+              {/* <div className='mb-5 text-center display-6 ml-5'>
+        <label className='mt-5'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
+        </div> */}
       <section className='section-1'>
-      <MovingComponent
-          type="slideInFromTop"
-          duration="1000ms"
-          delay="0.5s"
-          direction="normal"
-          timing="ease"
-          iteration="1"
-          fillMode="none">
-           <div className='user-text d-flex mb-5 text-center display-6 ml-5'>
-        <label className='mt-5 text-center'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
-        </div>
-        </MovingComponent>
+        <MovingComponent
+            type="slideInFromTop"
+            duration="1000ms"
+            delay="0.5s"
+            direction="normal"
+            timing="ease"
+            iteration="1"
+            fillMode="none">
+            <div className='user-text d-flex mb-5 text-center display-6 ml-5'>
+              <label className='mt-5 text-center'>Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</label>
+            </div>
+          </MovingComponent>
       
       
       </section>
       {/**About simra */}
       <section className='section-2 px-5'>
-<h1>Information</h1>
+        <h1>Information</h1>
         <div className='row gx-5 align-items-center'>
 
  
-<div className='col-lg-6 order-lg-2'>
-<MovingComponent
-          type="fadeInFromLeft"
-          duration="1000ms"
-          delay="0.2s"
-          direction="normal"
-          timing="ease"
-          iteration="1"
-          fillMode="none">
-          <p className='para ' style={{color:'white'}}>
-            Ensuring safe drinking water for all<br></br>
+        <div className='col-lg-6 order-lg-2'>
+          <MovingComponent
+                    type="fadeInFromLeft"
+                    duration="1000ms"
+                    delay="0.2s"
+                    direction="normal"
+                    timing="ease"
+                    iteration="1"
+                    fillMode="none">
+                    <p className='para ' style={{color:'white'}}>
+                      Ensuring safe drinking water for all<br></br>
 
-            Empower yourself: monitor your water quality at home.<br></br>
-            <br></br>
-            “Everyone has the right to have access to sufficient food and water.” </p>
+                      Empower yourself: monitor your water quality at home.<br></br>
+                      <br></br>
+                      “Everyone has the right to have access to sufficient food and water.” 
+                    </p>
 
-        </MovingComponent>
-</div>
+          </MovingComponent>
+        </div>
        <div className='col-lg-6 order-lg-2'>
         <div className='p-5'>
-        <img className='img-fluid rounded-circle' style={{width:'400px' ,height:'400px'}} src={dwater}/>
+        <img className='img-fluid rounded-circle' alt='' style={{width:'400px' ,height:'400px'}} src={dwater}/>
         </div>
      
        </div>
@@ -74,29 +75,29 @@ function Home() {
        <div className='row gx-5 align-items-center'>
        <div className='col-lg-6 order-lg-2'>
         <div className='p-5'>
-        <img className='img-fluid rounded-circle' style={{width:'400px' ,height:'400px'}} src={glassofwater}/>
+        <img className='img-fluid rounded-circle' alt='' style={{width:'400px' ,height:'400px'}} src={glassofwater}/>
         </div>
      
        </div>
- {/*** */}
-<div className='col-lg-6 order-lg-2'>
-<MovingComponent
-          type="fadeInFromRight"
-          duration="1000ms"
-          delay="0.2s"
-          direction="normal"
-          timing="ease"
-          iteration="1"
-          fillMode="none">
-          <p className='para ' style={{color:'white'}}>
-            <h4>Is your water safe for drinking purposes? </h4>
-          While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
-           Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
-           Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
-            </p>
+ 
+          <div className='col-lg-6 order-lg-2'>
+          <MovingComponent
+                    type="fadeInFromRight"
+                    duration="1000ms"
+                    delay="0.2s"
+                    direction="normal"
+                    timing="ease"
+                    iteration="1"
+                    fillMode="none">
+                    <p className='para ' style={{color:'white'}}>
+                      <h4>Is your water safe for drinking purposes? </h4>
+                    While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
+                    Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
+                    Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
+                      </p>
 
-        </MovingComponent>
-</div>
+                  </MovingComponent>
+          </div>
        
        </div>
       </section>

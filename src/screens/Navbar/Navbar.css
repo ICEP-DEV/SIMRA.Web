@@ -1,3 +1,6 @@
+.logo a img{
+  visibility: hidden;
+}
 .topnav {
   background-color: #4f5e37;
   color: #fff;
@@ -52,4 +55,53 @@
   }
 
 
+}
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Show/hide navigation links for smaller screens */
+@media (max-width: 768px) {
+  .topnav{
+    /* padding-left: 5%;
+    padding-right:10%; */
+    justify-content: space-between;
+  }
+  .logo{
+    padding-left: 5%;
+
+  }
+  .hamburger{
+    padding-right:5%;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color:  #4f5e37;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+    
+  }
+  .navbar-subs a img{
+    display: none;
+  }
+  .logo a img{
+    visibility: visible;
+   
+  }
 }
