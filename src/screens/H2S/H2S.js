@@ -13,7 +13,6 @@ import methods from '../../Data/methods';
 import './H2S.css'
 import blackstrip from '../../assets/blackstrip.png';
 import whitestrip from '../../assets/whitestrip.png';
-import ml from '../../assets/100ml.png';
 import sample from '../../assets/sample.png';
 import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';

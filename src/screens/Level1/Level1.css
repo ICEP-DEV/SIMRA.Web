@@ -55,3 +55,15 @@
     display: flex;
     flex-direction: row;
 }
+@media (max-width: 768px) {
+
+    #level_description
+    {
+        text-align: center;
+        font-size: 12px;
+    } 
+    #level_description h3
+    {
+        font-size: 16px;
+    }
+}

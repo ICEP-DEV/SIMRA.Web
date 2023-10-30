@@ -3,14 +3,9 @@ import './Level1.css'
 import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import blackstrip from '../../assets/blackstrip.png';
-import whitestrip from '../../assets/whitestrip.png';
-import ml from '../../assets/100ml.png';
-import sample from '../../assets/sample.png';
+
 import Footer from '../Footer/Footer';
-import borehole from '../../assets/borehole.jpg';
-import tube from '../../assets/tube.jpg';
-import tests from '../../assets/tests.jpg'
+
 
 function Level1() {
     return (

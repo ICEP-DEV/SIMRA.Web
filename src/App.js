@@ -22,8 +22,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<LandingPage />} />
-        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/landing' element={<LandingPage />} />
+        <Route exact path='/' element={<Login />} />
         <Route exact path='/home' element={<Home />} />
         <Route exact path='/sampling_data' element={<SamplingData />} />
         <Route exact path='/h2s_survey' element={<Level1 />} />

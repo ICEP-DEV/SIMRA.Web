@@ -298,7 +298,7 @@ function SanitaryInpection() {
                                 <label className='header_form_label yes_no'>No/Yes</label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>1. Are There pit-latrines?</label>
+                                <label className='header_form_label questinare'>1. Are There pit-latrines(toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />

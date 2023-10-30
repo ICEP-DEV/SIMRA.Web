@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import './Navbar.css';
 import { Link } from "react-router-dom";
 import logo from './logo2.png';
+import logo1 from '../../assets/Simra_logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { remove_details } from "../../Redux/user";
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -42,6 +44,11 @@ function Navbar() {
     }
 
 
+    const [showNav, setShowNav] = useState(false);
+
+    const toggleNav = () => {
+      setShowNav(!showNav);
+    };
 
     function logout() {
         dispatch(remove_details());
@@ -50,29 +57,35 @@ function Navbar() {
 
     return (
         <div className="topnav">
-            
-            <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
-            <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
-            
-            <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
-            <div className="navbar-subs "><div className="wrapper"></div>
-                <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
-            <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
-            {/* <div className="navbar-subs dropdown">
-                <span className="nav-label">Levels</span>
-                {UserType === 2 && (<span>
-                    <Link className='dropdown-link' to=''>Level 1</Link>
-                    <Link className='dropdown-link' to=''>Level 2</Link>
-                </span>)}
-                {UserType === 3 && (<span>
-                    <Link className='dropdown-link' to=''>Level 1</Link>
-                    <Link className='dropdown-link' to=''>Level 2</Link>
-                    <Link className='dropdown-link' to=''>Level 2</Link>
-                </span>)}
-            </div> */}
-               <div className="navbar-subs" onClick={report}><span className="nav-label">Events</span></div>
-            <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
-
+             <div className="logo">
+             <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
+             </div>
+            <div className={`nav-links ${showNav ? 'show' : ''}`}>
+                <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
+                <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
+                
+                <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
+                <div className="navbar-subs "><div className="wrapper"></div>
+                    <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
+                <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
+                {/* <div className="navbar-subs dropdown">
+                    <span className="nav-label">Levels</span>
+                    {UserType === 2 && (<span>
+                        <Link className='dropdown-link' to=''>Level 1</Link>
+                        <Link className='dropdown-link' to=''>Level 2</Link>
+                    </span>)}
+                    {UserType === 3 && (<span>
+                        <Link className='dropdown-link' to=''>Level 1</Link>
+                        <Link className='dropdown-link' to=''>Level 2</Link>
+                        <Link className='dropdown-link' to=''>Level 2</Link>
+                    </span>)}
+                </div> */}
+                <div className="navbar-subs" onClick={report}><span className="nav-label">Events</span></div>
+                    <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
+            </div>
+            <div className="hamburger" onClick={toggleNav}>
+                <GiHamburgerMenu />
+            </div>
 
         </div>
     )

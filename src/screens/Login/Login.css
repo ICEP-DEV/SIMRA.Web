@@ -23,7 +23,7 @@
 .login-container
 {
     box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
-    background-color: #057dcd;
+    background-image: linear-gradient(#4884EE,#06BCFB);
     width: 1054px;
     height: 613px;
     display: block;
@@ -92,11 +92,15 @@ margin-left: 2%;
  margin-bottom: 95%;
  margin-top: 10%;
 }
-
+.btn-reg
+{
+    background-color: #4884EE;
+}
 .login-grid .btn-login 
 {
     /* position: absolute; */
-    background-color: #0059D4;
+    background-color: #4884EE;
+    font-size: larger;
     width: 150px;
     border: none;
     border-radius: 5px;

@@ -11,6 +11,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
+import logo1 from '../../assets/Simra_logo.png'
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -422,7 +423,7 @@ function Login() {
             </div>
         </div>
         <div className='form-group'>
-            <button className='btn btn-primary' onClick={handleRegistration}>Create Account</button>
+            <button className='btn-reg' onClick={handleRegistration}>Create Account</button>
         </div>
 
     </div>
@@ -496,7 +497,7 @@ function Login() {
             <div className='login-container'>
                 <div className='welcome'>
                     <div className='logo-login'>
-                        <img className='logo-login' src={logo} alt='logo' />
+                        <img className='logo-login' src={logo1} alt='logo' />
                     </div>
                     <h1>Welcome</h1>
                     SIMRA, tool integrates  <br></br>
@@ -510,7 +511,7 @@ function Login() {
                     <div className='main-login' id='main-login'>
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                        <h3 className='header-txt'><b>Login </b></h3>
+                        <h3 className='header-txt'><b>Sign In </b></h3>
                         <div className='mb-4'>
                             {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
                             <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
@@ -539,9 +540,9 @@ function Login() {
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn-login' onClick={onSuccess}>Log In</button>
-
-                            <small className='txt-signup'>
+                            <button className='btn-login mb-5' onClick={onSuccess}>Sign In</button>
+<br></br>
+                            <small className='txt-signup mt-4'>
                                 Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>
                             </small>
 

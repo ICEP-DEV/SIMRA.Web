@@ -8,51 +8,50 @@ import dwater from '../../assets/dwater.avif';
 import dirtywater from '../../assets/dirtywater.jpeg';
 import { HiOutlineMail } from 'react-icons/hi';
 import glassofwater from'../../assets/glassofwater.jpg';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import logo from '../../assets/logo2.png'
+import image from '../../assets/borehole.jpg';
+import image1 from '../../assets/flowingriver.jpg';
+import image2 from '../../assets/dwater.avif';
 function LandingPage (){
+  const navigate = useNavigate();
+  function login() {
+    navigate("/login")
+}
 return(
     <div className="landingPage_class ">
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    
-<Link to='/login' className="nav-link active">Login</Link>
-  </li>
-  <li class="nav-item">
-    
-    <Link className="nav-link active">Events</Link>
-  </li>
-  <li class="nav-item">
-   
-    <Link  className="nav-link active" >Report</Link>
-  </li>
-  <li class="nav-item">
-   
-    <Link className="nav-link active">Logout</Link>
-  </li>
-</ul>
+
+<div className="topnav">
+            
+            <div className="navbar-subs" onClick={login} ><span className="nav-label">Login</span></div>
+            <div className="navbar-subs" ><span className='nav-label'>Events</span></div>
+            <div className="navbar-subs "><div className="wrapper"></div>
+                <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
+            <div className="navbar-subs" ><span className="nav-label">Report</span></div>
+            <div className="navbar-subs split" ><span className="nav-label">Signout</span></div>
+
+
+        </div>
 <div className="landing-content">
-<section>
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" style={{height:'600px'}} alt="First slide"/>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src={dwater} alt="Second slide"/>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src={dirtywater} alt="Third slide"/>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</section>
+<Carousel
+      autoPlay={true}
+      infiniteLoop={true}
+      showStatus={false}
+      showThumbs={false}
+    >
+      <div>
+        <img src={image1} alt="Image 1" style={{height:'800px'}}  />
+       
+      </div>
+      <div> 
+        <img src={image2} alt="Image 2" style={{height:'800px'}}/>
+      </div>
+      <div>
+        <img src={image} alt="Image 3" style={{height:'800px'}} />
+      </div>
+      {/* Add more images as needed */}
+    </Carousel>
 <section className='section-2 px-5'>
 <h1>Information</h1>
         <div className='row gx-5 align-items-center'>
@@ -69,7 +68,7 @@ return(
           fillMode="none">
             
           <p className='para ' >
-          	<h4>What are the households water treatment methods?</h4>
+          	<h4 >What are the households water treatment methods?</h4>
             <li>Boiling: Bring the water to a rolling boil and maintain it for at least one minute. Allow the water to cool before use. </li>
             <li>SODIS (Solar Water Disinfection): Fill clear, plastic bottles with water and leave them in direct sunlight for at least six hours (or longer if it cloudy). disinfect the water. </li>
             <li> Chemical Disinfection: Add a cap full of bleach in 25L of water. Allow the treated water to sit for a specific contact time before consuming.</li>
