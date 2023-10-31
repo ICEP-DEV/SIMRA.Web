@@ -19,6 +19,7 @@ function User_H2S_Logs() {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [FoundReport, setFoundReport] = useState(false)
+  const [UserId, setUserId] = useState(0)
   // Pagination
   const [CurrentPage, setCurrentPage] = useState(1)
   const record_per_page = 5
@@ -36,11 +37,14 @@ function User_H2S_Logs() {
 
   useEffect(() => {
     var userId = user_info.userId
+    setUserId(userId)
     axios.get(api + 'get_userhistory_h2s/' + userId).then((response) => {
-      setStoredReport(response.data.result)
-      setReport(response.data.result)
-      setFoundReport(response.data.success)
-      setTotalRecord(response.data.result.length)
+      if (response.data.success === true) {
+        setStoredReport(response.data.result)
+        setReport(response.data.result)
+        setFoundReport(response.data.success)
+        setTotalRecord(response.data.result.length)
+      }
     })
 
     axios.get(api + "get_provinces").then(response => {
@@ -80,13 +84,14 @@ function User_H2S_Logs() {
       });
       return;
     }
-    axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate).then((response) => {
+    axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
       setTotalRecord(0)
-      setReport(response.data.result)
-      setStoredReport(response.data.result)
-      setFoundReport(response.data.success)
+      console.log(response)
       if (response.data.success === true) {
         setTotalRecord(response.data.result.length)
+        setReport(response.data.result)
+        setStoredReport(response.data.result)
+        setFoundReport(response.data.success)
       }
     })
   }
@@ -132,7 +137,7 @@ function User_H2S_Logs() {
   function filter_by_municipality(_muni) {
     var temp_array = StoredReport
     var count = 0
-    if(_muni === ''){
+    if (_muni === '') {
       setReport(StoredReport)
       return
     }
@@ -188,18 +193,18 @@ function User_H2S_Logs() {
 
               </div>
               <div>
-              <span className='survey_province'>
+                <span className='survey_province'>
                   <label>WeekDays</label>
-                <select onChange={(event) => search_by_weekday(event.target.value)}>
-                  <option value=''>All Weekdays</option>
-                  <option value='Monday'>Monday</option>
-                  <option value='Tuesday'>Tuesday</option>
-                  <option value='Wednesday'>Wednesday</option>
-                  <option value='Thursday'>Thursday</option>
-                  <option value='Friday'>Friday</option>
-                  <option value='Saturday'>Saturday</option>
-                  <option value='Sunday'>Sunday</option>
-                </select></span>
+                  <select onChange={(event) => search_by_weekday(event.target.value)}>
+                    <option value=''>All Weekdays</option>
+                    <option value='Monday'>Monday</option>
+                    <option value='Tuesday'>Tuesday</option>
+                    <option value='Wednesday'>Wednesday</option>
+                    <option value='Thursday'>Thursday</option>
+                    <option value='Friday'>Friday</option>
+                    <option value='Saturday'>Saturday</option>
+                    <option value='Sunday'>Sunday</option>
+                  </select></span>
                 {/* <input type='checkbox' onChange={(event) => checkForUserInfo(event.target.checked)} /> */}
               </div>
               <div id='filter_by_province'>

@@ -19,6 +19,7 @@ function User_Sanitary_Survay_Logs_Reports() {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [FoundReport, setFoundReport] = useState(false)
+    const [UserId, setUserId] = useState(0)
     // Pagination
     const [CurrentPage, setCurrentPage] = useState(1)
     const record_per_page = 5
@@ -36,11 +37,14 @@ function User_Sanitary_Survay_Logs_Reports() {
 
     useEffect(() => {
         var userId = user_info.userId
+        setUserId(userId)
         axios.get(api + 'get_userhistory_sanitory/' + userId).then((response) => {
-            setStoredReport(response.data.result)
-            setReport(response.data.result)
-            setFoundReport(response.data.success)
-            setTotalRecord(response.data.result.length)
+            if (response.data.success === true) {
+                setStoredReport(response.data.result)
+                setReport(response.data.result)
+                setFoundReport(response.data.success)
+                setTotalRecord(response.data.result.length)
+            }
         })
 
         axios.get(api + "get_provinces").then(response => {
@@ -80,13 +84,15 @@ function User_Sanitary_Survay_Logs_Reports() {
             });
             return;
         }
-        axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate).then((response) => {
+        axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
+
             setTotalRecord(0)
-            setReport(response.data.result)
-            setStoredReport(response.data.result)
-            setFoundReport(response.data.success)
+
             if (response.data.success === true) {
                 setTotalRecord(response.data.result.length)
+                setReport(response.data.result)
+                setStoredReport(response.data.result)
+                setFoundReport(response.data.success)
             }
         })
     }

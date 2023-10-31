@@ -39,11 +39,12 @@ function User_QMRA_logs() {
     useEffect(() => {
         var userId = user_info.userId
         axios.get(api + 'user_qmra_results/' + userId).then((response) => {
-            console.log(response.data)
-            setStoredReport(response.data.results)
-            setReport(response.data.results)
-            setFoundReport(response.data.success)
-            setTotalRecord(response.data.results.length)
+            if (response.data.success === true) {
+                setStoredReport(response.data.results)
+                setReport(response.data.results)
+                setFoundReport(response.data.success)
+                setTotalRecord(response.data.results.length)
+              }
         })
 
         axios.get(api + "get_provinces").then(response => {

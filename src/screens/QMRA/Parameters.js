@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function QMRAApp() {
-  const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
+  const [SelectedOrganism, setSelectedOrganism] = useState('');
   const [count, setCount] = useState('');
   const [alpha, setAlpha] = useState(null);
   const [beta, setBeta] = useState(null);
@@ -35,10 +35,9 @@ export default function QMRAApp() {
   let [DurationType, setDurationType] = useState('');
   let [QmraId, setQmraId] = useState(0);
   let [LikelihoodMessage, setLikelihoodMessage] = useState('');
-  let [BestFitBodel, setBestFitBodel] = useState('');
+  let [BestFitModel, setBestFitModel] = useState('');
 
   useEffect(() => {
-    console.log(fib_mst_info)
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
       setLongitude(longitude)
@@ -59,34 +58,24 @@ export default function QMRAApp() {
 
   }, [])
 
-  const calculateResult = () => {
-    console.log(selectedOrganism)
-
-  };
-
   function selectPathogen(event) {
-    var filtered = []
     setIsCustomizePathogen(false)
     if (event === 'other') {
       setIsCustomizePathogen(true)
     }
-
-     console.log(event)
+    console.log(Pathogen[event])
+    setSelectedOrganism(Pathogen[event].pathogen)
+    setBestFitModel(Pathogen[event].best_fit_model)
     setSelectedathogen(event)
-    filtered.push(Pathogen.filter((value) => value.pathogen === event))
-    setSelectedOrganism(filtered[0][0].pathogen)
-    setTempPathogen(filtered[0][0])
-    setParameters(filtered[0][0].parameter[0])
-    if (filtered[0][0].best_fit_model === 'exponential') {
-      setConstant(filtered[0][0].parameter[0].constant)
+    setParameters(Pathogen[event].parameter[0])
+    if (Pathogen[event].best_fit_model === 'exponential') {
+      setConstant(Pathogen[event].parameter[0].constant)
     }
-    if (filtered[0][0].best_fit_model === 'beta-poisson') {
-      setBeta(filtered[0][0].parameter[0].beta)
-      setAlpha(filtered[0][0].parameter[0].alpha)
-      setN50(filtered[0][0].parameter[0].n50)
+    if (Pathogen[event].best_fit_model === 'beta-poisson') {
+      setBeta(Pathogen[event].parameter[0].beta)
+      setAlpha(Pathogen[event].parameter[0].alpha)
+      setN50(Pathogen[event].parameter[0].n50)
     }
-
-
   }
 
   function sendQmra() {
@@ -100,28 +89,35 @@ export default function QMRAApp() {
       alpha: alpha,
       constant: Constant,
       n50: n50,
-      best_fit_model: BestFitBodel,
+      best_fit_model: BestFitModel,
       count_indicator: fib_mst_info.count_indicator,
       indicator: fib_mst_info.indicator,
       estimated_count: fib_mst_info.estimatedCount,
       ratio: fib_mst_info.ratio,
       is_customized: fib_mst_info.is_customized,
       is_customize_Pathogen: IsCustomizePathogen,
-      pathogen: Selectedathogen,
-      samplingId: sampling_info.userId
+      pathogen:SelectedOrganism
     }
-    console.log(qmra_data)
 
     var mst_data = {
+      beta: beta,
+      alpha: alpha,
+      constant: Constant,
+      n50: n50,
+      best_fit_model: BestFitModel,
       count: fib_mst_info.count,
       maker: fib_mst_info.maker,
-      ratio: fib_mst_info.ratio
+      ratio: fib_mst_info.ratio,
+      is_customize_Pathogen: IsCustomizePathogen,
+      estimated_count: fib_mst_info.estimated_count,
+      is_customized_mst: fib_mst_info.is_customized_mst,
+      pathogen:SelectedOrganism
     }
-    console.log(mst_data)
-/*
+    
     //Call in sampling data api
     axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
       qmra_data.samplingId = response.data.insertedId
+      mst_data.samplingId = response.data.insertedId
       // Assign to Coordinates object
       var coordinates = {
         latitude: Latitude,
@@ -145,7 +141,7 @@ export default function QMRAApp() {
         console.log(err)
       })
 
-      if (fib_mst_info.type === 'qmra') {
+      if (fib_mst_info.type === 'fib') {
         axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
           .then((result) => {
             if (result.data.success === true) {
@@ -168,13 +164,33 @@ export default function QMRAApp() {
             console.log(err)
           })
       }
-      else if(fib_mst_info.type === 'mst'){
-        console.log('in mst')
+      else if (fib_mst_info.type === 'mst') {
+        axios.post("http://localhost:3001/api/mst", mst_data)
+        .then((result) => {
+          if (result.data.success === true) {
+            toast.success("Successfully tested, the results will display on popup....", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            setPopupoResults(true)
+            setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
+            setQmraId(result.data.qmra_id)
+          }
+
+        }, err => {
+          console.log(err)
+        })
       }
 
     }, (err) => {
       console.log(err)
-    })*/
+    })
   }
 
   async function likelihood() {
@@ -196,14 +212,16 @@ export default function QMRAApp() {
 
   let popalert = <div style={{ color: 'black' }}>
     probability of infection is {ProbabilityOfInfection}
-    <br />
-    You would like to complete the likelihood test
-    <div>
-      <button onClick={() => setIsLikelihood(true)}>Yes</button>
-      <button onClick={() => setPopupoResults(false)} className='btn btn-primary'>Cancel</button>
+    {Math.round(ProbabilityOfInfection) >= 1 &&<label style={{backgroundColor:'red', width:'100%', height:'10px'}}></label>}
+    {Math.round(ProbabilityOfInfection) <= 0 &&<label style={{backgroundColor:'green', width:'100%', height:'10px'}}></label>}
+    <label className='mt-2'>You would like to complete the likelihood test?</label>
+    
+    <div style={{textAlign:'center'}}>
+      <button onClick={() => setIsLikelihood(true)} className='btn btn-primary' style={{margin:'0 10px', width:'100px'}}>Yes</button>
+      <button onClick={() => setPopupoResults(false)} className='btn btn-primary' style={{margin:'0 10px', width:'100px'}}>Cancel</button>
     </div>
     {IsLikelihood === true && (
-      <div>
+      <div className="mt-2" style={{display:'flex', flexDirection:'column' }}>
         <select onChange={(event) => setDurationType(event.target.value)}>
           <option value=''>--- Select Duration Type ---</option>
           <option value='yearly'>Yearly</option>
@@ -212,13 +230,11 @@ export default function QMRAApp() {
           <option value='weekly'>Weekly</option>
           <option value='daily'>Daily</option>
         </select>
-        <button onClick={likelihood}>Submit</button>
+        <button onClick={likelihood} className='btn btn-primary mt-3'>Submit</button>
         {IsLikelihoodTested === true && (
           <label>{LikelihoodMessage}</label>
         )}
-
       </div>
-
     )}
   </div>
   return (
@@ -243,16 +259,15 @@ export default function QMRAApp() {
                 setResult('');
               }}
             >
-              <option value='' disabled selected>Select Indicator </option>
+              <option value='' disabled selected>Select Pathogen </option>
               {Pathogen.map((organism, xid) => (
-                <option key={xid} value={organism.pathogen}>
+                <option key={xid} value={xid}>
                   {organism.pathogen}
                 </option>
               ))}
 
             </select>
             <br></br>
-            <button className='btn btn-dark w-25 mt-5 mb-4' onClick={calculateResult}>Calculate</button>
             {result !== '' && <p style={styles.result}>{result}</p>}
             <table id='table'>
               <th>
@@ -265,13 +280,13 @@ export default function QMRAApp() {
                 Parameters
               </th>
               <tbody>
-                {(TempPathogen.best_fit_model !== '') && (<tr>
+                {(BestFitModel !== '') && (<tr>
 
-                  <td>{TempPathogen.pathogen} </td>
-                  <td>{TempPathogen.best_fit_model}</td>
-                  <td>{(TempPathogen.best_fit_model === 'exponential') && (<label>constant {Parameters.constant}</label>)}
+                  <td>{SelectedOrganism} </td>
+                  <td>{BestFitModel}</td>
+                  <td>{(BestFitModel === 'exponential') && (<label>constant {Parameters.constant}</label>)}
 
-                    {(TempPathogen.best_fit_model === 'beta-poisson') && (<label>alpha {Parameters.alpha},
+                    {(BestFitModel === 'beta-poisson') && (<label>alpha {Parameters.alpha},
                       <span>
                         {(Parameters.beta) && (<label>beta {Parameters.beta}</label>)}
                         {(!Parameters.beta) && (<label>N50 {Parameters.n50}</label>)}
@@ -279,7 +294,7 @@ export default function QMRAApp() {
                     </label>)}
                   </td>
                 </tr>)}
-                {(TempPathogen.best_fit_model === '') && (<tr>
+                {(BestFitModel === '') && (<tr>
                   <td><input type='text'></input></td>
                   <td><select onChange={(e) => {
                     setBestFit(e.target.value)

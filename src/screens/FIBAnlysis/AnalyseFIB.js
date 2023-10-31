@@ -67,7 +67,7 @@ const FibAnalysis = () => {
       estimatedCount: roundedEstimatedCount,
       ratio: ratio,
       is_customized: IsCustomized,
-      type:'qmra'
+      type:'fib'
     }
     dispatch(fib_mst_details(fib_info))
     navigate('/qmra')

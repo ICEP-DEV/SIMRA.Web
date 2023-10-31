@@ -20,6 +20,7 @@ const FibAnalysis = () => {
   const [Makers, setmakers] = useState([])
   const [Ratio, setRatio] = useState(0)
   const [Maker, setmaker] = useState()
+  const [IsCustomized, setIsCustomized] = useState(false)
   useEffect(() => {
     axios.get(api + 'maker_genes').then(response => {
       setmakers(response.data.makers)
@@ -36,19 +37,23 @@ const FibAnalysis = () => {
   }, []);
 
   const handlemstselection = (makerno) => {
+    setIsCustomized(false)
     setmaker(Makers[makerno].maker)
     setRatio(Makers[makerno].ratio)
     setSelectedMaker(Makers[makerno]);
+    if (Makers[makerno].maker === 'other') {
+      setIsCustomized(true)
+    }
   };
 
   function next_to_mst() {
-    
+
     if (SelectedMaker.maker === 'other') {
-      if(Ratio === 0 || Maker === ''){
+      if (Ratio === 0 || Maker === '') {
         console.log(Ratio, Maker)
         return;
       }
-      
+
     }
     if (userCount === 0) {
 
@@ -59,7 +64,9 @@ const FibAnalysis = () => {
       maker: Maker,
       ratio: Ratio,
       count: userCount,
-      type: 'mst'
+      type: 'mst',
+      estimated_count: Ratio * userCount,
+      is_customized_mst: IsCustomized
     }
     dispatch(fib_mst_details(data))
     navigate('/qmra')
@@ -111,7 +118,7 @@ const FibAnalysis = () => {
             <div>
               <label className='mst_label'>Ratio</label>
               {SelectedMaker.maker !== 'other' && <input type='text' value={SelectedMaker.ratio} disabled />}
-              {SelectedMaker.maker === 'other' &&  <span><input type='number' onChange={(event) => setRatio(event.target.value)} /></span>}
+              {SelectedMaker.maker === 'other' && <span><input type='number' onChange={(event) => setRatio(event.target.value)} /></span>}
             </div>
             <br></br>
             <p>Enter The Count:</p>
