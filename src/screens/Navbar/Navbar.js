@@ -82,8 +82,8 @@ function Navbar() {
                 <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
                 
                 <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
-                <div className="navbar-subs ">
-                    <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
+                {/* <div className="navbar-subs ">
+                    <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div> */}
                 <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
                 {/* <div className="navbar-subs dropdown">
                     <span className="nav-label">Levels</span>

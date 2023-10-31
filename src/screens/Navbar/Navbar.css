@@ -1,6 +1,6 @@
-.logo a img{
+/* .logo a img{
   visibility: hidden;
-}
+} */
 .topnav {
   background-color: #26272b;
   color: #fff;
@@ -16,11 +16,19 @@
 .nav-links
 {
   padding-left: 8%;
-display: flex;
-/* justify-content:space-between; */
-/* gap: 1.2em; */
-align-items: center;
-width: 100%;
+  display: flex;
+  float: right;
+  /* justify-content:space-between; */
+  /* gap: 1.2em; */
+  align-items: center;
+  width: 100%;
+}
+/* .rounded-img{
+  padding-left: 36%;
+} */
+
+.logo a .rounded-img{
+  margin-left: 65%;
 }
 .topnav .navbar-subs {
   float: left;
@@ -111,8 +119,8 @@ width: 100%;
   .navbar-subs a img{
     display: none;
   }
-  .logo a img{
+  /* .logo a img{
     visibility: visible;
    
-  }
+  } */
 }
