@@ -70,7 +70,7 @@ function Navbar() {
                                 <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li>
                             </span>)}
                             {(UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('')}>Level 3</li>
+                                <li className='dropdown-link' onClick={() => navigate('/mst')}>Level 3</li>
                             </span>)}
                         </ul>
                     </div>}

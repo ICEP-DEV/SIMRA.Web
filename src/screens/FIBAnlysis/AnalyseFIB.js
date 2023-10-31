@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../Header/Header';
-import { fib_details } from '../../Redux/fib';
+import { fib_mst_details } from '../../Redux/fib_mst';
 import { useNavigate } from 'react-router-dom';
 import Navbar2 from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
@@ -16,7 +16,6 @@ const FibAnalysis = () => {
   const [userCount, setUserCount] = useState(0);
   const [roundedEstimatedCount, setRoundedEstimatedCount] = useState(0);
   const [IsCustomized, setIsCustomized] = useState(false);
-
 
   const fibData = {
     'E.coli': { referencePath: 'Campylobacter', ratio: 0.66, estimatedCount: 0 },
@@ -67,22 +66,19 @@ const FibAnalysis = () => {
       count_indicator: userCount,
       estimatedCount: roundedEstimatedCount,
       ratio: ratio,
-      is_customized: IsCustomized
+      is_customized: IsCustomized,
+      type:'qmra'
     }
-    console.log(fib_info)
-    dispatch(fib_details(fib_info))
+    dispatch(fib_mst_details(fib_info))
     navigate('/qmra')
 
   };
-
-
 
   const handleFibData = (fib) => {
     setSelectedFIB(fib);
     if (fibData[fib]) {
       setReferencePath(fibData[fib].referencePath);
       setRatio(fibData[fib].ratio);
-      // Calculate estimated count based on user input
       calculateEstimatedCount();
     } else {
       setReferencePath('');
@@ -94,14 +90,11 @@ const FibAnalysis = () => {
   return (
     <div className='hero-all' >
       <Navbar2 />
-
       <div className='main-all'>
-
         <div className='content'>
           <Header />
           <div className='container-wrapper'>
             <div>
-
               <select
                 className='form-select-lg mb-3'
                 value={selectedFIB}
@@ -129,8 +122,8 @@ const FibAnalysis = () => {
                       <td >{ratio}</td>
                     </tr>}
                     {referencePath === 'other' && <tr>
-                      <td ><input type='text' placeholder='Indicator' onClick={(e) => setReferencePath(e.target.value)} style={{backgroundColor:"white"}} /></td>
-                      <td ><input type='text' placeholder='Ratio' onClick={(e) => setRatio(e.target.value)} style={{backgroundColor:"white"}}/></td>
+                      <td ><input type='text' placeholder='Indicator' onChange={(e) => setReferencePath(e.target.value)} style={{backgroundColor:"white"}} /></td>
+                      <td ><input type='text' placeholder='Ratio' onChange={(e) => setRatio(e.target.value)} style={{backgroundColor:"white"}}/></td>
                     </tr>}
                   </tbody>
                 </table>

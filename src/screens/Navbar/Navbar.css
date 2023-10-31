@@ -6,7 +6,6 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .topnav .navbar-subs {
@@ -46,10 +45,8 @@
 
 .nav_content {
   text-align: center;
-  /* display: flex;
-  justify-content: center; */
+ 
 }
-
 
 /*  Hover dropdown collaps */
 .dropbtn {

@@ -56,6 +56,7 @@ function SamplingData() {
             console.log(err)
         })
     }
+
     function SelectMunicipality(event) {
         setMunicipality(event.target.value)
     }
@@ -167,8 +168,6 @@ function SamplingData() {
 
     }
 
-
-
     const leve2popup = <div>
         <button className='level_popup level1_class' onClick={() => navigate('/h2s_survey')}>Level One(Household)</button>
         <button className='level_popup level2_class' onClick={() => navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
@@ -177,7 +176,7 @@ function SamplingData() {
     const leve3popup = <div>
         <button className='level_popup level1_class' onClick={() => navigate('/h2s_survey')}>Level One(Household)</button>
         <button className='level_popup level2_class' onClick={() => navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
-        <button className='level_popup level3_class'>Level Three(Expert)</button>
+        <button className='level_popup level3_class' onClick={() => navigate('/mst')}>Level Three(Expert)</button>
     </div>
 
     return (

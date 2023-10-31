@@ -9,7 +9,6 @@ import Popup from '../Pop_Up/Pop_Up';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export default function QMRAApp() {
   const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
   const [count, setCount] = useState('');
@@ -26,7 +25,7 @@ export default function QMRAApp() {
   const [Longitude, setLongitude] = useState('');
   const [Latitude, setLatitude] = useState('');
   let [IsCustomizePathogen, setIsCustomizePathogen] = useState(false);
-  let indicator_info = useSelector((state) => state.fib.value);
+  let fib_mst_info = useSelector((state) => state.fib_mst.value);
   let sampling_info = useSelector((state) => state.sampling.value);
   let [ProbabilityOfInfection, setProbabilityOfInfection] = useState(0);
   let [PopupoResults, setPopupoResults] = useState(false);
@@ -36,11 +35,10 @@ export default function QMRAApp() {
   let [DurationType, setDurationType] = useState('');
   let [QmraId, setQmraId] = useState(0);
   let [LikelihoodMessage, setLikelihoodMessage] = useState('');
-
-  
+  let [BestFitBodel, setBestFitBodel] = useState('');
 
   useEffect(() => {
-    console.log(indicator_info)
+    console.log(fib_mst_info)
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
       setLongitude(longitude)
@@ -51,7 +49,6 @@ export default function QMRAApp() {
 
       //setParameters(respond.data.reference_pathogens[0].parameter[0])
       setPathogen(respond.data.reference_pathogens)
-      console.log(Pathogen, "state");
 
       setIsfoundPath(respond.data.success)
       // const filteredParameters = response.Pathogen.filter(item => item.parameters === beta);
@@ -73,7 +70,8 @@ export default function QMRAApp() {
     if (event === 'other') {
       setIsCustomizePathogen(true)
     }
-    // console.log(event)
+
+     console.log(event)
     setSelectedathogen(event)
     filtered.push(Pathogen.filter((value) => value.pathogen === event))
     setSelectedOrganism(filtered[0][0].pathogen)
@@ -90,33 +88,37 @@ export default function QMRAApp() {
 
 
   }
+
   function sendQmra() {
     if (beta === undefined) { setBeta(null) }
     if (alpha === undefined) { setAlpha(null) }
     if (Constant === undefined) { setConstant(null) }
     if (n50 === undefined) { setN50(null) }
-
-    console.log('beta', beta)
-    console.log('alpha', alpha)
-    console.log('constant', Constant)
-    console.log('N50', n50)
-    console.log(selectedOrganism)
-    console.log(sampling_info)
+    console.log(Selectedathogen)
     var qmra_data = {
       beta: beta,
       alpha: alpha,
       constant: Constant,
       n50: n50,
-      count_indicator: indicator_info.count_indicator,
-      indicator: indicator_info.indicator,
-      estimated_count: indicator_info.estimatedCount,
-      ratio: indicator_info.ratio,
-      is_customized: indicator_info.is_customized,
+      best_fit_model: BestFitBodel,
+      count_indicator: fib_mst_info.count_indicator,
+      indicator: fib_mst_info.indicator,
+      estimated_count: fib_mst_info.estimatedCount,
+      ratio: fib_mst_info.ratio,
+      is_customized: fib_mst_info.is_customized,
       is_customize_Pathogen: IsCustomizePathogen,
       pathogen: Selectedathogen,
       samplingId: sampling_info.userId
     }
+    console.log(qmra_data)
 
+    var mst_data = {
+      count: fib_mst_info.count,
+      maker: fib_mst_info.maker,
+      ratio: fib_mst_info.ratio
+    }
+    console.log(mst_data)
+/*
     //Call in sampling data api
     axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
       qmra_data.samplingId = response.data.insertedId
@@ -143,31 +145,36 @@ export default function QMRAApp() {
         console.log(err)
       })
 
-      axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
-        .then((result) => {
-          if (result.data.success === true) {
-            toast.success("Successfully tested, the results will display on popup....", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-            setPopupoResults(true)
-            setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
-            setQmraId(result.data.qmra_id)
+      if (fib_mst_info.type === 'qmra') {
+        axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
+          .then((result) => {
+            if (result.data.success === true) {
+              toast.success("Successfully tested, the results will display on popup....", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              setPopupoResults(true)
+              setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
+              setQmraId(result.data.qmra_id)
+            }
 
-          }
+          }, err => {
+            console.log(err)
+          })
+      }
+      else if(fib_mst_info.type === 'mst'){
+        console.log('in mst')
+      }
 
-        }, err => {
-          console.log(err)
-        })
     }, (err) => {
       console.log(err)
-    })
+    })*/
   }
 
   async function likelihood() {
@@ -176,13 +183,13 @@ export default function QMRAApp() {
       duration_type: DurationType
     }
 
-    var resultsOfLikelihood = await axios.put('http://localhost:3001/api/likelihood_test/'+QmraId, data)
+    var resultsOfLikelihood = await axios.put('http://localhost:3001/api/likelihood_test/' + QmraId, data)
     setIsLikelihoodTested(resultsOfLikelihood.data.success)
     console.log(resultsOfLikelihood.data.success)
-    if(resultsOfLikelihood.data.success === true){
-      setLikelihoodMessage('Likelihood of infections is '+ resultsOfLikelihood.data.likelihood_of_infection)
+    if (resultsOfLikelihood.data.success === true) {
+      setLikelihoodMessage('Likelihood of infections is ' + resultsOfLikelihood.data.likelihood_of_infection)
     }
-    else{
+    else {
       setLikelihoodMessage('Could not get the likelihood of infections')
     }
   }
