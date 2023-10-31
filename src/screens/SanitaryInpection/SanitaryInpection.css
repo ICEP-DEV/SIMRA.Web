@@ -7,12 +7,9 @@
     align-items: center;
     justify-content: center;
     width: 60%;
-    height: 70vh;
+    height: 55vh;
 }
-.table{
-    display:inline-block;
-    margin: 5px 50px;
-}
+
 
 .sanitary-submit{
     width: 100%;
@@ -102,13 +99,10 @@
     min-width: 100wh;
 }
 @media (max-width: 768px) {
-    .table
-    {
-        font-size: 13px;
+    .questinare,.form-check-input{
+        width: 90%;
+        font-size: 0.8em;
     }
-    .yes_no
-    {
-     width: 100%;
-        margin-left: 50%;
-    }
+      
+   
 }

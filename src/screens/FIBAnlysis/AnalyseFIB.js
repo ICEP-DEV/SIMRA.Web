@@ -116,7 +116,7 @@ const FibAnalysis = () => {
               <p> Count: {estimatedCount} </p>
               <p>Estimated Count: {roundedEstimatedCount} </p>
             </div>
-            <button className='btn btn-light btn-lg' onClick={sendValue}>Save Value</button>
+            <button className='btn btn-success btn-lg' onClick={sendValue}>Save Value</button>
           </div>
         </div>
       </div>

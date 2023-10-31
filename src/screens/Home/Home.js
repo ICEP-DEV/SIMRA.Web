@@ -49,7 +49,7 @@ function Home() {
     >
       <div className='img-carousel'>
         <img src={image1} alt="Image 1"  />
-       
+       <p>Welcome</p>
       </div>
       <div className='img-carousel'> 
         <img src={image2} alt="Image 2" />

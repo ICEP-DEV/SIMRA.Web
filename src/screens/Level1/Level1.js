@@ -22,8 +22,13 @@ function Level1() {
                                 <Link to='/h2s_testing' className='btn btn-success btn-sanitary'>H2S</Link>
                             </div>
                         </div>
-                        <div id='level_descption'>
-                             <div id='level_description'>
+                       
+                        
+                    </div>
+                </div>
+
+                <div id='level_descption'>
+                             <div id='level_description font_7 wixui-richtext_text' >
                                 <h3>What is sanitary inspection?</h3>
                                 <p>Sanitary inspection serves as a vital tool in water quality monitoring, assessing the cleanliness, safety, and overall hygiene of water resources and environments. Its primary role is to
                                     identify potential routes of microbial contamination in diverse water sources.</p><br />
@@ -32,11 +37,6 @@ function Level1() {
                                     change to brown-black colour. Indicating that water is not safe for drinking purposes. </p>
                             </div> 
                         </div>
-                        
-                    </div>
-                </div>
-
-
             </div>
             <footer>
                 <Footer />

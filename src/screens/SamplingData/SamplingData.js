@@ -112,7 +112,7 @@ function SamplingData() {
     const leve3popup = <div>
         <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
         <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
-        <button className='level_popup level3_class'>Level Three(Expert)</button>
+        <button className='level_popup level3_class' onClick={()=> navigate('/mst')}>Level Three(Expert)</button>
     </div>
 
     return (
@@ -178,14 +178,8 @@ function SamplingData() {
                         <select className='select-sampling_data form-select w-75 mb-5 align-self-center ' onChange={(event) => setWeatherCondition(event.target.value)}>
                             <option value='' className="control-form">Select Weather Condition</option>
                             <option value='Dry' className="control-form">Dry</option>
-                            <option value='Windy' className="control-form">Windy</option>
-                            <option value='cloudy' className="control-form">cloudy</option>
-                            <option value='Snow' className="control-form">Snow</option>
-                            <option value='Thunder and Lightning' className="control-form">Thunder and Lightning</option>
-                            <option value='Frost and Ice' className="control-form">Frost and Ice</option>
-                            <option value='Rainy' className="control-form">Rainy</option>
-                            <option value='Fog' className="control-form">Fog</option>
-                            <option value='Sunny' className="control-form">Sunny</option>
+                            <option value='Windy' className="control-form">Wet</option>
+                           
                         </select>
                     </div>
                     <button className='btn btn-success btn-lg  w-25' onClick={submit_sampling_data}>Next</button>

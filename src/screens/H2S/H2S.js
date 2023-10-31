@@ -198,8 +198,9 @@ function H2S() {
                                         Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
                                     </p>
                                     <label className='alert alert-danger'>Warning: Remember to wear glove when using h2s paper strips</label>
-                                    <label className='alert alert-light'>Hydrogen sulfide (H₂S) is a colorless gas with a strong odor of rotten eggs. Exposure to hydrogen sulfide may cause irritation to the eyes and respiratory system.
-                                         It can also cause apnea, coma, convulsions; dizziness, headache, weakness, irritability, insomnia; stomach upset, and if liquid: frostbite.</label>
+                                    <label className='alert alert-light'>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
+                                    headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
                                 </div>
 
 

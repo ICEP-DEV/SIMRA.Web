@@ -1,0 +1,8 @@
+#mst_content{
+    display: flex;
+}
+
+.mst_label{
+    width: 20%;
+    text-align: left;
+}

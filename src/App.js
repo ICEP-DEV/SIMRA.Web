@@ -12,7 +12,11 @@ import Municipality from './screens/Municipality/Municipality';
 import Report from './screens/Municipality_Report/Report'
 import Survay_Report from './screens/Survay_Report/Survay_Report';
 import H2S_Report from './screens/H2S_Report/H2S_Report';
-import LandingPage from './screens/LandingPage/LandingPage';
+import User_H2S_Logs from './screens/User_H2S_Logs/User_H2S_Logs';
+import User_Sanitary_Survay_Logs_Reports from './screens/User_Sanitary_Survay_Logs_Reports/User_Sanitary_Survay_Logs_Reports';
+import User_QMRA_logs from './screens/User_QMRA_logs/User_QMRA_logs';
+import MST from './screens/MST/MST'
+import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -22,7 +26,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/landing' element={<LandingPage />} />
         <Route exact path='/' element={<Login />} />
         <Route exact path='/home' element={<Home />} />
         <Route exact path='/sampling_data' element={<SamplingData />} />
@@ -36,8 +39,12 @@ function App() {
         <Route exact path='/municipality' element={<Report />} />
         <Route exact path='/sanitary_report' element={<Survay_Report />} />
         <Route exact path='/h2s_report' element={<H2S_Report />} />
+        {/* <Route exact path='/user_logs' element={<User_Logs />} /> */}
+        <Route exact path='/h2s_logs' element={<User_H2S_Logs />} />
+        <Route exact path='/survay_logs' element={<User_Sanitary_Survay_Logs_Reports />} />
+        <Route exact path='/qmra_logs' element={<User_QMRA_logs />} />
+        <Route exact path='/mst' element={<MST />} />
 
-        
         
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
