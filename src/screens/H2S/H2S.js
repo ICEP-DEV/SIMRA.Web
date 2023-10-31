@@ -10,7 +10,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "react-responsive-carousel";
 import methods from '../../Data/methods';
-import './H2S.css'
+import './H2S.css';
+import h2s from '../../assets/h2s.png';
 import blackstrip from '../../assets/blackstrip.png';
 import whitestrip from '../../assets/whitestrip.png';
 import sample from '../../assets/sample.png';
@@ -193,9 +194,12 @@ function H2S() {
                                     SUBMIT
                                 </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
-                                    <p>
+                                    <p className='alert-light'>
                                         Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
                                     </p>
+                                    <label className='alert alert-danger'>Warning: Remember to wear glove when using h2s paper strips</label>
+                                    <label className='alert alert-light'>Hydrogen sulfide (H₂S) is a colorless gas with a strong odor of rotten eggs. Exposure to hydrogen sulfide may cause irritation to the eyes and respiratory system.
+                                         It can also cause apnea, coma, convulsions; dizziness, headache, weakness, irritability, insomnia; stomach upset, and if liquid: frostbite.</label>
                                 </div>
 
 
@@ -254,9 +258,13 @@ function H2S() {
 
 
                         </div>
-                        <section>
+                  
+                    </div>
+                    <section className='section-h2s'> 
+                  
+                    <h5 className='text-center mb-3'>How can I do H2S test?</h5>
 <div className='level1-desccription'>
-                            <label> How can I do H2S test?</label>
+                           
                             <div className='h2s-cards row align-items-start justify-content-around'>
 
                                 <div className='card' >
@@ -286,7 +294,7 @@ function H2S() {
                                     <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
                                 </div> </div>
                                 <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={borehole} />
+                                    <img className='card-img-top' src={h2s} />
                                     <div className='card-body'>
                                     <h5>Step 5</h5>
                                     <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
@@ -298,7 +306,6 @@ function H2S() {
                             </div>
                         </div>
 </section>
-                    </div>
                 </div>
             </div>
             <footer><Footer /> </footer>

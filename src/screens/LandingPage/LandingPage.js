@@ -2,11 +2,6 @@ import React from "react";
 import MovingComponent from '../animations/component';
 import { Link,useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import background from'../../assets/backgrround.jpg';
-import hands from '../../assets/hands.avif'
-import dwater from '../../assets/dwater.avif';
-import dirtywater from '../../assets/dirtywater.jpeg';
-import { HiOutlineMail } from 'react-icons/hi';
 import glassofwater from'../../assets/glassofwater.jpg';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';

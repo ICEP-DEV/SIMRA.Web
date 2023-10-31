@@ -355,7 +355,7 @@ function SanitaryInpection() {
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg mb-3'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg mb-3 d-flex justify-content-center'>Submit</button>
                     </div>
                 </div>
                 <div id='sanitary_description'>

@@ -6,7 +6,7 @@
     margin-right: auto;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 60%;
     height: 70vh;
 }
 .table{
@@ -79,7 +79,7 @@
     font-size: 1.1em;
     font-weight: 600;
 }
-.questinare{
+.questinare,.form-check-input{
     width: 50%;
     font-weight: 600;
 }
@@ -96,6 +96,10 @@
 }
 .sanitary_description ul li{
     list-style-type: circle;
+}
+.form-check-input
+{
+    min-width: 100wh;
 }
 @media (max-width: 768px) {
     .table

@@ -3,6 +3,8 @@ import './Navbar.css';
 import { Link } from "react-router-dom";
 import logo from './logo2.png';
 import logo1 from '../../assets/Simra_logo.png';
+import logo_2  from '../../assets/logo.png'
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { remove_details } from "../../Redux/user";
@@ -58,15 +60,16 @@ function Navbar() {
     return (
         <div className="topnav">
              <div className="logo">
-             <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
+             <Link to={"/home"}> <img className="rounded-img" src={logo_2} /></Link>
              </div>
+             <div className="navbar-subs "><div className="wrapper"></div>
+                    <Link to={"/home"}> <img className="rounded-img" src={logo_2} /></Link></div>
             <div className={`nav-links ${showNav ? 'show' : ''}`}>
                 <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
                 <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
                 
                 <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
-                <div className="navbar-subs "><div className="wrapper"></div>
-                    <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
+                
                 <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
                 {/* <div className="navbar-subs dropdown">
                     <span className="nav-label">Levels</span>

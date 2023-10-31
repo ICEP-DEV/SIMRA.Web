@@ -49,8 +49,14 @@
 
 #level_description{
     text-align: left;
+  
 }
-
+#level_description p
+{
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+}
 .align-items-start{
     display: flex;
     flex-direction: row;
