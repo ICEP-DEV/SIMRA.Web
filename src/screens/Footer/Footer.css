@@ -1,27 +1,50 @@
-
 .contact-info{
-    display: flex;
-    background-color:#4f5e37;
-    text-align: center;
- 
    
-    
+    background-color:#26272b;
+    padding:45px 0 20px;
+    font-size:15px;
+    line-height:24px;
+    color:#737373;
+}
+.contact-info hr{
+    border-top-color:#bbb;
+  opacity:0.5
+}
+.contact-info hr.small
+{
+    margin:  20px 0;
 }
 
-.contact_detail{
+/* .contact_detail{
     margin: 0 20px;
     margin-left: 10%;
     font-size: 12px;
    
-}
-.contact_detail h2
+} */
+.contact-info h6
 {
-    font-size: 20px;
+    color:#fff;
+    font-size:16px;
+    text-transform:uppercase;
+    margin-top:5px;
+    letter-spacing:2px
 }
 
-.end_footer{
+/* .end_footer{
     text-align: center;
-    background-color:#4f5e37;
+    background-color:#06BCFB;
     width: 100%;
-    
+    color: #fff;
+ 
+} */
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none;
+
+}
+.social-icons link{
+    display: inline;
+    margin-bottom: 4px;
 }

@@ -10,8 +10,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "react-responsive-carousel";
 import methods from '../../Data/methods';
-import './H2S.css'
-
+import './H2S.css';
+import blackstrip from '../../assets/blackstrip.png';
+import whitestrip from '../../assets/whitestrip.png';
+import sample from '../../assets/sample.png';
+import borehole from '../../assets/borehole.jpg';
+import tube from '../../assets/tube.jpg';
+import tests from '../../assets/tests.jpg'
 
 function H2S() {
     const navigate = useNavigate();
@@ -194,9 +199,9 @@ function H2S() {
                                 </div>
 
 
-                                {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
-                        DONE
-                    </button> */}
+                                    {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
+                                DONE
+                                </button> */}
                                 <Modal show={isShow} onHide={modalClose}>
                                     <Modal.Header closeButton onClick={modalClose}>
                                         <Modal.Title>Results</Modal.Title>
@@ -205,9 +210,9 @@ function H2S() {
                                         Are you sure you want to submit the results ?
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        {/* <Button variant="danger" onClick={initModal}>
-                            Close
-                        </Button> */}
+                                            {/* <Button variant="danger" onClick={initModal}>
+                                Close
+                                </Button> */}
                                         <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
                                             yes
                                         </Button>
@@ -237,7 +242,7 @@ function H2S() {
                                     <Modal.Footer>
                                         {/* <Button variant="danger" onClick={initModals}>
                             
-                        </Button> */}
+                                </Button> */}
                                         <Button variant="dark" onClick={function (event) {naving(); modalClose(); }}>
                                             Ok
                                         </Button>
@@ -249,6 +254,50 @@ function H2S() {
 
 
                         </div>
+                        <section>
+                            <div className='level1-desccription'>
+                                <label> How can I do H2S test?</label>
+                                <div className='h2s-cards row align-items-start justify-content-around'>
+
+                                    <div className='card' >
+                                        <img className='card-img-top' src={borehole} />
+                                        <div className='card-body'>
+                                        <h5>Step 1</h5>
+                                        <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div className='card' style={{width:'18rem'}}>
+                                        <img className='card-img-top' src={tests} />
+                                        <div className='card-body'>
+                                        <h5>Step 2</h5>
+                                        <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
+                                    </div> </div>
+                                    <div className='card' style={{width:'18rem'}}>
+                                        <img className='card-img-top' src={tube} />
+                                        <div className='card-body'>
+                                        <h5>Step 3</h5>
+                                        <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                                    </div> </div>
+                                    <div className='card' style={{width:'18rem'}}>
+                                        <img className='card-img-top' src={borehole} />
+                                        <div className='card-body' style={{font:'16px'}}>
+                                        <h5>Step 4</h5>
+                                        <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
+                                    </div> </div>
+                                    <div className='card' style={{width:'18rem'}}>
+                                        <img className='card-img-top' src={borehole} />
+                                        <div className='card-body'>
+                                        <h5>Step 5</h5>
+                                        <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
+                                    </div> </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>

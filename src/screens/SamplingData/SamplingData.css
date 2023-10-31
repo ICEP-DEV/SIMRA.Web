@@ -4,12 +4,32 @@
 
  
  }
+ .select-sampling_data
+ {
+  border: 1px solid #09330d;
+ }
+ /* .select-sampling_data:hover
+ {
+  background-color:#09330d;
+  color: white;
+ } */
+ .control-form
+ {
+ background-color: #fff;
+ color: black;
+ }
+ .control-form:hover
+ {
+  
+  color: #09330d;
+ }
  .container-wrapper
  {  
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: #4f5e37;
+  /* background-color: #4f5e37; */
+  color: #09330d;
   width: 90%;
   height: 70vh;
   text-align: center;
@@ -35,7 +55,7 @@
  {
      /* background-color: #0063EA;  */
      background-color: #ffffff;
-    color: #fff;
+   
  }
 
  .level_popup{
@@ -56,12 +76,6 @@
   background-color: #b6dd7cad;
  }
 
-   
-   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-   @media screen and (max-height: 450px) {
-     .sidenav {padding-top: 15px;}
-     .sidenav a {font-size: 18px;}
-   }
    select{
      width: 50%;
    }
@@ -70,7 +84,14 @@
      width: 201px;
      height: 32px;
     color: #fff;
-     background-color: #0063EA; 
+     background-color: #09330d; 
      border-radius: 5%;
      border: none;
    }
+    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+    @media (max-width: 768px) {
+      .select-sampling_data:hover{
+        background-color: rgb(7, 65, 224);
+        color: white;
+      }
+    }

@@ -1,4 +1,5 @@
 
+
 .form_content_switch{
     position: relative;
 }
@@ -8,3 +9,51 @@
     left: 50%;
     width: 5%;
 }
+.img-h2s
+{
+   
+    height: 150px;
+    width: 100%;
+}
+.card-h2s
+{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 200px;
+    height: 250px;
+  
+
+}
+.card-body p{
+font-size: 16px;
+}
+
+.h2s-cards .card 
+{
+    width: 18rem;
+    height: 20rem;
+  
+}
+
+@media (max-width: 768px) {
+
+
+    .h2s-cards{
+        display: block;
+        margin: auto;
+        height: auto;
+        width: auto;
+    }
+    .level1-desccription .row .card-h2s img{
+        /* height: auto; */
+        /* width: auto; */
+        margin: auto;
+        padding: auto;
+    }
+    #level_description               {
+        /* display: block; */
+        align-items: center;
+        align-content: center;
+        margin:auto;
+        padding:auto;
+    }
+    }

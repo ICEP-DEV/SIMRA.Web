@@ -4,7 +4,7 @@ import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
-import logo from './logo3.png';
+// import logo from './logo3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
 import { setAuthenticationHeader } from '../../utils/authenticate';
+import logo1 from '../../assets/Simra_logo.png';
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -503,7 +504,7 @@ function Login() {
             <div className='login-container'>
                 <div className='welcome'>
                     <div className='logo-login'>
-                        <img className='logo-login' src={logo} alt='logo' />
+                        <img className='logo-login' src={logo1} alt='logo' />
                     </div>
                     <h1>Welcome</h1>
                     SIMRA, tool integrates  <br></br>

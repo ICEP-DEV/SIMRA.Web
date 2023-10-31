@@ -17,7 +17,7 @@ import H2S_Report from './screens/H2S_Report/H2S_Report';
  import  UserProfileUpdate from './screens/Profile/Profile';
 
 import './App.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <Router>

@@ -2,7 +2,7 @@
   visibility: hidden;
 }
 .topnav {
-  background-color: #4f5e37;
+  background-color: #26272b;
   color: #fff;
   width: 100%;
   font-size: 16px;
@@ -10,8 +10,18 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center; 
-}
+  
 
+}
+.nav-links
+{
+  padding-left: 8%;
+display: flex;
+/* justify-content:space-between; */
+/* gap: 1.2em; */
+align-items: center;
+width: 100%;
+}
 .topnav .navbar-subs {
   float: left;
   padding: 12px;
@@ -80,11 +90,12 @@
     display: none;
     flex-direction: column;
     align-items: center;
+    float: right;
     position: absolute;
     top: 60px;
     left: 0;
     right: 0;
-    background-color:  #4f5e37;
+    background-color:  #26272b;
     z-index: 1;
     transition: all 0.3s ease;
   }

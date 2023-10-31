@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { remove_details } from "../../Redux/user";
 import axios from 'axios';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import logo1 from '../../assets/Simra_logo.png';
 
 
 function Navbar() {
@@ -73,7 +74,7 @@ function Navbar() {
     return (
         <div className="topnav">
              <div className="logo">
-             <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link>
+             <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
              </div>
             <div className={`nav-links ${showNav ? 'show' : ''}`}>
             
