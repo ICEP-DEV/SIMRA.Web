@@ -10,14 +10,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "react-responsive-carousel";
 import methods from '../../Data/methods';
-import './H2S.css'
-
+import './H2S.css';
+import h2s from '../../assets/h2s.png';
+import blackstrip from '../../assets/blackstrip.png';
+import whitestrip from '../../assets/whitestrip.png';
+import sample from '../../assets/sample.png';
+import borehole from '../../assets/borehole.jpg';
+import tube from '../../assets/tube.jpg';
+import tests from '../../assets/tests.jpg'
 
 function H2S() {
     const navigate = useNavigate();
     let sampling_info = useSelector((state) => state.sampling.value)
     const [Methods, setMethods] = useState(methods)
     const [selectedOption, setSelectedOption] = useState({ isFound: false });
+    const [Longitude, setLongitude] = useState('')
+    const [Latitude, setLatitude] = useState('')
     const [IsContiminated, setIsContiminated] = useState(false);
     const [ResultsStatus, setResultsStatus] = useState(false);
 
@@ -29,21 +37,6 @@ function H2S() {
 
     const [isShow, invokeModal] = React.useState(false)
     const initModal = () => {
-        //check for location
-        /*if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could not get your location!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            return;
-        }*/
-
         return invokeModal(!false)
     }
     const [isShows, invokeModals] = React.useState(false)
@@ -51,11 +44,19 @@ function H2S() {
         return invokeModals(!false)
     }
     const modalClose = () => {
-        handleButtonClick()
-        //return invokeModal(false)
+        return invokeModal(false)
     }
     const modalCloses = () => {
         return invokeModals(false)
+    }
+
+    const handleChangeUpdate = e => {
+        setIsContiminated((currentState) => ({
+            ...currentState,
+            [e.target.name]: Boolean(e.target.value),
+        }))
+        console.log(IsContiminated)
+
     }
 
     const divStyleSubmit = {
@@ -77,51 +78,67 @@ function H2S() {
         navigate("/h2s_survey");
     }
 
-    async function handleButtonClick()  {
-        console.log(sampling_info)
+    const handleButtonClick = (color) => {
+        console.log(selectedOption)
+        if (!sampling_info.longitude || !sampling_info.latitude) {
+            toast.error("Won't able to proceed since we could get your location!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
 
-        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then(async (response) => {
-            // Assign to Coordinates object
-            var coordinates = {
-                latitude: sampling_info.latitude,
-                longitude: sampling_info.longitude,
-                samplingId: response.data.insertedId
-            }
-            //Call in coordinates api
-            axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
-                console.log(result)
-            }, err => {
-                console.log(err)
-            })
-
-            // Assign to watersource object
-            var watersource = {
-                samplingId: response.data.insertedId,
-                type: sampling_info.type,
-                waterAccessability: sampling_info.waterAccessability
-            }
-            //Call in watersource api
-            axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
-                console.log(result)
-            }, err => {
-                console.log(err)
-            })
-
-            var h2s_test = {
-                status: selectedOption.isFound,
-                samplingId: response.data.insertedId
-            }
-           await axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
-
-                if (result.data.success === true) {
-                    console.log(selectedOption.isFound)
-                    setResultsStatus(selectedOption.isFound)
+        else {
+            axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+                // Assign to Coordinates object
+                var coordinates = {
+                    latitude: sampling_info.latitude,
+                    longitude: sampling_info.longitude,
+                    samplingId: response.data.insertedId
                 }
-            })
-        }, err => {
-            console.log(err)
-        })
+                //Call in coordinates api
+                axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+                    console.log(result)
+                }, err => {
+                    console.log(err)
+                })
 
+                // Assign to watersource object
+                var watersource = {
+                    samplingId: response.data.insertedId,
+                    type: sampling_info.type,
+                    waterAccessability: sampling_info.waterAccessability
+                }
+                //Call in watersource api
+                axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+                    console.log(result)
+                }, err => {
+                    console.log(err)
+                })
+
+                var h2s_test = {
+                    status: selectedOption.isFound,
+                    samplingId: response.data.insertedId
+                }
+                axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
+
+                    if (result.data.success === true) {
+                        console.log(result.data.status)
+                        setResultsStatus(result.data.status)
+                        // navigate("/level1", { state: { temp } })
+                    }
+                })
+            }, err => {
+                console.log(err)
+            })
+
+        }
     };
 
     let display_methods = <div className="box box_with_carousel">
@@ -177,9 +194,13 @@ function H2S() {
                                     SUBMIT
                                 </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
-                                    <p>
+                                    <p className='alert-light'>
                                         Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
                                     </p>
+                                    <label className='alert alert-danger'>Warning: Remember to wear glove when using h2s paper strips</label>
+                                    <label className='alert alert-light'>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
+                                    headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
                                 </div>
 
 
@@ -197,7 +218,7 @@ function H2S() {
                                         {/* <Button variant="danger" onClick={initModal}>
                             Close
                         </Button> */}
-                                        <Button variant="dark" onClick={function (event) { initModals() }}>
+                                        <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
                                             yes
                                         </Button>
                                     </Modal.Footer>
@@ -227,7 +248,7 @@ function H2S() {
                                         {/* <Button variant="danger" onClick={initModals}>
                             
                         </Button> */}
-                                        <Button variant="dark" onClick={function (event) { naving(); modalClose(); }}>
+                                        <Button variant="dark" onClick={function (event) {naving(); modalClose(); }}>
                                             Ok
                                         </Button>
                                     </Modal.Footer>
@@ -238,7 +259,54 @@ function H2S() {
 
 
                         </div>
+                  
                     </div>
+                    <section className='section-h2s'> 
+                  
+                    <h5 className='text-center mb-3'>How can I do H2S test?</h5>
+<div className='level1-desccription'>
+                           
+                            <div className='h2s-cards row align-items-start justify-content-around'>
+
+                                <div className='card' >
+                                    <img className='card-img-top' src={borehole} />
+                                    <div className='card-body'>
+                                    <h5>Step 1</h5>
+                                    <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
+                                    </div>
+                                    
+                                </div>
+                                <div className='card' style={{width:'18rem'}}>
+                                    <img className='card-img-top' src={tests} />
+                                    <div className='card-body'>
+                                    <h5>Step 2</h5>
+                                    <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
+                                </div> </div>
+                                <div className='card' style={{width:'18rem'}}>
+                                    <img className='card-img-top' src={tube} />
+                                    <div className='card-body'>
+                                    <h5>Step 3</h5>
+                                    <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                                </div> </div>
+                                <div className='card' style={{width:'18rem'}}>
+                                    <img className='card-img-top' src={borehole} />
+                                    <div className='card-body' style={{font:'16px'}}>
+                                    <h5>Step 4</h5>
+                                    <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
+                                </div> </div>
+                                <div className='card' style={{width:'18rem'}}>
+                                    <img className='card-img-top' src={h2s} />
+                                    <div className='card-body'>
+                                    <h5>Step 5</h5>
+                                    <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
+                                </div> </div>
+
+
+
+
+                            </div>
+                        </div>
+</section>
                 </div>
             </div>
             <footer><Footer /> </footer>

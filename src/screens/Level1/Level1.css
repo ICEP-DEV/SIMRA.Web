@@ -49,9 +49,27 @@
 
 #level_description{
     text-align: left;
+  
 }
-
+#level_description p
+{
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+}
 .align-items-start{
     display: flex;
     flex-direction: row;
+}
+@media (max-width: 768px) {
+
+    #level_description
+    {
+        text-align: center;
+        font-size: 12px;
+    } 
+    #level_description h3
+    {
+        font-size: 16px;
+    }
 }

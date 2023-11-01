@@ -23,10 +23,13 @@ function H2S_Report() {
         var date = new Date()
         var current_date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
         axios.get(api + "get_h2s_stats/2023-06-01/" + current_date.toString()).then((response) => {
-            setStoredReport(response.data.result)
-            setReport(response.data.result)
             setFoundReport(response.data.success)
-            setTotalRecord(response.data.result.length)
+            if (response.data.success === true) {
+                setStoredReport(response.data.result)
+                setReport(response.data.result)
+                setTotalRecord(response.data.result.length)
+            }
+
         })
         console.log(TotalRecord)
         console.log(StoredReport)
@@ -71,10 +74,10 @@ function H2S_Report() {
         }
         axios.get(api + 'get_h2s_stats/' + startDate + '/' + endDate).then((response) => {
             setTotalRecord(0)
-            setReport(response.data.result)
-            setStoredReport(response.data.result)
             setFoundReport(response.data.success)
             if (response.data.success === true) {
+                setReport(response.data.result)
+                setStoredReport(response.data.result)
                 setTotalRecord(response.data.result.length)
             }
         })
@@ -160,7 +163,7 @@ function H2S_Report() {
                                     </select>
                                 </span>
                             </div>
-                            
+
                             <div id='stats_summary' style={{ color: 'black' }}>
                                 <h3>Total Records: {TotalRecord}</h3>
                             </div>

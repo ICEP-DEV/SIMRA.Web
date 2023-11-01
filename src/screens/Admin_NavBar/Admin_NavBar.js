@@ -3,7 +3,7 @@ import { RiTestTubeLine } from "react-icons/ri";
 import { BiSolidReport } from "react-icons/bi";
 import { AiOutlineLogout, AiFillHome } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-import logo from './logo2.png';
+import logo from '../../assets/logo.png';
 import { Outlet, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';

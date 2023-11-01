@@ -37,12 +37,13 @@ function User_H2S_Logs() {
 
   useEffect(() => {
     var userId = user_info.userId
+    console.log(userId)
     setUserId(userId)
     axios.get(api + 'get_userhistory_h2s/' + userId).then((response) => {
+      setFoundReport(response.data.success)
       if (response.data.success === true) {
         setStoredReport(response.data.result)
         setReport(response.data.result)
-        setFoundReport(response.data.success)
         setTotalRecord(response.data.result.length)
       }
     })
@@ -84,14 +85,15 @@ function User_H2S_Logs() {
       });
       return;
     }
+    console.log('user id',UserId)
     axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
       setTotalRecord(0)
       console.log(response)
+      setFoundReport(response.data.success)
       if (response.data.success === true) {
         setTotalRecord(response.data.result.length)
         setReport(response.data.result)
         setStoredReport(response.data.result)
-        setFoundReport(response.data.success)
       }
     })
   }

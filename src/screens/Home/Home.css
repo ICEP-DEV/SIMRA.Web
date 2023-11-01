@@ -4,24 +4,30 @@
     font-family: 'Prompt', sans-serif;
 color: #fff;
      overflow-x: hidden;
-     background-image: url('./dwater.avif');
+    
 
 }
-.img-section-2
+.card-home
 {
-    width: 300px;
+
+  width: 90%;
+  height: 700px;
+
 }
 .para
 {
-    font-size: larger;
-    color: rgb(20, 22, 22);
+    font-size: 16px;
     text-transform: uppercase;
+    font-weight: lighter;
+    writing-mode: horizontal-tb;
+    color: rgb(46, 43, 43);
+   
 }
 section {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+  
     min-height: 400px;
     padding-top: 100px;
   }
@@ -29,38 +35,39 @@ section {
 {
    
  width: 100%;
- height: 60vh;
+ height: 70vh;
  color: #fff;
+ 
 }
 .section-1 
 {
-    margin: em 0 0.5em 0;
+  margin: em 0 0.5em 0; 
 	color: #f9fafa;
 	font-weight: normal;
 	font-family: 'Ultra', sans-serif;   
 	font-size: 50px;
 	line-height: 62px;
 	text-transform: uppercase;
-	/* text-shadow: 0 2px white, 0 3px #777; */
+
 }
 .section-2
 {
     width: 100%;
-    /* background-color:rgb(10,20,140); */
-    background-color: #4f5e37;
+   
+    background-color: #fff;
     display: flex;
   justify-content: start;
   align-items: center; 
-  
+ color: rgb(46, 43, 43);
     /* border-top-left-radius: 30% 30%;
     border-top-right-radius: 30% 30%; */
 }
-.section-3
+/* .section-3
 {
     width: 100%;
-    background-color:#7a9155;
+    background-color:#fff;
  
-}
+} */
 
 .curve {
     position: absolute;
@@ -79,6 +86,16 @@ section {
     transform: translate(85%, 60%);
     /* background-color:rgb(10,20,140); */
   }
+  .user-text
+  {
+    width: 50%;
+    background-color: rgba(24, 22, 22, 0.493);
+    border-top: 5px solid #000000;
+    text-align: center;
+   
+  margin-top: 10%;
+
+  }
   .card-contact
   {
    
@@ -86,7 +103,7 @@ section {
 
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255,0.07);
+    background-color: #0059D4;
     border:  rgba(255, 255, 255,0.1);
     backdrop-filter: blur(10px);
     border-radius: 5px;
@@ -102,7 +119,7 @@ width: 80%;
   }
   .card-contact .input {
     background-color: rgba(255, 255, 255,0.07);
-    color: #fff;
+    color: #a5c47327;
     border: none;
     border-radius: 2px;
     height: 25px;
@@ -155,23 +172,22 @@ width: 80%;
   align-items: center;
   display: flex;
 }
-  /* .curve::after {
-    content: '';
-    display: block;
-    position: absolute;
-    border-radius: 100% 50%;
-    width: 55%;
-    height: 100%;
-     background-color: rgb(10,20,140); 
-    background-color: transparent;
-    transform: translate(-4%, 40%);
-    z-index: -1;
-  } */
+
+.carousel
+{
+width: 100%;
+}
+ 
   @media screen and (max-height: 450px) {
-   .hero
-   {
-    width: 400px;
-   }
+    .carousel
+    {
+      height: 80vh;
+    }
+    .para
+    {
+      font-size: 11px;
+    }
+    
    }
  
   

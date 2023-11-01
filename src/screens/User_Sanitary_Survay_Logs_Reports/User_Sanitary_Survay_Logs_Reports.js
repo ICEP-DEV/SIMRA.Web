@@ -39,10 +39,10 @@ function User_Sanitary_Survay_Logs_Reports() {
         var userId = user_info.userId
         setUserId(userId)
         axios.get(api + 'get_userhistory_sanitory/' + userId).then((response) => {
+            setFoundReport(response.data.success)
             if (response.data.success === true) {
                 setStoredReport(response.data.result)
                 setReport(response.data.result)
-                setFoundReport(response.data.success)
                 setTotalRecord(response.data.result.length)
             }
         })
@@ -85,64 +85,45 @@ function User_Sanitary_Survay_Logs_Reports() {
             return;
         }
         axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
-
             setTotalRecord(0)
-
+            setFoundReport(response.data.success)
             if (response.data.success === true) {
-                setTotalRecord(response.data.result.length)
-                setReport(response.data.result)
-                setStoredReport(response.data.result)
-                setFoundReport(response.data.success)
+              setStoredReport(response.data.result)
+              setReport(response.data.result)
+              setTotalRecord(response.data.result.length)
             }
         })
     }
 
-    function checkForUserInfo(id) {
-        var temp_array = StoredReport
-        if (id === true) {
-            setReport(temp_array.filter(value => {
-                return value.user().includes(id)
-            }))
-        }
-        else {
-            setReport(StoredReport)
-        }
-    }
-
     function filter_by_province(_province) {
         var count = 0
+        var temp_array = StoredReport
 
-        if (_province === '') {
-            setReport(StoredReport)
-            setTotalRecord(StoredReport.length)
-            return
-        } else {
-            var temp_array = StoredReport
-            axios.get(api + "get_municipalities/" + _province).then(response => {
-                setMunicipalities(response.data.results)
+        axios.get(api + "get_municipalities/" + _province).then(response => {
+            setMunicipalities(response.data.results)
 
-            }, err => {
-                console.log(err)
-            })
-            setReport(temp_array.filter(value => {
-                return value.province_id?.toLocaleLowerCase().includes(_province?.toLocaleLowerCase())
-            }))
+        }, err => {
+            console.log(err)
+        })
+        setReport(temp_array.filter(value => {
+            return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase())
+        }))
 
-            for (var k = 0; k < StoredReport.length; k++) {
-                if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
-                    count++
-                }
+        for (var k = 0; k < StoredReport.length; k++) {
+            if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
+                count++
             }
-            setTotalRecord(count)
         }
-
+        setTotalRecord(count)
     }
 
     function filter_by_municipality(_muni) {
         var temp_array = StoredReport
         var count = 0
-
-
+        if (_muni === '') {
+            setReport(StoredReport)
+            return
+        }
 
         setReport(temp_array.filter(value => {
             return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase())
@@ -157,16 +138,23 @@ function User_Sanitary_Survay_Logs_Reports() {
 
     function search_by_weekday(day) {
         var temp_array = StoredReport
-
+        var count = 0
         if (day !== '') {
             setReport(temp_array.filter(value => {
                 return value.weekday.toLocaleLowerCase().includes(day.toLocaleLowerCase())
             }))
+            for (var k = 0; k < StoredReport.length; k++) {
+                if (StoredReport[k].weekday.toLocaleLowerCase() === day.toLocaleLowerCase()) {
+                    count++
+                }
+            }
+            setTotalRecord(count)
         }
         else {
             setReport(StoredReport)
         }
     }
+
 
     //change page 
     const paginate = (page_number) => setCurrentPage(page_number)

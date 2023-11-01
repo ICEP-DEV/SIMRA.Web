@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Navbar.css';
 import { Link } from "react-router-dom";
-import logo from './logo2.png';
+import logo from '../../assets/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { remove_details } from "../../Redux/user";
@@ -48,7 +48,16 @@ function Navbar() {
         dispatch(remove_sample_details())
         navigate("/")
     }
+const [showNav, setShowNav] = useState(false);
 
+    const toggleNav = () => {
+      setShowNav(!showNav);
+    };
+
+    function logout() {
+        dispatch(remove_details());
+        navigate("/")
+    }
     return (
         <div className="topnav">
             <div className="navbar-subs ">
@@ -83,7 +92,7 @@ function Navbar() {
                             <li className='dropdown-link' onClick={() => navigate('/qmra_logs')}>QMRA</li>
                         </span>)}
                         {( UserType === 3) && (<span>
-                            <li className='dropdown-link'>MST</li>
+                            <li className='dropdown-link' onClick={() => navigate('/mst_logs')}>MST</li>
                         </span>)}                        
                     </ul>
                 </div>

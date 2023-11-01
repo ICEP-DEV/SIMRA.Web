@@ -15,9 +15,11 @@ import Footer from '../Footer/Footer';
 import methods from '../../Data/methods';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
-import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
-import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
-
+import Level2PopUp from '../Pop_Up/Pop_Up_Level2';
+import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
+import domestic_animal from '../../assets/domestic_animals.jpg';
+import diapers from '../../assets/diapers.jpg';
+import pit from '../../assets/pit.jpg';
 
 function SanitaryInpection() {
     var navigate = useNavigate()
@@ -108,7 +110,7 @@ function SanitaryInpection() {
         }
 
         if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could not get your location!", {
+            toast.error("Won't able to proceed since we could get your location!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -233,7 +235,7 @@ function SanitaryInpection() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <div className='container-wrapper'></div>
+                 
                     <div className='sanitaryInpection'>
 
                         {/* Pop up test methods */}
@@ -298,7 +300,7 @@ function SanitaryInpection() {
                                 <label className='header_form_label yes_no'>No/Yes</label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>1. Are There pit-latrines?</label>
+                                <label className='header_form_label questinare'>1. Are There pit-latrines(toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />
@@ -312,7 +314,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>3. Diapers Disposal?</label>
+                                <label className='header_form_label questinare'>3. Diapers Disposal(throwing away diapers)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="diaperDisposal" />
@@ -326,7 +328,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>5. Open defaction?</label>
+                                <label className='header_form_label questinare'>5. Open defaction(public poos)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='openDefaction' />
@@ -340,7 +342,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>7. Agricultural Activities?</label>
+                                <label className='header_form_label questinare'>7. Agricultural Activities(farming operations)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='agriculturalActivity' />
@@ -355,10 +357,17 @@ function SanitaryInpection() {
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg mb-3'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg  d-flex justify-content-center'>Submit</button>
                     </div>
-                </div>
-                <div id='sanitary_description'>
+                    <div className='row'>
+<div className='col'><img className='w-50' src={domestic_animal} alt="domestic animals" /></div>
+<div className='col'><img className='w-50' src={pit} alt="pit toilets"/></div>
+<div className='col'><img className='w-50' src={diapers} /></div>
+<div className='col'><img /></div>
+<div className='col'><img /></div>
+<div className='col'><img /></div>
+                    </div>
+                    {/* <div id='sanitary_description ' className='text-primary mb-2'>
                     <h3>How can I do sanitary Inspection? </h3>
                     <ul>
                         <li>For sanitary inspection you can use a sanitary survey, where you simply answer yes or no.</li>
@@ -367,7 +376,9 @@ function SanitaryInpection() {
                         <li>Then sanitary score can be rated as low-very high risk.</li>
                     </ul>
                     <label>The level of safety of the water source can be rated from risk score (e.g. very high risk (7-8), high risk (5-6), medium risk (3-4) and low risk (1-2)).</label>
+                </div> */}
                 </div>
+                
             </div>
             <footer><Footer /></footer>
         </div>

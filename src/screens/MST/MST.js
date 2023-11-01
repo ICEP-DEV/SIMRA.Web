@@ -130,7 +130,9 @@ const FibAnalysis = () => {
           </div>
           <button onClick={next_to_mst}>Next</button>
         </div>
+
       </div>
+      <footer><Footer /></footer>
     </div>
 
   );
