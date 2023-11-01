@@ -11,7 +11,9 @@ import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
-import logo1 from '../../assets/Simra_logo.png'
+import logo1 from '../../assets/Simra_logo.png';
+import {BiSolidUser} from 'react-icons/bi';
+import {AiFillLock} from 'react-icons/ai'
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -495,40 +497,32 @@ function Login() {
                 </Modal.Footer>
             </Modal>
             <div className='login-container'>
-                <div className='welcome'>
-                    <div className='logo-login'>
+            <div className='logo-login'>
                         <img className='logo-login' src={logo1} alt='logo' />
                     </div>
-                    <h1>Welcome</h1>
-                    SIMRA, tool integrates  <br></br>
-                    the current water and <br></br>
-                    sanitation risk assessment <br></br>
-                    and management methods <br></br>
-                    into one harmonised tool<br></br>
-                </div>
-                <div className='login-card'>
-
-                    <div className='main-login' id='main-login'>
+                    <h3 className='header-txt mb-6'><b>Sign In </b></h3>
+                
+               
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                        <h3 className='header-txt'><b>Sign In </b></h3>
-                        <div className='mb-4'>
-                            {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
-                            <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
-                            <small>
-
-                            </small>
+                        <div className='login-subs '>
+                             {/* <label htmlFor='username ' className=' fs-6'>Username</label> <br />  */}
+                            <BiSolidUser size={30}/><span>Username:</span><br/>
+                            <input className='input-login rounded '  type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Username' />
+                            
                         </div>
+                        
 
-                        <div className='mb-5'>
-                            {/* <label htmlFor='password'>Password</label> <br /> */}
-                            <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
+                        <div className='login-subs  mb-5'>
+                            {/* <label htmlFor='password' className='fs-6'>Password</label> <br />  */}
+                            <AiFillLock size={30}/><span>Password:</span><br/>
+                            <input className='input-login rounded' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Password' />
 
                             <small>
-                                <div className="form-check">
+                                {/* <div className="form-check ">
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                     <label className="form-check-label" for="exampleCheck1">Remember me</label>
-                                </div>
+                                </div> */}
                             </small>
                         </div>
 
@@ -540,20 +534,20 @@ function Login() {
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn-login mb-5' onClick={onSuccess}>Sign In</button>
+                            <button className='btn btn-success mb-5 btn-login' onClick={onSuccess}>Sign In</button>
                             <br></br>
-                            <small className='txt-signup mt-4'>
-                                Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>
-                            </small>
-
+                           
+                            <div class="txt-signup" role="alert">
+                            Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>
+                            </div>
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
-        </div>
+           
+    
     )
 }
 

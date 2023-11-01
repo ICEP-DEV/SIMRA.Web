@@ -47,4 +47,8 @@ font-size: 16px;
     .section-h2s{
         margin-top: 20%;
     }
+    .h2s-label
+    {
+        font-size: small;
+    }
 }

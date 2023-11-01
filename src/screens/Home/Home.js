@@ -74,12 +74,12 @@ function Home() {
           iteration="1"
           fillMode="none">
             
-          <p className='para ' >
+          <p className='para font_7 wixui-richtext_text ' >
           	<h4 >What are the households water treatment methods?</h4>
-            <li>Boiling: Bring the water to a rolling boil and maintain it for at least one minute. Allow the water to cool before use. </li>
-            <li>SODIS (Solar Water Disinfection): Fill clear, plastic bottles with water and leave them in direct sunlight for at least six hours (or longer if it cloudy). disinfect the water. </li>
-            <li> Chemical Disinfection: Add a cap full of bleach in 25L of water. Allow the treated water to sit for a specific contact time before consuming.</li>
-            <li>Filtration: Choose a water filter certified for the removal of specific contaminants (e.g., use a cloth folded 8 times/ clay pots/ceramic filters). </li>
+            <li>Boil the water vigorously for a minute, then let it cool before using.</li>
+            <li> Fill clear plastic bottles with water and leave them in the sun for at least six hours to disinfect the water using SODIS. </li>
+            <li>To disinfect water chemically,Put a cap of bleach in 25 liters of water to disinfect it. Wait for a bit before using.</li>
+            <li>Use a certified water filter that can remove specific contaminants, like a folded cloth, clay pot, or ceramic filter. </li>
             <br></br>
             “Everyone has the right to have access to sufficient food and water.” </p>
 
@@ -109,8 +109,9 @@ function Home() {
           timing="ease"
           iteration="1"
           fillMode="none">
-          <p className='para ' >
+         
             <h4>Is your water safe for drinking purposes? </h4>
+            <p className='para font_7 wixui-richtext_text ' >
           While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
            Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
            Hence, it is essential for you to regularly monitor the quality of your water. <br></br>

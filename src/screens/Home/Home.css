@@ -1,7 +1,7 @@
 .hero
 {
     margin: 0;
-    font-family: 'Prompt', sans-serif;
+    font-family: 'display';
 color: #fff;
      overflow-x: hidden;
     
@@ -17,7 +17,6 @@ color: #fff;
 .para
 {
     font-size: 16px;
-    text-transform: uppercase;
     font-weight: lighter;
     writing-mode: horizontal-tb;
     color: rgb(46, 43, 43);

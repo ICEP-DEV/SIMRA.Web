@@ -46,9 +46,12 @@
 {
     text-decoration: none;
 }
-
+#level_descption
+{
+    text-align: center;
+}
 #level_description{
-    text-align: left;
+    text-align: center;
   
 }
 #level_description p
@@ -56,20 +59,41 @@
     font-family: 'Inter', sans-serif;
     font-weight: 100;
     font-size: 16px;
+    text-align: center;
 }
 .align-items-start{
     display: flex;
     flex-direction: row;
 }
 @media (max-width: 768px) {
-
+#level_descption
+{
+  text-align: center;
+    margin-top: 25%;
+}
     #level_description
     {
         text-align: center;
         font-size: 12px;
+       
+        height: 500px;
+        
     } 
     #level_description h3
     {
         font-size: 16px;
+    }
+    .container-wrapper p
+    {
+        font-size: small;
+    }
+    .container-wrapper h3
+    {
+font-size: 16px;
+    }
+    .btn-sanitary
+    {
+        width: 110px;
+        font-size: small;
     }
 }

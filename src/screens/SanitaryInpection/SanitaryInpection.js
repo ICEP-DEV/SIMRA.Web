@@ -19,8 +19,9 @@ import Level2PopUp from '../Pop_Up/Pop_Up_Level2';
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
 import domestic_animal from '../../assets/domestic_animals.jpg';
 import diapers from '../../assets/diapers.jpg';
-import pit from '../../assets/pit.jpg';
-
+import pit from '../../assets/public_toilet.jpg';
+import farming from '../../assets/farm.jpg';
+import waterwaste from '../../assets/wasterwater.jpg';
 function SanitaryInpection() {
     var navigate = useNavigate()
     let sampling_info = useSelector((state) => state.sampling.value)
@@ -237,7 +238,7 @@ function SanitaryInpection() {
                     <Header />
                  
                     <div className='sanitaryInpection'>
-
+                    <h2 className='text-primary'>Sanitary Inpection</h2>
                         {/* Pop up test methods */}
                         <PooUp trigger={SelectPopUp} setTrigger={setSelectPopUp}>
                             {display_methods}
@@ -294,20 +295,20 @@ function SanitaryInpection() {
 
                         {/* <input class="form-check-input" type="checkbox" value='true' role="switch" id="flexSwitchCheckDefault" onChange={(e) => setCheck(e.target.value)} name="check" /> */}
 
-                        <div className='table'>
+                        <div className='table d-flex flex-column'>
                             <div className='form-header'>
                                 <label className='header_form_label questinare'>Questionare</label>
                                 <label className='header_form_label yes_no'>No/Yes</label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>1. Are There pit-latrines(toilets)?</label>
+                                <label className='header_form_label questinare'>1. Are There pit-latrines(pit toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>2. Are There any domestic animals observer?</label>
+                                <label className='header_form_label questinare'>2. Are There any domestic animals observed?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="domesticAnimal" />
@@ -328,7 +329,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>5. Open defaction(public poos)?</label>
+                                <label className='header_form_label questinare'>5. Open defaction(public )?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='openDefaction' />
@@ -357,16 +358,65 @@ function SanitaryInpection() {
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg  d-flex justify-content-center'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg  d-flex justify-content-center sanitary-btn'>Submit</button>
                     </div>
-                    <div className='row'>
-<div className='col'><img className='w-50' src={domestic_animal} alt="domestic animals" /></div>
-<div className='col'><img className='w-50' src={pit} alt="pit toilets"/></div>
-<div className='col'><img className='w-50' src={diapers} /></div>
-<div className='col'><img /></div>
-<div className='col'><img /></div>
-<div className='col'><img /></div>
-                    </div>
+                
+                    <section className='section-h2s'> 
+                   <div className='h2s-cards row align-items-start justify-content-around'>
+
+<div className='card' >
+<div class="card-header">
+    domestic animals
+  </div>
+
+    <div className='card-body'>
+    <img className='' style={{width:'100%' , height:'250px'}} src={domestic_animal} alt="domestic animals" />
+    </div>
+    
+</div>
+<div className='card' style={{width:'18rem'}}>
+<div class="card-header">
+    Diapers Disposal
+  </div>
+
+    <div className='card-body'>
+    <img className=''  style={{width:'100%' , height:'250px'}} src={diapers} />
+</div> </div>
+<div className='card' style={{width:'18rem'}}>
+<div class="card-header">
+    Open defaction
+  </div>
+    <div className='card-body'>
+    
+  <img className='card-img-top' style={{width:'100%' , height:'250px'}} src={pit} alt="pit toilets"/>
+</div> </div>
+
+
+<div className='card' style={{width:'18rem'}}>
+
+  <div class="card-header">
+  Agricultural Activities
+  </div>
+
+    <div className='card-body' style={{font:'16px'}}>
+    <img className='' style={{width:'100%' , height:'250px'}} src={farming} />
+</div> </div>
+
+
+<div className='card' style={{width:'18rem'}}>
+    
+  <div class="card-header">
+Water waste
+  </div>
+    <div className='card-body'>
+    <img className='' style={{width:'100%' , height:'250px'}} src={waterwaste} />
+</div> </div>
+
+
+
+
+</div>
+</section>
                     {/* <div id='sanitary_description ' className='text-primary mb-2'>
                     <h3>How can I do sanitary Inspection? </h3>
                     <ul>

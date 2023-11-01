@@ -121,7 +121,7 @@ function SamplingData() {
             <div className='content'>
                 <Header />
                 <div className='container-wrapper'>
-                    <h2>Sampling Data</h2>
+                    <h2 className='text-primary'>Sampling Data</h2>
                     <PopUpAlert trigger={PopUpAlertMessage} setTrigger={setPopUpAlertMessage} >
                         {AlertMessage}
                     </PopUpAlert>

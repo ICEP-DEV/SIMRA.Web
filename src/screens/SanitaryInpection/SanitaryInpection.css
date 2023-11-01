@@ -4,12 +4,12 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    height: 55vh;
-}
+    text-align: center;
+    width: 90%;
+    height: 70vh;
+    background-color: #e1e4e8;
 
+}
 
 .sanitary-submit{
     width: 100%;
@@ -103,6 +103,17 @@
         width: 90%;
         font-size: 0.8em;
     }
-      
+    .sanitaryInpection
+    {
+        height: 80vh;
+        margin-bottom: 2%;
+        width: 80%;
+    }
+    .sanitary-btn
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
    
 }

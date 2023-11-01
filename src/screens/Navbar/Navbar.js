@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Navbar.css';
 import { Link } from "react-router-dom";
-import logo_2  from '../../assets/logo.png'
+import logo_2  from '../../assets/Simra_logo.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { remove_details } from "../../Redux/user";

@@ -25,5 +25,8 @@
     font-size: 18px;
     color:#0063EA;
 }
-
+.split 
+{
+  float: right;
+}
 .report-dropdown:hover .dropdown-content{display: block;}
