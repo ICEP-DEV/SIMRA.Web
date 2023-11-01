@@ -12,6 +12,9 @@ import './Home.css';
 import { useSelector } from 'react-redux';
 import MovingComponent from '../animations/component'
 import Footer from '../Footer/Footer'
+import Card from 'react-bootstrap/Card';
+
+
 function Home() {
   let navigate = useNavigate();
   let user_info = useSelector((state) => state.user.value)
@@ -40,12 +43,14 @@ function Home() {
         </div>
         {/* Add more images as needed */}
       </Carousel>
+      
 
 
       <section className='section-2 px-5'>
         <h1>Information</h1>
+        
         <div className='row gx-5 align-items-center'>
-
+                       
  
           <div className='col-lg-6 order-lg-2'>
             <MovingComponent
@@ -56,15 +61,28 @@ function Home() {
                       timing="ease"
                       iteration="1"
                       fillMode="none">
+
+                    <Card className='card border-0' style={{ width: '45rem',backgroundColor:'#F0FFFF' }}>
+                          <Card.Body>
+                           
+                            <Card.Text>
+                            <p className='para ' >
+                              <h4 >Intro About Simra</h4>
+                             Water resource management is of paramount importance to ensure public health and sustainability.<br></br>
+                              However, the threat of microbial contamination in water sources poses a significant challenge <br></br>
+                               worldwide.Microbial pollutants such as bacteria, viruses, and pathogens can lead to waterborne  <br></br>
+                               diseases, disproportionately affecting vulnerable communities in both rural and urban areas. <br></br>
+                             Traditional methods of water quality assessment and risk management often fall short in providing <br></br>
+                                accurate and comprehensive solutions to this critical issue.
+
+ </p>
+                            </Card.Text>
+                            
+                          </Card.Body>
+                        </Card>
+                     
                 
-                <p className='para ' >
-                  <h4 >What are the households water treatment methods?</h4>
-                  <li>Boiling: Bring the water to a rolling boil and maintain it for at least one minute. Allow the water to cool before use. </li>
-                  <li>SODIS (Solar Water Disinfection): Fill clear, plastic bottles with water and leave them in direct sunlight for at least six hours (or longer if it cloudy). disinfect the water. </li>
-                  <li> Chemical Disinfection: Add a cap full of bleach in 25L of water. Allow the treated water to sit for a specific contact time before consuming.</li>
-                  <li>Filtration: Choose a water filter certified for the removal of specific contaminants (e.g., use a cloth folded 8 times/ clay pots/ceramic filters). </li>
-                  <br></br>
-                “Everyone has the right to have access to sufficient food and water.” </p>
+               
 
             </MovingComponent>
           </div>

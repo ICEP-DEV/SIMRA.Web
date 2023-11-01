@@ -77,14 +77,17 @@ function Navbar() {
              <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
              </div>
             <div className={`nav-links ${showNav ? 'show' : ''}`}>
-            
-                <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
+                <li className="navbar-subs" onClick={() => navigate('/home')}>Home</li>
+                <li className="navbar-subs" onClick={Profile}>Profile</li>
+                <li className="navbar-subs" onClick={data}>Sampling Data</li>
+                <li className="navbar-subs" onClick={report}>Report</li>
+                <li className="navbar-subs" onClick={logout}><button className=" btn btn-success">Signout</button></li>
+                {/* <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
                 <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
                 
                 <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
-                {/* <div className="navbar-subs ">
-                    <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div> */}
-                <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div>
+                
+                <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div> */}
                 {/* <div className="navbar-subs dropdown">
                     <span className="nav-label">Levels</span>
                     {UserType === 2 && (<span>
@@ -97,8 +100,8 @@ function Navbar() {
                         <Link className='dropdown-link' to=''>Level 2</Link>
                     </span>)}
                 </div> */}
-                <div className="navbar-subs" onClick={report}><span className="nav-label">Events</span></div>
-                <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
+                {/* <div className="navbar-subs" onClick={report}><span className="nav-label">Events</span></div>
+                <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div> */}
             </div>
             <div className="hamburger" onClick={toggleNav}>
                 <GiHamburgerMenu />
