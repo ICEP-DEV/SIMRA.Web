@@ -22,6 +22,7 @@ function Navbar() {
             if (sampling_info != undefined) {
                 setIsFoundSamplingData(false)
             }
+            console.log(sampling_info)
         }
         else {
             navigate("/")
@@ -48,16 +49,12 @@ function Navbar() {
         dispatch(remove_sample_details())
         navigate("/")
     }
-const [showNav, setShowNav] = useState(false);
+    const [showNav, setShowNav] = useState(false);
 
     const toggleNav = () => {
-      setShowNav(!showNav);
+        setShowNav(!showNav);
     };
 
-    function logout() {
-        dispatch(remove_details());
-        navigate("/")
-    }
     return (
         <div className="topnav">
             <div className="navbar-subs ">
@@ -91,9 +88,9 @@ const [showNav, setShowNav] = useState(false);
                         {(UserType === 2 || UserType === 3) && (<span>
                             <li className='dropdown-link' onClick={() => navigate('/qmra_logs')}>QMRA</li>
                         </span>)}
-                        {( UserType === 3) && (<span>
+                        {(UserType === 3) && (<span>
                             <li className='dropdown-link' onClick={() => navigate('/mst_logs')}>MST</li>
-                        </span>)}                        
+                        </span>)}
                     </ul>
                 </div>
 

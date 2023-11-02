@@ -227,9 +227,9 @@ function User_MST_Logs() {
                                     <tr className="survey_tr">
                                         <th className="survey_th _th">Municipalities</th>
                                         <th className="survey_th">Date</th>
-                                        <th className="survey_th ">Indicator</th>
-                                        <th className="survey_th ">Pathogen</th>
+                                        <th className="survey_th ">Maker gene</th>
                                         <th className="survey_th ">Estimated Count</th>
+                                        <th className="survey_th ">Pathogen</th>
                                         <th className="survey_th ">probability</th>
                                         <th className="survey_th ">Likelihood</th>
                                     </tr>
@@ -238,7 +238,7 @@ function User_MST_Logs() {
                                         <tr key={xid} className="survey_tr" scope="row">
                                             <td className="survey_td _td">{report.muni_name}</td>
                                             <td className="survey_td">{report.sample_date}</td>
-                                            <td className="survey_td">{report.indicator}</td>
+                                            <td className="survey_td">{report.maker}</td>
                                             <td className="survey_td">{report.estimated_count}</td>
                                             <td className="survey_td">{report.pathogen}</td>
                                             <td className="survey_td">{report.probability_of_infection}</td>
