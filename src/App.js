@@ -17,6 +17,7 @@ import User_Sanitary_Survay_Logs_Reports from './screens/User_Sanitary_Survay_Lo
 import User_QMRA_logs from './screens/User_QMRA_logs/User_QMRA_logs';
 import User_MST_Logs from './screens/User_MST_Logs/User_MST_Logs';
 import MST from './screens/MST/MST'
+import Graphs from './screens/Graphs/Charts'
 import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
@@ -46,6 +47,8 @@ function App() {
         <Route exact path='/qmra_logs' element={<User_QMRA_logs />} />
         <Route exact path='/mst' element={<MST />} />
         <Route exact path='/mst_logs' element={<User_MST_Logs />} />
+        <Route exact path='/graphs' element={<Graphs />} />
+
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
       

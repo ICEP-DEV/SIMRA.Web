@@ -81,7 +81,7 @@ function Report() {
                                     <div className='_decript_summary'>
                                         {SurveyRisktype.map((risk, xid)=>(
                                              <div key={xid} className='stats_summary'>
-                                                <label><span className='color_report' style={{backgroundColor:SurveyColours[xid], width:'20px', height:'20px'}}></span>{risk} ({SurveyValues[xid]})</label>
+                                                <label><span className='color_report' style={{backgroundColor:SurveyColours[xid]}}></span>{risk} ({SurveyValues[xid]})</label>
                                             </div>
                                         ))}
                                         {/* <img src={sanitary_data} alt="summary" /> */}
@@ -103,7 +103,7 @@ function Report() {
                                     <div className='_decript_summary'>
                                     {H2SRisktype.map((risk, xid)=>(
                                             <div key={xid} className='stats_summary'>
-                                                <label style={{color:'black'}}><span className='color_report' style={{backgroundColor:H2SColours[xid]}}></span>{risk}</label>
+                                                <label style={{color:'black'}}><span className='color_report' style={{backgroundColor:H2SColours[xid]}}></span>{risk}  ({SurveyValues[xid]})</label>
                                             </div>
                                         ))}
                                     </div>
