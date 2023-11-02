@@ -61,6 +61,15 @@
 
   color: white;
 }
+.navbar .nav-item:not(:last-child) {
+  margin-right: 35px;
+}
+.dropdown-toggle::after {
+   transition: transform 0.15s linear; 
+}
+.show.dropdown .dropdown-toggle::after {
+  transform: translateY(3px);
+}
 
 .rounded-img {
 
@@ -68,6 +77,19 @@
 
   border-radius: 50%;
 
+}
+.navbar-subs:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li a {
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
 }
 
 

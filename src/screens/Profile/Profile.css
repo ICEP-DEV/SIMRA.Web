@@ -21,12 +21,37 @@ border-bottom: 2px solid black;
     margin-bottom: 55px;
 
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 745px) {
     
     .sub{
 
         margin: 5% 0;
     }
     input{width: 200px;}
-    .profile-main{margin-left: 90px;}
+    .profile-main{
+        /* display: flex; */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        min-height: 100vh;
+        margin: auto;
+        padding: auto;
+        height: auto;
+    }
+    p{
+        font-size: 14px;}
+    h1{
+        font-size: 1.5rem;
+      }
+      h4{
+        font-size: 1.125rem
+      }
+      .profile-input{
+        width: auto;
+      }
+      .btn-data{
+        width: auto;
+
+        height: auto;
+      }
+    
 }
