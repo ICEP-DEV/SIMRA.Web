@@ -89,45 +89,34 @@ function Navbar() {
                 <div className="navbar-subs dropdown" hidden={IsFoundSamplingData}>
                     {sampling_info !== undefined && <div>
                             <span className="nav-label dropbtn">Levels</span>
-                            <ul class="dropdown-content">
+                            <ul class="dropdown-menu">
                                 {(UserType === 1 || UserType === 2 || UserType === 3) && (<span>
-                                    <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>Level 1</li>
+                                    <li className='dropdown-item' onClick={() => navigate('/h2s_survey')}>Level 1</li>
                                 </span>)}
                                 {(UserType === 2 || UserType === 3) && (<span>
-                                    <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li>
+                                    <li className='dropdown-item' onClick={() => navigate('/fib_analysis')}>Level 2</li>
                                 </span>)}
                                 {(UserType === 3) && (<span>
-                                    <li className='dropdown-link' onClick={() => navigate('/mst')}>Level 3</li>
+                                    <li className='dropdown-item' onClick={() => navigate('/mst')}>Level 3</li>
                                 </span>)}
                             </ul>
                      </div>}
 
                 </div>
-                {/* <div className="navbar-subs  dropdown"><span className="nav-label dropbtn">Report</span>
-                    <ul class="dropdown-content">
-                        <li className='dropdown-link' onClick={() => navigate('/h2s_logs')}>H2S</li>
-                        <li className='dropdown-link' onClick={() => navigate('/survay_logs')}>Sanitary</li>
-                        {(UserType === 2 || UserType === 3) && (<span>
-                            <li className='dropdown-link' onClick={() => navigate('/qmra_logs')}>QMRA</li>
-                        </span>)}
-                        {( UserType === 3) && (<span>
-                            <li className='dropdown-link'>MST</li>
-                        </span>)}                        
-                    </ul>
-                </div> */}
+               
                  <li class="navbar-subs dropdown" >
                     <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                     Report
                     </a>
                   
                     <ul class="dropdown-menu">
-                        <li ><a class="dropdown-item" href="#" onClick={() => navigate('/h2s_logs')}>H2S</a></li>
-                        <li ><a class="dropdown-item" href="#" onClick={() => navigate('/survay_logs')}>Sanitary</a></li>
+                        <li ><a class="dropdown-item" href="/h2s_logs" onClick={() => navigate('/h2s_logs')}>H2S</a></li>
+                        <li ><a class="dropdown-item" href="/survay_logs" onClick={() => navigate('/survay_logs')}>Sanitary</a></li>
                         {(UserType === 2 || UserType === 3) && (<span>
 
                             <li onClick={() => navigate('/qmra_logs')}>QMRA</li>
                         </span>)}
-                        <li><hr class="dropdown-divider"/></li>
+                       
                         {( UserType === 3) && (<span>
                             
                                 <li>MST</li>

@@ -78,6 +78,21 @@
   border-radius: 50%;
 
 }
+.navbar-subs:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content li  {
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+.dropdown-content li:hover {
+  background-color: #f0f0f0;
+}
+
+
 .navbar-subs:hover .dropdown-menu {
   display: block;
 }
@@ -107,7 +122,7 @@
 }
 
 /* Show/hide navigation links for smaller screens */
-@media (max-width: 788px) {
+@media (max-width: 1086px) {
   .topnav{
     /* padding-left: 5%;
     padding-right:10%; */
