@@ -73,6 +73,7 @@ const FibAnalysis = () => {
 
         <div className='content'>
           <Header />
+          <h2 className='text-primary text-center'>FIB Analysis</h2>
           <div className='container-wrapper'>
             <div className='mt-5'>
 
@@ -116,7 +117,7 @@ const FibAnalysis = () => {
               <p> Count: {estimatedCount} </p>
               <p>Estimated Count: {roundedEstimatedCount} </p>
             </div>
-            <button className='btn btn-success btn-lg' onClick={sendValue}>Save Value</button>
+            <button className='btn btn-success btn-lg w-25' onClick={sendValue}>Save Value</button>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  /* background-color: #4f5e37; */
+  border-radius: 15px;
   color: #09330d;
   width: 90%;
   height: 70vh;

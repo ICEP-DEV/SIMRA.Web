@@ -64,13 +64,13 @@ function Navbar() {
              </div>
              <div className="navbar-subs "><Link to={"/home"}> <img className="rounded-img" src={logo_2} /></Link></div>
             <div className={`nav-links ${showNav ? 'show' : ''}`}>
-            <div className="nav_content float-right">
+           
                 <div className="navbar-subs mt-2" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
                 <div className="navbar-subs mt-2" onClick={Profile}><span className='nav-label'>Profile</span></div>
                 
                 <div className="navbar-subs mt-2" onClick={data}><span className="nav-label">Sampling Data</span></div>
                 
-                <div className="navbar-subs  mt-2 dropdown" hidden={IsFoundSamplingData}>
+                <div className="navbar-subs  mt-2 dropdown float-right" hidden={IsFoundSamplingData}>
                     {sampling_info !== undefined && <div>
                         <span className="nav-label dropbtn">Levels</span>
                         <ul class="dropdown-content">
@@ -99,8 +99,8 @@ function Navbar() {
                     </ul>
                 </div>
             
-                    <div className="navbar-subs split"  onClick={logout}><span type="button" className="btn btn-success nav-label">Signout</span></div>
-            </div>
+                    <div className="navbar-subs split"  onClick={logout}><span type="button" className="btn btn-success nav-label float-right">Signout</span></div>
+           
             </div>
             <div className="hamburger" onClick={toggleNav}>
                 <GiHamburgerMenu />

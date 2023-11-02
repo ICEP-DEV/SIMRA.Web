@@ -236,9 +236,9 @@ function SanitaryInpection() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                 
+                    <h2 className='text-primary text-center'>Sanitary Inpection</h2>
                     <div className='sanitaryInpection'>
-                    <h2 className='text-primary'>Sanitary Inpection</h2>
+                    <div className='mt-5'></div>
                         {/* Pop up test methods */}
                         <PooUp trigger={SelectPopUp} setTrigger={setSelectPopUp}>
                             {display_methods}
@@ -297,7 +297,7 @@ function SanitaryInpection() {
 
                         <div className='table d-flex flex-column'>
                             <div className='form-header'>
-                                <label className='header_form_label questinare'>Questionare</label>
+                                <label className='header_form_label questinare'>Questionnaire</label>
                                 <label className='header_form_label yes_no'>No/Yes</label>
                             </div>
                             <div className='form_content'>
@@ -358,10 +358,11 @@ function SanitaryInpection() {
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg  d-flex justify-content-center sanitary-btn'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg w-25 sanitary-btn'>Submit</button>
                     </div>
                 
                     <section className='section-h2s'> 
+                    <h2 className='text-primary text-center'>Examples</h2>
                    <div className='h2s-cards row align-items-start justify-content-around'>
 
 <div className='card' >

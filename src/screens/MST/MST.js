@@ -72,11 +72,14 @@ const FibAnalysis = () => {
       <Navbar />
       <div className='content'>
         <Header />
+        <h2 className='text-primary text-center'>mst</h2>
         <div className='container-wrapper'>
           <ToastContainer />
           <div>
-            <p>Select an Maker Gene:</p>
+           
+            <p className=''>Select an Maker Gene:</p>
             <select
+            className='form-select-lg mb-3 '
               onChange={(event) => handlemstselection(event.target.value)} >
               <option value="">Select A Marker</option>
               {Makers.map((maker, xid) => (
@@ -123,16 +126,16 @@ const FibAnalysis = () => {
               onChange={(event) => setUserCount(event.target.value)}
             />
           </div>
-          <button className='btn btn-success w-25 mt-2' onClick={next_to_mst}>Next</button>
+          <button className='btn btn-success w-25 mt-4' onClick={next_to_mst}>Next</button>
         </div>
         <div class="row">
         <div class="col-md-4 offset-md-4">  </div>
         <div class="col-md-4 offset-md-4"></div>
         </div>
-        <div class="d-flex justify-content-around">
+        {/* <div class="d-flex justify-content-around">
         <img src={dam} className="p-2 w-50"/>
         <img src={microscope} className="p-2 w-50"/>
-        </div>
+        </div> */}
       </div>
       <footer>
         <Footer/>

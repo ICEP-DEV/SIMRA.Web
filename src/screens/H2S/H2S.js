@@ -17,7 +17,7 @@ import whitestrip from '../../assets/whitestrip.png';
 import sample from '../../assets/sample.png';
 import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
-import tests from '../../assets/tests.jpg'
+import tests from '../../assets/tests.jpg';
 
 function H2S() {
     const navigate = useNavigate();
@@ -165,11 +165,13 @@ function H2S() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
+                    <h2 className='text-primary text-center'>Hydrogen Sulfide (H₂S)</h2>
                     <div className='container-wrapper'>
                         <div className='h2s'>
-                            <h2 className='text-primary'>Hydrogen Sulfide(H2S)</h2>
-                            <div className='text-center mt-5'>
-                                <h3 className='text-primary'>Choose Test Result:</h3>
+                            
+                            <div className='text-center '>
+                           
+                                <h3 className='text-primary mt-2 '>Choose Test Result:</h3>
 
                                 <div className='form_content form_content_switch'>
                                     <label className='header_form_label yes_no form-check form-switch'>
@@ -190,13 +192,13 @@ function H2S() {
                                 </div>
                                 <br></br>
 
-                                <button onClick={initModal} className='btn btn-success font-size: small;' type="submit" value="Submit" style={divStyleSubmit}>SUBMIT</button>
+                                <button onClick={initModal} className='btn btn-success font-size: small; w-25' type="submit" value="Submit" >SUBMIT</button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
-                                    <p className='alert-light'>
-                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
+                                    <p className='alert-light h2s-label '>
+                                        Presence or absence of faecal contamination in water source may be indicated by colour change on  (H₂S) paper strip test from white to black.
                                     </p>
-                                    <label className='alert alert-danger h2s-label' >Warning: Remember to wear gloves when using h2s paper strips</label>
-                                    <label className='alert alert-light h2s-label '>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    <label className='alert alert-danger h2s-label w-75' >Warning: Remember to wear gloves when using  (H₂S) paper strips</label>
+                                    <label className='alert alert-light h2s-label w-75 '>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
                                     Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
                                     headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
                                 </div>
@@ -261,13 +263,13 @@ function H2S() {
                     </div>
                     <section className='section-h2s'> 
                   
-                    <h5 className='text-center mb-3 display-6'>How can I do H2S test?</h5>
+                    <h5 className='text-center mb-3 display-6 text-primary'>How can I do H2S test?</h5>
 <div className='level1-desccription'>
                            
                             <div className='h2s-cards row align-items-start justify-content-around'>
 
                                 <div className='card' >
-                                    <img className='card-img-top' src={borehole} />
+                                    <img className='card-img-top' src={sample} />
                                     <div className='card-body'>
                                     <h5>Step 1</h5>
                                     <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>

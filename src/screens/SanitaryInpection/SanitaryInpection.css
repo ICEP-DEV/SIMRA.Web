@@ -4,10 +4,11 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+   
     width: 90%;
     height: 70vh;
     background-color: #e1e4e8;
+    border-radius: 15px;
 
 }
 
@@ -76,9 +77,10 @@
     font-size: 1.1em;
     font-weight: 600;
 }
-.questinare,.form-check-input{
+.questinare,.form-check-input .yes_no{
     width: 50%;
     font-weight: 600;
+    margin-left: 1%;
 }
 
 .yes_no{
@@ -97,6 +99,10 @@
 .form-check-input
 {
     min-width: 100wh;
+}
+.sanitary-btn
+{
+    
 }
 @media (max-width: 768px) {
     .questinare,.form-check-input{

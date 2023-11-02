@@ -1,3 +1,7 @@
+*
+{
+    font-family: 'display';
+}
 .table3{
     text-align: center;
 }
@@ -33,6 +37,7 @@
     transition: all 0.4s ease 0s;
   
 }
+
 .btn-lvl1
 {
     text-align: center;
@@ -89,11 +94,17 @@
     }
     .container-wrapper h3
     {
-font-size: 16px;
+        font-size: 16px;
     }
     .btn-sanitary
     {
-        width: 110px;
-        font-size: small;
+        width: 200px;
+       font-size: 10px;
+    }
+    .table3{
+      width: 100%;
+      display: flex;
+    
+     
     }
 }

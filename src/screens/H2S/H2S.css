@@ -24,8 +24,14 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: 200px;
     height: 250px;
-  
 
+}
+.h2s-label
+{
+text-align: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
 }
 .card-body p{
 font-size: 16px;
@@ -39,16 +45,18 @@ font-size: 16px;
 }
 .section-h2s
 {
-    width: 100%;
+width: 100%;
    margin-bottom: 5%;
+   margin-top: 0;
  
 }
 @media only screen and (max-width: 768px) {
     .section-h2s{
-        margin-top: 20%;
+        
     }
     .h2s-label
     {
         font-size: small;
     }
+    
 }

@@ -41,15 +41,17 @@ function Home() {
         </div>
         </MovingComponent>
         </div> */}
-    <Carousel className='.carousel'
+    <Carousel className='carousel'
       autoPlay={true}
       infiniteLoop={true}
       showStatus={false}
       showThumbs={false}
     >
       <div className='img-carousel'>
-        <img src={image1} alt="Image 1"  />
-       <p>Welcome</p>
+        <img src={image1} alt="Image 1" />
+    
+        
+     
       </div>
       <div className='img-carousel'> 
         <img src={image2} alt="Image 2" />
@@ -59,14 +61,14 @@ function Home() {
       </div>
       {/* Add more images as needed */}
     </Carousel>
-    <section className='section-2 px-5'>
-<h1>Information</h1>
-        <div className='row gx-5 align-items-center'>
+    <section className='section-2 '>
+<h1 className='text-primary'>About Simra</h1>
+       
 
- 
-<div className='col-lg-6 order-lg-2'>
-<MovingComponent
-          type="fadeInFromLeft"
+
+
+ <MovingComponent
+          type="bounce"
           duration="1000ms"
           delay="0.2s"
           direction="normal"
@@ -74,33 +76,31 @@ function Home() {
           iteration="1"
           fillMode="none">
             
-          <p className='para font_7 wixui-richtext_text ' >
-          	<h4 >What are the households water treatment methods?</h4>
-            <li>Boil the water vigorously for a minute, then let it cool before using.</li>
-            <li> Fill clear plastic bottles with water and leave them in the sun for at least six hours to disinfect the water using SODIS. </li>
-            <li>To disinfect water chemically,Put a cap of bleach in 25 liters of water to disinfect it. Wait for a bit before using.</li>
-            <li>Use a certified water filter that can remove specific contaminants, like a folded cloth, clay pot, or ceramic filter. </li>
-            <br></br>
-            “Everyone has the right to have access to sufficient food and water.” </p>
+          <p className='para font_7 wixui-richtext_text text-center text-secondary ' >
+          SIMRA is a cutting-edge web tool revolutionizing water resource management. It evaluates and mitigates microbial risks in water sources,<br/>
+providing a robust framework for addressing health hazards from contamination. With seamless data integration, advanced modeling, <br/>
+and decision support, SIMRA empowers stakeholders to protect public health and ensure water system sustainability. <br/>
+Its ability to integrate diverse data sources, simulate contaminant behavior, and facilitate scenario analysis enables effective risk management strategies.<br/>
+ User-friendly interfaces and interactive visualizations promote transparent communication, fostering informed discussions. <br/>
+ SIMRA's iterative approach supports continuous monitoring and adaptation, refining interventions and enhancing risk management practices over time.<br/>
+  Overall, SIMRA marks a significant advancement in water resource management, <br/>
+offering a comprehensive solution for assessing and managing microbial risks to promote long-term public health and water system vitality.</p>
 
-        </MovingComponent>
-</div>
-       <div className='col-lg-6 order-lg-2'>
-        <div className='p-5'>
-        {/* <img className='img-fluid ' style={{width:'600px' ,height:'300px'}} src={dwater}/> */}
-        </div>
-     
-       </div>
-       </div>
-       <div className='row gx-5 align-items-center'>
-       <div className='col-lg-6 order-lg-2'>
-        <div className='p-5'>
-        <img className='img-fluid ' style={{width:'400px' ,height:'300px'}} src={glassofwater}/>
-        </div>
-     
-       </div>
+        </MovingComponent> 
+
+      <h2 className='text-primary'>Simra Levels</h2>
+      <ul>
+        <li>Level 1</li>
+        
+        <p> SIMRA makes risk assessment and management accessible to everyone, especially those with limited resources.<br/> It's designed to be simple, easy to use, and practical for a wide range of users, including households and individuals.</p>
+       <li>Level 2</li>
+       <p>This level of SIMRA goes beyond the basics, offering detailed water quality analysis and advanced microbial risk assessment tools. <br/>It's tailored for water treatment plant managers, government officials, researchers, and experts who need in-depth and comprehensive data.</p>
+       <li>Level3</li>
+       <p>At the advanced level, SIMRA is designed for experts, microbiologists, and researchers seeking in-depth microbial analysis and advanced risk assessment capabilities.<br></br> It provides molecular biology techniques and detailed reports to meet the specific needs of these professionals.</p>
+        </ul>  
+      
  {/*** */}
-<div className='col-lg-6 order-lg-2'>
+
 <MovingComponent
           type="fadeInFromRight"
           duration="1000ms"
@@ -110,17 +110,15 @@ function Home() {
           iteration="1"
           fillMode="none">
          
-            <h4>Is your water safe for drinking purposes? </h4>
-            <p className='para font_7 wixui-richtext_text ' >
+            <h4 className='text-primary text-center'>Is your water safe for drinking purposes? </h4>
+            <p className='para font_7 wixui-richtext_text text-center ' >
           While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
            Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
            Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
             </p>
 
         </MovingComponent>
-</div>
-       
-       </div>
+
       </section>
       
 

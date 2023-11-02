@@ -120,8 +120,9 @@ function SamplingData() {
             <Navbar />
             <div className='content'>
                 <Header />
+                <h2 className='text-primary text-center'>Sampling Data</h2>
                 <div className='container-wrapper'>
-                    <h2 className='text-primary'>Sampling Data</h2>
+                   
                     <PopUpAlert trigger={PopUpAlertMessage} setTrigger={setPopUpAlertMessage} >
                         {AlertMessage}
                     </PopUpAlert>
@@ -133,6 +134,7 @@ function SamplingData() {
                     </Level3PopUp>
                     <div className='form-group'>
                         {/* <label>Province</label> */}
+                        <div className='mt-5'></div>
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
                             <option>Select Province</option>
                             {provinces.map((prov, xid) => (

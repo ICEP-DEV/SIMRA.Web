@@ -1,11 +1,15 @@
 .hero
 {
     margin: 0;
-    font-family: 'display';
+   
 color: #fff;
      overflow-x: hidden;
     
 
+}
+.img-carousel
+{
+height: 50vh;
 }
 .card-home
 {
@@ -16,7 +20,7 @@ color: #fff;
 }
 .para
 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: lighter;
     writing-mode: horizontal-tb;
     color: rgb(46, 43, 43);
@@ -52,14 +56,12 @@ section {
 .section-2
 {
     width: 100%;
-   
-    background-color: #fff;
-    display: flex;
+   background-color: #fff;
+   display: flex;
   justify-content: start;
   align-items: center; 
  color: rgb(46, 43, 43);
-    /* border-top-left-radius: 30% 30%;
-    border-top-right-radius: 30% 30%; */
+   
 }
 /* .section-3
 {
@@ -68,23 +70,7 @@ section {
  
 } */
 
-.curve {
-    position: absolute;
-    height: 250px;
-    width: 100%;
-    bottom: 0;
-    text-align: center;
-  }
-.curve::before {
-    content: '';
-    display: block;
-    position: absolute;
-    border-radius: 100% 50%;
-    width: 55%;
-    height: 100%;
-    transform: translate(85%, 60%);
-    /* background-color:rgb(10,20,140); */
-  }
+
   .user-text
   {
     width: 50%;
@@ -180,13 +166,16 @@ width: 100%;
   @media screen and (max-height: 450px) {
     .carousel
     {
-      height: 80vh;
+      height: 60vh;
     }
     .para
     {
       font-size: 11px;
     }
-    
+    .carousel
+    {
+      height: 250px;
+    }
    }
  
   
