@@ -184,13 +184,12 @@ function SamplingData() {
             <Navbar />
             <div className='content'>
                 <Header />
-                <h2 className='text-primary text-center'>Sampling Data</h2>
                 <div className='container-wrapper'>
                     <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
                         <div></div>
                     </Load_Waves>
                     <ToastContainer />
-                   
+                    <h2>Sampling Data</h2>
                     <Level2PopUp trigger={Level2UserPopUp} setTrigger={setLevel2UserPopUp}>
                         {leve2popup}
                     </Level2PopUp>
@@ -198,7 +197,6 @@ function SamplingData() {
                         {leve3popup}
                     </Level3PopUp>
                     <div className='form-group'>
-                    <div className='mt-5'></div>
                         {/* <label>Province</label> */}
                         <select className='form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
                             <option>Select Province</option>
@@ -248,7 +246,7 @@ function SamplingData() {
                             <option value='Wet' className="control-form">Wet</option>
                         </select>
                     </div>
-                    <button className='btn btn-success btn-lg btn-block w-25' onClick={submit_sampling_data}>Next</button>
+                    <button className='btn btn-dark btn-lg btn-block w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
 
             </div>

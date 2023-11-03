@@ -17,8 +17,7 @@ import whitestrip from '../../assets/whitestrip.png';
 import sample from '../../assets/sample.png';
 import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
-import tests from '../../assets/tests.jpg';
-import container from '../../assets/container.png';
+import tests from '../../assets/tests.jpg'
 
 function H2S() {
     const navigate = useNavigate();
@@ -166,10 +165,9 @@ function H2S() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>Hydrogen Sulfide (H₂S)</h2>
                     <div className='container-wrapper'>
                         <div className='h2s'>
-                         
+                            <h2>Hydrogen Sulfide(H2S)</h2>
                             <div className='text-center mt-5'>
                                 <h3>Choose Test Result:</h3>
 
@@ -192,15 +190,15 @@ function H2S() {
                                 </div>
                                 <br></br>
 
-                                <button onClick={initModal} className='btn btn-success font-size: small; w-25' type="submit" value="Submit" >
+                                <button onClick={initModal} className='d-inline p-2 bg-primary text-white' type="submit" value="Submit" style={divStyleSubmit}>
                                     SUBMIT
                                 </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
-                                    <p className='alert-light h2s-label'>
+                                    <p className='alert-light'>
                                         Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
                                     </p>
-                                    <label className='alert alert-danger h2s-label w-75'>Warning: Remember to wear glove when using h2s paper strips</label>
-                                    <label className='alert alert-light  h2s-label w-75'>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    <label className='alert alert-danger'>Warning: Remember to wear glove when using h2s paper strips</label>
+                                    <label className='alert alert-light'>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
                                     Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
                                     headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
                                 </div>
@@ -271,7 +269,7 @@ function H2S() {
                             <div className='h2s-cards row align-items-start justify-content-around'>
 
                                 <div className='card' >
-                                    <img className='card-img-top' src={sample} />
+                                    <img className='card-img-top' src={borehole} />
                                     <div className='card-body'>
                                     <h5>Step 1</h5>
                                     <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
@@ -291,13 +289,12 @@ function H2S() {
                                     <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
                                 </div> </div>
                                 <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={container} />
+                                    <img className='card-img-top' src={borehole} />
                                     <div className='card-body' style={{font:'16px'}}>
                                     <h5>Step 4</h5>
                                     <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
                                 </div> </div>
                                 <div className='card' style={{width:'18rem'}}>
-                                  
                                     <img className='card-img-top' src={h2s} />
                                     <div className='card-body'>
                                     <h5>Step 5</h5>

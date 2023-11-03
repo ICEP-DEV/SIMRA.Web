@@ -93,11 +93,10 @@ const FibAnalysis = () => {
       <div className='main-all'>
         <div className='content'>
           <Header />
-          <h2 className='text-primary text-center'>FIB Analysis</h2>
           <div className='container-wrapper'>
-          <div className='mt-0'>
+            <div>
               <select
-                className='form-select-lg mb-3 mt-5 w-75'
+                className='form-select-lg mb-3'
                 value={selectedFIB}
                 onChange={(event) => handleFibData(event.target.value)}
               >
@@ -112,11 +111,11 @@ const FibAnalysis = () => {
               <div className='table-responsive-lg d-flex justify-content-center'>
 
 
-                <table className='table-bordered  w-75'>
+                <table className=' w-75'>
                   <tbody>
                     <tr>
-                      <th scope='col border'>Indicator</th>
-                      <th scope='col '>Ratio</th>
+                      <th scope='col'>Indicator</th>
+                      <th scope='col'>Ratio</th>
                     </tr>
                     {referencePath !== 'other' && <tr>
                       <td >{referencePath}</td>
@@ -140,7 +139,7 @@ const FibAnalysis = () => {
               <p> Count: {estimatedCount} </p>
               <p>Estimated Count: {roundedEstimatedCount} </p>
             </div>
-            <button onClick={sendValue} className='btn btn-success btn-lg w-25'>Save Value</button>
+            <button onClick={sendValue}>Save Value</button>
           </div>
         </div>
       </div>

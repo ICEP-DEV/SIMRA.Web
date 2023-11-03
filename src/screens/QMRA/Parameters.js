@@ -246,16 +246,14 @@ export default function QMRAApp() {
       <ToastContainer />
       <div className='content'>
         <Header />
-        <h2 className='text-primary text-center'>QMRA Parameters</h2>
         <Popup trigger={PopupoResults} setTrigger={setPopupoResults}>
           {popalert}
         </Popup>
         <div className='container-wrapper'>
           <div style={styles.container}>
-            {/* <h1 style={styles.header}>QMRA Parameters</h1> */}
+            <h1 style={styles.header}>QMRA Parameters</h1>
             <select
               // value={selectedOrganism}
-              className='form-select-lg mb-3 mt-5'
               onChange={(e) => {
                 selectPathogen(e.target.value);
                 setResult('');
@@ -271,7 +269,7 @@ export default function QMRAApp() {
             </select>
             <br></br>
             {result !== '' && <p style={styles.result}>{result}</p>}
-            <table id='table table-bordered w-75'>
+            <table id='table'>
               <th>
                 Pathogen
               </th>
@@ -320,7 +318,7 @@ export default function QMRAApp() {
 
               </tbody>
             </table>
-            <button className='btn btn-success w-25 mt-5' onClick={sendQmra}>Submit</button>
+            <button className='btn btn-dark w-25 mt-5' onClick={sendQmra}>Submit</button>
           </div>
         </div>
       </div>

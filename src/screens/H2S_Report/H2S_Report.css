@@ -48,14 +48,16 @@ table {
 .survey_date {
   margin: 0 25px;
   width: 15%;
-  
+  border: grey solid 1px;
+  background-color: rgba(128, 128, 128, 0.562);
   flex-direction: row;
 }
 
 .survey_province {
   margin: 0 25px;
   width: 15%;
- 
+  border: grey solid 1px;
+  background-color: rgba(128, 128, 128, 0.562);
 }
 
 .survey_date_label {

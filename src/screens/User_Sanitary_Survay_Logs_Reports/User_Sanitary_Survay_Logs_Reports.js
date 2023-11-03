@@ -166,9 +166,8 @@ function User_Sanitary_Survay_Logs_Reports() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>Sanitary Logs</h2>
                     <div className='container-wrap'>
-                       
+                        <h2>Sanitary Logs</h2>
                         <div className='report-header'>
                             <div id='search_date'>
                                 <span className='survey_date'>
@@ -180,12 +179,12 @@ function User_Sanitary_Survay_Logs_Reports() {
                                     <input type='date' className='control-from end_date' onChange={(event) => setEndDate(event.target.value)} />
                                 </span>
 
-                                <button onClick={display_search_report} className="btn btn-success  btn-search-report">Show Results</button>
+                                <button onClick={display_search_report} className="btn btn-primary btn-search-report">Show Results</button>
 
                             </div>
                             <div>
                                 <span className='survey_province'>
-                                    {/* <label>WeekDays</label> */}
+                                    <label>WeekDays</label>
                                     <select onChange={(event) => search_by_weekday(event.target.value)}>
                                         <option value=''>All Weekdays</option>
                                         <option value='Monday'>Monday</option>
@@ -200,7 +199,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                             </div>
                             <div id='filter_by_province'>
                                 <span className='survey_province'>
-                                    {/* <label>Province</label> */}
+                                    <label>Province</label>
                                     <select onChange={(e) => filter_by_province(e.target.value)}>
                                         <option value=''>Province</option>
                                         {Provinces.map((province, xid) => (
@@ -209,7 +208,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                     </select>
                                 </span>
                                 <span className='survey_province'>
-                                    {/* <label>Municipalities</label> */}
+                                    <label>Municipalities</label>
                                     <select onChange={(e) => filter_by_municipality(e.target.value)}>
                                         <option value=''>Municipalities</option>
                                         {Municipalities.map((muni, xid) => (
@@ -226,8 +225,7 @@ function User_Sanitary_Survay_Logs_Reports() {
 
                         <div className='reports'>
                             {(FoundReport === true) && (
-                                <table className="table  table-bordered survay_table">
-                                    <thead class="thead-dark">
+                                <table className="table survay_table">
                                     <tr className="survey_tr">
                                         <th className="survey_th _th">Municipalities</th>
                                         <th className="survey_th">Date</th>
@@ -235,7 +233,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         <th className="survey_th ">Total Average</th>
                                         <th className="survey_th ">Risk Type</th>
                                     </tr>
-                                    </thead>
+
                                     {Report.map((report, xid) => (
                                         <tr key={xid} className="survey_tr" scope="row">
                                             <td className="survey_td _td">{report.muni_name}</td>

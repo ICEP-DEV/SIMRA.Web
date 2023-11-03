@@ -28,12 +28,11 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 15px;
+  /* background-color: #4f5e37; */
   color: #09330d;
   width: 90%;
   height: 70vh;
   text-align: center;
-  background-color: #e1e4e8;
  }
  h2
  {
@@ -92,7 +91,7 @@
     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
     @media (max-width: 768px) {
       .select-sampling_data:hover{
-       
+        background-color: rgb(7, 65, 224);
         color: white;
       }
     }

@@ -8,13 +8,6 @@
     left: 50%;
     width: 8%;
 }
-.h2s-label
-{
-text-align: center;
-display: block;
-margin-left: auto;
-margin-right: auto;
-}
 .img-h2s
 {
    
@@ -52,11 +45,6 @@ font-size: 16px;
 }
 @media only screen and (max-width: 768px) {
     .section-h2s{
-        
+        margin-top: 20%;
     }
-    .h2s-label
-    {
-        font-size: small;
-    }
-    
 }

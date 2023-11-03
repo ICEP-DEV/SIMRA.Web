@@ -17,14 +17,9 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Level2PopUp from '../Pop_Up/Pop_Up_Level2';
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
-
-
-
 import domestic_animal from '../../assets/domestic_animals.jpg';
 import diapers from '../../assets/diapers.jpg';
-import pit from '../../assets/public_toilet.jpg';
-import farming from '../../assets/farm.jpg';
-import waterwaste from '../../assets/wasterwater.jpg';
+import pit from '../../assets/pit.jpg';
 
 function SanitaryInpection() {
     var navigate = useNavigate()
@@ -240,7 +235,7 @@ function SanitaryInpection() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>Sanitary Inpection</h2>
+                 
                     <div className='sanitaryInpection'>
 
                         {/* Pop up test methods */}
@@ -362,65 +357,16 @@ function SanitaryInpection() {
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg w-25'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg  d-flex justify-content-center'>Submit</button>
                     </div>
-                    <section className='section-h2s'> 
-                    <h2 className='text-primary text-center'>Examples</h2>
-                   <div className='h2s-cards row align-items-start justify-content-around'>
-
-<div className='card' >
-<div class="card-header">
-    domestic animals
-  </div>
-
-    <div className='card-body'>
-    <img className='' style={{width:'100%' , height:'250px'}} src={domestic_animal} alt="domestic animals" />
-    </div>
-    
-</div>
-<div className='card' style={{width:'18rem'}}>
-<div class="card-header">
-    Diapers Disposal
-  </div>
-
-    <div className='card-body'>
-    <img className=''  style={{width:'100%' , height:'250px'}} src={diapers} />
-</div> </div>
-<div className='card' style={{width:'18rem'}}>
-<div class="card-header">
-    Open defaction
-  </div>
-    <div className='card-body'>
-    
-  <img className='card-img-top' style={{width:'100%' , height:'250px'}} src={pit} alt="pit toilets"/>
-</div> </div>
-
-
-<div className='card' style={{width:'18rem'}}>
-
-  <div class="card-header">
-  Agricultural Activities
-  </div>
-
-    <div className='card-body' style={{font:'16px'}}>
-    <img className='' style={{width:'100%' , height:'250px'}} src={farming} />
-</div> </div>
-
-
-<div className='card' style={{width:'18rem'}}>
-    
-  <div class="card-header">
-Water waste
-  </div>
-    <div className='card-body'>
-    <img className='' style={{width:'100%' , height:'250px'}} src={waterwaste} />
-</div> </div>
-
-
-
-
-</div>
-</section>
+                    <div className='row'>
+<div className='col'><img className='w-50' src={domestic_animal} alt="domestic animals" /></div>
+<div className='col'><img className='w-50' src={pit} alt="pit toilets"/></div>
+<div className='col'><img className='w-50' src={diapers} /></div>
+<div className='col'><img /></div>
+<div className='col'><img /></div>
+<div className='col'><img /></div>
+                    </div>
                     {/* <div id='sanitary_description ' className='text-primary mb-2'>
                     <h3>How can I do sanitary Inspection? </h3>
                     <ul>
