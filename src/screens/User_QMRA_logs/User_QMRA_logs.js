@@ -167,26 +167,27 @@ function User_QMRA_logs() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
+                    <h2 className='text-primary text-center'>QMRA Logs</h2>
                     <div className='container-wrap'>
-                        <h2>QMRA Logs</h2>
+                   
                         <div className='report-header'>
                             <div id='search_date'>
                                 <span className='survey_date'>
-                                    <label className='survey_date_label'>From</label>
+                                    <label className='survey_date_label ' >From: </label>
                                     <input type='date' className='control-from  start_date' onChange={(event) => setStartDate(event.target.value)} />
                                 </span>
                                 <span className='survey_date'>
-                                    <label className='survey_date_label'>To</label>
+                                    <label className='survey_date_label'>To: </label>
                                     <input type='date' className='control-from end_date' onChange={(event) => setEndDate(event.target.value)} />
                                 </span>
 
-                                <button onClick={display_search_report} className="btn btn-primary btn-search-report">Show Results</button>
+                                <button onClick={display_search_report} className="btn btn-success btn-search-report mb-3 w-25">Show Results</button>
 
                             </div>
-                            <div>
-                                <span className='survey_province'>
-                                    <label>WeekDays</label>
-                                    <select onChange={(event) => search_by_weekday(event.target.value)}>
+                            <div className=''>
+                                <span className='survey_province '>
+                                    {/* <label>WeekDays</label> */}
+                                    <select className='bs-success-border-subtle select-province' onChange={(event) => search_by_weekday(event.target.value)}>
                                         <option value=''>All Weekdays</option>
                                         <option value='Monday'>Monday</option>
                                         <option value='Tuesday'>Tuesday</option>
@@ -198,9 +199,10 @@ function User_QMRA_logs() {
                                     </select></span>
                                 {/* <input type='checkbox' onChange={(event) => checkForUserInfo(event.target.checked)} /> */}
                             </div>
-                            <div id='filter_by_province'>
-                                <span className='survey_province'>
-                                    <label>Province</label>
+                            <div className=' mb-3'>
+                            <div id='filter_by_province '>
+                                <span className='survey_province mt-2'>
+                                    {/* <label>Province</label> */}
                                     <select onChange={(e) => filter_by_province(e.target.value)}>
                                         <option value=''>All Provinces</option>
                                         {Provinces.map((province, xid) => (
@@ -208,8 +210,8 @@ function User_QMRA_logs() {
                                         ))}
                                     </select>
                                 </span>
-                                <span className='survey_province'>
-                                    <label>Municipalities</label>
+                                <span className='survey_province '>
+                                    {/* <label>Municipalities</label> */}
                                     <select onChange={(e) => filter_by_municipality(e.target.value)}>
                                         <option value=''>All Municipalities</option>
                                         {Municipalities.map((muni, xid) => (
@@ -218,23 +220,24 @@ function User_QMRA_logs() {
                                     </select>
                                 </span>
                             </div>
-                            <div id='stats_summary' style={{ color: 'black' }}>
-                                <h3>Total Records: {TotalRecord}</h3>
+                            <div id='stats_summary' >
+                                <h3 className='text-primary'>Total Records: {TotalRecord}</h3>
                             </div>
 
                         </div>
-
+                        </div>
+                        
                         <div className='reports'>
                             {(FoundReport === true) && (
-                                <table className="table survay_table">
+                                <table className="table survay_table ">
                                     <tr className="survey_tr">
-                                        <th className="survey_th _th">Municipalities</th>
-                                        <th className="survey_th">Date</th>
-                                        <th className="survey_th ">Indicator</th>
-                                        <th className="survey_th ">Pathogen</th>
-                                        <th className="survey_th ">Estimated Count</th>
-                                        <th className="survey_th ">probability</th>
-                                        <th className="survey_th ">Likelihood</th>
+                                        <th scope="col"className="survey_th _th">Municipalities</th>
+                                        <th  scope="col" className="survey_th">Date</th>
+                                        <th   scope="col" className="survey_th ">Indicator</th>
+                                        <th  scope="col" className="survey_th ">Pathogen</th>
+                                        <th  scope="col" className="survey_th ">Estimated Count</th>
+                                        <th  scope="col" className="survey_th ">probability</th>
+                                        <th   scope="col" className="survey_th ">Likelihood</th>
                                     </tr>
 
                                     {record.map((report, xid) => (
@@ -269,6 +272,7 @@ function User_QMRA_logs() {
                 <label>{FoundReport.message}</label>
 
               </div>)} */}
+                       
                         </div>
                     </div>
                 </div>

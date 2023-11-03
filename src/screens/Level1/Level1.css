@@ -62,14 +62,40 @@
     flex-direction: row;
 }
 @media (max-width: 768px) {
-
+#level_descption
+{
+  text-align: center;
+    margin-top: 25%;
+}
     #level_description
     {
         text-align: center;
         font-size: 12px;
+       
+        height: 500px;
+        
     } 
     #level_description h3
     {
         font-size: 16px;
+    }
+    .container-wrapper p
+    {
+        font-size: small;
+    }
+    .container-wrapper h3
+    {
+        font-size: 16px;
+    }
+    .btn-sanitary
+    {
+        width: 200px;
+       font-size: 10px;
+    }
+    .table3{
+      width: 100%;
+      display: flex;
+    
+     
     }
 }

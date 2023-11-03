@@ -124,8 +124,9 @@ function Survay_Report() {
         <ToastContainer />
         <div className='content'>
           <Header />
+          <h2>Sanitary risk core (percentage and risk characterization rating)</h2>
           <div className='container-wrap'>
-            <h2>Sanitary risk core (percentage and risk characterization rating)</h2>
+           
             <div className='report-header'>
               <div id='search_date'>
                 <span className='survey_date'>
@@ -142,7 +143,7 @@ function Survay_Report() {
               </div>
               <div id='filter_by_province'>
                 <span className='survey_province'>
-                  <label>Province</label>
+                  {/* <label>Province</label> */}
                   <select onChange={(e) => filter_by_province(e.target.value)}>
                     <option value=''>Province</option>
                     {Provinces.map((province, xid) => (
@@ -151,7 +152,7 @@ function Survay_Report() {
                   </select>
                 </span>
                 <span className='survey_province'>
-                  <label>Municipalities</label>
+                  {/* <label>Municipalities</label> */}
                   <select onChange={(e) => filter_by_municipality(e.target.value)}>
                     <option value=''>Province</option>
                     {Municipalities.map((muni, xid) => (
@@ -169,6 +170,7 @@ function Survay_Report() {
             <div className='reports'>
               {(FoundReport === true) && (
                 <table className="table survay_table">
+                  <thead class="thead-dark">
                   <tr className="survey_tr">
                     <th className="survey_th _th">Municipalities</th>
                     <th className="survey_th">Date</th>
@@ -176,7 +178,7 @@ function Survay_Report() {
                     <th className="survey_th ">Total Average</th>
                     <th className="survey_th ">Risk Type</th>
                   </tr>
-
+                  </thead>
                   {Report.map((report, xid) => (
                     <tr key={xid} className="survey_tr" scope="row">
                       <td className="survey_td _td">{report.muni_name}</td>

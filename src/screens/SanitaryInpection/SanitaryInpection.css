@@ -6,8 +6,10 @@
     margin-right: auto;
     align-items: center;
     justify-content: center;
-    width: 60%;
-    height: 55vh;
+    width: 90%;
+    height: 70vh;
+    background-color: #e1e4e8;
+    border-radius: 15px;
 }
 
 

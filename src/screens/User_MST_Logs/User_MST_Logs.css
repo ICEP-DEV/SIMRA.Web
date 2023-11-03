@@ -1,2 +1,53 @@
 
-tr:hover {background-color:  rgba(128, 128, 128, 0.582);}
+tr:hover {
+    background-color:#0d6dfda2;
+}
+@media (max-width: 768px) {
+    .start_date,  .end_date 
+    {
+        width: 100px;
+        font-size: 12px;
+    }
+.survey_date
+{
+    width: 120px;
+    margin-left: 0;
+}
+.survey_date_label
+{
+    font-size: 12px;
+    width: 10%;
+   
+}
+.survey_province
+{
+ width: 250px;
+}
+.report-header select 
+{
+    width: 200px;
+    font-size: 12px;
+    margin-bottom: 5%;
+}
+.report-header label {
+    font-size: 12px; 
+}
+.survay_table
+{
+    width: 100%;
+    font-size: 11px;
+    
+}
+.report-header .btn-search-report
+{
+    width: 150px;
+    height: 30px;
+   
+    font-size: 12px;
+   
+}
+.hero-all
+{
+    overflow-y: scroll;
+}
+}
