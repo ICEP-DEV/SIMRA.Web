@@ -1,0 +1,77 @@
+/*p,
+li {
+  text-align: justify;
+}
+ins {
+  background-color: #a0ffa0;
+}
+del {
+  background-color: #ffa0a0;
+}
+.code {
+  background-color: #eeeeee;
+}
+.codex {
+  background-color: #ffffe0;
+}
+
+.container {
+  width: 80%;
+  align-items: center;
+}
+.report {
+  margin-top: 200px;
+  text-align: center;
+  border-spacing: 5;
+  border: 1px solid black;
+}
+.tableHead {
+    border: 1px solid black;
+    height: 200px;
+}
+th {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  width: 400px;
+  font-weight: normal;
+  height: 150px;
+  border: 1px solid black;
+}
+th {
+  border: 1px solid black;
+  height: 150px;
+}
+.tableData {
+
+}
+td {
+  height: 50px;
+  border: 1px solid black;
+}*/
+/* Can't eliminate the spacing no matter what I try *//*
+.thh:first-child {
+  height: 100px;
+}
+.thh:not(:first-child) {
+  height: 10px;
+}
+
+td:nth-child(2) {
+  background-color: #fce300;
+}
+td:nth-child(3) {
+  background-color: #cc7a0e;
+}
+td:nth-child(4) {
+  background-color: #a0ffa0;
+}
+td:nth-child(5) {
+  background-color: #fce300;
+}
+td:nth-child(6) {
+  background-color: #cc7a0e;
+}
+td:nth-child(7) {
+  background-color: #f51414;
+}
+*/

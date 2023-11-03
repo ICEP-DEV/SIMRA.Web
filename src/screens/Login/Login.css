@@ -5,8 +5,207 @@
 
     100% {}
 }
-
+.all-contents 
+{
+    background-size: 100%;
+    height: 100%;
+    padding: 3.82%;
+     /* background-color:#a5c473; */
+} 
+.background{
+    background-color: #80cfff;
+    height: 100vh;
+}
 .login {
     animation: 1s ease-out 0s 1 slideInLeft;
     padding: 40px;
+}
+.login-container
+{
+    box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
+    background-image: linear-gradient(#4884EE,#06BCFB);
+    width: 1054px;
+    height: 613px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+.login-card
+{
+    width: 727px;
+    height: 613px;
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+    background-color: #fff;
+    float: right;
+    border-top-left-radius: 80px 80px;
+    border-bottom-left-radius:80px 80px ;
+}
+.login-txt 
+{
+    position: absolute;
+    left: 20%;
+    top: 20%;
+}
+.input-login {
+
+   width: 90%;
+padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-bottom: 1px solid black;
+}
+img{
+    width:50px
+}
+.side-login
+{
+height: 100%;
+width: 150px;
+position: absolute;
+left: 0;
+top: 0;
+padding-top: 40px;
+float: left;
+
+}
+.main-login
+{
+position:relative;
+top: 10%;
+margin-left: 150px;
+font-size: 18px;
+height: 613px;
+
+}
+.login-container .welcome
+{
+  position: absolute;
+margin-left: 2%;
+
+  color: #fff;
+}
+.welcome .logo-login 
+{
+
+ margin-bottom: 95%;
+ margin-top: 10%;
+}
+.btn-reg
+{
+    background-color: #4884EE;
+}
+.login-grid .btn-login 
+{
+    /* position: absolute; */
+    background-color: #4884EE;
+    font-size: larger;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 25%;
+    padding: 5px;
+    color: #fff;
+}
+.txt-signup
+{
+    /* position: absolute; */
+    bottom: 15%;
+    margin-left: 2%;
+}
+.logo-login
+{
+    width: 100px;
+}
+.header-txt 
+{
+ margin-bottom: 10%;
+}
+@media only screen and (max-width: 768px) {
+    .all-contents 
+{
+  
+    /* height: 100vh; */
+    background-size: 100%;
+    background-color: #0063EA;
+    width: 90vh;
+    position: fixed;
+} 
+
+.login-container
+{
+  
+    width: 90%;
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    position: fixed;
+}
+.login-card
+{
+    width: 60%;
+    height: 100%;
+    
+}
+
+.input-login {
+
+   width: 80%;
+font-size: 9px;
+ 
+  
+}
+
+.side-login
+{
+height: 100%;
+width: 150px;
+}
+.main-login
+{
+
+top: 10%;
+margin-left: 20%;
+font-size: 18px;
+height: 80%;
+width: 80%;
+
+}
+.login-container .welcome
+{
+    position:absolute;
+
+  left: 2%;  
+  font-size: 10px;
+  width: 30%;
+ 
+}
+.welcome .logo-login 
+{
+    /* position: absolute; */
+    top: -130%;
+
+}
+
+.login-grid .btn-login 
+{
+    position: fixed;
+     width: 30%;  
+     font-size: 12px;
+     margin-left: 2%;
+}
+.txt-signup
+{
+    position:absolute;
+  
+  font-size: 11px;}
+
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
 }
