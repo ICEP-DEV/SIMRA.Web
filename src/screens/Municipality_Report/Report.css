@@ -33,11 +33,10 @@
 }
 
 .color_report{
-    padding: 0 10px;
-    width: 10px;
-    height: 10px;
+    padding: 10px;
     border: gray solid 1px;
     margin: 0 25px;
+    border-radius: 60%;
 }
 
 .stats_summary{

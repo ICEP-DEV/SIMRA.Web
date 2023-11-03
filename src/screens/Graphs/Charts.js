@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Chart from "react-apexcharts";
-
-function Graph(){
+function graph(){
     const [state, setState] = useState({
         options: {
           colors: ["#4472c4", "#ed7d31", "#a5a5a5", "#ffc000", "#5b9bd5", "#70ad47", "#264478", "#9e480e"],
@@ -107,4 +106,4 @@ function Graph(){
       </div>
       );
 }
-export default Graph
+export default graph
