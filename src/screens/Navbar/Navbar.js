@@ -22,10 +22,10 @@ function Navbar() {
         if (user_info !== undefined) {
             setUserType(user_info.user_level)
             console.log(sampling_info)
-            if (sampling_info !== undefined ) {
+            if (sampling_info !== undefined) {
                 setIsFoundSamplingData(false)
-            } 
-            
+            }
+
         }
         else {
             navigate("/")
@@ -43,6 +43,14 @@ function Navbar() {
     function logout() {
         dispatch(remove_details());
         dispatch(remove_sample_details())
+        axios.get('http://localhost:3001/api/logout',).then(response => {
+            if (response.data) {
+                console.log(response.data)
+                localStorage.removeItem('jsonwebtoken')
+            }
+        }).catch(error => {
+            console.log(error)
+        })
         navigate("/")
     }
 
@@ -122,7 +130,7 @@ function Navbar() {
                 </li>
 
                 {/* <li className="navbar-subs" onClick={report}>Report</li> */}
-                <li className="navbar-subs"><button className=" btn btn-success fw-bold"  onClick={logout}>Signout</button></li>
+                <li className="navbar-subs"><button className=" btn btn-success fw-bold" onClick={logout}>Signout</button></li>
                 {/* <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
                 <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
                 
