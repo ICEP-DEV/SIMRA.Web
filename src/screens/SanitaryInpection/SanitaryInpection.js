@@ -125,7 +125,7 @@ function SanitaryInpection() {
                 progress: undefined,
                 theme: "light",
             });
-            return;
+           // return;
         }
 
         else {

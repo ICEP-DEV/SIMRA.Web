@@ -77,13 +77,13 @@ const FibAnalysis = () => {
       <Navbar />
       <div className='content'>
         <Header />
-        <h2 className='text-primary text-center'>FIB Analysis</h2>
+        <h2 className='text-primary text-center'>MST</h2>
         <div className='container-wrapper'>
           <ToastContainer />
           <div>
             <p>Select an Maker Gene:</p>
             <select
-            className='form-select-lg mb-3 mt-5'
+              className='form-select-lg mb-3 mt-5'
               onChange={(event) => handlemstselection(event.target.value)} >
               <option value="">Select A Marker</option>
               {Makers.map((maker, xid) => (
@@ -92,23 +92,6 @@ const FibAnalysis = () => {
                 </option>
               ))}
             </select>
-
-            {/* <table>
-              <tbody>
-                <tr>
-                  <th>MST Marker</th>
-                  <th>Ratio</th>
-                </tr>
-                {SelectedMaker.maker !== 'other' && <tr>
-                  <td>{SelectedMaker.maker}</td>
-                  <td>{SelectedMaker.ratio}</td>
-                </tr>}
-                {SelectedMaker.maker === 'other' && <tr>
-                  <td><input type='text' onClick={(event) => setSelectedMaker(event.target.value)} /> </td>
-                  <td><input type='number' onClick={(event) => setRatio(event.target.value)} /> </td>
-                </tr>}
-              </tbody>
-            </table> */}
             <div id='mst_content'>
 
             </div>
@@ -120,7 +103,7 @@ const FibAnalysis = () => {
             <div>
               <label className='mst_label'>Ratio</label>
               {SelectedMaker.maker !== 'other' && <input className='mt-2' type='text' value={SelectedMaker.ratio} disabled />}
-              {SelectedMaker.maker === 'other' && <span><input  className='mt-2' type='number' onChange={(event) => setRatio(event.target.value)} /></span>}
+              {SelectedMaker.maker === 'other' && <span><input className='mt-2' type='number' onChange={(event) => setRatio(event.target.value)} /></span>}
             </div>
             <br></br>
             <p>Enter The Count:</p>
@@ -136,7 +119,6 @@ const FibAnalysis = () => {
       </div>
       <footer><Footer /></footer>
     </div>
-
   );
 };
 

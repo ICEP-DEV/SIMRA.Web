@@ -9,6 +9,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import logo1 from '../../assets/Simra_logo.png';
 import { remove_details } from "../../Redux/user";
 import { remove_sample_details } from "../../Redux/sampling_data"
+import { api } from '../../Data/API'
 
 function Navbar() {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ function Navbar() {
     function logout() {
         dispatch(remove_details());
         dispatch(remove_sample_details())
-        axios.get('http://localhost:3001/api/logout',).then(response => {
+        axios.get(api+'logout',).then(response => {
             if (response.data) {
                 console.log(response.data)
                 localStorage.removeItem('jsonwebtoken')
@@ -65,7 +66,7 @@ function Navbar() {
         dispatch(remove_details());
         dispatch(remove_sample_details())
 
-        axios.get('http://localhost:3001/api/logout',
+        axios.get('logout',
 
         ).then(response => {
             if (response.data) {

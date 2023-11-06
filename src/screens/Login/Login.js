@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
 import logo1 from '../../assets/Simra_logo.png'
+import { api } from '../../Data/API'
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -90,7 +91,7 @@ function Login() {
         }
 
         setButtonPopup(true)
-        const loginData = await axios.post('http://localhost:3001/api/login', values)
+        const loginData = await axios.post(api+'login', values)
         setTimeout(() => {
             setButtonPopup(false)
             if (loginData.data.success === true) {
@@ -319,7 +320,7 @@ function Login() {
             level: Level
         }
 
-        axios.post("http://localhost:3001/api/registration", register_form).then((respond) => {
+        axios.post(api+"registration", register_form).then((respond) => {
             if (respond.data.success === true) {
                 toast.success(respond.data.message, {
                     position: "top-right",

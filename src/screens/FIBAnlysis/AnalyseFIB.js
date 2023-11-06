@@ -1,148 +1,148 @@
+import './AnalyseFIB.css'
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import { fib_mst_details } from '../../Redux/fib_mst';
 import { useNavigate } from 'react-router-dom';
-import Navbar2 from '../Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer/Footer';
+import { api } from '../../Data/API'
+import axios from 'axios';
+
 
 const FibAnalysis = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [selectedFIB, setSelectedFIB] = useState('Select a FIB');
-  const [referencePath, setReferencePath] = useState('');
-  const [ratio, setRatio] = useState(0);
+  const [ReferencePath, setReferencePath] = useState([]);
+  const [Ratio, setRatio] = useState(0);
   const [estimatedCount, setEstimatedCount] = useState(0);
   const [userCount, setUserCount] = useState(0);
   const [roundedEstimatedCount, setRoundedEstimatedCount] = useState(0);
   const [IsCustomized, setIsCustomized] = useState(false);
-
-  const fibData = {
-    'E.coli': { referencePath: 'Campylobacter', ratio: 0.66, estimatedCount: 0 },
-    'Coliform': { referencePath: 'Cryptosporidium', ratio: 1, estimatedCount: 0 },
-    'Enterococcus': { referencePath: 'Campylobacter', ratio: 0.01, estimatedCount: 0 },
-    'Clostridium': { referencePath: 'Giardia', ratio: 0.8, estimatedCount: 0 },
-    'other': { referencePath: 'other', ratio: 0, estimatedCount: 0 }
-  };
+  const [FIB, setFIB] = useState('')
+  const [FIBs, setFIBs] = useState([])
 
   useEffect(() => {
-    calculateEstimatedCount();
-  }, [userCount, ratio]);
 
-  // Function to calculate estimated count
-  const calculateEstimatedCount = () => {
+    axios.get(api + 'indicators').then(response => {
+      console.log(response.data.indicators)
+      setFIBs(response.data.indicators)
+    }, error => {
+      console.log(error)
+    })
+  }, [userCount, Ratio]);
+
+  const handlemstselection = (makerno) => {
     setIsCustomized(false)
-    const count = parseInt(userCount, 10);
-    if (referencePath === 'other') {
+    console.log(FIBs[makerno].pathogen)
+    setReferencePath(FIBs[makerno].pathogen)
+    setFIB(FIBs[makerno].indicator)
+    setRatio(FIBs[makerno].ratio)
+    setSelectedFIB(FIBs[makerno]);
+    if (FIBs[makerno].indicator.toLocaleLowerCase() === 'Other'.toLocaleLowerCase()) {
       setIsCustomized(true)
-    }
-    if (!isNaN(count)) {
-      const estimated = count * ratio;
-      setEstimatedCount(estimated);
-      setRoundedEstimatedCount(Math.round(estimated)); // Round the estimated count
-    } else {
-      setEstimatedCount(0);
-      setRoundedEstimatedCount(0);
+
     }
   };
 
-  const sendValue = () => {
+  function next_to_qmra() {
 
-    if (referencePath === '') {
-      return
-    }
-    if (referencePath === 'other') {
-      if (referencePath === '' || ratio === 0) {
-        return
+    if (setSelectedFIB.maker === 'other') {
+      if (Ratio === 0 || FIB === '') {
+        console.log(Ratio, FIB)
+        return;
       }
-    }
 
+    }
     if (userCount === 0) {
 
       return
     }
-    var fib_info = {
-      indicator: referencePath,
-      count_indicator: userCount,
-      estimatedCount: roundedEstimatedCount,
-      ratio: ratio,
-      is_customized: IsCustomized,
-      type:'fib'
-    }
-    dispatch(fib_mst_details(fib_info))
-    navigate('/qmra')
 
-  };
-
-  const handleFibData = (fib) => {
-    setSelectedFIB(fib);
-    if (fibData[fib]) {
-      setReferencePath(fibData[fib].referencePath);
-      setRatio(fibData[fib].ratio);
-      calculateEstimatedCount();
-    } else {
-      setReferencePath('');
-      setRatio(0);
-      setEstimatedCount(0);
+    var data = {
+      maker: FIB,
+      ratio: Ratio,
+      count: userCount,
+      type: 'mst',
+      estimated_count: Ratio * userCount,
+      is_customized_mst: IsCustomized
     }
-  };
+    dispatch(fib_mst_details(data))
+    //navigate('/qmra')
+  }
 
   return (
     <div className='hero-all' >
-      <Navbar2 />
-      <div className='main-all'>
-        <div className='content'>
-          <Header />
-          <h2 className='text-primary text-center'>FIB Analysis</h2>
+      <Navbar />
+      <div className='content'>
+        <h2 className='text-primary text-center'>FIB</h2>
+        <Header />
+        <div>
           <div className='container-wrapper'>
-          <div className='mt-0'>
-              <select
-                className='form-select-lg mb-3 mt-5 w-75'
-                value={selectedFIB}
-                onChange={(event) => handleFibData(event.target.value)}
-              >
-                <option value="" selected>Select an FIB Indicator</option>
+            <ToastContainer />
+            <div id='fib_section'>
+              <div className='fib_selection'>
+                <label className='fib_selection_label'> Select an FIB</label>
+                <select
+                  className='form-select-lg mb-3 mt-5'
+                  onChange={(event) => handlemstselection(event.target.value)} >
+                  <option value="">Select FIB</option>
+                  {FIBs.map((fib, xid) => (
+                    <option key={xid} value={xid}>
+                      {fib.indicator}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className='reference_selection'>
+                <label className='reference_selection_label'>Reference Pathogen</label>
+                {selectedFIB.indicator !== 'Other' && <select
+                  className='form-select-lg mb-3 mt-5'
+                  onChange={(event) => handlemstselection(event.target.value)} >
+                  <option value="">Select FIB</option>
+                  {ReferencePath.map((pathogen, xid) => (
+                    <option key={xid} value={xid}>
+                      {pathogen.path_name}
+                    </option>
+                  ))}
+                </select>}
+                {selectedFIB.indicator === 'Other' && <span>
+                  <input type='text' placeholder='Refernce Pathogen' onChange={(event) => setFIB(event.target.value)} />
+                  <input type='text' placeholder='' onChange={(event) => setFIB(event.target.value)} />
+                </span>}
+              </div>
 
-                {Object.keys(fibData).map((fib) => (
-                  <option key={fib} value={fib}>
-                    {fib}
-                  </option>
-                ))}
-              </select>
-              <div className='table-responsive-lg d-flex justify-content-center'>
 
 
-                <table className='table-bordered  w-75'>
-                  <tbody>
-                    <tr>
-                      <th scope='col border'>Indicator</th>
-                      <th scope='col '>Ratio</th>
-                    </tr>
-                    {referencePath !== 'other' && <tr>
-                      <td >{referencePath}</td>
-                      <td >{ratio}</td>
-                    </tr>}
-                    {referencePath === 'other' && <tr>
-                      <td ><input type='text' placeholder='Indicator' onChange={(e) => setReferencePath(e.target.value)} style={{backgroundColor:"white"}} /></td>
-                      <td ><input type='text' placeholder='Ratio' onChange={(e) => setRatio(e.target.value)} style={{backgroundColor:"white"}}/></td>
-                    </tr>}
-                  </tbody>
-                </table>
+              <div id='mst_content'>
+
+              </div>
+              <div><span></span>
+                <label className='mst_label'>FIB</label>
+                {selectedFIB.indicator !== 'Other' && <input className='mt-2' type='text' value={selectedFIB.maker} disabled />}
+                {selectedFIB.indicator === 'Other' && <span><input type='text' onChange={(event) => setFIB(event.target.value)} /></span>}
+              </div>
+              <div>
+                <label className='mst_label'>Ratio</label>
+                {selectedFIB.indicator !== 'Other' && <input className='mt-2' type='text' value={selectedFIB.ratio} disabled />}
+                {selectedFIB.indicator === 'Other' && <span><input className='mt-2' type='number' onChange={(event) => setRatio(event.target.value)} /></span>}
               </div>
               <br></br>
               <p>Enter The Count:</p>
               <input
-                className='sr-only'
                 type="number"
                 value={userCount}
                 onChange={(event) => setUserCount(event.target.value)}
               />
-              <p> Count: {estimatedCount} </p>
-              <p>Estimated Count: {roundedEstimatedCount} </p>
             </div>
-            <button onClick={sendValue} className='btn btn-success btn-lg w-25'>Save Value</button>
+            <button className='btn btn-success w-25 mt-4' onClick={next_to_qmra}>Next</button>
           </div>
         </div>
+
+
       </div>
       <footer><Footer /></footer>
     </div>

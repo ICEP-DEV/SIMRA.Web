@@ -7,9 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../Header/Header';
 import { useSelector } from 'react-redux';
+import { api } from '../../Data/API'
 
 function User_Sanitary_Survay_Logs_Reports() {
-    const api = "http://localhost:3001/api/"
 
     const [Provinces, setProvinces] = useState([])
     const [Report, setReport] = useState([])
