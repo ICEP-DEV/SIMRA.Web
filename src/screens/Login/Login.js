@@ -105,7 +105,6 @@ function Login() {
                     user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
                 }
-                console.log(loginData.data.results[0])
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {

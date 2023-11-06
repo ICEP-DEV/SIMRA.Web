@@ -85,10 +85,8 @@ function User_H2S_Logs() {
       });
       return;
     }
-    console.log('user id',UserId)
-    axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
+    axios.get(api + 'get_user_h2s_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
       setTotalRecord(0)
-      console.log(response)
       setFoundReport(response.data.success)
       if (response.data.success === true) {
         setTotalRecord(response.data.result.length)

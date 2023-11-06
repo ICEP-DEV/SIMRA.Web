@@ -84,7 +84,7 @@ function User_Sanitary_Survay_Logs_Reports() {
             });
             return;
         }
-        axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
+        axios.get(api + 'get_user_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
             setTotalRecord(0)
             setFoundReport(response.data.success)
             if (response.data.success === true) {
