@@ -10,45 +10,44 @@ import Solar_Purification from '../assets/Solar_Purification.jpg'
 
 const Methods = [
     {
-        id: 1, method: "Boiling Water", image: boiling_water, description: `The simplest method to purify water is to boil it for a good time.
-    High temperatures cause the bacteria and virus to dissipate, removing all impurities from the water.
-    In doing so, chemical additions cease to exist in the water. However, the dead micro-organisms and impurities settle at the bottom of the water,
-    and boiling does not help eliminate all the impurities.
-    You must strain the water through a microporous sieve to completely remove the impurities.`},
+        id: 1, method: "Boiling Water", image: boiling_water, description: `Boiling water is a simple way to purify it.
+High temperatures kill bacteria and viruses, removing impurities.
+Chemical additives are eliminated during boiling.
+Some impurities settle at the bottom of the boiled water.
+Use a microporous sieve to completely remove all impurities.`},
 
     {
-        id: 2, method: "Water Purifier", image: Water_Purifier, description: `An electric water purifier is the most trusted form of water purification found in most houses today.
-    A water purifier uses a multi-stage process involving UV and UF filtration, carbon block,
-    and modern water filtration technology that eliminates most of the chemicals and impurities, making it the purest drinking water.`},
+        id: 2, method: "Water Purifier", image: Water_Purifier, description: `Electric water purifiers are widely trusted for home use.
+They use multiple filtration stages, including UV(Ultraviolet), UF(Ultrafiltration), carbon blocks, and modern technology.
+This process effectively removes various impurities and chemicals, providing pure drinking water.`},
 
     {
-        id: 3, method: "Reverse Osmosis", image:Reverse_Osmosis, description: `An RO Purifier proves to be one of the best methods of purifying water.
-    Reverse Osmosis forces water through a semipermeable membrane and removes contaminants.
-    The TDS Controller and Mineraliser Technology, like the one found in an A. O. Smith RO UV Water Purifier,
-    help retain the necessary nutrients while doing away with harmful impurities.`},
+        id: 3, method: "Reverse Osmosis", image:Reverse_Osmosis, description: `RO Purifiers are excellent for water purification.
+They use reverse osmosis to remove contaminants.
+Some systems, like A. O. Smith RO UV Water Purifiers, preserve essential nutrients while eliminating harmful impurities.`},
 
     {
-        id: 4, method: "Water Chlorination", image: chloritab_bucket, description: `It is an older technique used usually during an emergency, wherein a mild bleach with approximately 5% chlorine is added to the water.
-    This mixture works as an oxidant and quickly kills microorganisms, making water safe for consumption.`},
+        id: 4, method: "Water Chlorination", image: chloritab_bucket, description: `In emergency situations, a method involves adding approximately 5% chlorine bleach per liter.
+The bleach serves as an oxidant, swiftly eradicating microorganisms and ensuring safe drinking water.`},
 
     {
-        id: 5, method: "Distillation", image: water_distiller, description: `Distillation is a water purification process involving collecting the condensed water after evaporation,
-    ensuring that water is free of contaminants. However, this isn’t as effective as an RO filter because it is time-consuming and eliminates minerals`},
+        id: 5, method: "Distillation", image: water_distiller, description: `Distillation purifies water by collecting condensed vapor, removing contaminants.
+It's less efficient than an RO filter, takes time, and removes minerals.`},
 
     {
-        id: 6, method: "Iodine Addition", image: Iodine_Addition, description: `Iodine is a red chemical that is easily available as a tablet or a liquid. It is extremely powerful as it kills bacteria and viruses.
-    However, it adds an unpleasant taste and can be fatal if taken in high doses.
-    Therefore, it should only be used if you don’t have access to a better method of purification like an electric water purifier.`},
+        id: 6, method: "Iodine Addition", image: Iodine_Addition, description: `Iodine is a red chemical available in tablet or liquid form.
+It is a potent disinfectant, effective against bacteria and viruses.
+Iodine can introduce an unpleasant taste and be harmful in high doses.
+It should be used as a last resort if no better purification method, such as an electric water purifier, is available.`},
 
     {
-        id: 7, method: "Solar Purification", image: Solar_Purification, description: `An RO Purifier proves to be one of the best methods of purifying water.
-    Reverse Osmosis forces water through a semipermeable membrane and removes contaminants.
-    The TDS Controller and Mineraliser Technology, like the one found in an A. O. Smith RO UV Water Purifier,
-    help retain the necessary nutrients while doing away with harmful impurities.`},
+        id: 7, method: "Solar Purification", image: Solar_Purification, description: `RO Purifiers are great for water purification.
+They use reverse osmosis to remove contaminants and maintain essential nutrients.`},
 
     {
-        id: 8, method: "Clay Vessel Filtration", image: Clay_Vessel_Filtration, description: `Way before people had access to an RO or UV Purifier, they used clay pots which purified muddy water,
-    by blocking out the mud and allowing pure, potable water to pass through. This method is still used in some rural regions.`},
+        id: 8, method: "Clay Vessel Filtration", image: Clay_Vessel_Filtration, description: `Before RO or UV purifiers were available, clay pots were used for purifying muddy water.
+The clay pots blocked out the mud and allowed clean, drinkable water to pass through.
+This traditional method is still employed in some rural areas.`},
 ]
 
 export default Methods
