@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import React from 'react'
 import './SanitaryInpection.css'
@@ -109,9 +108,10 @@ function SanitaryInpection() {
             //initModalsing();
             return;
         }
+        
 
         if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could get your location!", {
+            toast.error("Won't be able to proceed since we couldn't get your location!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -160,7 +160,7 @@ function SanitaryInpection() {
                         // navigate("/data_results", { state: { temp } })
 
                         if (result.data.success === true) {
-                            if (DataAnalysis.message !== "adedd hydrogensulfide") {
+                            if (DataAnalysis.message !== "added hydrogensulfide") {
                                 if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
                                 else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
                                 else if (DataAnalysis.total_avarage > 50 && DataAnalysis.total_avarage < 76) { setbackgroundColor("rgb(201, 199, 105)") }
@@ -238,7 +238,7 @@ function SanitaryInpection() {
                     <Header />
                     <h2 className='text-primary text-center'>Sanitary Inpection</h2>
                     <div className='sanitaryInpection'>
-                    <div className='mt-5'></div>
+                
                         {/* Pop up test methods */}
                         <PooUp trigger={SelectPopUp} setTrigger={setSelectPopUp}>
                             {display_methods}
@@ -295,7 +295,7 @@ function SanitaryInpection() {
 
                         {/* <input class="form-check-input" type="checkbox" value='true' role="switch" id="flexSwitchCheckDefault" onChange={(e) => setCheck(e.target.value)} name="check" /> */}
 
-                        <div className='table d-flex flex-column'>
+                        <div className='table '>
                             <div className='form-header'>
                                 <label className='header_form_label questinare'>Questionnaire</label>
                                 <label className='header_form_label yes_no'>No/Yes</label>
@@ -303,68 +303,65 @@ function SanitaryInpection() {
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>1. Are There pit-latrines(pit toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>2. Are There any domestic animals observed?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="domesticAnimal" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>3. Diapers Disposal(throwing away diapers)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="diaperDisposal" />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>4. Release of wastewater?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="wasteWaterRelease" />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>5. Open defaction(public )?</label>
+                                <label className='header_form_label questinare'>5. Open defaction(public toilets )?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='openDefaction' />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>6. Is the water source unprotected?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='unprotectedWaterSource' />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>7. Agricultural Activities(farming operations)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='agriculturalActivity' />
                                 </label>
                             </div>
                             <div className='form_content'>
                                 <label className='header_form_label questinare'>8. Observer laundry Activities?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='observerLaundryActivity' />
                                 </label>
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg w-25 sanitary-btn'>Submit</button>
-                    </div>
-                
-                    <section className='section-h2s'> 
-                    <h2 className='text-primary text-center'>Examples</h2>
-                   <div className='h2s-cards row align-items-start justify-content-around'>
-
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg justify-content-center mt-5 sanitary-btn'>Submit</button>
+        <section className='section-h2s'> 
+                   <div className='h2s-cards row align-items-start justify-content-around mb-5'>
+<h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
 <div className='card' >
 <div class="card-header">
     domestic animals
@@ -418,7 +415,10 @@ Water waste
 
 </div>
 </section>
-                    {/* <div id='sanitary_description ' className='text-primary mb-2'>
+            
+                    </div>
+                
+         {/* <div id='sanitary_description ' className='text-primary mb-2'>
                     <h3>How can I do sanitary Inspection? </h3>
                     <ul>
                         <li>For sanitary inspection you can use a sanitary survey, where you simply answer yes or no.</li>

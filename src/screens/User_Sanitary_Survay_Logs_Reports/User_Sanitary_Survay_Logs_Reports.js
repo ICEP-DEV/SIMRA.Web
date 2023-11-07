@@ -7,9 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../Header/Header';
 import { useSelector } from 'react-redux';
+import { api } from '../../Data/API'
 
 function User_Sanitary_Survay_Logs_Reports() {
-    const api = "http://localhost:3001/api/"
 
     const [Provinces, setProvinces] = useState([])
     const [Report, setReport] = useState([])
@@ -19,6 +19,7 @@ function User_Sanitary_Survay_Logs_Reports() {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [FoundReport, setFoundReport] = useState(false)
+    const [UserId, setUserId] = useState(0)
     // Pagination
     const [CurrentPage, setCurrentPage] = useState(1)
     const record_per_page = 5
@@ -36,11 +37,14 @@ function User_Sanitary_Survay_Logs_Reports() {
 
     useEffect(() => {
         var userId = user_info.userId
+        setUserId(userId)
         axios.get(api + 'get_userhistory_sanitory/' + userId).then((response) => {
-            setStoredReport(response.data.result)
-            setReport(response.data.result)
             setFoundReport(response.data.success)
-            setTotalRecord(response.data.result.length)
+            if (response.data.success === true) {
+                setStoredReport(response.data.result)
+                setReport(response.data.result)
+                setTotalRecord(response.data.result.length)
+            }
         })
 
         axios.get(api + "get_provinces").then(response => {
@@ -80,63 +84,46 @@ function User_Sanitary_Survay_Logs_Reports() {
             });
             return;
         }
-        axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate).then((response) => {
+        axios.get(api + 'get_user_survey_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
             setTotalRecord(0)
-            setReport(response.data.result)
-            setStoredReport(response.data.result)
             setFoundReport(response.data.success)
             if (response.data.success === true) {
-                setTotalRecord(response.data.result.length)
+              setStoredReport(response.data.result)
+              setReport(response.data.result)
+              setTotalRecord(response.data.result.length)
             }
         })
     }
 
-    function checkForUserInfo(id) {
-        var temp_array = StoredReport
-        if (id === true) {
-            setReport(temp_array.filter(value => {
-                return value.user().includes(id)
-            }))
-        }
-        else {
-            setReport(StoredReport)
-        }
-    }
-
     function filter_by_province(_province) {
         var count = 0
+        var temp_array = StoredReport
 
-        if (_province === '') {
-            setReport(StoredReport)
-            setTotalRecord(StoredReport.length)
-            return
-        } else {
-            var temp_array = StoredReport
-            axios.get(api + "get_municipalities/" + _province).then(response => {
-                setMunicipalities(response.data.results)
+        axios.get(api + "get_municipalities/" + _province).then(response => {
+            setMunicipalities(response.data.results)
 
-            }, err => {
-                console.log(err)
-            })
-            setReport(temp_array.filter(value => {
-                return value.province_id?.toLocaleLowerCase().includes(_province?.toLocaleLowerCase())
-            }))
+        }, err => {
+            console.log(err)
+        })
+        setReport(temp_array.filter(value => {
+            return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase())
+        }))
 
-            for (var k = 0; k < StoredReport.length; k++) {
-                if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
-                    count++
-                }
+        for (var k = 0; k < StoredReport.length; k++) {
+            if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
+                count++
             }
-            setTotalRecord(count)
         }
-
+        setTotalRecord(count)
     }
 
     function filter_by_municipality(_muni) {
         var temp_array = StoredReport
         var count = 0
-
-
+        if (_muni === '') {
+            setReport(StoredReport)
+            return
+        }
 
         setReport(temp_array.filter(value => {
             return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase())
@@ -151,16 +138,23 @@ function User_Sanitary_Survay_Logs_Reports() {
 
     function search_by_weekday(day) {
         var temp_array = StoredReport
-
+        var count = 0
         if (day !== '') {
             setReport(temp_array.filter(value => {
                 return value.weekday.toLocaleLowerCase().includes(day.toLocaleLowerCase())
             }))
+            for (var k = 0; k < StoredReport.length; k++) {
+                if (StoredReport[k].weekday.toLocaleLowerCase() === day.toLocaleLowerCase()) {
+                    count++
+                }
+            }
+            setTotalRecord(count)
         }
         else {
             setReport(StoredReport)
         }
     }
+
 
     //change page 
     const paginate = (page_number) => setCurrentPage(page_number)
@@ -172,9 +166,10 @@ function User_Sanitary_Survay_Logs_Reports() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
+                    <h2 className='text-primary text-center'>Sanitary Logs</h2>
                     <div className='container-wrap'>
-                        <h2>Sanitary Logs</h2>
-                        <div className='report-header'>
+                       
+                        <div className='report-header '>
                             <div id='search_date'>
                                 <span className='survey_date'>
                                     <label className='survey_date_label'>From</label>
@@ -185,12 +180,12 @@ function User_Sanitary_Survay_Logs_Reports() {
                                     <input type='date' className='control-from end_date' onChange={(event) => setEndDate(event.target.value)} />
                                 </span>
 
-                                <button onClick={display_search_report} className="btn btn-primary btn-search-report">Show Results</button>
+                                <button onClick={display_search_report} className="btn btn-dark  btn-search-report">Show Results</button>
 
                             </div>
                             <div>
                                 <span className='survey_province'>
-                                    <label>WeekDays</label>
+                                    {/* <label>WeekDays</label> */}
                                     <select onChange={(event) => search_by_weekday(event.target.value)}>
                                         <option value=''>All Weekdays</option>
                                         <option value='Monday'>Monday</option>
@@ -205,7 +200,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                             </div>
                             <div id='filter_by_province'>
                                 <span className='survey_province'>
-                                    <label>Province</label>
+                                    {/* <label>Province</label> */}
                                     <select onChange={(e) => filter_by_province(e.target.value)}>
                                         <option value=''>Province</option>
                                         {Provinces.map((province, xid) => (
@@ -214,7 +209,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                     </select>
                                 </span>
                                 <span className='survey_province'>
-                                    <label>Municipalities</label>
+                                    {/* <label>Municipalities</label> */}
                                     <select onChange={(e) => filter_by_municipality(e.target.value)}>
                                         <option value=''>Municipalities</option>
                                         {Municipalities.map((muni, xid) => (
@@ -223,15 +218,16 @@ function User_Sanitary_Survay_Logs_Reports() {
                                     </select>
                                 </span>
                             </div>
-                            <div id='stats_summary' style={{ color: 'black' }}>
-                                <h3>Total Records: {TotalRecord}</h3>
+                            <div id='stats_summary'  className=' text-primary mt-5' >
+                                <h3 >Total Records: {TotalRecord}</h3>
                             </div>
 
                         </div>
 
                         <div className='reports'>
                             {(FoundReport === true) && (
-                                <table className="table survay_table">
+                                <table className="table  table-bordered survay_table">
+                                    <thead class="thead-dark">
                                     <tr className="survey_tr">
                                         <th className="survey_th _th">Municipalities</th>
                                         <th className="survey_th">Date</th>
@@ -239,7 +235,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         <th className="survey_th ">Total Average</th>
                                         <th className="survey_th ">Risk Type</th>
                                     </tr>
-
+                                    </thead>
                                     {Report.map((report, xid) => (
                                         <tr key={xid} className="survey_tr" scope="row">
                                             <td className="survey_td _td">{report.muni_name}</td>

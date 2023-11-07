@@ -8,7 +8,6 @@ import Iodine_Addition from '../assets/Iodine_Addition.png'
 import Solar_Purification from '../assets/Solar_Purification.jpg'
 
 
-
 const Methods = [
     {
         id: 1, method: "Boiling Water", image: boiling_water, description: `The simplest method to purify water is to boil it for a good time.

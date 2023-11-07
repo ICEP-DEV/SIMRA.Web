@@ -18,6 +18,7 @@ import sample from '../../assets/sample.png';
 import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
 import tests from '../../assets/tests.jpg';
+import container from '../../assets/container.png';
 
 function H2S() {
     const navigate = useNavigate();
@@ -168,10 +169,9 @@ function H2S() {
                     <h2 className='text-primary text-center'>Hydrogen Sulfide (H₂S)</h2>
                     <div className='container-wrapper'>
                         <div className='h2s'>
-                            
-                            <div className='text-center '>
-                           
-                                <h3 className='text-primary mt-2 '>Choose Test Result:</h3>
+                         
+                            <div className='text-center mt-5'>
+                                <h3>Choose Test Result:</h3>
 
                                 <div className='form_content form_content_switch'>
                                     <label className='header_form_label yes_no form-check form-switch'>
@@ -192,18 +192,66 @@ function H2S() {
                                 </div>
                                 <br></br>
 
-                                <button onClick={initModal} className='btn btn-success font-size: small; w-25' type="submit" value="Submit" >SUBMIT</button>
+                                <button onClick={initModal} className='btn btn-dark w-25' type="submit" value="Submit" >
+                                    SUBMIT
+                                </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
-                                    <p className='alert-light h2s-label '>
-                                        Presence or absence of faecal contamination in water source may be indicated by colour change on  (H₂S) paper strip test from white to black.
+                                    <p className='alert-light h2s-label'>
+                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H₂S paper strip test from white to black.
                                     </p>
-                                    <label className='alert alert-danger h2s-label w-75' >Warning: Remember to wear gloves when using  (H₂S) paper strips</label>
-                                    <label className='alert alert-light h2s-label w-75 '>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    <label className='alert alert-danger h2s-label w-75'>Warning: Remember to wear gloves when using H₂S  paper strips</label>
+                                    <label className='alert alert-light  h2s-label w-75'>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
                                     Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
                                     headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
                                 </div>
 
+                                <section className='section-h2s'> 
+                  
+                  <h5 className='text-center mb-3'>How can I do H2S test?</h5>
+<div className='level1-desccription'>
+                         
+                          <div className='h2s-cards row align-items-start justify-content-around  mb-5'>
 
+                              <div className='card' style={{width:'16rem'}} >
+                                  <img className='card-img-top' src={sample}   />
+                                  <div className='card-body'>
+                                  <h5>Step 1</h5>
+                                  <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
+                                  </div>
+                                  
+                              </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                  <img className='card-img-top' src={tests} />
+                                  <div className='card-body'>
+                                  <h5>Step 2</h5>
+                                  <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
+                              </div> </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                  <img className='card-img-top' src={tube} />
+                                  <div className='card-body'>
+                                  <h5>Step 3</h5>
+                                  <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                              </div> </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                  <img className='card-img-top' src={container} />
+                                  <div className='card-body' style={{font:'16px'}}>
+                                  <h5>Step 4</h5>
+                                  <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
+                              </div> </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                
+                                  <img className='card-img-top' src={h2s} />
+                                  <div className='card-body'>
+                                  <h5>Step 5</h5>
+                                  <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
+                              </div> </div>
+
+
+
+
+                          </div>
+                      </div>
+</section>
                                 {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
                         DONE
                     </button> */}
@@ -236,7 +284,7 @@ function H2S() {
                                             </div>
                                         )}
 
-                                        {ResultsStatus == true && (
+                                        {ResultsStatus === true && (
                                             <div className="text-center">
                                                 <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
                                                 {display_methods}
@@ -261,52 +309,7 @@ function H2S() {
                         </div>
                   
                     </div>
-                    <section className='section-h2s'> 
-                  
-                    <h5 className='text-center mb-3 display-6 text-primary'>How can I do H2S test?</h5>
-<div className='level1-desccription'>
-                           
-                            <div className='h2s-cards row align-items-start justify-content-around'>
-
-                                <div className='card' >
-                                    <img className='card-img-top' src={sample} />
-                                    <div className='card-body'>
-                                    <h5>Step 1</h5>
-                                    <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
-                                    </div>
-                                    
-                                </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={tests} />
-                                    <div className='card-body'>
-                                    <h5>Step 2</h5>
-                                    <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
-                                </div> </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={tube} />
-                                    <div className='card-body'>
-                                    <h5>Step 3</h5>
-                                    <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
-                                </div> </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={borehole} />
-                                    <div className='card-body' style={{font:'16px'}}>
-                                    <h5>Step 4</h5>
-                                    <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
-                                </div> </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={h2s} />
-                                    <div className='card-body'>
-                                    <h5>Step 5</h5>
-                                    <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
-                                </div> </div>
-
-
-
-
-                            </div>
-                        </div>
-</section>
+                 
                 </div>
             </div>
             <footer><Footer /> </footer>

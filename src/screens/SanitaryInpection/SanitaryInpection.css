@@ -4,14 +4,20 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-   
+    text-align: center;
     width: 90%;
-    height: 70vh;
+    min-height: 80vh;
     background-color: #e1e4e8;
-    border-radius: 15px;
 
 }
-
+.header_form_label 
+{
+    align-items: left;
+}
+.head_si{
+    text-align: center;
+  
+}
 .sanitary-submit{
     width: 100%;
 }
@@ -19,7 +25,14 @@
     height: 10%;
     width: 100%;
 }
-
+.form_content{
+    justify-content:center
+}
+#flexSwitchCheckDefaultSI{
+    position:absolute;
+    left: 64%;
+    width: 5%;
+}
 .low_risk{
     background-color: rgba(0, 128, 0, 0.719);
 }
@@ -70,17 +83,16 @@
 
 .form-header, .form_content{
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .form-header{
     font-size: 1.1em;
     font-weight: 600;
 }
-.questinare,.form-check-input .yes_no{
+.questinare,.form-check-input{
     width: 50%;
     font-weight: 600;
-    margin-left: 1%;
 }
 
 .yes_no{
@@ -100,26 +112,31 @@
 {
     min-width: 100wh;
 }
-.sanitary-btn
-{
-    
-}
 @media (max-width: 768px) {
     .questinare,.form-check-input{
         width: 90%;
         font-size: 0.8em;
     }
+    
     .sanitaryInpection
     {
         height: 80vh;
         margin-bottom: 2%;
         width: 80%;
     }
+    #flexSwitchCheckDefaultSI{
+        position:absolute;
+        left: 64%;
+        width: 5%;
+    }
     .sanitary-btn
     {
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+    .yes_no{
+        width: 30%;
     }
    
 }

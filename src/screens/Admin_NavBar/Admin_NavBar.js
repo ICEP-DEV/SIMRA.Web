@@ -3,12 +3,12 @@ import { RiTestTubeLine } from "react-icons/ri";
 import { BiSolidReport } from "react-icons/bi";
 import { AiOutlineLogout, AiFillHome } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-import logo from './logo2.png';
+import logo from '../../assets/logo.png';
+import Simra_logo from '../../assets/Simra_logo.png'
 import { Outlet, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { remove_details } from "../../Redux/user"
-import logo_2 from '../../assets/Simra_logo.png'
 
 function Admin_Side_Bar() {
     const navigate = useNavigate();
@@ -39,10 +39,19 @@ function Admin_Side_Bar() {
 
         <div className="topnav">
             <div className="navbar-subs "><div className="wrapper"></div>
-                <Link to={"/municipality"}> <img className="rounded-img" src={logo_2} /></Link></div>
+                <Link to={"/municipality"}> <img className="rounded-img" src={Simra_logo} /></Link></div>
 
-            <div className="navbar-subs d-flex justify-content-end" onClick={home}><span className="nav-label">Home</span></div>
-            <div className="navbar-subs split "  onClick={logout}><span type="button" className="btn btn-success nav-label ">Signout</span></div>
+            <div className="navbar-subs" onClick={home}><span className="nav-label">Home</span></div>
+            {/* <div className="navbar-subs report-dropdown" onClick={report}>
+                <span className='nav-label'>Report</span> */}
+                {/* <div className='dropdown-content'>
+
+                    <Link className='dropdown-link' to='/sanitary_report'>Sanitary Survey</Link><br></br>
+                    <Link className='dropdown-link' to='/h2s_report'>H2S</Link>
+                </div> */}
+
+            {/* </div> */}
+            <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
 
 
         </div>
