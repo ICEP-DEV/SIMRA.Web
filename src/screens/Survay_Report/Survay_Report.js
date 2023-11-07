@@ -125,7 +125,7 @@ function Survay_Report() {
         <div className='content'>
           <Header />
           <h2>Sanitary risk core (percentage and risk characterization rating)</h2>
-          <div className='container-wrap'>
+          <div className='container-wrapper'>
            
             <div className='report-header'>
               <div id='search_date'>
@@ -182,7 +182,7 @@ function Survay_Report() {
                   {Report.map((report, xid) => (
                     <tr key={xid} className="survey_tr" scope="row">
                       <td className="survey_td _td">{report.muni_name}</td>
-                      <td className="survey_td">{report.created_date}</td>
+                      <td className="survey_td">{report.sample_date}</td>
                       <td className="survey_td">{report.type}</td>
                       <td className="survey_td">{report.total_avarage}</td>
                       <td className="survey_td">{report.risk_type}</td>

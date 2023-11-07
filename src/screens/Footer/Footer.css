@@ -11,6 +11,9 @@
     border-top-color:#bbb;
   opacity:0.5
 }
+.personName{
+    font-weight: bold;
+}
 .contact-info hr.small
 {
     margin:  20px 0;
@@ -43,9 +46,8 @@
   padding-left:0;
   margin-bottom:0;
   list-style:none;
-
 }
 .social-icons link{
-    display: inline;
+    display:inline-table;
     margin-bottom: 4px;
 }

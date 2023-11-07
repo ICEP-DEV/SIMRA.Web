@@ -23,6 +23,7 @@ function H2S_Report() {
         var date = new Date()
         var current_date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
         axios.get(api + "get_h2s_stats/2023-06-01/" + current_date.toString()).then((response) => {
+            console.log(response.data.result)
             setFoundReport(response.data.success)
             if (response.data.success === true) {
                 setStoredReport(response.data.result)
@@ -175,15 +176,13 @@ function H2S_Report() {
                                     <th className="survey_th _th">Municipalities</th>
                                     <th className="survey_th">Date</th>
                                     <th className="survey_th ">Catchment Area</th>
-                                    <th className="survey_th ">Total Average</th>
                                     <th className="survey_th ">Risk Type</th>
                                 </tr>
                                 {Report.map((report, xid) => (
                                     <tr key={xid}>
                                         <td className="survey_td _td">{report.muni_name}</td>
-                                        <td className="survey_td">{report.created_date}</td>
+                                        <td className="survey_td">{report.sample_date}</td>
                                         <td className="survey_td">{report.type}</td>
-                                        <td className="survey_td">{report.total_avarage}</td>
                                         <td className="survey_td">{report.risk_type}</td>
                                     </tr>
                                 ))}

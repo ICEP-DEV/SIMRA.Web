@@ -4,7 +4,8 @@ import natural from '../../assets/natural_research.png';
 import {BsFacebook} from 'react-icons/bs';
 import {ImLocation} from 'react-icons/im';
 import {FaXTwitter} from 'react-icons/fa6';
-import tut_logo from "../../assets/Tshwane_University_of_Technology_logo.svg.png"
+import tut_logo from "../../assets/TUT_white.png";
+import icep from "../../assets/ICEP_logo2.png";
 import { HiOutlineMail } from 'react-icons/hi';
 import { CiLocationOn } from 'react-icons/ci';
 import './Footer.css';
@@ -31,11 +32,26 @@ function Footer() {
           </p>
        </div>
 
-<div className="col-xs-6 col-md-3">
+<div className="col-xs-4 col-md-3">
     <h6>Contact Info</h6>
           <label>
-            <HiOutlineMail /> <span>science@tut.ac.za </span> 
-            <AiFillPhone /><span>+27 12 382 6377</span>
+            <h8 className="personName">Prof Maggy NB Momba</h8><br></br>
+            <HiOutlineMail /> <span> MombaMNB@tut.ac.za </span> <br></br>
+            <AiFillPhone /><span> W: +27 12 382 6365</span><br></br>
+            <AiFillPhone /><span> M: +27 82 513 7395/+78 460 6259</span><br></br>
+        
+            <h8 className="personName">Prof Lizzy Monyatsi</h8><br></br>
+            <HiOutlineMail /> <span> monyatsil@tut.ac.za</span> <br></br>
+            <AiFillPhone /><span> W +27 12 382 6201</span><br></br>
+       
+            <h8 className="personName">Miss Arinao Murei</h8><br></br>
+            <HiOutlineMail /> <span> mureiarinao@gmail.com</span> <br></br>
+            <AiFillPhone /><span> M: +27 76 772 4697</span><br></br>
+         
+            <h8 className="personName">Ms Anza-vhudziki Mboyi</h8><br></br>
+            <HiOutlineMail /> <span> MboyiA@tut.ac.za </span> <br></br>
+            <AiFillPhone /><span> W: +27 12 382 6376</span><br></br>
+         
           </label>
         </div>
         <div className="col-xs-6 col-md-3 ">
@@ -75,9 +91,10 @@ function Footer() {
         <label  >Copyright <AiOutlineCopyrightCircle/> <Link to={'https://www.icep.co.za/'}>ICEP</Link>. All rights Reserved</label>
     
 </div>
-  <div class="col-md-4 col-sm-6 col-xs-12">
-  <img src={natural} style={{width:'100px'}}/>
-  <img src={tut_logo}  style={{width:'90px'}} />
+  <div class="col-md-4 col-sm-6 col-xs-6">
+  <img src={natural} style={{width:'100px', paddingRight: '15px' }}/>
+  <img src={tut_logo}  style={{width:'100px', paddingRight: '15px'}} />
+  <img src={icep}  style={{width:'100px'}} />
 </div>
 </div>
 
