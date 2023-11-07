@@ -1,6 +1,6 @@
 .sanitaryInpection
 {
-    background-color: #a5c473;
+    /* background-color: #a5c473; */
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -8,11 +8,10 @@
     justify-content: center;
     width: 90%;
     height: 70vh;
+    background-color: #e1e4e8;
+    border-radius: 15px;
 }
-.table{
-    display:inline-block;
-    margin: 5px 50px;
-}
+
 
 .sanitary-submit{
     width: 100%;
@@ -20,6 +19,16 @@
 .risk_parce{
     height: 10%;
     width: 100%;
+}
+.custom-modal-dialog {
+    max-width: 1000px; /* Adjust the width as per your requirements */
+    margin: 1.75rem auto;
+}
+.modal-content-flex{
+    display: flex;
+    flex-direction: column; /* You can change the flex direction as needed */
+    align-items: center;    /* You can change the alignment as needed */
+    justify-content: center;
 }
 
 .low_risk{
@@ -79,7 +88,7 @@
     font-size: 1.1em;
     font-weight: 600;
 }
-.questinare{
+.questinare,.form-check-input{
     width: 50%;
     font-weight: 600;
 }
@@ -96,4 +105,16 @@
 }
 .sanitary_description ul li{
     list-style-type: circle;
+}
+.form-check-input
+{
+    min-width: 100wh;
+}
+@media (max-width: 768px) {
+    .questinare,.form-check-input{
+        width: 90%;
+        font-size: 0.8em;
+    }
+      
+   
 }

@@ -128,8 +128,9 @@ function H2S() {
                 axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
 
                     if (result.data.success === true) {
-                        console.log(result.data.status)
+                        console.log(result.data.status,"res")
                         setResultsStatus(result.data.status)
+                        // console.log(ResultsStatus,"res")
                         // navigate("/level1", { state: { temp } })
                     }
                 })
@@ -208,6 +209,7 @@ function H2S() {
                                     </Modal.Header>
                                     <Modal.Body>
                                         Are you sure you want to submit the results ?
+                                        {ResultsStatus}
                                     </Modal.Body>
                                     <Modal.Footer>
                                             {/* <Button variant="danger" onClick={initModal}>

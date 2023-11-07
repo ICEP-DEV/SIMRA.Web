@@ -49,26 +49,53 @@
 
 #level_description{
     text-align: left;
+  
 }
-
+#level_description p
+{
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+}
 .align-items-start{
     display: flex;
     flex-direction: row;
 }
-.img-h2s
+@media (max-width: 768px) {
+#level_descption
 {
-   
-    height: 150px;
-    width: 100%;
+  text-align: center;
+    margin-top: 25%;
 }
-.card-h2s
-{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 250px;
-    height: 350px;
+    #level_description
+    {
+        text-align: center;
+        font-size: 12px;
+       
+        height: 500px;
+        
+    } 
+    #level_description h3
+    {
+        font-size: 16px;
+    }
+    .container-wrapper p
+    {
+        font-size: small;
+    }
+    .container-wrapper h3
+    {
+        font-size: 16px;
+    }
+    .btn-sanitary
+    {
+        width: 200px;
+       font-size: 10px;
+    }
+    .table3{
+      width: 100%;
+      display: flex;
     
-
-}
-.card-h2s p{
-font-size: 16px;
+     
+    }
 }

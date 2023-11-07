@@ -15,9 +15,16 @@ import Footer from '../Footer/Footer';
 import methods from '../../Data/methods';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
-import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
-import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
+import Level2PopUp from '../Pop_Up/Pop_Up_Level2';
+import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
 
+
+
+import domestic_animal from '../../assets/domestic_animals.jpg';
+import diapers from '../../assets/diapers.jpg';
+import pit from '../../assets/public_toilet.jpg';
+import farming from '../../assets/farm.jpg';
+import waterwaste from '../../assets/wasterwater.jpg';
 
 function SanitaryInpection() {
     var navigate = useNavigate()
@@ -118,7 +125,7 @@ function SanitaryInpection() {
                 progress: undefined,
                 theme: "light",
             });
-            return;
+           // return;
         }
 
         else {
@@ -233,7 +240,7 @@ function SanitaryInpection() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                 
+                    <h2 className='text-primary text-center'>Sanitary Inpection</h2>
                     <div className='sanitaryInpection'>
 
                         {/* Pop up test methods */}
@@ -261,22 +268,69 @@ function SanitaryInpection() {
 
                         {/* data results pop up */}
 
-                        <Modal show={isShow} onHide={modalClose} >
+                        <Modal show={isShow} onHide={modalClose} size="lg" >
+                          
                             <Modal.Header closeButton onClick={modalClose}>
                                 <Modal.Title>Analysis results</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>
+                            <Modal.Body className="modal-content-flex">
+                               
+                                    {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
+                                        {sanitary}
+                                    </div>)}
+                                    {(DataAnalysis.message === "adedd hydrogensulfide") && (<div>
+                                        {h2s}
+                                    </div>)}
+                               
+                           
 
+                                <div className='methods'>
+                                     { SanitaryInpectionItems.pitLatrine?<span>
+                                        <h4>Pit Latrines</h4>
+                                        <p> Encourage the use of improved sanitation facilities like flush toilets
+                                            or well-maintained pit latrines. </p>
+                                    </span>:null}
 
+                                    { SanitaryInpectionItems.domesticAnimal?<span>
+                                        <h4>Domestic Animals</h4>
+                                        <p>Implement proper waste management for animal 
+                                            husbandry to prevent manure runoff into water sources. </p>
+                                    </span>:null}
+                                    { SanitaryInpectionItems.diaperDisposal?<span>
+                                        <h4>Diapers Deposition</h4>
+                                        <p>Raise awareness for women to stop dumping children’s 
+                                            faeces in the stream & encourage the responsible disposal of diapers in 
+                                            designated waste bins .</p>
+                                    </span>:null}
+                                    { SanitaryInpectionItems.wasteWaterRelease?<span>
+                                        <h4>Release of Wastewater</h4>
+                                        <p> Ensure households are connected to sewage systems 
+                                            and ensure effective wastewater treatment to reduce pollution. </p>
+                                    </span>:null}
+                                    { SanitaryInpectionItems.openDefaction?<span>
+                                        <h4>Open Defecation</h4>
+                                        <p> Educate communities about the health and environmental 
+                                            risks of open defecation. </p>
+                                    </span>:null}
+                                    {  SanitaryInpectionItems.unprotectedWaterSource?<span>
+                                        <h4>Unprotected Water Sources</h4>
+                                        <p> Establish and protect water sources to prevent 
+                                            contamination from surface runoff or human activities. </p>
+                                    </span>:null}
+                                    { SanitaryInpectionItems.agriculturalActivity?<span>
+                                        <h4>Agricultural Activities</h4>
+                                        <p> Encourage the use of erosion control measures like 
+                                            planting cover crops and creating vegetative buffer zones along water bodies. </p>
+                                    </span>:null}
 
-                                <div className='container-wrapper'></div>
-                                {(DataAnalysis.message !== "adedd hydrogensulfide") && (<div >
-                                    {sanitary}
-                                </div>)}
-                                {(DataAnalysis.message === "adedd hydrogensulfide") && (<div>
-                                    {h2s}
-                                </div>)}
-
+                                    {  SanitaryInpectionItems.observerLaundryActivity?<span>
+                                        <h4>Laundry Activities</h4>
+                                        <p> Advocate for responsible detergent use and proper disposal
+                                            of laundry wastewater .</p>
+                                    </span>:null}
+                                  
+                                </div>
+                             
                             </Modal.Body>
                             <Modal.Footer>
                                 {/* <Button variant="danger" onClick={initModal}>
@@ -286,6 +340,7 @@ function SanitaryInpection() {
                                     Ok
                                 </Button>
                             </Modal.Footer>
+                         
                         </Modal>
 
                         {/* methods pop up */}
@@ -298,7 +353,7 @@ function SanitaryInpection() {
                                 <label className='header_form_label yes_no'>No/Yes</label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>1. Are There pit-latrines?</label>
+                                <label className='header_form_label questinare'>1. Are There pit-latrines(toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />
@@ -312,7 +367,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>3. Diapers Disposal?</label>
+                                <label className='header_form_label questinare'>3. Diapers Disposal(throwing away diapers)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="diaperDisposal" />
@@ -326,7 +381,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>5. Open defaction?</label>
+                                <label className='header_form_label questinare'>5. Open defaction(public poos)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='openDefaction' />
@@ -340,7 +395,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>7. Agricultural Activities?</label>
+                                <label className='header_form_label questinare'>7. Agricultural Activities(farming operations)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='agriculturalActivity' />
@@ -355,10 +410,66 @@ function SanitaryInpection() {
                             </div>
 
                         </div>
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg mb-3'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg w-25'>Submit</button>
                     </div>
-                </div>
-                <div id='sanitary_description'>
+                    <section className='section-h2s'> 
+                    <h2 className='text-primary text-center'>Examples</h2>
+                   <div className='h2s-cards row align-items-start justify-content-around'>
+
+<div className='card' >
+<div class="card-header">
+    domestic animals
+  </div>
+
+    <div className='card-body'>
+    <img className='' style={{width:'100%' , height:'250px'}} src={domestic_animal} alt="domestic animals" />
+    </div>
+    
+</div>
+<div className='card' style={{width:'18rem'}}>
+<div class="card-header">
+    Diapers Disposal
+  </div>
+
+    <div className='card-body'>
+    <img className=''  style={{width:'100%' , height:'250px'}} src={diapers} />
+</div> </div>
+<div className='card' style={{width:'18rem'}}>
+<div class="card-header">
+    Open defaction
+  </div>
+    <div className='card-body'>
+    
+  <img className='card-img-top' style={{width:'100%' , height:'250px'}} src={pit} alt="pit toilets"/>
+</div> </div>
+
+
+<div className='card' style={{width:'18rem'}}>
+
+  <div class="card-header">
+  Agricultural Activities
+  </div>
+
+    <div className='card-body' style={{font:'16px'}}>
+    <img className='' style={{width:'100%' , height:'250px'}} src={farming} />
+</div> </div>
+
+
+<div className='card' style={{width:'18rem'}}>
+    
+  <div class="card-header">
+Water waste
+  </div>
+    <div className='card-body'>
+    <img className='' style={{width:'100%' , height:'250px'}} src={waterwaste} />
+</div> </div>
+
+
+
+
+</div>
+</section>
+                    {/* <div id='sanitary_description ' className='text-primary mb-2'>
                     <h3>How can I do sanitary Inspection? </h3>
                     <ul>
                         <li>For sanitary inspection you can use a sanitary survey, where you simply answer yes or no.</li>
@@ -367,7 +478,9 @@ function SanitaryInpection() {
                         <li>Then sanitary score can be rated as low-very high risk.</li>
                     </ul>
                     <label>The level of safety of the water source can be rated from risk score (e.g. very high risk (7-8), high risk (5-6), medium risk (3-4) and low risk (1-2)).</label>
+                </div> */}
                 </div>
+                
             </div>
             <footer><Footer /></footer>
         </div>
