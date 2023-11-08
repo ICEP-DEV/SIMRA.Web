@@ -115,11 +115,11 @@ function Survay_Report() {
                         <div>
                           <table>
                             <tr>
-                              <td>Sanitary score</td>
+                              <td>Sanitary Score</td>
                               <td>&nbsp; : {report.totalYes}</td>
                             </tr>
                             <tr>
-                              <td>Sanitary score (%)</td>
+                              <td>Sanitary Score (%)</td>
                               <td>&nbsp; : {report.total_avarage}%</td>
 
                             </tr>

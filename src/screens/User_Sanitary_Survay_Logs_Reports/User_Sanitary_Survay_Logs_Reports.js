@@ -55,7 +55,7 @@ function User_Sanitary_Survay_Logs_Reports() {
 
     function display_search_report() {
         if (startDate === '' || endDate === '') {
-            toast.warn("All date should be selected!", {
+            toast.warn("All dates should be selected!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,

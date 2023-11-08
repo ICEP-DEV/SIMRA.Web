@@ -135,7 +135,7 @@ function User_QMRA_logs() {
                                         <th className="survey_th ">Indicator</th>
                                         <th className="survey_th ">Pathogen</th>
                                         <th className="survey_th ">Estimated Count</th>
-                                        <th className="survey_th ">probability</th>
+                                        <th className="survey_th ">Probability</th>
                                         <th className="survey_th ">Likelihood</th>
                                     </tr>
 
