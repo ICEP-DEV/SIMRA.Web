@@ -26,7 +26,7 @@ function Level1() {
                        
                         
                     </div>
-                    <h3 className='text-primary'>What is sanitary inspection?</h3>
+                    <h3 className='text-primary'>What is a sanitary inspection?</h3>
                                 <p className='para font_7 wixui-richtext_text'>Sanitary inspection serves as a vital tool in water quality monitoring, assessing the cleanliness, safety, and overall hygiene of water resources and environments.<br/> Its primary role is to
                                     identify potential routes of microbial contamination in diverse water sources.</p><br />
                                     <h3 className='text-primary'>What is H2S (Hydrogen Sulphide) testing?</h3>

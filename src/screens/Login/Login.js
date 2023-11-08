@@ -50,7 +50,7 @@ function Login() {
     // set up login button using gmail account
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
-            toast.warn("All field should be filled!", {
+            toast.warn("All fields should be filled!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -63,7 +63,7 @@ function Login() {
             return;
         }
         if (values.username === "") {
-            toast.warn("Enter username!", {
+            toast.warn("Enter a Username!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -76,7 +76,7 @@ function Login() {
             return;
         }
         if (values.password === "") {
-            toast.warn("Enter password!", {
+            toast.warn("Enter a Password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -157,7 +157,7 @@ function Login() {
 
         // Empty values
         if (Email === "") {
-            toast.warn("Enter email address!", {
+            toast.warn("Enter your email address!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -171,7 +171,7 @@ function Login() {
             return;
         }
         if (Firstname === "") {
-            toast.warn("Enter firstname!", {
+            toast.warn("Enter your first name!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -185,7 +185,7 @@ function Login() {
             return;
         }
         if (Lastname === "") {
-            toast.warn("Enter lastname!", {
+            toast.warn("Enter your last name!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -199,7 +199,7 @@ function Login() {
             return;
         }
         if (PhoneNumber === "") {
-            toast.warn("Enter phone number!", {
+            toast.warn("Enter your phone number!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -213,7 +213,7 @@ function Login() {
             return;
         }
         if (Password === "") {
-            toast.warn("Enter password!", {
+            toast.warn("Enter Password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -227,7 +227,7 @@ function Login() {
             return;
         }
         if (RePassword === "") {
-            toast.warn("Enter password confirmation!", {
+            toast.warn("Please reEnter your Password for confirmation", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -257,7 +257,7 @@ function Login() {
 
         // Match Password
         if (Password !== RePassword) {
-            toast.warn("Passwords does not match!", {
+            toast.warn("Passwords do not match!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -274,7 +274,7 @@ function Login() {
         // validate strong password
         var regPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
         if (!Password.match(regPass)) {
-            toast.warn("Enter strong password!", {
+            toast.warn("Enter a strong password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -291,7 +291,7 @@ function Login() {
         // validate email address
         var validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (!Email.match(validEmail)) {
-            toast.warn("Enter valid email address!", {
+            toast.warn("Enter a valid email address!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -444,7 +444,7 @@ function Login() {
                 <Modal.Body>
 
 
-                    All field should be filled
+                    All fields should be filled
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -467,7 +467,7 @@ function Login() {
 
 
 
-                    Enter username
+                    Enter Username
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -487,7 +487,7 @@ function Login() {
                 </Modal.Header>
                 <Modal.Body>
 
-                    Enter password
+                    Enter Password
 
                 </Modal.Body>
                 <Modal.Footer>

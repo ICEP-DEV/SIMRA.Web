@@ -98,8 +98,8 @@ function SamplingData() {
     }
 
     let AlertMessage = <div>
-        <p>Cannot detect your location you can proceed with the application but it will not
-            get the results and we wont be able to capture your information provided</p>
+        <p>Cannot detect your location. You can proceed with the application but it will not
+            give the results and we won't be able to save the information you provide</p>
         <br />
         <button className='btn btn-success' onClick={() => navigate('/level1')}></button>
     </div>
@@ -136,7 +136,7 @@ function SamplingData() {
                         {/* <label>Province</label> */}
                         <div className='mt-5'></div>
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
-                            <option>Select Province</option>
+                            <option>Select a Province</option>
                             {provinces.map((prov, xid) => (
                                 <option key={xid} className="control-form" value={prov.province_id} >{prov.province_name}</option>
                             ))}
@@ -146,7 +146,7 @@ function SamplingData() {
                     <div className='form-group'>
                         {/* <label>Municipality</label> */}
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
-                            <option>Select Municipality</option>
+                            <option>Select a Municipality</option>
                             {Municipalities.map((muni, xid) => (
                                 <option key={xid} className="control-form" value={muni.muni_id} >{muni.muni_name}</option>
                             ))}
@@ -155,7 +155,7 @@ function SamplingData() {
                     <div className='form-group'>
                         {/* <label>Water Source</label> */}
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={(event) => setWaterSource(event.target.value)}>
-                            <option value='' className="control-form">Select Water Source</option>
+                            <option value='' className="control-form">Select a Water Source</option>
                             <option value='River' className="control-form">River</option>
                             <option value='Dam' className="control-form">Dam</option>
                             <option value='Spring' className="control-form">Spring</option>
@@ -164,7 +164,7 @@ function SamplingData() {
                             <option value='Household Tap Water' className="control-form">Household Tap Water</option>
                             <option value='Housewater Stored Water' className="control-form">Housewater Stored Water</option>
                             <option value='Wastewater Treatment Plant' className="control-form">Wastewater Treatment Plant</option>
-                            <option value='water Treatment Plant' className="control-form">water Treatment Plant</option>
+                            <option value='water Treatment Plant' className="control-form">Water Treatment Plant</option>
                         </select>
                     </div>
                     <div className='form-group'>
@@ -178,7 +178,7 @@ function SamplingData() {
                     <div className='form-group'>
                         {/* <label>Weather Condition</label> */}
                         <select className='select-sampling_data form-select w-75 mb-5 align-self-center ' onChange={(event) => setWeatherCondition(event.target.value)}>
-                            <option value='' className="control-form">Select Weather Condition</option>
+                            <option value='' className="control-form">Select a Weather Condition</option>
                             <option value='Dry' className="control-form">Dry</option>
                             <option value='Windy' className="control-form">Wet</option>
                            

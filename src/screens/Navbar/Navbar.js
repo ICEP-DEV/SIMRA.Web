@@ -75,13 +75,13 @@ function Navbar() {
                         <span className="nav-label dropbtn">Levels</span>
                         <ul class="dropdown-content">
                             {(UserType === 1 || UserType === 2 || UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>Level 1</li>
+                                <li className='dropdown-link' onClick={() => navigate('/h2s_survey')}>HouseHold (Level 1)</li>
                             </span>)}
                             {(UserType === 2 || UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Level 2</li>
+                                <li className='dropdown-link' onClick={() => navigate('/fib_analysis')}>Intermediate (Level 2)</li>
                             </span>)}
                             {(UserType === 3) && (<span>
-                                <li className='dropdown-link' onClick={() => navigate('/mst')}>Level 3</li>
+                                <li className='dropdown-link' onClick={() => navigate('/mst')}>Expert (Level 3)</li>
                             </span>)}
                         </ul>
                     </div>}
@@ -94,7 +94,7 @@ function Navbar() {
                             <li className='dropdown-link' onClick={() => navigate('/qmra_logs')}>QMRA</li>
                         </span>)}
                         {( UserType === 3) && (<span>
-                            <li className='dropdown-link'>MST</li>
+                            <li className='dropdown-link'>Microbial Source Tracker</li>
                         </span>)}                        
                     </ul>
                 </div>

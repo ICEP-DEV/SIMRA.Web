@@ -28,10 +28,10 @@ function H2S_Report() {
                         {IsDataLoaded === true && (
                         <table>
                                 <th>Municipality</th>
-                                <th>Sample  source</th>
+                                <th>Sample Source</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
-                                <th>Samling date​</th>
+                                <th>Samling Date​</th>
                                 <th>Presence/Absence</th>
                             {H2SReport.map((report, xid) => (
                                 <tr key={xid}>
@@ -46,7 +46,7 @@ function H2S_Report() {
 
                         </table>)}
                         {IsDataLoaded === false && (
-                            <label>Data no loaded</label>
+                            <label>Data is not loaded</label>
                         )}
                     </div>
                 </div>

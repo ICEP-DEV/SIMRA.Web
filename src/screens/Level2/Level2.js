@@ -33,7 +33,7 @@ function Level2() {
           timing="ease"
           iteration="1"
           fillMode="none">
-          <p className='para'> “Everyone has the right to have access to sufficient food and water.” </p>
+          <p className='para'> “Everyone has the right to have access to sufficient food and water.”- The South African Human Rights Commission </p>
         </MovingComponent>
         <MovingComponent
           type="slideOutToBottom"

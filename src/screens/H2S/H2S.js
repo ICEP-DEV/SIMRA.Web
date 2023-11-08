@@ -81,7 +81,7 @@ function H2S() {
     const handleButtonClick = (color) => {
         console.log(selectedOption)
         if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could get your location!", {
+            toast.error("Won't be able to proceed since we could not get your location!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -197,8 +197,8 @@ function H2S() {
                                     <p className='alert-light h2s-label '>
                                         Presence or absence of faecal contamination in water source may be indicated by colour change on  (H₂S) paper strip test from white to black.
                                     </p>
-                                    <label className='alert alert-danger h2s-label w-75' >Warning: Remember to wear gloves when using  (H₂S) paper strips</label>
-                                    <label className='alert alert-light h2s-label w-75 '>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    <label className='alert alert-danger h2s-label w-75' >WARNING: Remember to wear gloves when using  (H₂S) paper strips</label>
+                                    <label className='alert alert-light h2s-label w-75 '>Hydrogen sulfide (H₂S) is a colourless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
                                     Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
                                     headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
                                 </div>
@@ -209,7 +209,7 @@ function H2S() {
                     </button> */}
                                 <Modal show={isShow} onHide={modalClose}>
                                     <Modal.Header closeButton onClick={modalClose}>
-                                        <Modal.Title>Results</Modal.Title>
+                                        <Modal.Title>Results: </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
                                         Are you sure you want to submit the results ?
@@ -219,7 +219,7 @@ function H2S() {
                             Close
                         </Button> */}
                                         <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
-                                            yes
+                                            Yes
                                         </Button>
                                     </Modal.Footer>
                                 </Modal>
@@ -229,14 +229,14 @@ function H2S() {
                                         <Modal.Title>Methods</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        {ResultsStatus == false && (
+                                        {ResultsStatus === false && (
                                             <div>
                                                 <p>NO RISK !!!  </p>
                                                 <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
                                             </div>
                                         )}
 
-                                        {ResultsStatus == true && (
+                                        {ResultsStatus === true && (
                                             <div className="text-center">
                                                 <p className="text-danger">RISK!! WATER IS NOT CLEAN!! PLEASE FOLLOW THE STEPS BELOW :</p>
                                                 {display_methods}
@@ -263,7 +263,7 @@ function H2S() {
                     </div>
                     <section className='section-h2s'> 
                   
-                    <h5 className='text-center mb-3 display-6 text-primary'>How can I do H2S test?</h5>
+                    <h5 className='text-center mb-3 display-6 text-primary'>How can I do H₂S test?</h5>
 <div className='level1-desccription'>
                            
                             <div className='h2s-cards row align-items-start justify-content-around'>
@@ -272,7 +272,7 @@ function H2S() {
                                     <img className='card-img-top' src={sample} />
                                     <div className='card-body'>
                                     <h5>Step 1</h5>
-                                    <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
+                                    <p>	Collect a 100 ml sample of water  to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
                                     </div>
                                     
                                 </div>
@@ -280,25 +280,25 @@ function H2S() {
                                     <img className='card-img-top' src={tests} />
                                     <div className='card-body'>
                                     <h5>Step 2</h5>
-                                    <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
+                                    <p>	Add 20 drop (1 ml) into tubes containing growth solution.</p>
                                 </div> </div>
                                 <div className='card' style={{width:'18rem'}}>
                                     <img className='card-img-top' src={tube} />
                                     <div className='card-body'>
                                     <h5>Step 3</h5>
-                                    <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                                    <p>	Insert the (H₂S) paper strip into the tube and secure it by a cotton wool so that it remains at the top centre of the tube. </p>
                                 </div> </div>
                                 <div className='card' style={{width:'18rem'}}>
                                     <img className='card-img-top' src={borehole} />
                                     <div className='card-body' style={{font:'16px'}}>
                                     <h5>Step 4</h5>
-                                    <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
+                                    <p>	Then place it in a container covered with a cloth and place it in warm place for 24-36 hours.</p>
                                 </div> </div>
                                 <div className='card' style={{width:'18rem'}}>
                                     <img className='card-img-top' src={h2s} />
                                     <div className='card-body'>
                                     <h5>Step 5</h5>
-                                    <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
+                                    <p>	Check if the colour of paper strip changed. If the colour changed to black it means water is faecal contaminated.</p>
                                 </div> </div>
 
 

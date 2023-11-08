@@ -190,14 +190,14 @@ export default function QMRAApp() {
       setLikelihoodMessage('Likelihood of infections is ' + resultsOfLikelihood.data.likelihood_of_infection)
     }
     else {
-      setLikelihoodMessage('Could not get the likelihood of infections')
+      setLikelihoodMessage('Could not get the likelihood of infection')
     }
   }
 
   let popalert = <div style={{ color: 'black' }}>
-    probability of infection is {ProbabilityOfInfection}
+    The Probability of infection is: {ProbabilityOfInfection}
     <br />
-    You would like to complete the likelihood test
+     Would you like to complete the likelihood test?
     <div>
       <button onClick={() => setIsLikelihood(true)}>Yes</button>
       <button onClick={() => setPopupoResults(false)} className='btn btn-primary'>Cancel</button>
@@ -205,7 +205,7 @@ export default function QMRAApp() {
     {IsLikelihood === true && (
       <div>
         <select onChange={(event) => setDurationType(event.target.value)}>
-          <option value=''>--- Select Duration Type ---</option>
+          <option value=''>--- Select The Duration ---</option>
           <option value='yearly'>Yearly</option>
           <option value='monthly'>Monthly</option>
           <option value='quartely'>Quartely</option>
@@ -243,7 +243,7 @@ export default function QMRAApp() {
                 setResult('');
               }}
             >
-              <option value='' disabled selected>Select Indicator </option>
+              <option value='' disabled selected>Select an Indicator </option>
               {Pathogen.map((organism, xid) => (
                 <option key={xid} value={organism.pathogen}>
                   {organism.pathogen}

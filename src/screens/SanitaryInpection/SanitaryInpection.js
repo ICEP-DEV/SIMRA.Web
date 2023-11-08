@@ -22,6 +22,7 @@ import diapers from '../../assets/diapers.jpg';
 import pit from '../../assets/public_toilet.jpg';
 import farming from '../../assets/farm.jpg';
 import waterwaste from '../../assets/wasterwater.jpg';
+
 function SanitaryInpection() {
     var navigate = useNavigate()
     let sampling_info = useSelector((state) => state.sampling.value)
@@ -52,7 +53,7 @@ function SanitaryInpection() {
 
     let sanitary = <div>
         <h2>Analysis: Sanitary</h2>
-        <h3>Risk Characterization</h3>
+        <h3>Risk Characterization: </h3>
         <div className='form-group'>
             <label>{DataAnalysis.risk_type}</label>
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
@@ -61,7 +62,7 @@ function SanitaryInpection() {
 
     let h2s = <div>
         <h2>Analysis: H2S</h2>
-        <h3>Risk Characterization</h3>
+        <h3>Risk Characterization: </h3>
 
         <div className='form-group'>
             <label>{DataAnalysis.risk_type}</label>
@@ -96,7 +97,7 @@ function SanitaryInpection() {
         if (SanitaryInpectionItems.agriculturalActivity === undefined || SanitaryInpectionItems.diaperDisposal === undefined || SanitaryInpectionItems.domesticAnimal === undefined ||
             SanitaryInpectionItems.observerLaundryActivity === undefined || SanitaryInpectionItems.openDefaction === undefined || SanitaryInpectionItems.samplingId === undefined ||
             SanitaryInpectionItems.unprotectedWaterSource === undefined || SanitaryInpectionItems.wasteWaterRelease === undefined) {
-            toast.warn("All the field the must be checked!", {
+            toast.warn("All the fields must be checked!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -111,7 +112,7 @@ function SanitaryInpection() {
         }
 
         if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could get your location!", {
+            toast.error("We won't able to proceed since we could not get your location!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -204,7 +205,7 @@ function SanitaryInpection() {
                 </div>
             ))}
         </Carousel>
-        <button className='btn btn-primary' onClick={() => navigate('/h2s_survey')}>OK</button>
+        <button className='btn btn-primary' onClick={() => navigate('/h2s_survey')}>Ok</button>
     </div>
 
     const [isShowsing, invokeModalsing] = React.useState(false)
@@ -252,11 +253,11 @@ function SanitaryInpection() {
                         {/* validation pop up */}
                         <Modal show={isShowsing} onHide={modalClosesing} >
                             <Modal.Header closeButton onClick={modalClosesing}>
-                                <Modal.Title>Analysis results</Modal.Title>
+                                <Modal.Title>Analysis Results</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
 
-                                all the field the must be checked
+                                All the fields must be checked
 
                             </Modal.Body>
                             <Modal.Footer></Modal.Footer>
@@ -266,7 +267,7 @@ function SanitaryInpection() {
 
                         <Modal show={isShow} onHide={modalClose} >
                             <Modal.Header closeButton onClick={modalClose}>
-                                <Modal.Title>Analysis results</Modal.Title>
+                                <Modal.Title>Analysis Results</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
 
@@ -301,7 +302,7 @@ function SanitaryInpection() {
                                 <label className='header_form_label yes_no'>No/Yes</label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>1. Are There pit-latrines(pit toilets)?</label>
+                                <label className='header_form_label questinare'>1. Are There pit-latrines(Pit toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />
@@ -315,42 +316,42 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>3. Diapers Disposal(throwing away diapers)?</label>
+                                <label className='header_form_label questinare'>3. Diapers Disposal(Throwing away of diapers)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="diaperDisposal" />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>4. Release of wastewater?</label>
+                                <label className='header_form_label questinare'>4. Release of wastewater?(Dirty water)</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="wasteWaterRelease" />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>5. Open defaction(public )?</label>
+                                <label className='header_form_label questinare'>5. Open defaction(Public ...)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='openDefaction' />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>6. Is the water source unprotected?</label>
+                                <label className='header_form_label questinare'>6. Is the water source unprotected?(Open access)</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='unprotectedWaterSource' />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>7. Agricultural Activities(farming operations)?</label>
+                                <label className='header_form_label questinare'>7. Agricultural Activities(Farming operations)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='agriculturalActivity' />
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>8. Observer laundry Activities?</label>
+                                <label className='header_form_label questinare'>8. Observer laundry Activities?(Washing)</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='observerLaundryActivity' />

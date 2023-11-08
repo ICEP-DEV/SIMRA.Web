@@ -96,7 +96,7 @@ function H2S_Logs_Reports() {
             )}
             {Filter === "----" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
             {Filter === "municipality" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
-            {Filter === "Wwter accessability" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
+            {Filter === "Water accessability" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
             {Filter === "weather condition" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
             {Filter === "risk type" && (<input type='text' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
             {Filter === "status" && (<input type='number' className='control-form' onChange={(event) => setFilterInput(event.target.value)} />)}
@@ -113,7 +113,7 @@ function H2S_Logs_Reports() {
                 <th>Province Name</th>
                 <th>Municipality Name</th>
                 <th>Water Accessability</th>
-                <th>weather Condition</th>
+                <th>Weather Condition</th>
                 <th>Risk Type</th>
                 <th>Status</th>
             <tbody>

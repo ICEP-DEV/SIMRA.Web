@@ -76,10 +76,10 @@ function Home() {
           iteration="1"
           fillMode="none">
             
-          <p className='para font_7 wixui-richtext_text text-center text-secondary ' >
+            <p className='para font_7 wixui-richtext_text text-center text-secondary ' >
           SIMRA is a cutting-edge web tool revolutionizing water resource management. It evaluates and mitigates microbial risks in water sources,<br/>
-providing a robust framework for addressing health hazards from contamination. With seamless data integration, advanced modeling, <br/>
-and decision support, SIMRA empowers stakeholders to protect public health and ensure water system sustainability. <br/>
+providing a robust framework for addressing health hazards from contamination with seamless data integration, advanced modeling, <br/>
+and decision support. SIMRA empowers stakeholders to protect public health and ensure water system sustainability. <br/>
 Its ability to integrate diverse data sources, simulate contaminant behavior, and facilitate scenario analysis enables effective risk management strategies.<br/>
  User-friendly interfaces and interactive visualizations promote transparent communication, fostering informed discussions. <br/>
  SIMRA's iterative approach supports continuous monitoring and adaptation, refining interventions and enhancing risk management practices over time.<br/>
@@ -90,12 +90,12 @@ offering a comprehensive solution for assessing and managing microbial risks to 
 
       <h2 className='text-primary'>Simra Levels</h2>
       <ul>
-        <li>Level 1</li>
+        <li>Level 1. Household</li>
         
         <p> SIMRA makes risk assessment and management accessible to everyone, especially those with limited resources.<br/> It's designed to be simple, easy to use, and practical for a wide range of users, including households and individuals.</p>
-       <li>Level 2</li>
+       <li>Level 2. Inermediate</li>
        <p>This level of SIMRA goes beyond the basics, offering detailed water quality analysis and advanced microbial risk assessment tools. <br/>It's tailored for water treatment plant managers, government officials, researchers, and experts who need in-depth and comprehensive data.</p>
-       <li>Level3</li>
+       <li>Level 3. Expert</li>
        <p>At the advanced level, SIMRA is designed for experts, microbiologists, and researchers seeking in-depth microbial analysis and advanced risk assessment capabilities.<br></br> It provides molecular biology techniques and detailed reports to meet the specific needs of these professionals.</p>
         </ul>  
       

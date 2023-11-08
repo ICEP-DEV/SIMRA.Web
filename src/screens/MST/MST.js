@@ -72,12 +72,12 @@ const FibAnalysis = () => {
       <Navbar />
       <div className='content'>
         <Header />
-        <h2 className='text-primary text-center'>mst</h2>
+        <h2 className='text-primary text-center'>Microbial Source Tracking</h2>
         <div className='container-wrapper'>
           <ToastContainer />
           <div>
            
-            <p className=''>Select an Maker Gene:</p>
+            <p className=''>Select a Maker Gene:</p>
             <select
             className='form-select-lg mb-3 '
               onChange={(event) => handlemstselection(event.target.value)} >
@@ -109,7 +109,7 @@ const FibAnalysis = () => {
 
             </div>
             <div><span></span>
-              <label className='mst_label'>MST Marker</label>
+              <label className='mst_label'>MST Marker Gene</label>
               {SelectedMaker.maker !== 'other' && <input  className='mt-2' type='text' value={SelectedMaker.maker} disabled />}
               {SelectedMaker.maker === 'other' && <span><input  className='mt-2' type='text' onChange={(event) => setmaker(event.target.value)} /></span>}
             </div>
