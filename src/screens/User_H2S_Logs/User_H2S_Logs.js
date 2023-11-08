@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import './Survay_Report.css';
+import './User_H2S_Logs.css';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
-import Admin_NavBar from '../Admin_NavBar/Admin_NavBar';
+import Header from '../Header/Header';
+import Navbar from '../Navbar/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from '../Header/Header';
+import { useSelector } from 'react-redux';
 
-
-function Survay_Report() {
+function User_H2S_Logs() {
+  const api = "http://localhost:3001/api/"
 
   const [Provinces, setProvinces] = useState([])
   const [Report, setReport] = useState([])
@@ -18,17 +19,32 @@ function Survay_Report() {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [FoundReport, setFoundReport] = useState(false)
+  const [UserId, setUserId] = useState(0)
+  // Pagination
+  const [CurrentPage, setCurrentPage] = useState(1)
+  const record_per_page = 5
+  const lastIndex = CurrentPage * record_per_page
+  const firdIndex = lastIndex - record_per_page
+  const record = Report.slice(firdIndex, lastIndex)
+  const number_of_pages = Math.ceil(record.length / record_per_page)
+  const number = [...Array(number_of_pages + 1).keys()].slice
+  const PagePerNumber = []
+  for (let i = 1; i <= Math.ceil(Report.length / record_per_page); i++) {
+    PagePerNumber.push(i)
+  }
 
-  const api = "http://localhost:3001/api/"
+  let user_info = useSelector((state) => state.user.value)
+
   useEffect(() => {
-    var date = new Date()
-    var current_date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
-    axios.get(api + 'get_survey_stats/2023-06-30/' + current_date.toString()).then((response) => {
+    var userId = user_info.userId
+    console.log(userId)
+    setUserId(userId)
+    axios.get(api + 'get_userhistory_h2s/' + userId).then((response) => {
       setFoundReport(response.data.success)
       if (response.data.success === true) {
-          setReport(response.data.result)
-          setStoredReport(response.data.result)
-          setTotalRecord(response.data.result.length)
+        setStoredReport(response.data.result)
+        setReport(response.data.result)
+        setTotalRecord(response.data.result.length)
       }
     })
 
@@ -69,21 +85,37 @@ function Survay_Report() {
       });
       return;
     }
-    axios.get(api + 'get_survey_stats/' + startDate + '/' + endDate).then((response) => {
+    axios.get(api + 'get_user_h2s_stats/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
       setTotalRecord(0)
+      setFoundReport(response.data.success)
       if (response.data.success === true) {
-        setStoredReport(response.data.result)
-        setReport(response.data.result)
-        setFoundReport(response.data.success)
         setTotalRecord(response.data.result.length)
+        setReport(response.data.result)
+        setStoredReport(response.data.result)
       }
     })
   }
 
+  function checkForUserInfo(id) {
+    var temp_array = StoredReport
+    if (id === true) {
+      setReport(temp_array.filter(value => {
+        return value.user().includes(id)
+      }))
+    }
+    else {
+      setReport(StoredReport)
+    }
+  }
+
   function filter_by_province(_province) {
     var count = 0
+    if (_province === '') {
+      setReport(StoredReport)
+      setTotalRecord(StoredReport.length)
+      return
+    }
     var temp_array = StoredReport
-
     axios.get(api + "get_municipalities/" + _province).then(response => {
       setMunicipalities(response.data.results)
 
@@ -91,7 +123,7 @@ function Survay_Report() {
       console.log(err)
     })
     setReport(temp_array.filter(value => {
-      return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase())
+      return value.province_id?.toLocaleLowerCase().includes(_province?.toLocaleLowerCase())
     }))
 
     for (var k = 0; k < StoredReport.length; k++) {
@@ -105,6 +137,10 @@ function Survay_Report() {
   function filter_by_municipality(_muni) {
     var temp_array = StoredReport
     var count = 0
+    if (_muni === '') {
+      setReport(StoredReport)
+      return
+    }
 
     setReport(temp_array.filter(value => {
       return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase())
@@ -117,16 +153,31 @@ function Survay_Report() {
     setTotalRecord(count)
   }
 
+  function search_by_weekday(day) {
+    var temp_array = StoredReport
+
+    if (day !== '') {
+      setReport(temp_array.filter(value => {
+        return value.weekday.toLocaleLowerCase().includes(day.toLocaleLowerCase())
+      }))
+    }
+    else {
+      setReport(StoredReport)
+    }
+  }
+
+  //change page 
+  const paginate = (page_number) => setCurrentPage(page_number)
+
   return (
     <div className='hero-all'>
-      <Admin_NavBar />
+      <Navbar />
       <div className='main-all'>
         <ToastContainer />
         <div className='content'>
           <Header />
-          <h2>Sanitary risk core (percentage and risk characterization rating)</h2>
-          <div className='container-wrapper'>
-           
+          <div className='container-wrap'>
+            <h2>hydrogen Sulfide Logs</h2>
             <div className='report-header'>
               <div id='search_date'>
                 <span className='survey_date'>
@@ -141,20 +192,35 @@ function Survay_Report() {
                 <button onClick={display_search_report} className="btn btn-primary btn-search-report">Show Results</button>
 
               </div>
+              <div>
+                <span className='survey_province'>
+                  <label>WeekDays</label>
+                  <select onChange={(event) => search_by_weekday(event.target.value)}>
+                    <option value=''>All Weekdays</option>
+                    <option value='Monday'>Monday</option>
+                    <option value='Tuesday'>Tuesday</option>
+                    <option value='Wednesday'>Wednesday</option>
+                    <option value='Thursday'>Thursday</option>
+                    <option value='Friday'>Friday</option>
+                    <option value='Saturday'>Saturday</option>
+                    <option value='Sunday'>Sunday</option>
+                  </select></span>
+                {/* <input type='checkbox' onChange={(event) => checkForUserInfo(event.target.checked)} /> */}
+              </div>
               <div id='filter_by_province'>
                 <span className='survey_province'>
-                  {/* <label>Province</label> */}
+                  <label>Province</label>
                   <select onChange={(e) => filter_by_province(e.target.value)}>
-                    <option value=''>Province</option>
+                    <option value=''>All Provinces</option>
                     {Provinces.map((province, xid) => (
                       <option key={xid} value={province.province_id} >{province.province_name}</option>
                     ))}
                   </select>
                 </span>
                 <span className='survey_province'>
-                  {/* <label>Municipalities</label> */}
+                  <label>Municipalities</label>
                   <select onChange={(e) => filter_by_municipality(e.target.value)}>
-                    <option value=''>Province</option>
+                    <option value=''>All Municipalities</option>
                     {Municipalities.map((muni, xid) => (
                       <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
                     ))}
@@ -166,30 +232,44 @@ function Survay_Report() {
               </div>
 
             </div>
-            
+
             <div className='reports'>
               {(FoundReport === true) && (
                 <table className="table survay_table">
-                  <thead class="thead-dark">
                   <tr className="survey_tr">
                     <th className="survey_th _th">Municipalities</th>
                     <th className="survey_th">Date</th>
                     <th className="survey_th ">Catchment Area</th>
-                    <th className="survey_th ">Total Average</th>
+                    <th className="survey_th ">Status</th>
                     <th className="survey_th ">Risk Type</th>
                   </tr>
-                  </thead>
-                  {Report.map((report, xid) => (
+
+                  {record.map((report, xid) => (
                     <tr key={xid} className="survey_tr" scope="row">
                       <td className="survey_td _td">{report.muni_name}</td>
                       <td className="survey_td">{report.sample_date}</td>
                       <td className="survey_td">{report.type}</td>
-                      <td className="survey_td">{report.total_avarage}</td>
+                      <td className="survey_td">{report.status}</td>
                       <td className="survey_td">{report.risk_type}</td>
                     </tr>
                   ))}
                 </table>
               )}
+              <div className='page_numbers' >
+                {(FoundReport === true) && (
+                  <nav className='pagination'>
+                    <ul class="pagination justify-content-center">
+                      {PagePerNumber.map((number, xid) => (
+                        <li key={xid} className='page-item'>
+                          <button onClick={() => paginate(number)} className='page-link'>{number}</button>
+                        </li>
+                      ))}
+                    </ul>
+
+                  </nav>
+                )}
+              </div>
+
 
               {/* {(FoundReport.success === false) && (<div >
                 <label>{FoundReport.message}</label>
@@ -206,5 +286,4 @@ function Survay_Report() {
 
   );
 }
-
-export default Survay_Report;
+export default User_H2S_Logs

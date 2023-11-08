@@ -1,13 +1,81 @@
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.report-header .btn-search-report {
+  width: 200px;
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 12px;
+  margin-left: 50px;
+}
+
+table,
+.survey_td,
+.survey_th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.survey_th,
+.survey_td {
+  padding: 5px;
+}
+
+._th,
+._td {
+  width: 40%;
+}
+
+.search_date {
+  display: flex;
+}
+
+.survey_date {
+  margin: 0 25px;
+  width: 15%;
+  
+  flex-direction: row;
+}
+
+.survey_province {
+  margin: 0 25px;
+  width: 15%;
  
-   td, th {
-    border: 2px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-   
- 
+}
+
+.survey_date_label {
+  width: 50px;
+  padding: 2px 0;
+}
+
+#filter_by_province {
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+.container-wrapper {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  color: black;
+  width: 90%;
+  min-height: 100vh;
+  text-align: center;
+  background-color: #e1e4e8;
+}

@@ -4,6 +4,7 @@ import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
+import Load_Waves from '../Pop_Up/load/Load_Waves';
 // import logo from './logo3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
@@ -104,6 +105,7 @@ function Login() {
                     user_mobileNo: loginData.data.results[0].mobileNo,
                     user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
+                    user_email:loginData.data.results[0].email
                 }
                 console.log(loginData.data.results[0])
                 
@@ -444,7 +446,7 @@ function Login() {
 
             <Modal show={isShow} onHide={modalClose} >
                 <Modal.Header closeButton onClick={modalClose}>
-                    <Modal.Title>Login</Modal.Title>
+                    <Modal.Title>SignIn</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -472,7 +474,7 @@ function Login() {
 
 
 
-                    Enter username
+                    Enter email
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -518,10 +520,10 @@ function Login() {
                     <div className='main-login' id='main-login'>
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                        <h3 className='header-txt'><b>Login </b></h3>
+                        <h3 className='header-txt'><b>Sign In </b></h3>
                         <div className='mb-4'>
                             {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
-                            <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
+                            <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter email' />
                             <small>
 
                             </small>
@@ -539,15 +541,15 @@ function Login() {
                             </small>
                         </div>
 
-                        <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                        <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
                             {displayLoader}
-                        </Loader>
+                        </Load_Waves>
                         <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} >
                             {RegisterForm}
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn-login' onClick={onSuccess}>Log In</button>
+                            <button className='btn-login' onClick={onSuccess}>Sign In</button>
 
                             <small className='txt-signup'>
                                 Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>

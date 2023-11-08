@@ -1,12 +1,4 @@
-.container-wrap {
-    padding: 50px;
 
-}
-
-.reports {
-    display: flex;
-
-}
 
 .card-rows {
     display: inline-block;
@@ -44,58 +36,78 @@
     
 } */
 
-.municipal-name{
+.municipal-name {
     text-align: center;
     font-weight: 500;
-
 }
 
-.report-header select{
+.report-header select {
     width: 400px;
-    height: 40px;
-    margin: 0 10px;
-    border-radius: 12px;
 }
 
-.report-header .btn-search-report{
-    width: 100px;
+.report-header .btn-search-report {
+    width: 200px;
     height: 40px;
     margin: 0 10px;
     border-radius: 12px;
     margin-left: 50px;
 }
 
-/*
-.date {
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    background: green;
-    background-image: none;
-    border: none;
+table,
+.survey_td,
+.survey_th {
+    border: 1px solid #ddd;
+    text-align: left;
 }
 
-.date {
-    width: 60%;
-    font-size: 1.15rem;
-    padding: 0.675em 6em 0.675em 1em;
-    background-color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    color: #000;
-    cursor: pointer;
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.province {
-    width: 30%;
-    font-size: 1.15rem;
-    padding: 0.675em 6em 0.675em 1em;
-    background-color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    color: #000;
-    cursor: pointer;
-}*/
+.survey_th,
+.survey_td {
+    padding: 5px;
+}
+
+._th, ._td{
+    width: 40%;
+}
+
+
+.search_date{
+    display: flex;
+}
+
+.survey_date{
+    margin: 0 25px;
+    width: 15%;
+   
+    flex-direction: row;
+}
+
+.survey_province{
+    margin: 0 25px;
+    width: 15%;
+    
+}
+.survey_date_label{
+    width: 50px;
+    padding: 2px 0;
+}
+
+#filter_by_province{
+    margin-top: 20px;
+    padding: 20px 0;
+}
+.container-wrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    color: black;
+    width: 90%;
+    min-height: 100vh;
+    text-align: center;
+    background-color: #e1e4e8;
+}

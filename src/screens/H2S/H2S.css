@@ -1,17 +1,28 @@
 
-
 .form_content_switch{
     position: relative;
 }
 
-#flexSwitchCheckDefault{
+.switch_h2s{
     position: absolute;
     left: 50%;
-    width: 5%;
+    width: 8%;
+}
+.h2s-label
+{
+text-align: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
 }
 .img-h2s
 {
    
+    height: 150px;
+    width: 100%;
+}
+.card-img-top
+{
     height: 150px;
     width: 100%;
 }
@@ -33,27 +44,19 @@ font-size: 16px;
     height: 20rem;
   
 }
-
-@media (max-width: 768px) {
-
-
-    .h2s-cards{
-        display: block;
-        margin: auto;
-        height: auto;
-        width: auto;
+.section-h2s
+{
+    width: 100%;
+   margin-bottom: 5%;
+ 
+}
+@media only screen and (max-width: 768px) {
+    .section-h2s{
+        
     }
-    .level1-desccription .row .card-h2s img{
-        /* height: auto; */
-        /* width: auto; */
-        margin: auto;
-        padding: auto;
+    .h2s-label
+    {
+        font-size: small;
     }
-    #level_description               {
-        /* display: block; */
-        align-items: center;
-        align-content: center;
-        margin:auto;
-        padding:auto;
-    }
-    }
+    
+}

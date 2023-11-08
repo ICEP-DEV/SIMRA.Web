@@ -14,7 +14,8 @@ function UserProfileUpdate() {
     
     user_firstname:'',
     user_lastname: '',
-    user_mobileNo:''
+    user_mobileNo:'',
+    user_email:''
     // Add more fields as needed
   });
                    
@@ -92,6 +93,15 @@ function UserProfileUpdate() {
                   <div className="input-container">
                     <input className="profile-input" type="text" id="user_mobileNo"
                       name="user_mobileNo" placeholder={user_info.user_mobileNo}value={state.user_mobileNo} onChange={handleInputChange} />
+                    <FiEdit2 className="edit-icon" />
+                  </div>
+                </div>
+                <div className="sub">
+                  Email
+                  <br></br>
+                  <div className="input-container">
+                    <input className="profile-input" type="email" id="user_email"
+                      name="user_email" placeholder={user_info.user_email}value={state.user_email} onChange={handleInputChange} />
                     <FiEdit2 className="edit-icon" />
                   </div>
                 </div>
