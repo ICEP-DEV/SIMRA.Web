@@ -7,9 +7,9 @@ import Navbar from '../Navbar/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import { api } from '../../Data/API'
 
 function User_H2S_Logs() {
-  const api = "http://localhost:3001/api/"
 
   const [Provinces, setProvinces] = useState([])
   const [Report, setReport] = useState([])

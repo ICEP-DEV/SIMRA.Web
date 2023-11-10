@@ -7,9 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import { api } from '../../Data/API'
 
 function User_QMRA_logs() {
-    const api = "http://localhost:3001/api/"
 
     let user_info = useSelector((state) => state.user.value)
 

@@ -12,14 +12,11 @@ import { Carousel } from "react-responsive-carousel";
 import methods from '../../Data/methods';
 import './H2S.css';
 import h2s from '../../assets/h2s.png';
-import blackstrip from '../../assets/blackstrip.png';
-import whitestrip from '../../assets/whitestrip.png';
 import sample from '../../assets/sample.png';
-import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
 import tests from '../../assets/tests.jpg';
 import container from '../../assets/container.png';
-
+import { api } from '../../Data/API'
 function H2S() {
     const navigate = useNavigate();
     let sampling_info = useSelector((state) => state.sampling.value)
@@ -96,7 +93,7 @@ function H2S() {
         }
 
         else {
-            axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+            axios.post(api +"sampling_data", sampling_info).then((response) => {
                 // Assign to Coordinates object
                 var coordinates = {
                     latitude: sampling_info.latitude,
@@ -104,7 +101,7 @@ function H2S() {
                     samplingId: response.data.insertedId
                 }
                 //Call in coordinates api
-                axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+                axios.post(api +"coordinates", coordinates).then((result) => {
                     console.log(result)
                 }, err => {
                     console.log(err)
@@ -117,7 +114,7 @@ function H2S() {
                     waterAccessability: sampling_info.waterAccessability
                 }
                 //Call in watersource api
-                axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+                axios.post(api +"watersource", watersource).then((result) => {
                     console.log(result)
                 }, err => {
                     console.log(err)
@@ -127,7 +124,7 @@ function H2S() {
                     status: selectedOption.isFound,
                     samplingId: response.data.insertedId
                 }
-                axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
+                axios.post(api +"hydrogensulfide", h2s_test).then((result) => {
 
                     if (result.data.success === true) {
                         console.log(result.data.status)

@@ -22,11 +22,9 @@ function Navbar() {
     useEffect(() => {
         if (user_info !== undefined) {
             setUserType(user_info.user_level)
-            console.log(sampling_info)
-            if (sampling_info !== undefined) {
+            if (sampling_info !== undefined || JSON.stringify(sampling_info) === {}) {
                 setIsFoundSamplingData(false)
             }
-
         }
         else {
             navigate("/")

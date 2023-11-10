@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
-
+import { api } from '../../Data/API'
 function H2S_Logs_Reports() {
 
     let user_info = useSelector((state) => state.user.value)
@@ -22,7 +22,7 @@ function H2S_Logs_Reports() {
 
         async function getLogs() {
             var userId = user_info.userId
-            var logs = await axios.get('http://localhost:3001/api/get_userhistory_h2s/' + userId);
+            var logs = await axios.get(api +'get_userhistory_h2s/' + userId);
             if (logs.data.success) {
                 setFullLogs(logs.data.result)
                 setLogs(logs.data.result)

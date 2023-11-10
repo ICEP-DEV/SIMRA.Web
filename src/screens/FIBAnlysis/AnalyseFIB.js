@@ -11,7 +11,6 @@ import Footer from '../Footer/Footer';
 import { api } from '../../Data/API'
 import axios from 'axios';
 
-
 const FibAnalysis = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()

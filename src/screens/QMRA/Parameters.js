@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 import Popup from '../Pop_Up/Pop_Up';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { api } from '../../Data/API'
 export default function QMRAApp() {
   let [IsCustomizePathogen, setIsCustomizePathogen] = useState(false);
   let fib_mst_info = useSelector((state) => state.fib_mst.value);
@@ -30,7 +30,7 @@ export default function QMRAApp() {
       setLongitude(longitude)
       setLatitude(latitude)
     })
-    axios.get("http://localhost:3001/api/reference_pathogens").then(respond => {
+    axios.get(api +"reference_pathogens").then(respond => {
       //  console.log(respond.data.reference_pathogens)
 
       //setParameters(respond.data.reference_pathogens[0].parameter[0])
@@ -80,7 +80,7 @@ export default function QMRAApp() {
     console.log(qmra_data)
 
     //Call in sampling data api
-    axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+    axios.post(api +"sampling_data", sampling_info).then((response) => {
       qmra_data.samplingId = response.data.insertedId
       mst_data.samplingId = response.data.insertedId
       // Assign to Coordinates object
@@ -90,7 +90,7 @@ export default function QMRAApp() {
         samplingId: response.data.insertedId
       }
       //Call in coordinates api
-      axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+      axios.post(api +"coordinates", coordinates).then((result) => {
       }, err => {
         console.log(err)
       })
@@ -101,13 +101,13 @@ export default function QMRAApp() {
         waterAccessability: sampling_info.waterAccessability
       }
       //Call in watersource api
-      axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+      axios.post(api +"watersource", watersource).then((result) => {
       }, err => {
         console.log(err)
       })
 
       if (fib_mst_info.type === 'fib') {
-        axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
+        axios.post(api +"add_indicator_qmra", qmra_data)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {
@@ -130,7 +130,7 @@ export default function QMRAApp() {
           })
       }
       else if (fib_mst_info.type === 'mst') {
-        axios.post("http://localhost:3001/api/mst", mst_data)
+        axios.post(api +"mst", mst_data)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {

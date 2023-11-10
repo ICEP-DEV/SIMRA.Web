@@ -11,7 +11,7 @@ import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import Loader from '../Loader/Loader';
+import { api } from '../../Data/API'
 import Load_Waves from '../Pop_Up/load/Load_Waves';
 
 function SamplingData() {
@@ -30,9 +30,6 @@ function SamplingData() {
     let [Level2UserPopUp, setLevel2UserPopUp] = useState(false);
     let [Level3UserPopUp, setLevel3UserPopUp] = useState(false);
     const [ButtonPopup, setButtonPopup] = useState(false);
-
-
-    const api = 'http://localhost:3001/api/'
 
     useEffect(() => {
         axios.get(api + 'get_provinces').then(response => {

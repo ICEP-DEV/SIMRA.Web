@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar2 from '../Navbar/Navbar';
 import { HiOutlineMail } from 'react-icons/hi';
 import dwater from './dirtywater.jpeg';
@@ -8,7 +7,6 @@ import { useSelector } from 'react-redux';
 import MovingComponent from '../animations/component';
 import Footer from '../Footer/Footer';
 function Level2() {
-  let navigate = useNavigate();
   let user_info = useSelector((state) => state.user.value)
 
   return (

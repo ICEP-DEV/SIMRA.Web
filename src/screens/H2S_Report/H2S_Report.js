@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 import Admin_NavBar from '../Admin_NavBar/Admin_NavBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { api } from '../../Data/API'
 function H2S_Report() {
     const [Provinces, setProvinces] = useState([])
     const [Report, setReport] = useState([])
@@ -17,8 +17,7 @@ function H2S_Report() {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [FoundReport, setFoundReport] = useState(false)
-
-    const api = "http://localhost:3001/api/"
+    
     useEffect(() => {
         var date = new Date()
         var current_date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')

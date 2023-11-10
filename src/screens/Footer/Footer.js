@@ -1,16 +1,13 @@
 import React from "react";
-import { AiFillPushpin, AiFillPhone,AiOutlineCopyrightCircle,AiFillLinkedin,AiFillYoutube} from 'react-icons/ai';
+import { AiFillPhone,AiOutlineCopyrightCircle,AiFillLinkedin,AiFillYoutube} from 'react-icons/ai';
 import natural from '../../assets/natural_research.png';
 import {BsFacebook} from 'react-icons/bs';
-import {ImLocation} from 'react-icons/im';
 import {FaXTwitter} from 'react-icons/fa6';
 import tut_logo from "../../assets/TUT_white.png";
 import icep from "../../assets/ICEP_logo2.png";
 import { HiOutlineMail } from 'react-icons/hi';
-import { CiLocationOn } from 'react-icons/ci';
 import './Footer.css';
 import { Link } from "react-router-dom";
-import { ListGroupItem } from "react-bootstrap";
 function Footer() {
   return (
 

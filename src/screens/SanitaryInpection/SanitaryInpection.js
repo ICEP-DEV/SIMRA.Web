@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Level2PopUp from '../Pop_Up/Pop_Up_Level2';
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
-
+import { api } from '../../Data/API'
 
 
 import domestic_animal from '../../assets/domestic_animals.jpg';
@@ -130,7 +130,7 @@ function SanitaryInpection() {
 
         else {
             //Call in sampling data api
-            axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+            axios.post(api +"sampling_data", sampling_info).then((response) => {
                 SanitaryInpectionItems.samplingId = response.data.insertedId
                 // Assign to Coordinates object
                 var coordinates = {
@@ -139,7 +139,7 @@ function SanitaryInpection() {
                     samplingId: response.data.insertedId
                 }
                 //Call in coordinates api
-                axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+                axios.post(api +"coordinates", coordinates).then((result) => {
                     console.log(result)
                 }, err => {
                     console.log(err)
@@ -151,13 +151,13 @@ function SanitaryInpection() {
                     waterAccessability: sampling_info.waterAccessability
                 }
                 //Call in watersource api
-                axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+                axios.post(api +"watersource", watersource).then((result) => {
                     console.log(result)
                 }, err => {
                     console.log(err)
                 })
 
-                axios.post("http://localhost:3001/api/sanitary_inspection_survey", SanitaryInpectionItems)
+                axios.post(api +"sanitary_inspection_survey", SanitaryInpectionItems)
                     .then((result) => {
                         setDataAnalysis(result.data)
                         console.log(DataAnalysis)
