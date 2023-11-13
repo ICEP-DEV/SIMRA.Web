@@ -30,7 +30,7 @@ function Navbar() {
             navigate("/")
         }
     }, []);
-    
+
     function Profile() {
         navigate("/profile")
     }
@@ -100,7 +100,7 @@ function Navbar() {
                                 <li className='dropdown-item' onClick={() => navigate('/fib_analysis')}>Level 2</li>
                             </span>)}
                             {(UserType === 3) && (<span>
-                                <li className='dropdown-item' onClick={() => navigate('/mst_logs')}>Level 3</li>
+                                <li className='dropdown-item' onClick={() => navigate('/mst')}>Level 3</li>
                             </span>)}
                         </ul>
                     </div>}

@@ -177,7 +177,7 @@ const MST = () => {
             <ToastContainer />
             <div id='fib_section'>
               <div className='fib_selection'>
-                <label className='fib_selection_label'> Select an Maker</label>
+                {/* <label className='fib_selection_label'> Select an Maker</label> */}
                 <select
                   className='form-select-lg mb-3 mt-5'
                   onChange={(event) => handlemstselection(event.target.value)} >
@@ -190,11 +190,11 @@ const MST = () => {
                 </select>
               </div>
               <div className='reference_selection'>
-                <label className='reference_selection_label'>Reference Pathogen</label>
+                {/* <label className='reference_selection_label'>Reference Pathogen</label> */}
                 {selectedMST.maker !== 'Other' && <select
                   className='form-select-lg mb-3 mt-5'
                   onChange={(event) => handlePathogenRatio(event.target.value)} >
-                  <option value="">Select Pathogen</option>
+                  <option value="">Reference Pathogen</option>
                   {ReferencePath.map((pathogen, xid) => (
                     <option key={xid} value={xid}>
                       {pathogen.path_name}
