@@ -1,0 +1,54 @@
+.summary_sanitary_report, .summary_h2s_report{
+    display: flex;
+    margin: 20px;
+
+}
+
+.pie_chart{
+    width: 30%;
+}
+
+.summary_report h2{
+    margin: 20px;
+
+}
+
+.decript_summary{
+    width: 50%;
+    color: #fff;
+    margin:auto
+}
+
+.view_summary{
+    width: 10%;
+}
+
+.pie_chart img, .decript_summary img{
+    width: 100px;
+}
+
+.inner_summary_report{
+    text-align: left;
+    padding-bottom: 50px;
+}
+
+.color_report{
+    padding: 0 10px;
+    width: 10px;
+    height: 10px;
+    border: gray solid 1px;
+    margin: 0 25px;
+}
+
+.stats_summary{
+    margin: 25px 0;
+}
+
+._decript_summary{
+    
+}
+
+.sammary_content{
+    padding-bottom: 600px;
+    color: black;
+}

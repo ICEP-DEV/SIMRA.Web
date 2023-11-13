@@ -1,0 +1,8 @@
+
+#fib_section{
+    text-align: left;
+    padding-left: 100px;
+}
+.fib_selection_label, .reference_selection_label{
+    width: 20%;
+}

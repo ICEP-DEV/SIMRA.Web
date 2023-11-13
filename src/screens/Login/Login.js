@@ -3,14 +3,16 @@ import axios from 'axios'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Loader from '../Loader/Loader';
-import logo from './logo.png';
+import Load_Waves from '../Pop_Up/load/Load_Waves';
+import logo from './logo3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
+import logo1 from '../../assets/Simra_logo.png'
+import { api } from '../../Data/API'
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -88,7 +90,7 @@ function Login() {
         }
 
         setButtonPopup(true)
-        const loginData = await axios.post('http://localhost:3001/api/login', values)
+        const loginData = await axios.post(api+'login', values)
         setTimeout(() => {
             setButtonPopup(false)
             if (loginData.data.success === true) {
@@ -103,16 +105,10 @@ function Login() {
                     user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
                 }
-                console.log(loginData.data.results[0])
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                    if (loginData.data.results[0].level === 1) {
-                        navigate('/home')
-                    }
-                    else if (loginData.data.results[0].level === 2) {
-                        navigate('/')
-                    }
+                     navigate('/home')
 
                 }
                 else if (loginData.data.results[0].role === "municipal") {
@@ -151,7 +147,7 @@ function Login() {
 
         // Empty values
         if (Email === "") {
-            toast.warn("Enyer email address!", {
+            toast.warn("Enter email address!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -165,7 +161,7 @@ function Login() {
             return;
         }
         if (Firstname === "") {
-            toast.warn("Enyer firstname!", {
+            toast.warn("Enter firstname!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -179,7 +175,7 @@ function Login() {
             return;
         }
         if (Lastname === "") {
-            toast.warn("Enyer lastname!", {
+            toast.warn("Enter lastname!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -193,7 +189,7 @@ function Login() {
             return;
         }
         if (PhoneNumber === "") {
-            toast.warn("Enyer phone number!", {
+            toast.warn("Enter phone number!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -207,7 +203,7 @@ function Login() {
             return;
         }
         if (Password === "") {
-            toast.warn("Enyer password!", {
+            toast.warn("Enter password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -221,7 +217,7 @@ function Login() {
             return;
         }
         if (RePassword === "") {
-            toast.warn("Enyer password confirmation!", {
+            toast.warn("Enter password confirmation!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -323,7 +319,7 @@ function Login() {
             level: Level
         }
 
-        axios.post("http://localhost:3001/api/registration", register_form).then((respond) => {
+        axios.post(api+"registration", register_form).then((respond) => {
             if (respond.data.success === true) {
                 toast.success(respond.data.message, {
                     position: "top-right",
@@ -381,7 +377,7 @@ function Login() {
 
     let RegisterForm = <div>
         <div className='register-form'>
-            <h3 className='header-txt'><b>Create An Account</b></h3>
+            <h3 className='header-txt' style={{ textAlign: 'center' }}><b>Create An Account</b></h3>
             <div className='form-group'>
                 <label>First Name:</label>
                 <input type="text" className='control-form' onChange={(event) => setFirstname(event.target.value)} />
@@ -419,7 +415,7 @@ function Login() {
             </div>
         </div>
         <div className='form-group'>
-            <button className='btn btn-primary' onClick={handleRegistration}>Create Account</button>
+            <button className='btn-reg' onClick={handleRegistration}>Create Account</button>
         </div>
 
     </div>
@@ -493,7 +489,7 @@ function Login() {
             <div className='login-container'>
                 <div className='welcome'>
                     <div className='logo-login'>
-                        <img src={logo} alt='logo' /> Simra
+                        <img className='logo-login' src={logo1} alt='logo' />
                     </div>
                     <h1>Welcome</h1>
                     SIMRA, tool integrates  <br></br>
@@ -507,7 +503,7 @@ function Login() {
                     <div className='main-login' id='main-login'>
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                        <h3 className='header-txt'><b>Login </b></h3>
+                        <h3 className='header-txt'><b>Sign In </b></h3>
                         <div className='mb-4'>
                             {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
                             <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
@@ -528,18 +524,18 @@ function Login() {
                             </small>
                         </div>
 
-                        <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                        <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
                             {displayLoader}
-                        </Loader>
+                        </Load_Waves>
                         <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} >
                             {RegisterForm}
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn-login' onClick={onSuccess}>Log In</button>
-
-                            <small className='txt-signup'>
-                                Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='ms-2'>Sign Up</button>
+                            <button className='btn-login mb-5' onClick={onSuccess}>Sign In</button>
+                            <br></br>
+                            <small className='txt-signup mt-4'>
+                                Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>
                             </small>
 
                         </div>

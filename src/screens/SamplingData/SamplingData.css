@@ -1,0 +1,98 @@
+.content{
+  font-size: 20px;
+  min-height: 100vh;
+
+ 
+ }
+ .select-sampling_data
+ {
+  border: 1px solid #09330d;
+ }
+ /* .select-sampling_data:hover
+ {
+  background-color:#09330d;
+  color: white;
+ } */
+ .control-form
+ {
+ background-color: #fff;
+ color: black;
+ }
+ .control-form:hover
+ {
+  
+  color: #09330d;
+ }
+ .container-wrapper
+ {  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  color: #09330d;
+  width: 90%;
+  min-height: 100vh;
+  text-align: center;
+  background-color: #e1e4e8;
+ }
+ h2
+ {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: 400;
+  word-spacing: 1px;
+  line-height: 1.5em;
+  padding-bottom: 15px;
+ font-family: "Playfair Display", serif;
+ }
+
+
+ .form-group{
+     display: flex;
+     flex-direction: column;
+     margin: 15px 0;
+ }
+ .hero-all
+ {
+     /* background-color: #0063EA;  */
+     background-color: #ffffff;
+   
+ }
+
+ .level_popup{
+  margin: 5px 25px;
+  border-radius: 12px;
+
+ }
+
+ .level1_class{
+  background-color: #76865cad;
+ }
+
+ .level2_class{
+  background-color: #50524dad;
+ }
+
+ .level3_class{
+  background-color: #b6dd7cad;
+ }
+
+   select{
+     width: 50%;
+   }
+   .btn-data
+   {
+     width: 201px;
+     height: 32px;
+    color: #fff;
+     background-color: #09330d; 
+     border-radius: 5%;
+     border: none;
+   }
+    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+    @media (max-width: 768px) {
+      .select-sampling_data:hover{
+       
+        color: white;
+      }
+    }
