@@ -286,7 +286,7 @@ export default function QMRAApp() {
                   </td>
                 </tr>}
             </table>
-            <button className='btn btn-dark w-25 mt-5' onClick={sendQmra}>Submit</button>
+            <button className='btn btn-success w-25 mt-5' onClick={sendQmra}>Submit</button>
           </div>
         </div>
       </div>

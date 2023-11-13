@@ -257,7 +257,7 @@ function SamplingData() {
                            
                         </select>
                     </div>
-                    <button className='btn btn-dark btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
+                    <button className='btn btn-success btn-lg w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
 
             </div>

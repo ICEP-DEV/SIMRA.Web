@@ -19,6 +19,7 @@ import User_MST_Logs from './screens/User_MST_Logs/User_MST_Logs';
 import MST from './screens/MST/MST'
 import Graphs from './screens/Graphs/Charts'
 import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
+import UserProfileUpdate from './screens/Profile/Profile';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -37,7 +38,8 @@ function App() {
         <Route exact path='/level2' element={<Level2 />} />
         <Route exact path='/fib_analysis' element={<FibAnalysis />} />
         <Route exact path='/qmra' element={<QMRA />} />
-        {/* <Route exact path='/municipality' element={<Municipality />} /> */}
+        <Route exact path='/profile' element={<UserProfileUpdate/>}/>
+         {/* <Route exact path='/municipality' element={<Municipality />} /> */}
         <Route exact path='/municipality' element={<Report />} />
         <Route exact path='/sanitary_report' element={<Survay_Report />} />
         <Route exact path='/h2s_report' element={<H2S_Report />} />

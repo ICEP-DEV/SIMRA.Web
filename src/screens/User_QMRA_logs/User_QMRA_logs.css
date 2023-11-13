@@ -5,8 +5,9 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
+    padding-top: 20px; 
     width: 90%;
-    height: 80vh;
+    min-height: 80vh;
     text-align: center;
     background-color: #e1e4e8;
 }

@@ -11,3 +11,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+
+@media screen and (max-height: 450px) {
+.container-fib .group
+{
+  display: flex;
+  flex: column;
+}
+#fib_section
+{
+    text-align: left;
+    padding-left: 0;
+}
+}

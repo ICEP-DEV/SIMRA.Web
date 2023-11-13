@@ -179,32 +179,33 @@ const FibAnalysis = () => {
       <div className='content'>
        
         <Header />
-        <h2 className='text-primary text-center'>FIB</h2>
+        <h2 className='text-primary text-center'>fecal indicator bacteria (fib)</h2>
         <div>
           <div className='container-wrapper'>
             <ToastContainer />
             <div id='fib_section'>
+              
               <div className='fib_selection'>
-                <label className='fib_selection_label'> Select an FIB</label>
+                {/* <label className='fib_selection_label text-center'> Select an FIB</label> */}
                 <select
-                  className='form-select-lg mb-3 mt-5'
+                  className='form-select-lg mb-3 mt-5 w-50 shadow '
                   onChange={(event) => handlemstselection(event.target.value)} >
                   <option value="">Select FIB</option>
                   {FIBs.map((fib, xid) => (
-                    <option key={xid} value={xid}>
+                    <option key={xid} value={xid} >
                       {fib.indicator}
                     </option>
                   ))}
                 </select>
               </div>
               <div className='reference_selection'>
-                <label className='reference_selection_label'>Reference Pathogen</label>
+                {/* <label className='reference_selection_label  text-center'>Reference Pathogen</label> */}
                 {selectedFIB.indicator !== 'Other' && <select
-                  className='form-select-lg mb-3 mt-5'
+                  className='form-select-lg mb-3 mt-5  w-50'
                   onChange={(event) => handlePathogenRatio(event.target.value)} >
-                  <option value="">Select Pathogen</option>
+                  <option value="" >Select Reference Pathogen</option>
                   {ReferencePath.map((pathogen, xid) => (
-                    <option key={xid} value={xid}>
+                    <option key={xid} value={xid} >
                       {pathogen.path_name}
                     </option>
                   ))}
@@ -320,7 +321,7 @@ const FibAnalysis = () => {
                 onChange={(event) => setUserCount(event.target.value)}
               />
             </div>
-            <button className='btn btn-dark w-25 mt-4' onClick={next_to_qmra}>Next</button>
+            <button className='btn btn-success w-25 mt-4' onClick={next_to_qmra}>Next</button>
           </div>
         </div>
 

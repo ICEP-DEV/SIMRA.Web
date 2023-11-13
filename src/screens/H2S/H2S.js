@@ -19,12 +19,13 @@ import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
 import tests from '../../assets/tests.jpg';
 import container from '../../assets/container.png';
-
+import {BiHelpCircle} from 'react-icons/bi';
 function H2S() {
     const navigate = useNavigate();
     let sampling_info = useSelector((state) => state.sampling.value)
     const [Methods, setMethods] = useState(methods)
     const [selectedOption, setSelectedOption] = useState({ isFound: false });
+    let [SelectPopUp, setSelectPopUp] = useState(false);
     const [Longitude, setLongitude] = useState('')
     const [Latitude, setLatitude] = useState('')
     const [IsContiminated, setIsContiminated] = useState(false);
@@ -81,21 +82,21 @@ function H2S() {
 
     const handleButtonClick = (color) => {
         console.log(selectedOption)
-        if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't able to proceed since we could get your location!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            return;
-        }
+        // if (!sampling_info.longitude || !sampling_info.latitude) {
+        //     toast.error("Won't able to proceed since we could get your location!", {
+        //         position: "top-right",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "light",
+        //     });
+        //     return;
+        // }
 
-        else {
+        // else {
             axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
                 // Assign to Coordinates object
                 var coordinates = {
@@ -139,7 +140,7 @@ function H2S() {
                 console.log(err)
             })
 
-        }
+        // }
     };
 
     let display_methods = <div className="box box_with_carousel">
@@ -166,8 +167,17 @@ function H2S() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
+                  
+
+
+
+
                     <h2 className='text-primary text-center'>Hydrogen Sulfide (H₂S)</h2>
                     <div className='container-wrapper'>
+            
+                    <BiHelpCircle size={'30px'} className="d-flex justify-content-end"/>
+
+
                         <div className='h2s'>
                          
                             <div className='text-center mt-5'>
@@ -192,17 +202,20 @@ function H2S() {
                                 </div>
                                 <br></br>
 
-                                <button onClick={initModal} className='btn btn-dark w-25' type="submit" value="Submit" >
+                                <button onClick={initModal} className='btn btn-success w-25' type="submit" value="Submit" >
                                     SUBMIT
                                 </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
                                     <p className='alert-light h2s-label'>
                                         Presence or absence of faecal contamination in water source may be indicated by colour change on H₂S paper strip test from white to black.
                                     </p>
-                                    <label className='alert alert-danger h2s-label w-75'>Warning: Remember to wear gloves when using H₂S  paper strips</label>
-                                    <label className='alert alert-light  h2s-label w-75'>Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    <label className='alert alert-danger h2s-label w-75'>Warning: Remember to wear gloves when using H₂S  paper strips
+                                    <br/>
+
+                                    Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
                                     Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
-                                    headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
+                                    headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.                                    </label>
+                                    {/* <label className='alert alert-light  h2s-label w-75'></label> */}
                                 </div>
 
                                 <section className='section-h2s'> 

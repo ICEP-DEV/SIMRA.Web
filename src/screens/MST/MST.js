@@ -171,7 +171,7 @@ const MST = () => {
       <div className='content'>
         
         <Header />
-        <h2 className='text-primary text-center'>Marker</h2>
+        <h2 className='text-primary text-center'>Microbial Source Tracking</h2>
         <div>
           <div className='container-wrapper'>
             <ToastContainer />

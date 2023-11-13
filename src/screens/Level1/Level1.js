@@ -19,8 +19,8 @@ function Level1() {
                      
                         <div className='main-level1'>
                             <div className='table3'>
-                                <Link to='/sanitaryInpection' class="btn btn-dark btn-sanitary">Sanitary Survey</Link>
-                                <Link to='/h2s_testing' className='btn btn-dark btn-sanitary'>H2S</Link>
+                                <Link to='/sanitaryInpection' class="btn btn-success btn-sanitary">Sanitary Survey</Link>
+                                <Link to='/h2s_testing' className='btn btn-success btn-sanitary '>H2S</Link>
                             </div>
                         </div>
                        

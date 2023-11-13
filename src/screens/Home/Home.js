@@ -1,11 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import image from '../../assets/borehole.jpg';
-import image1 from '../../assets/flowingriver.jpg';
-import image2 from '../../assets/dwater.avif';
+import image from '../../assets/dam101.jpg';
+import image1 from '../../assets/dam.jpg';
+import image2 from '../../assets/dam_kzn.jpg';
 import { Carousel } from 'react-responsive-carousel';
-import glassofwater from'../../assets/glassofwater.jpg';
 import './Home.css';
 import { useSelector } from 'react-redux';
 import MovingComponent from '../animations/component';
@@ -35,22 +34,22 @@ function Home() {
      
         <img src={image1} alt="Image 1" />
        
-     <p className="legend">Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</p>
+     
       </div>
       <div> 
         <img src={image2} alt="Image 2" />
-        <p className="legend">Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</p>
+      
       </div>
       <div>
         <img src={image} alt="Image 3" />
-        <p className="legend">Hi {user_info.user_firstname} {user_info.user_lastname}, Welcome To Simra</p>
+       
       </div>
       {/* Add more images as needed */}
     </Carousel>
 
 
     <section className='section-2 '>
-<h1 className='text-primary'>About Simra</h1>
+<h2 className='text-primary text-center'>About Simra</h2>
        
 
 
@@ -124,40 +123,19 @@ offering a comprehensive solution for assessing and managing microbial risks to 
           iteration="1"
           fillMode="none">
          
-            <h4 className='text-primary text-center'>Is your water safe for drinking purposes? </h4>
+            <h2 className='text-primary text-center'>Is your water safe for drinking purposes? </h2>
             <p className='para font_7 wixui-richtext_text text-center text-dark ' >
           While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
            Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
            Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
+         
             </p>
-
+          
         </MovingComponent>
 
       </section>
       
 
-      {/**About simra */}
-      
-      {/** contact us*/}
-      {/* <section className='section-3'>
-
-        <div className='card-contact mb-5  d-flex'>
-          <div className='card-content'>
-            <h1><HiOutlineMail /> Contact Us </h1>
-            <input className='input' placeholder='Name'></input>
-
-            <input className='input' placeholder='Email'></input>
-
-            <textarea type="text" id="message" name="message" rows="5" className="textarea" placeholder='Message'></textarea>
-
-            <button className="btn-send">Send</button>
-
-          </div>
-
-
-        </div>
-
-      </section> */}
       <footer>
 
 

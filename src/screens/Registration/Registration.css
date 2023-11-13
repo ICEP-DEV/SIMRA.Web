@@ -1,7 +1,7 @@
 .btn-reg
 {
     position: absolute;
-    background-color: #0063EA;
+    background-color:#198754;
     width: 150px;
     border: none;
     border-radius: 5px;
@@ -69,7 +69,7 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color:black;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,0 +1,97 @@
+.sub
+{
+    margin: 2% 0;
+    color: black;
+  
+}
+.content-w{
+  font-size: 20px;
+  min-height: 100vh;
+  padding: 50px;
+ }
+ .prof_head
+ {
+  font-weight: bold;
+  color:#00b1ff;
+  font-family: poppins;
+  text-align: center;
+ }
+.container-w{
+  padding-top: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #E1E4E8;
+  border-radius: 15px;
+  color: 	#00b1ff;
+  width: 70%;
+  height: 70vh;
+  text-align: center;
+}
+.profile-input{
+ width: 500px;
+border: none;
+border-bottom: 2px solid black;
+}
+ .profile-main
+{
+   padding: 15px;
+} 
+
+.profile-main h1{
+ 
+    margin-bottom: 55px;
+
+}
+.btn-updateSub {
+  padding: 15px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #000000;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.btn-updateSub:hover {background-color: #1064ff}
+
+.btn-updateSub:active {
+  background-color: #0f0f0ff8;
+  box-shadow: 0 5px #666;
+  transform: translateY(18px);
+}
+@media only screen and (max-width: 745px) {
+    
+    .sub{
+
+        margin: 5% 0;
+    }
+    input{width: 200px;}
+    .profile-main{
+        /* display: flex; */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        min-height: 80vh;
+        margin: auto;
+        padding: auto;
+       
+    }
+    p{
+        font-size: 14px;}
+    h1{
+        font-size: 1.5rem;
+      }
+      h4{
+        font-size: 1.125rem
+      }
+      .profile-input{
+        width: auto;
+      }
+      .btn-updateSub{
+        width: auto;
+        height: auto;
+      }
+    
+}

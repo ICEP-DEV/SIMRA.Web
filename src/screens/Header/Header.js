@@ -17,7 +17,7 @@ function Header() {
 
     return (
         
-            <div className="userHeader" ><Link className=""to="/profile">
+            <div className="userHeader" ><Link className="" to="/profile">
                 <FaUserAlt color="black" className='user_profile' /><label style={{color:'black'}}>{user_info.user_initial} {user_info.user_lastname}</label>
             </Link></div>
         

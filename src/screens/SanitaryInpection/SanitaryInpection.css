@@ -21,6 +21,16 @@
 .sanitary-submit{
     width: 100%;
 }
+.headerModal{
+    text-align: center;
+    font-weight: bold;
+}
+.methods {
+    margin-top: 5%;
+}
+.controlMethods{
+    margin-top: 2%;
+}
 .risk_parce{
     height: 10%;
     width: 100%;
@@ -35,6 +45,10 @@
 }
 .low_risk{
     background-color: rgba(0, 128, 0, 0.719);
+    width: 90%;
+    border-radius: 10px;
+   padding: 10px;
+   align-self: center;
 }
 
 .medium_risk {
@@ -89,10 +103,20 @@
 .form-header{
     font-size: 1.1em;
     font-weight: 600;
+    padding-top: 40px;
 }
 .questinare,.form-check-input{
     width: 50%;
     font-weight: 600;
+    text-align: left;
+}
+.form_content .form-check-input::before{
+    padding: 10px;
+}
+.form_content .form-check-input:checked{
+    background-color:blue;
+    padding: 10px;
+
 }
 
 .yes_no{
@@ -120,14 +144,15 @@
     
     .sanitaryInpection
     {
-        height: 80vh;
+        min-height: 80vh;
         margin-bottom: 2%;
-        width: 80%;
+        min-width: 80%;
+        padding-bottom: 5%;
     }
     #flexSwitchCheckDefaultSI{
         position:absolute;
-        left: 64%;
-        width: 5%;
+        left: 80%;
+        width: 15%;
     }
     .sanitary-btn
     {
