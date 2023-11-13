@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Survay_Report.css';
 import axios from 'axios';
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
-import Header from '../../Header/Header'
 
 function Survay_Report() {
 
@@ -62,14 +61,13 @@ function Survay_Report() {
   }
 
   return (
-    <div className='hero-all' >
+    <div className='hero-all'>
       <div className='sidenav'>
         <AdminSideBar />
       </div>
       <div className='main-all'>
         <div className='content'>
-          <Header />
-          <div className='container-wrapper'>
+          <div className='container-wrap'>
             <h2>Sanitary risk core (percentage and risk characterization rating)</h2>
             <div className='report-header'>
               <select value={CurrentYear} onChange={(e) => setCurrentYear(e.target.value)}>
@@ -84,12 +82,12 @@ function Survay_Report() {
                 ))}
               </select>
 
-              <select onChange={(e) => setProvince(e.target.value)}>
-                <option value=''>Province</option>
-                {Provinces.map((province, xid) => (
-                  <option key={xid} value={province.province_id} >{province.province_name}</option>
-                ))}
-              </select>
+                <select onChange={(e) => setProvince(e.target.value)}>
+                  <option value=''>Province</option>
+                  {Provinces.map((province, xid) => (
+                    <option key={xid} value={province.province_id} >{province.province_name}</option>
+                  ))}
+                </select>
               <button onClick={display_search_report} className="btn btn-primary btn-search-report">Search</button>
 
             </div>
@@ -114,7 +112,7 @@ function Survay_Report() {
 
                         {/* Municipality name */}
                         <div className='municipal-name'>
-                          {report.muni_name}<br />({report.type})
+                          {report.muni_name}<br/>({report.type})
                         </div>
                         <div>
                           <table>
@@ -128,12 +126,12 @@ function Survay_Report() {
 
                             </tr>
                             <tr>
-                              <td>Risk Score Rating</td>
+                            <td>Risk Score Rating</td>
                               <td>&nbsp; : {report.risk_type}</td>
                             </tr>
                           </table>
-
-                        </div>
+                          
+                          </div>
                       </div>
                     </div>
                   </div>

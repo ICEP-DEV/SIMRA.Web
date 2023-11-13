@@ -8,12 +8,12 @@ import { useSelector } from 'react-redux';
 import PooUp from '../../../Pop_Up/Pop_Up'
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import methods from '../../../../Data/methods';
 import { useNavigate } from 'react-router-dom';
-import { BiSolidCommentCheck } from 'react-icons/bi';
+
 
 function SanitaryInpection() {
     var navigate = useNavigate()

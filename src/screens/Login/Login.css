@@ -5,197 +5,172 @@
 
     100% {}
 }
-
-.all-contents {
+.all-contents 
+{
     background-size: 100%;
-    height: 100%;
-    padding: 3.82%;
-    background-image: url('./back.PNG');
-}
+   height: 100vh;
+  background: #fff;
+ 
+ font-family: 'Poppins';
+ padding-top: 10%;
+    
+} 
 
-.background {
-    background-color: #0063EA;
-    height: 100vh;
-}
 
 .login {
     animation: 1s ease-out 0s 1 slideInLeft;
     padding: 40px;
 }
-
-.login-container {
-    box-shadow: 8px 4px 8px 4px rgba(0, 0, 0, 0.2);
-    background-color: #0063EA;
-    width: 1054px;
-    height: 613px;
+.login-container
+{
+    animation: 1s ease-out 0s 1 slideInLeft;
+    box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.2);
+    background-color: black;
+    border-radius: 15px;
+    width: 454px;
+    height: 513px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
-}
+    padding-top: 1%;
 
-.login-card {
+}
+.login-card
+{
     width: 727px;
     height: 613px;
-    margin-left: 200px;
-    /* Same as the width of the sidebar */
+    margin-left: 200px; /* Same as the width of the sidebar */
     padding: 0px 10px;
     background-color: #fff;
     float: right;
     border-top-left-radius: 80px 80px;
-    border-bottom-left-radius: 80px 80px;
+    border-bottom-left-radius:80px 80px ;
 }
-
-.login-txt {
+.login-txt 
+{
     position: absolute;
     left: 20%;
     top: 20%;
 }
+.input-login {
+
+   width: 60%;
+    padding: 12px 20px;
+  margin: 8px 0;
+  margin-top: 10%;
+  border: none;
+ background-color: #fff;
+ border-radius: 20px;
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+}
+img{
+    width:50px
+}
+.side-login
+{
+height: 100%;
+width: 150px;
+position: absolute;
+left: 0;
+top: 0;
+padding-top: 40px;
+float: left;
+
+}
+.main-login
+{
+position:relative;
+top: 10%;
+margin-left: 150px;
+font-size: 18px;
+height: 613px;
+
+}
+
+.welcome .logo-login 
+{
+
+ margin-bottom: 95%;
+ margin-top: 10%;
+}
+
+.login-grid .btn-login 
+{
+    /* position: absolute; */
+    background-color:#198754;
+    font-size: larger;
+    width: 150px;
+    border: none;
+    border-radius: 5px;;
+    padding: 5px;
+    color: #fff;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.txt-signup
+{
+   
+    margin-top:111px;
+   
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo-login
+{
+    width: 100px;
+}
+/*
+.header-txt 
+{
+ margin-bottom: 10%;
+}*/
+@media only screen and (max-width: 768px) {
+    .all-contents 
+{
+  
+   
+    
+ min-height: 100%;
+
+    width: 100%;
+
+} 
+
+.login-container
+{
+  
+    width: 70%;
+ 
+}
+
 
 .input-login {
 
-    width: 90%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: none;
-    border-bottom: 2px solid black;
+   width: 80%;
+font-size: 9px;
+ 
+  
 }
 
-img {
-    width: 50px
+.login-grid .btn-login 
+{
+  
+    
+     font-size: 12px; 
 }
-
-.side-login {
-    height: 100%;
-    width: 150px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding-top: 40px;
-    float: left;
-
-}
-
-.main-login {
-    position: relative;
-    top: 10%;
-    margin-left: 150px;
-    font-size: 18px;
-    height: 613px;
+.txt-signup
+{
+  
+  
+  font-size: 11px;}
 
 }
 
-.login-container .welcome {
-    position: absolute;
-
-    left: 25%;
-    color: #fff;
-}
-
-.welcome .logo-login {
-
-    margin-bottom: 340px;
-    margin-top: 10%;
-}
-
-.login-grid {
+.form-group{
     display: flex;
     flex-direction: column;
-}
-
-.login-grid .btn-login {
-    background-color: #0063EA;
-    width: 150px;
-    border: none;
-    border-radius: 5px;
-    margin-left: 25%;
-    padding: 5px;
-    color: #fff;
-}
-
-.header-txt {
-    margin-bottom: 10%;
-}
-
-.register-form {
-    height: 600px;
-    overflow: hidden;
-    overflow-y: auto;
-    text-align: left;
-}
-
-
-
-@media only screen and (max-width: 768px) {
-    .all-contents {
-
-        /* height: 100vh; */
-        background-size: 100%;
-        background-color: #0063EA;
-        width: 90vh;
-        position: fixed;
-    }
-
-    .login-container {
-
-        width: 90%;
-        height: 80%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10%;
-        position: fixed;
-    }
-
-    .login-card {
-        width: 60%;
-        height: 100%;
-    }
-
-    .input-login {
-        width: 80%;
-        font-size: 9px;
-    }
-
-    .side-login {
-        height: 100%;
-        width: 150px;
-    }
-
-    .main-login {
-
-        top: 10%;
-        margin-left: 20%;
-        font-size: 18px;
-        height: 80%;
-        width: 80%;
-
-    }
-
-    .login-container .welcome {
-        position: absolute;
-
-        left: 2%;
-        font-size: 10px;
-        width: 30%;
-
-    }
-
-    .welcome .logo-login {
-        /* position: absolute; */
-        top: -130%;
-
-    }
-
-    .login-grid .btn-login {
-        width: 30%;
-        font-size: 12px;
-        margin-left: 2%;
-    }
-
-    .txt-signup {
-        font-size: 11px;
-        margin-top: 100px;
-    }
-
 }

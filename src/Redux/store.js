@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist'
 
 import UserReducer from "./user"
 import samplingReducer from "./sampling_data";
+import fibReducer from "./fib_mst";
 
 const persistConfig = {
   key: "root",
@@ -13,7 +14,8 @@ const persistConfig = {
 
 const reducer = combineReducers({
   user: UserReducer,
-  sampling: samplingReducer
+  sampling: samplingReducer,
+  fib_mst: fibReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer);
