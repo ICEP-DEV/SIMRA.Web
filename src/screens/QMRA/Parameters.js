@@ -77,12 +77,25 @@ export default function QMRAApp() {
       is_customized_mst: fib_mst_info.is_customized_mst,
       pathogen: fib_mst_info.pathogen
     }
-    console.log(qmra_data)
+
+    var reference_path = {
+      beta: fib_mst_info.beta,
+      alpha: fib_mst_info.alpha,
+      constant: fib_mst_info.constant,
+      n50: fib_mst_info.n50,
+      best_fit_model: fib_mst_info.best_fit_model,
+      count: Number(fib_mst_info.count),
+      is_customize_Pathogen: false,
+      pathogen: fib_mst_info.pathogen
+    }
+
+    console.log(reference_path)
 
     //Call in sampling data api
     axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
       qmra_data.samplingId = response.data.insertedId
       mst_data.samplingId = response.data.insertedId
+      reference_path.samplingId = response.data.insertedId
       // Assign to Coordinates object
       var coordinates = {
         latitude: sampling_info.latitude,
@@ -131,6 +144,30 @@ export default function QMRAApp() {
       }
       else if (fib_mst_info.type === 'mst') {
         axios.post("http://localhost:3001/api/mst", mst_data)
+          .then((result) => {
+            if (result.data.success === true) {
+              toast.success("Successfully tested, the results will display on popup....", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              setPopupoResults(true)
+              setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
+              setQmraId(result.data.qmra_id)
+            }
+
+          }, err => {
+            console.log(err)
+          })
+      }
+
+      else if (fib_mst_info.type === 'ref_path') {
+        axios.post("http://localhost:3001/api/reference_pathofen", qmra_data)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {

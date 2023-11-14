@@ -60,26 +60,6 @@ function Navbar() {
     };
 
 
-    /*function logout() {
-        dispatch(remove_details());
-        dispatch(remove_sample_details())
-
-        axios.get('logout',
-
-        ).then(response => {
-            if (response.data) {
-                console.log(response.data)
-
-
-                localStorage.removeItem('jsonwebtoken')
-
-            }
-        }).catch(error => {
-            console.log(error)
-        }
-        navigate("/")
-    })*/
-
     return (
         <div className="topnav">
             <div className="logo">
@@ -117,7 +97,7 @@ function Navbar() {
                         <li className='dropdown-item' onClick={() => navigate('/survay_logs')}>Sanitary</li>
                         {(UserType === 2 || UserType === 3) && (<span>
 
-                            <li className='dropdown-item' onClick={() => navigate('/qmra_logs')}>QMRA</li>
+                            <li className='dropdown-item' onClick={() => navigate('/qmra_logs')}>FIB</li>
                         </span>)}
 
                         {(UserType === 3) && (<span>
@@ -127,29 +107,7 @@ function Navbar() {
                     </ul>
 
                 </li>
-
-                {/* <li className="navbar-subs" onClick={report}>Report</li> */}
                 <li className="navbar-subs"><button className=" btn btn-success fw-bold" onClick={logout}>Signout</button></li>
-                {/* <div className="navbar-subs" onClick={() => navigate('/home')}><span className="nav-label">Home</span></div>
-                <div className="navbar-subs" onClick={Profile}><span className='nav-label'>Profile</span></div>
-                
-                <div className="navbar-subs" onClick={data}><span className="nav-label">Sampling Data</span></div>
-                
-                <div className="navbar-subs" onClick={report}><span className="nav-label">Report</span></div> */}
-                {/* <div className="navbar-subs dropdown">
-                    <span className="nav-label">Levels</span>
-                    {UserType === 2 && (<span>
-                        <Link className='dropdown-link' to=''>Level 1</Link>
-                        <Link className='dropdown-link' to=''>Level 2</Link>
-                    </span>)}
-                    {UserType === 3 && (<span>
-                        <Link className='dropdown-link' to=''>Level 1</Link>
-                        <Link className='dropdown-link' to=''>Level 2</Link>
-                        <Link className='dropdown-link' to=''>Level 2</Link>
-                    </span>)}
-                </div> */}
-                {/* <div className="navbar-subs" onClick={report}><span className="nav-label">Events</span></div>
-                <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div> */}
             </div>
             <div className="hamburger" onClick={toggleNav}>
                 <GiHamburgerMenu />

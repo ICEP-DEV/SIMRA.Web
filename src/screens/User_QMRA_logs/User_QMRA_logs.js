@@ -167,7 +167,7 @@ function User_QMRA_logs() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>QMRA Logs</h2>
+                    <h2 className='text-primary text-center'>FECAL INDICATOR BACTERIA (FIB) Logs</h2>
                     <div className='container-wrap'>
                    
                     <div className='report-header  '>
@@ -270,8 +270,8 @@ function User_QMRA_logs() {
                                             <td className="survey_td _td">{report.muni_name}</td>
                                             <td className="survey_td">{report.sample_date}</td>
                                             <td className="survey_td">{report.indicator}</td>
-                                            <td className="survey_td">{report.estimated_count}</td>
                                             <td className="survey_td">{report.pathogen}</td>
+                                            <td className="survey_td">{report.estimated_count}</td>
                                             <td className="survey_td">{report.probability_of_infection}</td>
                                             <td className="survey_td">{report.likelihood_of_infection}</td>
                                         </tr>

@@ -166,7 +166,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>Sanitary Logs</h2>
+                    <h2 className='text-primary text-center'>Sanitary Inspections Logs</h2>
                     <div className='container-wrap'>
 
                         <div className='report-header  '>

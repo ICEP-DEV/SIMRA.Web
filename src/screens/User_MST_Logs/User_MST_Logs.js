@@ -164,7 +164,7 @@ function User_MST_Logs() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>MST Logs</h2>
+                    <h2 className='text-primary text-center'>MICROBIAL SOURCE TRACKING(MST) Logs</h2>
                     <div className='container-wrap'>
                      
                     <div className='report-header  '>
@@ -252,7 +252,7 @@ function User_MST_Logs() {
                                     <tr className="survey_tr">
                                         <th className="survey_th _th">Municipalities</th>
                                         <th className="survey_th">Date</th>
-                                        <th className="survey_th ">Maker gene</th>
+                                        <th className="survey_th ">Marker gene</th>
                                         <th className="survey_th ">Estimated Count</th>
                                         <th className="survey_th ">Pathogen</th>
                                         <th className="survey_th ">probability</th>
