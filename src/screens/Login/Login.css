@@ -28,12 +28,17 @@
     background-color: black;
     border-radius: 15px;
     width: 454px;
-    height: 513px;
+    height: 650px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding-top: 1%;
 
+}
+.forgotpasswd
+{
+    margin-left: 55%;
+    color: #fff;
 }
 .login-card
 {
@@ -89,17 +94,17 @@ height: 613px;
 
 }
 
-.welcome .logo-login 
+/* .welcome .logo-login 
 {
 
  margin-bottom: 95%;
  margin-top: 10%;
-}
+} */
 
 .login-grid .btn-login 
 {
     /* position: absolute; */
-    background-color:#198754;
+    /* background-color:#198754; */
     font-size: larger;
     width: 150px;
     border: none;
@@ -121,13 +126,16 @@ height: 613px;
 }
 .logo-login
 {
-    width: 100px;
+    width: 140px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
 }
-/*
+
 .header-txt 
 {
- margin-bottom: 10%;
-}*/
+    text-transform: uppercase;
+}
 @media only screen and (max-width: 768px) {
     .all-contents 
 {

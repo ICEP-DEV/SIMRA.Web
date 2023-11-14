@@ -422,7 +422,7 @@ function Login() {
             </div>
         </div>
         <div className='form-group'>
-            <button className='btn-reg' onClick={handleRegistration}>Create Account</button>
+            <button className='btn btn-primary btn-reg' onClick={handleRegistration}>Create Account</button>
         </div>
 
     </div>
@@ -498,13 +498,13 @@ function Login() {
                 
               
 
-                  
+                  <img src={logo1} className='logo-login' />
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
                         <h3 className='header-txt text-light text-center mt-3'><b>Sign In </b></h3>
                         <div className='mb-4'>
-                            {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
-                            <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
+                            {/* <label htmlFor'username' className='lables'>Username</label> <br /> */}
+                            <input className='border border-primary input-login ' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
                             <small>
 
                             </small>
@@ -512,13 +512,14 @@ function Login() {
 
                         <div className='mb-5'>
                             {/* <label htmlFor='password'>Password</label> <br /> */}
-                            <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
+                            <input className='border border-primary input-login ' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
 
                             <small>
                                 {/* <div className="form-check">
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                      <label className="form-check-label" for="exampleCheck1">Remember me</label> 
                                 </div> */}
+                                <label className='forgotpasswd text'>Forgot Password?</label>
                             </small>
                         </div>
 
@@ -530,7 +531,7 @@ function Login() {
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn-login  mb-5' onClick={onSuccess}>Sign In</button>
+                            <button className='btn btn-primary btn-login  mb-5' onClick={onSuccess}>Sign In</button>
                             <br></br>
                           
                               <div  className='txt-signup '>
