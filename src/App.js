@@ -12,6 +12,8 @@ import Municipality from './screens/Municipality/Municipality';
 import Report from './screens/Municipality_Report/Report'
 import Survay_Report from './screens/Survay_Report/Survay_Report';
 import H2S_Report from './screens/H2S_Report/H2S_Report';
+import  Add_Events from './screens/Events_admin/Events_admin'
+import  Events from './screens/Events/Events'
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
  import  UserProfileUpdate from './screens/Profile/Profile';
@@ -36,6 +38,9 @@ function App() {
         <Route exact path='/sanitary_report' element={<Survay_Report />} />
         <Route exact path='/h2s_report' element={<H2S_Report />} />
         <Route exact path='/profile' element={< UserProfileUpdate />} />
+        <Route exact path='/add_events' element={< Add_Events />} />
+        <Route exact path='/events' element={< Events />} />
+        
 
         
         
