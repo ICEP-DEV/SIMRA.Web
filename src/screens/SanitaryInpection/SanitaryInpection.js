@@ -22,6 +22,10 @@ import pit from '../../assets/public_toilet.jpg';
 import farming from '../../assets/farm.jpg';
 import waterwaste from '../../assets/wasterwater.jpg';
 import { api } from '../../Data/API';
+import slider from '../../Data/slider';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function SanitaryInpection() {
     var navigate = useNavigate()
@@ -230,6 +234,38 @@ function SanitaryInpection() {
     const modalClosesing = () => {
         return invokeModalsing(false)
     }
+
+    const settings = {
+        dots: true,
+        centerMode: true,
+    centerPadding: '10px',
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 6000,
+      cssEase: "linear",
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: false,
+            slidesToShow: 1,
+          },
+        },
+      ],
+    
+      };
+
     return (
 
         <div className='hero-all' >
@@ -416,58 +452,27 @@ function SanitaryInpection() {
                     </ul>
                     <label>The level of safety of the water source can be rated from risk score (e.g. very high risk (7-8), high risk (5-6), medium risk (3-4) and low risk (1-2)).</label>
                 </div> */}
-                    <section className='section-h2s'>
-                        <div className='h2s-cards row align-items-start justify-content-around mb-5'>
-                            <h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
-                            <div className='card' >
-                                <div class="card-header">
-                                    domestic animals
-                                </div>
+                    
+                <section className='section-h2s mx-5'>
+                <h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
+                   
 
-                                <div className='card-body'>
-                                    <img className='' style={{ width: '100%', height: '250px' }} src={domestic_animal} alt="domestic animals" />
-                                </div>
+                <Slider {...settings}>
+                {slider.map((d) => (
+                <div className='alert alert-secondary text-dark w-75 '>
+                    <div 
+                    className='p-2 text-center'> {d.heading}
+                    </div>
+                <div className='image-div w-75 flex justify-center '>
+                    <img src={d.image} className='image-sani w-100 rounded' />
+                    </div>
+                </div>
+                ))}
 
-                            </div>
-                            <div className='card' style={{ width: '18rem' }}>
-                                <div class="card-header">
-                                    Diapers Disposal
-                                </div>
-
-                                <div className='card-body'>
-                                    <img className='' style={{ width: '100%', height: '250px' }} src={diapers} />
-                                </div> </div>
-                            <div className='card' style={{ width: '18rem' }}>
-                                <div class="card-header">
-                                    Open defaction
-                                </div>
-                                <div className='card-body'>
-
-                                    <img className='card-img-top' style={{ width: '100%', height: '250px' }} src={pit} alt="pit toilets" />
-                                </div> </div>
+                </Slider> 
 
 
-                            <div className='card' style={{ width: '18rem' }}>
-
-                                <div class="card-header">
-                                    Agricultural Activities
-                                </div>
-
-                                <div className='card-body' style={{ font: '16px' }}>
-                                    <img className='' style={{ width: '100%', height: '250px' }} src={farming} />
-                                </div> </div>
-
-
-                            <div className='card' style={{ width: '18rem' }}>
-
-                                <div class="card-header">
-                                    waste Water
-                                </div>
-                                <div className='card-body'>
-                                    <img className='' style={{ width: '100%', height: '250px' }} src={waterwaste} />
-                                </div>
-                            </div>
-                        </div>
+                   
                     </section>
                 </div>
 

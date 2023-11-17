@@ -176,10 +176,11 @@ const MST = () => {
           <div className='container-wrapper'>
             <ToastContainer />
             <div id='fib_section'>
+            <div className='group ' >
               <div className='fib_selection'>
                 {/* <label className='fib_selection_label'> Select an Marker</label> */}
                 <select
-                  className='form-select-lg mb-3 mt-5'
+                  className='selection-fib  form-select-lg mb-3 mt-5'
                   onChange={(event) => handlemstselection(event.target.value)} >
                   <option value="">Select Marker</option>
                   {Makers.map((mst, xid) => (
@@ -192,7 +193,7 @@ const MST = () => {
               <div className='reference_selection'>
                 {/* <label className='reference_selection_label'>Reference Pathogen</label> */}
                 {selectedMST.maker !== 'Other' && <select
-                  className='form-select-lg mb-3 mt-5'
+                 className='selection-fib  form-select-lg mb-3 mt-5'
                   onChange={(event) => handlePathogenRatio(event.target.value)} >
                   <option value="">Reference Pathogen</option>
                   {ReferencePath.map((pathogen, xid) => (
@@ -245,26 +246,26 @@ const MST = () => {
                   </div>
                 </span>}
               </div>
-
+</div>
 
               {selectedMST.maker !== 'Other' &&
-                <div id='fib_content' style={{ width: '25%' }}>
+                <div id='fib_content'>
 
 
-                      <div className='group ' style={{ display: 'flex'}}>
-                      <div className='' style={{ margin: '20px' }}>
+                      <div className='group ' >
+                      <div className='form-group' >
                       <label className='mst_label'>Marker</label>
                     <input className='mt-2' type='text' value={Maker} disabled />
                       </div>
-                      <div className='' style={{ margin: '20px' }}>
+                      <div className='form-group' >
                       <label className='mst_label'>Ratio</label>
                     <input className='mt-2' type='text' value={Ratio} disabled />
                       </div>
-                      <div className='' style={{ margin: '20px' }}>
+                      <div className='form-group' >
                       <label className='mst_label'>Pathogen</label>
                     <input className='mt-2' type='text' value={Pathogen} disabled />
                       </div>
-                      <div className='' style={{ margin: '20px' }}>
+                      <div className='form-group' >
                       <label className='mst_label'>Best Fit Model</label>
                     <input className='mt-2' type='text' value={BestFitModel} disabled />
                       </div>
@@ -304,19 +305,21 @@ const MST = () => {
                   </div>
                 </div>}
 
-              <br></br>
-              <p>Enter The Count:</p>
-              <input
-                type="number"
-                onChange={(event) => setUserCount(event.target.value)}
-              />
+                <div className='count-fib'>
+                        <p>Enter The Count:</p>
+                        <input
+                            type="number"
+                            onChange={(event) => setUserCount(event.target.value)} 
+                        />
+                        </div>
+                        
             </div>
-            <button className='btn btn-dark w-25 mt-4' onClick={next_to_qmra}>Next</button>
+            <button className='btn btn-success w-25 mt-4' onClick={next_to_qmra}>Next</button>
           </div>
         </div>
 
 
-      </div>
+      </div><div className='mt-5'></div>
       <footer><Footer /></footer>
     </div>
   );

@@ -181,12 +181,12 @@ function User_H2S_Logs() {
           
             <div className='report-header  '>
             <div id='search_date ' >
-            <table className="table-logs table table-bordered w-75">
+            <table className="table-logs-date table table-bordered w-50">
     <thead className='thead-dark'>
     <tr>
       
-      <th scope="col ">Start Date</th>
-      <th scope="col">End Date</th>
+      <th scope="col " className='report-heading'>Start Date</th>
+      <th scope="col" className='report-heading'>End Date</th>
      
     </tr>
   </thead>
@@ -201,7 +201,7 @@ function User_H2S_Logs() {
    
   </tbody>
 </table>
-<button onClick={display_search_report} className="btn btn-success btn-search-report w-25 mb-5">Show Results</button>
+<button onClick={display_search_report} className="btn btn-success btn-search-report  mb-5">Show Results</button>
             </div>
               {/* <div id='search_date ' >
                 <span className='survey_date'>
@@ -220,17 +220,17 @@ function User_H2S_Logs() {
     <thead className='thead-dark'>
     <tr>
       
-      <th scope="col ">WeekDays</th>
-      <th scope="col">Province</th>
-      <th scope='col'>Municipalities</th>
+      <th scope="col " className='report-heading'>WeekDays</th>
+      <th scope="col" className='report-heading'>Province</th>
+      <th scope='col' className='report-heading'>Municipalities</th>
      
     </tr>
   </thead>
   <tbody>
     <tr  scope="row">
     
-      <td className="w-25"> 
-      <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100">
+    <td className="w-25"> 
+      <select onChange={(event) => search_by_weekday(event.target.value)} className=" w-100 p-2">
                     <option value=''>All Weekdays</option>
                     <option value='Monday'>Monday</option>
                     <option value='Tuesday'>Tuesday</option>
@@ -244,8 +244,8 @@ function User_H2S_Logs() {
         
              
                   {/* <label>Province</label> */}
-                  <td className="w-25">
-                  <select onChange={(e) => filter_by_province(e.target.value)} className="w-75">
+                  <td className="w-25"> 
+                  <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
                     <option value=''>All Provinces</option>
                     {Provinces.map((province, xid) => (
                       <option key={xid} value={province.province_id} >{province.province_name}</option>
@@ -253,8 +253,8 @@ function User_H2S_Logs() {
                   </select>
                
                   </td>
-                 <td className="w-25">
-                 <select onChange={(e) => filter_by_municipality(e.target.value)} style={{marginLeft:'35px'}} >
+                  <td className="w-25"> 
+                 <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
                     <option value=''>All Municipalities</option>
                     {Municipalities.map((muni, xid) => (
                       <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>

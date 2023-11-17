@@ -125,10 +125,10 @@
 }
 
 /* Show/hide navigation links for smaller screens */
-@media (max-width: 1086px) {
+/* @media (max-width: 1086px) {
   .topnav{
     /* padding-left: 5%;
-    padding-right:10%; */
+    padding-right:10%; 
     justify-content: space-between;
   }
   .logo{
@@ -162,12 +162,12 @@
   }
   .navbar-subs a img{
     display: none;
-  }
+  } */
   /* .logo a img{
     visibility: visible;
    
   } */
-}
+/* } */
   
   /*  Hover dropdown collaps */
   .dropbtn {

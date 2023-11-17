@@ -136,4 +136,8 @@
         background-color: rgb(7, 65, 224);
         color: white;
       }
+      .container-wrapper
+      {
+       padding-bottom: 5%;
+      }
     }
