@@ -1,0 +1,96 @@
+
+#fib_section{
+    text-align: left;
+    padding-left: 10%;
+}
+.fib_selection_label, .reference_selection_label{
+    width: 20%;
+}
+.container-fib
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.reference_selection
+{
+    width: 100%;
+    margin: 0 15%;
+}
+.selection-fib 
+{
+    width: 500px;
+}
+.group
+{
+    display: flex;
+  
+}
+.form-group
+{
+    margin: 20px 20px 20px 0px;
+}
+
+@media screen and (max-width: 1480px) {
+.container-fib .group
+{
+  display: flex;
+
+  flex: column;
+}
+#fib_section
+{
+    text-align: left;
+    padding-left: 0;
+}
+.input_fib
+{
+    width: 65%;
+}
+.selection-fib 
+{
+    width: 75%;
+   
+}
+.container-fib
+{
+    
+  display: inline-block;
+  width: 100%;
+}
+.reference_selection, .fib_selection
+{
+    margin: 0 ;
+    margin-left: 10%;
+    width: 100%;
+}
+.container-fib .fib_content
+{
+    width: 100%;
+}
+.group
+{
+   
+    flex-direction: column;
+    
+}
+.form-group
+{
+    
+   width: 100%;
+   margin: 10px;
+   margin-left: 10%;
+}
+.mst_label
+{
+    font-size: 16px;
+}
+.count-fib
+{
+    margin-left: 10%;
+}
+.btn-next
+{
+    margin-bottom: 10%;
+}
+}
+

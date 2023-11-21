@@ -63,10 +63,10 @@ return(
           fillMode="none">
             
           <p className='para ' >
-          	<h4 >What are the households' water treatment methods?</h4>
-            <li>Boiling: Bring the water to a rolling boil and maintain it for at least 5 minutes. Allow the water to cool before use. </li>
+          	<h4 >What are the households water treatment methods?</h4>
+            <li>Boiling: Bring the water to a rolling boil and maintain it for at least one minute. Allow the water to cool before use. </li>
             <li>SODIS (Solar Water Disinfection): Fill clear, plastic bottles with water and leave them in direct sunlight for at least six hours (or longer if it cloudy). disinfect the water. </li>
-            <li> Chemical Disinfection: Add a cap full of bleach in 25l of water. Allow the treated water to sit for a specific contact time before consuming.</li>
+            <li> Chemical Disinfection: Add a cap full of bleach in 25L of water. Allow the treated water to sit for a specific contact time before consuming.</li>
             <li>Filtration: Choose a water filter certified for the removal of specific contaminants (e.g., use a cloth folded 8 times/ clay pots/ceramic filters). </li>
             <br></br>
             “Everyone has the right to have access to sufficient food and water.” </p>

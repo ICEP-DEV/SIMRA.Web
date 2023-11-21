@@ -3,13 +3,16 @@
    
     background-color:#26272b;
     padding:45px 0 20px;
-    font-size:15px;
+    font-size:17px;
     line-height:24px;
-    color:#737373;
+    color:#a7a4a4;
 }
 .contact-info hr{
     border-top-color:#bbb;
   opacity:0.5
+}
+.personName{
+    font-weight: bold;
 }
 .contact-info hr.small
 {
@@ -43,9 +46,46 @@
   padding-left:0;
   margin-bottom:0;
   list-style:none;
-
+ display: flex;
 }
 .social-icons link{
-    display: inline;
+    display:inline-table;
     margin-bottom: 4px;
+}
+.socials
+{
+  background-color: #bbb;
+  border-radius: 50%;
+  width: 350px;
+  height: 100px;
+}
+.social-subs
+{
+    margin: 5% 0;
+    width: 150px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+
+}
+.social-subs .facebook:hover
+{
+    background-color: rgb(23, 49, 197);
+    width: 50px;
+    
+}
+.social-subs .instagram:hover
+{
+background-color: #a20043;
+align-items: center;
+
+}
+.social-subs .linkedin:hover
+{
+    background-color: #43b0f1;
+}
+.social-subs .twitter:hover
+{
+    background-color: #a3b7ca;
+    color: black;
 }

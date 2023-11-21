@@ -4,24 +4,49 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-   
+    text-align: center;
     width: 90%;
-    height: 70vh;
+    min-height: 80vh;
     background-color: #e1e4e8;
-    border-radius: 15px;
 
 }
-
+.header_form_label 
+{
+    align-items: left;
+}
+.head_si{
+    text-align: center;
+  
+}
 .sanitary-submit{
     width: 100%;
+}
+.headerModal{
+    text-align: center;
+    font-weight: bold;
+}
+.methods {
+    margin-top: 5%;
+}
+.controlMethods{
+    margin-top: 2%;
 }
 .risk_parce{
     height: 10%;
     width: 100%;
 }
-
+.form_content{
+    justify-content:center
+}
+#flexSwitchCheckDefaultSI{
+    width: 100px;
+}
 .low_risk{
     background-color: rgba(0, 128, 0, 0.719);
+    width: 90%;
+    border-radius: 10px;
+   padding: 10px;
+   align-self: center;
 }
 
 .medium_risk {
@@ -45,42 +70,71 @@
 }
 
 .box_with_carousel{
-    height: 500px;
+    height: 400px;
     overflow: hidden;
     overflow-y: auto;
     text-align: left;
 }
-
+.carousel-sanitary
+{
+    width: 90%;
+}
 .method_img{
-    height: 300px;
+    height: 400px;
     width: 90%;
 }
 
 .image_method_class{
-    height: 300px;
-    width: 50%;
+    height: 200px;
+    width: 30%;
 }
 .slide
 {
     color: black;
 }
 
-
+.image-sani
+{
+    height: 250px;
+    
+}
+.image-div 
+{
+    display:block;
+   margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+}
 /*///////////////////////////////////////////////////////////////////////////////////*/
 
 .form-header, .form_content{
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .form-header{
     font-size: 1.1em;
     font-weight: 600;
+    padding-top: 40px;
 }
-.questinare,.form-check-input .yes_no{
+.questinare,.form-check-input{
     width: 50%;
     font-weight: 600;
-    margin-left: 1%;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.card-header{
+    text-transform: capitalize;
+}
+
+.form_content .form-check-input::before{
+    padding: 10px;
+}
+.form_content .form-check-input:checked{
+    background-color:blue;
+    padding: 10px;
+
 }
 
 .yes_no{
@@ -100,20 +154,18 @@
 {
     min-width: 100wh;
 }
-.sanitary-btn
-{
-    
-}
 @media (max-width: 768px) {
     .questinare,.form-check-input{
         width: 90%;
         font-size: 0.8em;
     }
+    
     .sanitaryInpection
     {
-        height: 80vh;
+        min-height: 80vh;
         margin-bottom: 2%;
-        width: 80%;
+        min-width: 80%;
+        padding-bottom: 5%;
     }
     .sanitary-btn
     {
@@ -121,5 +173,13 @@
         margin-left: auto;
         margin-right: auto;
     }
-   
+    .yes_no{
+        width: 30%;
+    }
+    .section-h2s h2 
+    {
+font-size: 18px;
+text-align: center;
+margin-right: 20%;
+    }
 }

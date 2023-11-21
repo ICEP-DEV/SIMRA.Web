@@ -10,36 +10,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function QMRAApp() {
-  const [selectedOrganism, setSelectedOrganism] = useState('Campylobacter jejun');
-  const [count, setCount] = useState('');
-  const [alpha, setAlpha] = useState(null);
-  const [beta, setBeta] = useState(null);
-  const [n50, setN50] = useState(null);
-  const [Constant, setConstant] = useState(null);
-  const [Parameters, setParameters] = useState([]);
-  const [result, setResult] = useState('');
-  const [Pathogen, setPathogen] = useState([]);
-  const [TempPathogen, setTempPathogen] = useState([]);
-  const [IsfoundPath, setIsfoundPath] = useState(false);
-  const [bestFit, setBestFit] = useState('');
-  const [Longitude, setLongitude] = useState('');
-  const [Latitude, setLatitude] = useState('');
   let [IsCustomizePathogen, setIsCustomizePathogen] = useState(false);
   let fib_mst_info = useSelector((state) => state.fib_mst.value);
   let sampling_info = useSelector((state) => state.sampling.value);
   let [ProbabilityOfInfection, setProbabilityOfInfection] = useState(0);
   let [PopupoResults, setPopupoResults] = useState(false);
-  let [Selectedathogen, setSelectedathogen] = useState('');
   let [IsLikelihood, setIsLikelihood] = useState(false);
   let [IsLikelihoodTested, setIsLikelihoodTested] = useState(false);
   let [DurationType, setDurationType] = useState('');
   let [QmraId, setQmraId] = useState(0);
   let [LikelihoodMessage, setLikelihoodMessage] = useState('');
-  let [BestFitBodel, setBestFitBodel] = useState('');
-
+  let [BestFitModel, setBestFitModel] = useState('');
+  let [Mst_Fib, setMst_fib] = useState({})
   useEffect(() => {
-    console.log(fib_mst_info)
-    navigator.geolocation.getCurrentPosition(position => {
+    setMst_fib(fib_mst_info)
+    console.log(sampling_info)
+    /*navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
       setLongitude(longitude)
       setLatitude(latitude)
@@ -55,77 +41,65 @@ export default function QMRAApp() {
       // setAlpha(filteredParameters)
     }, error => {
       console.log(error)
-    })
+    })*/
 
   }, [])
 
-  const calculateResult = () => {
-    console.log(selectedOrganism)
-
-  };
-
-  function selectPathogen(event) {
-    var filtered = []
-    setIsCustomizePathogen(false)
-    if (event === 'other') {
-      setIsCustomizePathogen(true)
-    }
-
-     console.log(event)
-    setSelectedathogen(event)
-    filtered.push(Pathogen.filter((value) => value.pathogen === event))
-    setSelectedOrganism(filtered[0][0].pathogen)
-    setTempPathogen(filtered[0][0])
-    setParameters(filtered[0][0].parameter[0])
-    if (filtered[0][0].best_fit_model === 'exponential') {
-      setConstant(filtered[0][0].parameter[0].constant)
-    }
-    if (filtered[0][0].best_fit_model === 'beta-poisson') {
-      setBeta(filtered[0][0].parameter[0].beta)
-      setAlpha(filtered[0][0].parameter[0].alpha)
-      setN50(filtered[0][0].parameter[0].n50)
-    }
-
-
-  }
 
   function sendQmra() {
-    if (beta === undefined) { setBeta(null) }
-    if (alpha === undefined) { setAlpha(null) }
-    if (Constant === undefined) { setConstant(null) }
-    if (n50 === undefined) { setN50(null) }
-    console.log(Selectedathogen)
+
     var qmra_data = {
-      beta: beta,
-      alpha: alpha,
-      constant: Constant,
-      n50: n50,
-      best_fit_model: BestFitBodel,
-      count_indicator: fib_mst_info.count_indicator,
-      indicator: fib_mst_info.indicator,
-      estimated_count: fib_mst_info.estimatedCount,
+      beta: fib_mst_info.beta,
+      alpha: fib_mst_info.alpha,
+      constant: fib_mst_info.constant,
+      n50: fib_mst_info.n50,
+      best_fit_model: fib_mst_info.best_fit_model,
+      count_indicator: fib_mst_info.count,
+      indicator: fib_mst_info.fib,
+      estimated_count: fib_mst_info.estimated_count,
       ratio: fib_mst_info.ratio,
-      is_customized: fib_mst_info.is_customized,
-      is_customize_Pathogen: IsCustomizePathogen,
-      pathogen: Selectedathogen,
-      samplingId: sampling_info.userId
+      is_customized: false,
+      is_customize_Pathogen: false,
+      pathogen: fib_mst_info.pathogen
     }
-    console.log(qmra_data)
 
     var mst_data = {
+      beta: fib_mst_info.beta,
+      alpha: fib_mst_info.alpha,
+      constant: fib_mst_info.constant,
+      n50: fib_mst_info.n50,
+      best_fit_model: fib_mst_info.best_fit_model,
       count: fib_mst_info.count,
-      maker: fib_mst_info.maker,
-      ratio: fib_mst_info.ratio
+      maker: fib_mst_info.mst,
+      ratio: fib_mst_info.ratio,
+      is_customize_Pathogen: IsCustomizePathogen,
+      estimated_count: fib_mst_info.estimated_count,
+      is_customized_mst: fib_mst_info.is_customized_mst,
+      pathogen: fib_mst_info.pathogen
     }
-    console.log(mst_data)
-/*
+
+    var reference_path = {
+      beta: fib_mst_info.beta,
+      alpha: fib_mst_info.alpha,
+      constant: fib_mst_info.constant,
+      n50: fib_mst_info.n50,
+      best_fit_model: fib_mst_info.best_fit_model,
+      count: Number(fib_mst_info.count),
+      is_customize_Pathogen: false,
+      pathogen: fib_mst_info.pathogen
+    }
+
+    console.log(reference_path)
+
     //Call in sampling data api
     axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
       qmra_data.samplingId = response.data.insertedId
+      mst_data.samplingId = response.data.insertedId
+      reference_path.samplingId = response.data.insertedId
       // Assign to Coordinates object
       var coordinates = {
-        latitude: Latitude,
-        longitude: Longitude,
+        latitude: sampling_info.latitude,
+        longitude: sampling_info.longitude,
         samplingId: response.data.insertedId
       }
       //Call in coordinates api
@@ -145,7 +119,7 @@ export default function QMRAApp() {
         console.log(err)
       })
 
-      if (fib_mst_info.type === 'qmra') {
+      if (fib_mst_info.type === 'fib') {
         axios.post("http://localhost:3001/api/add_indicator_qmra", qmra_data)
           .then((result) => {
             if (result.data.success === true) {
@@ -168,13 +142,57 @@ export default function QMRAApp() {
             console.log(err)
           })
       }
-      else if(fib_mst_info.type === 'mst'){
-        console.log('in mst')
+      else if (fib_mst_info.type === 'mst') {
+        axios.post("http://localhost:3001/api/mst", mst_data)
+          .then((result) => {
+            if (result.data.success === true) {
+              toast.success("Successfully tested, the results will display on popup....", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              setPopupoResults(true)
+              setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
+              setQmraId(result.data.qmra_id)
+            }
+
+          }, err => {
+            console.log(err)
+          })
+      }
+
+      else if (fib_mst_info.type === 'ref_path') {
+        axios.post("http://localhost:3001/api/reference_pathofen", qmra_data)
+          .then((result) => {
+            if (result.data.success === true) {
+              toast.success("Successfully tested, the results will display on popup....", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              setPopupoResults(true)
+              setProbabilityOfInfection(parseFloat(result.data.totalQmra).toFixed(2))
+              setQmraId(result.data.qmra_id)
+            }
+
+          }, err => {
+            console.log(err)
+          })
       }
 
     }, (err) => {
       console.log(err)
-    })*/
+    })
   }
 
   async function likelihood() {
@@ -190,120 +208,128 @@ export default function QMRAApp() {
       setLikelihoodMessage('Likelihood of infections is ' + resultsOfLikelihood.data.likelihood_of_infection)
     }
     else {
-      setLikelihoodMessage('Could not get the likelihood of infection')
+      setLikelihoodMessage('Could not get the likelihood of infections')
     }
   }
 
   let popalert = <div style={{ color: 'black' }}>
-    The Probability of infection is: {ProbabilityOfInfection}
-    <br />
-     Would you like to complete the likelihood test?
-    <div>
-      <button onClick={() => setIsLikelihood(true)}>Yes</button>
-      <button onClick={() => setPopupoResults(false)} className='btn btn-primary'>Cancel</button>
+    probability of infection is {ProbabilityOfInfection}
+    {Math.round(ProbabilityOfInfection) >= 1 && <label style={{ backgroundColor: 'red', width: '100%', height: '10px' }}></label>}
+    {Math.round(ProbabilityOfInfection) <= 0 && <label style={{ backgroundColor: 'green', width: '100%', height: '10px' }}></label>}
+    <label className='mt-2'>You would like to complete the likelihood test?</label>
+
+    <div style={{ textAlign: 'center' }}>
+      <button onClick={() => setIsLikelihood(true)} className='btn btn-primary' style={{ margin: '0 10px', width: '100px' }}>Yes</button>
+      <button onClick={() => setPopupoResults(false)} className='btn btn-primary' style={{ margin: '0 10px', width: '100px' }}>Cancel</button>
     </div>
     {IsLikelihood === true && (
-      <div>
+      <div className="mt-2" style={{ display: 'flex', flexDirection: 'column' }}>
         <select onChange={(event) => setDurationType(event.target.value)}>
-          <option value=''>--- Select The Duration ---</option>
+          <option value=''>--- Select Duration Type ---</option>
           <option value='yearly'>Yearly</option>
           <option value='monthly'>Monthly</option>
           <option value='quartely'>Quartely</option>
           <option value='weekly'>Weekly</option>
           <option value='daily'>Daily</option>
         </select>
-        <button onClick={likelihood}>Submit</button>
+        <button onClick={likelihood} className='btn btn-primary mt-3'>Submit</button>
         {IsLikelihoodTested === true && (
           <label>{LikelihoodMessage}</label>
         )}
-
       </div>
-
     )}
   </div>
   return (
     <div className='hero-all' >
-      {/* <div className='sidenav'>
-        <Sidebar />
-    </div> */}
+
       <Navbar />
       <ToastContainer />
       <div className='content'>
         <Header />
+        <h2 className='text-primary text-center'>Review Results</h2>
         <Popup trigger={PopupoResults} setTrigger={setPopupoResults}>
           {popalert}
         </Popup>
         <div className='container-wrapper'>
           <div style={styles.container}>
-            <h1 style={styles.header}>QMRA Parameters</h1>
-            <select
-              // value={selectedOrganism}
-              onChange={(e) => {
-                selectPathogen(e.target.value);
-                setResult('');
-              }}
-            >
-              <option value='' disabled selected>Select an Indicator </option>
-              {Pathogen.map((organism, xid) => (
-                <option key={xid} value={organism.pathogen}>
-                  {organism.pathogen}
-                </option>
-              ))}
+            <table className='table-parameter'>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+              {Mst_Fib.type === 'mst' &&
+                <tr>
+                  <td>Marker</td>
+                  <td>{Mst_Fib.mst}</td>
+                </tr>
+              }
+              {Mst_Fib.type === 'fib' &&
+                <tr>
+                  <td>Indicator</td>
+                  <td>{Mst_Fib.fib}</td>
+                </tr>
+              }
+              <tr>
+                <td>Pathogen</td>
+                <td>{Mst_Fib.pathogen}</td>
+              </tr>
+              {Mst_Fib.type !== 'ref_path' &&
+                <tr>
+                  <td>Ratio</td>
+                  <td>{Mst_Fib.ratio}</td>
+                </tr>
+              }
 
-            </select>
-            <br></br>
-            <button className='btn btn-dark w-25 mt-5 mb-4' onClick={calculateResult}>Calculate</button>
-            {result !== '' && <p style={styles.result}>{result}</p>}
-            <table id='table'>
-              <th>
-                Pathogen
-              </th>
-              <th>
-                Best Fit model
-              </th>
-              <th>
-                Parameters
-              </th>
-              <tbody>
-                {(TempPathogen.best_fit_model !== '') && (<tr>
+              <tr>
+                <td>Best Fit Model</td>
+                <td>{Mst_Fib.best_fit_model}</td>
+              </tr>
+              <tr>
+                <td>Count</td>
+                <td>{Mst_Fib.count}</td>
+              </tr>
+              {Mst_Fib.best_fit_model === 'exponential' && <tr>
+                <td>Constant</td>
+                <td>{Mst_Fib.constant}</td>
+              </tr>}
+              {Mst_Fib.best_fit_model === 'beta-poisson' &&
+                <tr>
+                  <td>Alpha</td>
+                  <td>{Mst_Fib.alpha}</td>
+                </tr>}
+              {(Mst_Fib.best_fit_model === 'beta-poisson' && Mst_Fib.beta) &&
+                <tr>
+                  <td>Beta</td>
+                  <td>{Mst_Fib.beta}</td>
+                </tr>}
+              {(Mst_Fib.best_fit_model === 'beta-poisson' && !Mst_Fib.beta) &&
+                <tr>
+                  <td>N50</td>
+                  <td>{Mst_Fib.n50}</td>
+                </tr>}
+              {Mst_Fib.type !== 'ref_path' &&
+                <tr>
+                  <td>Estimated Count</td>
+                  <td>{Mst_Fib.estimated_count}</td>
+                </tr>
+              }
 
-                  <td>{TempPathogen.pathogen} </td>
-                  <td>{TempPathogen.best_fit_model}</td>
-                  <td>{(TempPathogen.best_fit_model === 'exponential') && (<label>constant {Parameters.constant}</label>)}
-
-                    {(TempPathogen.best_fit_model === 'beta-poisson') && (<label>alpha {Parameters.alpha},
-                      <span>
-                        {(Parameters.beta) && (<label>beta {Parameters.beta}</label>)}
-                        {(!Parameters.beta) && (<label>N50 {Parameters.n50}</label>)}
-                      </span>
-                    </label>)}
+              {Mst_Fib.type === 'mst' &&
+                <tr>
+                  <td>Customized MST</td>
+                  <td>{Mst_Fib.is_customized_mst === true && <label>Yes</label>}
+                    {Mst_Fib.is_customized_mst === false && <label>No</label>}
                   </td>
-                </tr>)}
-                {(TempPathogen.best_fit_model === '') && (<tr>
-                  <td><input type='text'></input></td>
-                  <td><select onChange={(e) => {
-                    setBestFit(e.target.value)
-                  }} >
-                    <option value='beta-poisson'>beta-poisson </option>
-                    <option value='exponential'>exponential </option>
-                  </select></td>
-                  <td>
-                    {(bestFit === 'beta-poisson') && (<span>
-                      <input type='text' placeholder='alpha'></input>
-                      <input type='text' placeholder='beta'></input>
-                    </span>)}
-
-                    {(bestFit === 'exponential') && (<span>
-                      <input type='text' placeholder='constant'></input>
-
-                    </span>)}
-
+                </tr>}
+              {Mst_Fib.type === 'fib' &&
+                <tr>
+                  <td>Customized FIB</td>
+                  <td>{Mst_Fib.is_customized_mst === true && <label>Yes</label>}
+                    {Mst_Fib.is_customized_mst === false && <label>No</label>}
                   </td>
-                </tr>)}
-
-              </tbody>
+                </tr>}
             </table>
-            <button className='btn btn-dark w-25 mt-5' onClick={sendQmra}>Submit</button>
+            <button className='btn btn-success w-25 mt-5' onClick={sendQmra}>Submit</button>
           </div>
         </div>
       </div>

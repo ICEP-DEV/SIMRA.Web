@@ -1,3 +1,47 @@
 .page_numbers{
     text-align: center;
 }
+
+.table-logs
+{
+  
+  margin-left: 10%;
+  
+  
+}
+.table-logs-date
+{
+margin-left: 20%;
+}
+.table-data
+{
+width: 25%;
+}
+.btn-search-report
+{
+width: 25%;
+}
+
+@media (max-width: 768px) {
+  .report-heading
+  {
+    font-size: 12px;
+  }
+  
+  .table-data
+  {
+    width: 20px;
+  }
+  .table-logs
+  {
+    margin-left: 15%;
+  }
+  .table-logs-date
+  {
+    margin-left: 15%;
+  }
+  .btn-search-report
+  {
+  width: 50%;
+  }
+}

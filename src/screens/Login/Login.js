@@ -3,7 +3,9 @@ import axios from 'axios'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Loader from '../Loader/Loader';
+// import Loader from '../Loader/Loader';
+
+import Load_Waves from '../Pop_Up/load/Load_Waves';
 import logo from './logo3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
@@ -11,9 +13,10 @@ import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
-import logo1 from '../../assets/Simra_logo.png';
-import {BiSolidUser} from 'react-icons/bi';
-import {AiFillLock} from 'react-icons/ai'
+import logo1 from '../../assets/Simra_logo.png'
+import { api } from '../../Data/API';
+import tutlogo from '../../assets/TUT_white.png';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -31,8 +34,11 @@ function Login() {
     const [Password, setPassword] = useState('')
     const [RePassword, setRePassword] = useState('')
     const [Level, setLevel] = useState('')
+    const [showNav, setShowNav] = useState(false);
 
-
+    const toggleNav = () => {
+      setShowNav(!showNav);
+    };
 
     const [values, setValues] = useState({
         username: "",
@@ -50,7 +56,7 @@ function Login() {
     // set up login button using gmail account
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
-            toast.warn("All fields should be filled!", {
+            toast.warn("All field should be filled!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -63,7 +69,7 @@ function Login() {
             return;
         }
         if (values.username === "") {
-            toast.warn("Enter a Username!", {
+            toast.warn("Enter username!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -76,7 +82,7 @@ function Login() {
             return;
         }
         if (values.password === "") {
-            toast.warn("Enter a Password!", {
+            toast.warn("Enter password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -91,7 +97,7 @@ function Login() {
         }
 
         setButtonPopup(true)
-        const loginData = await axios.post('http://localhost:3001/api/login', values)
+        const loginData = await axios.post(api+'login', values)
         setTimeout(() => {
             setButtonPopup(false)
             if (loginData.data.success === true) {
@@ -106,20 +112,11 @@ function Login() {
                     user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
                 }
-                console.log(loginData.data.results[0])
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                    navigate('/home')
-                    /*if (loginData.data.results[0].level === 1) {
-                        
-                    }
-                    else if (loginData.data.results[0].level === 2) {
-                        navigate('/Level2')
-                    }
-                    else if (loginData.data.results[0].level === 3) {
-                        navigate('/Level3')
-                    }*/
+                     navigate('/home')
+
                 }
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')
@@ -157,7 +154,7 @@ function Login() {
 
         // Empty values
         if (Email === "") {
-            toast.warn("Enter your email address!", {
+            toast.warn("Enter email address!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -171,7 +168,7 @@ function Login() {
             return;
         }
         if (Firstname === "") {
-            toast.warn("Enter your first name!", {
+            toast.warn("Enter firstname!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -185,7 +182,7 @@ function Login() {
             return;
         }
         if (Lastname === "") {
-            toast.warn("Enter your last name!", {
+            toast.warn("Enter lastname!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -199,7 +196,7 @@ function Login() {
             return;
         }
         if (PhoneNumber === "") {
-            toast.warn("Enter your phone number!", {
+            toast.warn("Enter phone number!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -213,7 +210,7 @@ function Login() {
             return;
         }
         if (Password === "") {
-            toast.warn("Enter Password!", {
+            toast.warn("Enter password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -227,7 +224,7 @@ function Login() {
             return;
         }
         if (RePassword === "") {
-            toast.warn("Please reEnter your Password for confirmation", {
+            toast.warn("Enter password confirmation!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -257,7 +254,7 @@ function Login() {
 
         // Match Password
         if (Password !== RePassword) {
-            toast.warn("Passwords do not match!", {
+            toast.warn("Passwords does not match!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -274,7 +271,7 @@ function Login() {
         // validate strong password
         var regPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
         if (!Password.match(regPass)) {
-            toast.warn("Enter a strong password!", {
+            toast.warn("Enter strong password!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -291,7 +288,7 @@ function Login() {
         // validate email address
         var validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         if (!Email.match(validEmail)) {
-            toast.warn("Enter a valid email address!", {
+            toast.warn("Enter valid email address!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -329,7 +326,7 @@ function Login() {
             level: Level
         }
 
-        axios.post("http://localhost:3001/api/registration", register_form).then((respond) => {
+        axios.post(api+"registration", register_form).then((respond) => {
             if (respond.data.success === true) {
                 toast.success(respond.data.message, {
                     position: "top-right",
@@ -387,7 +384,7 @@ function Login() {
 
     let RegisterForm = <div>
         <div className='register-form'>
-            <h3 className='header-txt'><b>Create An Account</b></h3>
+            <h3 className='header-txt' style={{ textAlign: 'center' }}><b>Create An Account</b></h3>
             <div className='form-group'>
                 <label>First Name:</label>
                 <input type="text" className='control-form' onChange={(event) => setFirstname(event.target.value)} />
@@ -415,8 +412,8 @@ function Login() {
             <div className='form-group'>
 
                 <label> User Level:</label>
-                <select className='select-sampling_data control-form' onChange={(event) => setLevel(event.target.value)} >
-                    <option value='' className="control-form" disabled selected>---Select---</option>
+                <select className='select-sampling_data control-form p-2' onChange={(event) => setLevel(event.target.value)} >
+                    <option value='' className="control-form" disabled selected>Select Level</option>
                     <option value='1' className="control-form">Level One (Household)</option>
                     <option value='2' className="control-form">Level Two (Intermediate)</option>
                     <option value='3' className="control-form">Level Three (Expert)</option>
@@ -425,13 +422,14 @@ function Login() {
             </div>
         </div>
         <div className='form-group'>
-            <button className='btn-reg' onClick={handleRegistration}>Create Account</button>
+            <button className='btn btn-primary btn-reg' onClick={handleRegistration}>Create Account</button>
         </div>
 
     </div>
 
     return (
         <div className='all-contents'>
+           
             <ToastContainer />
             {/*
                             All field should be filled
@@ -444,7 +442,7 @@ function Login() {
                 <Modal.Body>
 
 
-                    All fields should be filled
+                    All field should be filled
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -467,7 +465,7 @@ function Login() {
 
 
 
-                    Enter Username
+                    Enter username
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -487,7 +485,7 @@ function Login() {
                 </Modal.Header>
                 <Modal.Body>
 
-                    Enter Password
+                    Enter password
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -497,57 +495,60 @@ function Login() {
                 </Modal.Footer>
             </Modal>
             <div className='login-container'>
-            <div className='logo-login'>
-                        <img className='logo-login' src={logo1} alt='logo' />
-                    </div>
-                    <h3 className='header-txt mb-6'><b>Sign In </b></h3>
                 
-               
+              
+
+                  <img src={logo1} className='logo-login' />
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                        <div className='login-subs '>
-                             {/* <label htmlFor='username ' className=' fs-6'>Username</label> <br />  */}
-                            <BiSolidUser size={30}/><span>Username:</span><br/>
-                            <input className='input-login rounded '  type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Username' />
-                            
-                        </div>
-                        
-
-                        <div className='login-subs  mb-5'>
-                            {/* <label htmlFor='password' className='fs-6'>Password</label> <br />  */}
-                            <AiFillLock size={30}/><span>Password:</span><br/>
-                            <input className='input-login rounded' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Password' />
-
+                        <h3 className='header-txt text-light text-center mt-3'><b>Sign In </b></h3>
+                        <div className='mb-4'>
+                            {/* <label htmlFor'username' className='lables'>Username</label> <br /> */}
+                            <input className='border border-primary input-login ' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
                             <small>
-                                {/* <div className="form-check ">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" for="exampleCheck1">Remember me</label>
-                                </div> */}
+
                             </small>
                         </div>
 
-                        <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                        <div className='mb-5'>
+                            {/* <label htmlFor='password'>Password</label> <br /> */}
+                            <input className='border border-primary input-login ' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
+
+                            <small>
+                                {/* <div className="form-check">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                     <label className="form-check-label" for="exampleCheck1">Remember me</label> 
+                                </div> */}
+                                <label className='forgotpasswd text'>Forgot Password?</label>
+                            </small>
+                        </div>
+
+                        <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
                             {displayLoader}
-                        </Loader>
+                        </Load_Waves>
                         <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} >
                             {RegisterForm}
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn btn-success mb-5 btn-login' onClick={onSuccess}>Sign In</button>
+                            <button className='btn btn-primary btn-login  mb-5' onClick={onSuccess}>Sign In</button>
                             <br></br>
+                          
+                              <div  className='txt-signup '>
+                              <label className='text-light'> Don't have an account ? </label>
+                                <button onClick={() => setRegisterPopUp(true)} className='btn btn-light text-dark ms-2'>Sign Up</button>
+                              </div>
+                                
                            
-                            <div class="txt-signup" role="alert">
-                            Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>
-                            </div>
+
                         </div>
 
-                    </div>
+                   
 
-                </div>
+                
 
-           
-    
+            </div>
+        </div>
     )
 }
 
