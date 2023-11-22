@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./Registration.css"
 // import SuccessPopup from './SuccessPopUp/SuccessPopUp';
 //import { useNavigate } from 'react-router-dom';
-import logo from './logo.png';
+import logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 const UserRegistration = (props) => {
   const [username, setUsername] = useState('');
@@ -51,7 +51,7 @@ const UserRegistration = (props) => {
     <div className="register-popup">
       <div className="register-popup-inner">
         <div className="popup-inner-header">
-          <label className="popup-btn-rotate" onClick={() => props.setTrigger(false)}><h2>X</h2></label>
+          <label className="popup-btn mt-5" onClick={() => props.setTrigger(false)}><h2>X</h2></label>
         </div>
         {props.children}
       </div>

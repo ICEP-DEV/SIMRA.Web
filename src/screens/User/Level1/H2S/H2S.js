@@ -5,8 +5,6 @@ import Sidebar from '../Sidebar/Sidebar';
 import Header from '../../../Header/Header';
 import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
-import Navbar from '../../../Navbar/Navbar';
-import Footer from '../../../Footer/Footer';
 
 function H2S() {
     const navigate = useNavigate();
@@ -120,8 +118,10 @@ function H2S() {
 
     return (
         <div className='hero-all' >
-            
-<Navbar/>
+            <div className='sidenav'>
+                <Sidebar />
+            </div>
+
             <div className='main-all'>
 
                 <div className='content'>
@@ -370,7 +370,6 @@ function H2S() {
                     </div>
                 </div>
             </div>
-            <footer><Footer/> </footer>
         </div>
     );
 }

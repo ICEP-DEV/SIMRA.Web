@@ -10,11 +10,10 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from '../../../Navbar/Navbar';
-import Footer from '../../../Footer/Footer';
+
 import methods from '../../../../Data/methods';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../../Header/Header';
+
 
 function SanitaryInpection() {
     var navigate = useNavigate()
@@ -35,7 +34,6 @@ function SanitaryInpection() {
         else {
             if (DataAnalysis.status === true) {
                 setbackgroundColor("rgba(216, 0, 0, 0.986)")
-
             }
             else {
                 setbackgroundColor("rgba(0, 128, 0, 0.719)")
@@ -56,7 +54,6 @@ function SanitaryInpection() {
     let h2s = <div>
         <h2>Analysis: H2S</h2>
         <h3>Risk Characterization</h3>
-       
         <div className='form-group'>
             <label>{DataAnalysis.risk_type}</label>
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
@@ -143,7 +140,6 @@ function SanitaryInpection() {
             axios.post("http://localhost:3001/api/sanitary_inspection_survey", SanitaryInpectionItems)
                 .then((result) => {
                     setDataAnalysis(result.data)
-                    console.log(DataAnalysis)
                     // navigate("/data_results", { state: { temp } })
 
                     if (result.data.success === true) {
@@ -181,7 +177,7 @@ function SanitaryInpection() {
                 <div className="slide" key={xid}>
                     <h1>Method: {method.id}</h1>
                     <h3>{method.method}</h3><br />
-                    <label style={{color:'black'}}>{method.description}</label>
+                    <label>{method.description}</label>
                     <div className='method_img'>
                         <img src={method.image} alt={method.method} className='image_method_class' />
                     </div>
@@ -216,11 +212,12 @@ function SanitaryInpection() {
     return (
 
         <div className='hero-all' >
-          
-<Navbar/>
+            <div className='sidenav'>
+                <Sidebar />
+            </div>
+
             <div className='main-all'>
                 <div className='content'>
-                <Header />
                     <div className='container-wrapper'></div>
                     <div className='sanitaryInpection'>
 
@@ -391,7 +388,7 @@ function SanitaryInpection() {
                                 </tr>
                             </tbody>
                         </table> */}
-                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-dark btn-lg mb-3'>Submit</button>
+                        <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-primary btn-lg mb-3'>Submit</button>
 
                     </div>
                 </div>
@@ -399,7 +396,6 @@ function SanitaryInpection() {
 
 
             </div>
-            <footer><Footer/></footer>
         </div>
     );
 }

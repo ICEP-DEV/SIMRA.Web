@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import './AnalysisResults.css'
 import { useLocation } from 'react-router-dom';
 import Sidebar  from '../Sidebar/Sidebar';
-import Navbar from '../../../Navbar/Navbar';
-import Footer from '../../../Footer/Footer';
 
 function DataResults() {
     const tempData = useLocation()
@@ -48,7 +46,8 @@ function DataResults() {
     return (
 
         <div className='hero-all' >
-           <Navbar/>
+            <div className='sidenav'>
+            </div>
             <div className='main-all'>
                 <div className='content'>
                     <div className='container-wrapper'></div>
@@ -60,9 +59,6 @@ function DataResults() {
                     </div>)}
                 </div>
             </div>
-            <footer>
-                <Footer/>
-            </footer>
         </div>
     )
 }
