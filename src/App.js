@@ -22,6 +22,7 @@ import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 import UserProfileUpdate from './screens/Profile/Profile';
 import Level3 from './screens/Level3/Level3';
 import Reference_pathogen from './screens/Reference_pathogen/Reference_pathogen';
+import Users from './screens/Municipality/Users/users'
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -41,7 +42,7 @@ function App() {
         <Route exact path='/fib_analysis' element={<FibAnalysis />} />
         <Route exact path='/qmra' element={<QMRA />} />
         <Route exact path='/profile' element={<UserProfileUpdate/>}/>
-         {/* <Route exact path='/municipality' element={<Municipality />} /> */}
+         <Route exact path='/municipality1' element={<Municipality />} />
         <Route exact path='/municipality' element={<Report />} />
         <Route exact path='/sanitary_report' element={<Survay_Report />} />
         <Route exact path='/h2s_report' element={<H2S_Report />} />
@@ -54,7 +55,7 @@ function App() {
         <Route exact path='/graphs' element={<Graphs />} />
         <Route exact path='/level3' element={<Level3 />} />
         <Route exact path='/reference_pathogen' element={<Reference_pathogen />} />
-
+<Route exact path='/user' element={<Users/>} />
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
       

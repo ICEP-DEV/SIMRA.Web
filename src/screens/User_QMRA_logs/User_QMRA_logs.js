@@ -172,28 +172,27 @@ function User_QMRA_logs() {
                    
                     <div className='report-header  '>
             <div id='search_date ' >
-
-            <table className="table-logs-date table table-bordered w-50">
-    <thead className='thead-dark'>
+            <table className="table-logs table table-bordered w-75">
+    <thead className=''>
     <tr>
       
       <th scope="col " className='report-heading'>Start Date</th>
-      <th scope="col" className='report-heading'>End Date</th>
+      <th scope="col" className='report-heading' >End Date</th>
      
     </tr>
   </thead>
   <tbody>
     <tr  scope="row">
     
-      <td>  <input type='date' className='control-from  start_date w-100' onChange={(event) => setStartDate(event.target.value)}  /></td>
-      <td> <input type='date' className='control-from end_date w-100' onChange={(event) => setEndDate(event.target.value)} /></td>
+      <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)}  /></td>
+      <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
       
     </tr>
    
    
   </tbody>
 </table>
-<button onClick={display_search_report} className="btn btn-success btn-search-report  mb-5">Show Results</button>
+<button onClick={display_search_report} className="btn btn-success btn-search-report w-25 mb-5 ">Show Results</button>
             </div>
              
 <table className="table-logs table table-bordered w-75">
@@ -209,7 +208,7 @@ function User_QMRA_logs() {
   <tbody>
     <tr  scope="row">
     
-      <td className="w-25"> 
+      <td className="w-25 "> 
       <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
                     <option value=''>All Weekdays</option>
                     <option value='Monday'>Monday</option>
@@ -234,7 +233,7 @@ function User_QMRA_logs() {
                
                   </td>
                  <td className="w-25">
-                 <select onChange={(e) => filter_by_municipality(e.target.value)}  className="w-100 p-2" >
+                 <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
                     <option value=''>All Municipalities</option>
                     {Municipalities.map((muni, xid) => (
                       <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
@@ -255,7 +254,7 @@ function User_QMRA_logs() {
                         
                         <div className='reports'>
                             {(FoundReport === true) && (
-                                <table className="table survay_table ">
+                                <table className="table survay_table w-75">
                                     <tr className="survey_tr">
                                         <th scope="col"className="survey_th _th">Municipalities</th>
                                         <th  scope="col" className="survey_th">Date</th>
@@ -269,7 +268,7 @@ function User_QMRA_logs() {
                                     {record.map((report, xid) => (
                                         <tr key={xid} className="survey_tr" scope="row">
                                             <td className="survey_td _td">{report.muni_name}</td>
-                                            <td className="survey_td">{report.sample_date}</td>
+                                            <td className="survey_td ">{report.sample_date}</td>
                                             <td className="survey_td">{report.indicator}</td>
                                             <td className="survey_td">{report.pathogen}</td>
                                             <td className="survey_td">{report.estimated_count}</td>

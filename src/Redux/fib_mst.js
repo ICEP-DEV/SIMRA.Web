@@ -1,5 +1,5 @@
 const { createSlice } = require("@reduxjs/toolkit");
-var initialState = {}
+// var initialState = {}
 
 export const fib_mstSlice = createSlice({
     name: "fib_mstInfo",

@@ -174,14 +174,14 @@ function SamplingData() {
     </div>
 
     const leve2popup = <div>
-        <button className='level_popup level1_class bg-primary' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
-        <button className='level_popup level2_class bg-secondary' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
+        <button className='level_popup level1_class ' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
+        <button className='level_popup level2_class ' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
     </div>
 
     const leve3popup = <div>
-        <button className='level_popup level1_class bg-primary' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
-        <button className='level_popup level2_class bg-secondary' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
-        <button className='level_popup level3_class  bg-success' onClick={()=> navigate('/level3')}>Level Three (Expert)</button>
+        <button className='level_popup level1_class  ' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
+        <button className='level_popup level2_class ' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
+        <button className='level_popup level3_class ' onClick={()=> navigate('/level3')}>Level Three (Expert)</button>
     </div>
 
     return (

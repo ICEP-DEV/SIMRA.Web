@@ -252,7 +252,7 @@ export default function QMRAApp() {
         </Popup>
         <div className='container-wrapper'>
           <div style={styles.container}>
-            <table className='table-parameter'>
+            <table>
               <tr>
                 <th></th>
                 <th></th>

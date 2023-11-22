@@ -62,36 +62,3 @@
 
 /*-------------------------------------------------------------------*/
 
-
-.register-popup{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color:black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.register-popup-inner{
-    padding: 70px;
-    width: 100%;
-    max-width: 640px;
-    background-color: white;
-    position: relative;
-}
-
-.popup-inner-header {
-    position: absolute;
-    font-size: 2em;
-    transform: translate(-50%, -50%);
-    text-align: right;
-    top: 15px;
-    right: 15px;
-}
-
-.popup-btn-rotate:hover{
-    cursor: pointer;
-}

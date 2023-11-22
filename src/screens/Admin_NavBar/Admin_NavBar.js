@@ -1,11 +1,8 @@
 
-import { RiTestTubeLine } from "react-icons/ri";
-import { BiSolidReport } from "react-icons/bi";
-import { AiOutlineLogout, AiFillHome } from "react-icons/ai";
+
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.png';
 import Simra_logo from '../../assets/Simra_logo.png'
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { remove_details } from "../../Redux/user"
@@ -22,13 +19,12 @@ function Admin_Side_Bar() {
     }, [])
 
     function home() {
-        navigate("/municipality")
+        navigate("/municipality1")
     }
 
-    function report() {
-        navigate("/report")
+    function user() {
+        navigate("/user")
     }
-
     function logout() {
         dispatch(remove_details());
         navigate("/")
@@ -42,6 +38,7 @@ function Admin_Side_Bar() {
                 <Link to={"/municipality"}> <img className="rounded-img" src={Simra_logo} /></Link></div>
 
             <div className="navbar-subs" onClick={home}><span className="nav-label">Home</span></div>
+            <div className="navbar-subs" onClick={user}><span className="nav-label">Users</span></div>
             {/* <div className="navbar-subs report-dropdown" onClick={report}>
                 <span className='nav-label'>Report</span> */}
                 {/* <div className='dropdown-content'>
@@ -51,7 +48,9 @@ function Admin_Side_Bar() {
                 </div> */}
 
             {/* </div> */}
-            <div className="navbar-subs split" onClick={logout}><span className="nav-label">Signout</span></div>
+            <div className="navbar-subs split" onClick={logout}>
+            <button className=" btn btn-success fw-bold" >Signout</button>
+                </div>
 
 
         </div>

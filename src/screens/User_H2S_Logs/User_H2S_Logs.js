@@ -319,7 +319,7 @@ function User_H2S_Logs() {
 
             <div className='reports'>
               {(FoundReport === true) && (
-                <table className="table survay_table">
+                <table className="table survay_table w-75">
                   <tr className="survey_tr">
                     <th className="survey_th _th">Municipalities</th>
                     <th className="survey_th">Date</th>

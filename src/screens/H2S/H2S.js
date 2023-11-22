@@ -1,21 +1,18 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer,} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "react-responsive-carousel";
 import methods from '../../Data/methods';
 import './H2S.css';
 import h2s from '../../assets/h2s.png';
-import blackstrip from '../../assets/blackstrip.png';
-import whitestrip from '../../assets/whitestrip.png';
 import sample from '../../assets/sample.png';
-import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
 import tests from '../../assets/tests.jpg';
 import container from '../../assets/container.png';
@@ -25,9 +22,6 @@ function H2S() {
     let sampling_info = useSelector((state) => state.sampling.value)
     const [Methods, setMethods] = useState(methods)
     const [selectedOption, setSelectedOption] = useState({ isFound: false });
-    let [SelectPopUp, setSelectPopUp] = useState(false);
-    const [Longitude, setLongitude] = useState('')
-    const [Latitude, setLatitude] = useState('')
     const [IsContiminated, setIsContiminated] = useState(false);
     const [ResultsStatus, setResultsStatus] = useState(false);
 

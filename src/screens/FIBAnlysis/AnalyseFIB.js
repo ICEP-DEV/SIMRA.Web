@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 import { fib_mst_details } from '../../Redux/fib_mst';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer/Footer';
 import { api } from '../../Data/API'
@@ -179,7 +179,7 @@ const FibAnalysis = () => {
       <div className='content'>
        
         <Header />
-        <h2 className='text-primary text-center'>fecal indicator bacteria (fib)</h2>
+        <h2 className='text-primary text-center'>faecal indicator bacteria (fib)</h2>
         <div>
           <div className='container-wrapper'>
             <ToastContainer />
@@ -188,9 +188,9 @@ const FibAnalysis = () => {
               <div className='fib_selection'>
                 {/* <label className='fib_selection_label text-center'> Select an FIB</label> */}
                 <select
-                 className='selection-fib form-select-lg mb-3 mt-5  '
+                  className='selection-fib form-select-lg mb-3 mt-5  '
                   onChange={(event) => handlemstselection(event.target.value)} >
-                  <option value="">Select FIB</option>
+                  <option value="" disabled selected>Select An Indicator</option>
                   {FIBs.map((fib, xid) => (
                     <option key={xid} value={xid} >
                       {fib.indicator}
@@ -201,9 +201,9 @@ const FibAnalysis = () => {
               <div className='reference_selection'>
                 {/* <label className='reference_selection_label  text-center'>Reference Pathogen</label> */}
                 {selectedFIB.indicator !== 'Other' && <select
-                className='selection-fib  form-select-lg mb-3 mt-5 '
+                  className='selection-fib  form-select-lg mb-3 mt-5 '
                   onChange={(event) => handlePathogenRatio(event.target.value)} >
-                  <option value="" >Select Reference Pathogen</option>
+                  <option value="" disabled selected>Select A Pathogen</option>
                   {ReferencePath.map((pathogen, xid) => (
                     <option key={xid} value={xid} >
                       {pathogen.path_name}
@@ -259,24 +259,24 @@ const FibAnalysis = () => {
           </div>
               <div className='container-fib'>
                 {selectedFIB.indicator !== 'Other' &&
-                  <div id='fib_content' >
-
+                  <div className='fib_content' id='fib_content' >
+             
                     <div className='group ' >
-                    <div className='form-group'>
+                      <div className='form-group'>
                         <label className='mst_label'>FIB</label>
-                        <input className='mt-2' type='text' value={FIB} disabled />
+                        <input className='input_fib mt-2' type='text' value={FIB} disabled />
                       </div>
-                      <div className='form-group'>
+                      <div className='form-group' >
                         <label className='mst_label'>Ratio</label>
-                        <input className='mt-2' type='text' value={Ratio} disabled />
+                        <input className='input_fib mt-2' type='text' value={Ratio} disabled />
                       </div>
-                      <div className='form-group'>
+                      <div className='form-group' >
                         <label className='mst_label'>Pathogen</label>
-                        <input className='mt-2' type='text' value={Pathogen} disabled />
+                        <input className='input_fib mt-2' type='text' value={Pathogen} disabled />
                       </div>
-                      <div className='form-group'>
+                      <div className='form-group'  >
                       <label className='mst_label'>Best Fit Model</label>
-                      <input className='mt-2' type='text' value={BestFitModel} disabled />
+                      <input className='input_fib mt-2' type='text' value={BestFitModel} disabled />
                       </div>
                     </div>
                     
@@ -286,7 +286,7 @@ const FibAnalysis = () => {
                         <input className='mt-2' type='text' value={Constant} disabled />
                       </span>)}
                     </div>
-                    <div  className='group' >
+                    <div  className='group' style={{ display: 'flex'}}>
                       {(BestFitModel === 'beta-poisson') && 
                       (<span className='form-group' >
                         <label className='mst_label'>Alpha</label>
@@ -321,10 +321,11 @@ const FibAnalysis = () => {
                 onChange={(event) => setUserCount(event.target.value)}
               />
               </div>
-            </div>
-            <button className='btn btn-success w-25 mt-4' onClick={next_to_qmra}>Next</button>
-          </div>
-        </div>
+              
+             </div>
+               <button className='btn btn-success w-25 mt-4 btn-next' onClick={next_to_qmra}>Next</button>
+           </div>
+       </div>
 
 
       </div><div className='mt-5'></div>

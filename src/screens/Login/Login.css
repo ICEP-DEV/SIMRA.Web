@@ -145,13 +145,20 @@ height: 613px;
  min-height: 100%;
 
     width: 100%;
+    padding-top: 30%;
 
 } 
-
+.logo-login
+{
+    width: 40%;
+    
+}
 .login-container
 {
   
     width: 70%;
+    height: 80%;
+   
  
 }
 
@@ -159,7 +166,7 @@ height: 613px;
 .input-login {
 
    width: 80%;
-font-size: 9px;
+font-size: 12px;
  
   
 }
@@ -168,13 +175,17 @@ font-size: 9px;
 {
   
     
-     font-size: 12px; 
+     font-size: 16px; 
 }
 .txt-signup
 {
   
   
   font-size: 11px;}
+  .forgotpasswd
+  {
+    font-size: 11px;
+  }
 
 }
 

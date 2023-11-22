@@ -16,11 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Level2PopUp from '../Pop_Up/Pop_Up_Level2';
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
-import domestic_animal from '../../assets/domestic_animals.jpg';
-import diapers from '../../assets/diapers.jpg';
-import pit from '../../assets/public_toilet.jpg';
-import farming from '../../assets/farm.jpg';
-import waterwaste from '../../assets/wasterwater.jpg';
 import { api } from '../../Data/API';
 import slider from '../../Data/slider';
 import Slider from "react-slick";
@@ -197,12 +192,12 @@ function SanitaryInpection() {
     // }
 
     let display_methods = <div className="box box_with_carousel">
-        <Carousel useKeyboardArrows={true}>
+        <Carousel useKeyboardArrows={true} className='carousel-sanitary'>
             {Methods.map((method, xid) => (
                 <div className="slide" key={xid}>
                     <h1>Method: {method.id}</h1>
                     <h3>{method.method}</h3><br />
-                    <label style={{ color: 'black' }}>{method.description}</label>
+                    <label style={{ color: 'black', fontSize:'15px' }}>{method.description}</label>
                     <div className='method_img'>
                         <img src={method.image} alt={method.method} className='image_method_class' />
                     </div>
@@ -234,7 +229,7 @@ function SanitaryInpection() {
     const modalClosesing = () => {
         return invokeModalsing(false)
     }
-
+    
     const settings = {
         dots: true,
         centerMode: true,
@@ -320,46 +315,55 @@ function SanitaryInpection() {
                                 <div className='methods' style={{margin: '0 50px', padding:'10px', color:'white', backgroundColor:'grey'}}>
                                     {SanitaryInpectionItems.pitLatrine ? <span className='controlMethods'>
                                         <h4>Pit Latrines</h4>
-                                        <p> Encourage the use of improved sanitation facilities like flush toilets
-                                            or well-maintained pit latrines. </p>
+                                        <li>Keep pit latrines 50m from water sources </li>
+                                        <li>Build and maintain pit latrines properly, and safely dispose of waste after emptying.. </li>
+                                        <li>Flush toilets or proper well-maintained pit latrine construction. </li> 
                                     </span> : null}
 
                                     {SanitaryInpectionItems.domesticAnimal ? <span className='controlMethods'>
                                         <h4>Domestic Animals</h4>
-                                        <p>Implement proper waste management for animal
-                                            husbandry to prevent manure runoff into water sources. </p>
+                                        <li>Implement proper waste management for animal feaces. </li>
+                                        <li>Prevent manure runoff into water sources. </li>
+                                        <li>Establish buffer zones between livestock areas and water bodies. </li>
+                                        <li>Reduce contamination risks through effective planning and separation. </li>
                                     </span> : null}
+
                                     {SanitaryInpectionItems.diaperDisposal ? <span className='controlMethods'>
                                         <h4>Diapers Deposition</h4>
-                                        <p>Raise awareness for women to stop dumping children’s
-                                            faeces in the stream & encourage the responsible disposal of diapers in
-                                            designated waste bins .</p>
+                                        <li>Women should be encouraged to stop dumping children's feces in the stream. </li>
+                                        <li>The responsible solution is to dispose of diapers in designated waste bins. </li>
+                                        <li>Using cloth diapers is a helpful and eco-friendly alternative. </li>
                                     </span> : null}
+
                                     {SanitaryInpectionItems.wasteWaterRelease ? <span className='controlMethods'>
                                         <h4>Release of Wastewater</h4>
-                                        <p> Ensure households are connected to sewage systems
-                                            and ensure effective wastewater treatment to reduce pollution. </p>
+                                        <li>Households must be connected to sewage systems. </li>
+                                        <li>Ensure effective wastewater treatment to reduce pollution. </li>
                                     </span> : null}
+
                                     {SanitaryInpectionItems.openDefaction ? <span className='controlMethods'>
-                                        <h4>Open Defecation</h4>
-                                        <p> Educate communities about the health and environmental
-                                            risks of open defecation. </p>
+                                        <h4>Open Defecation</h4>   
+                                        <li>Open defecation poses health and environmental risks, especially when it contaminates water bodies. </li>
+                                        <li>Build and maintain public and household toilets to discourage open defecation.</li>
                                     </span> : null}
+
                                     {SanitaryInpectionItems.unprotectedWaterSource ? <span className='controlMethods'>
-                                        <h4>Unprotected Water Sources</h4>
-                                        <p> Establish and protect water sources to prevent
-                                            contamination from surface runoff or human activities. </p>
+                                        <h4>Unprotected Water Sources</h4>                                        
+                                        <li>Establish and protect water sources to prevent contamination from surface runoff or human activities. </li>
+                                        <li>Fencing the area remove faecal matter deposited by livestock, and sweep wellhead area. </li>
+                                        <li>Communities should use protected and treated water sources.</li>
                                     </span> : null}
+
                                     {SanitaryInpectionItems.agriculturalActivity ? <span className='controlMethods'>
                                         <h4>Agricultural Activities</h4>
-                                        <p> Encourage the use of erosion control measures like
-                                            planting cover crops and creating vegetative buffer zones along water bodies. </p>
+                                        <li>To maintain soil health, implement erosion control measures such as planting cover crops and establishing vegetative buffer zones along water bodies.</li>
                                     </span> : null}
 
                                     {SanitaryInpectionItems.observerLaundryActivity ? <span className='controlMethods'>
                                         <h4>Laundry Activities</h4>
-                                        <p> Advocate for responsible detergent use and proper disposal
-                                            of laundry wastewater .</p>
+                                        <li>Proper disposal of laundry wastewater must be done by using sewage pipes.</li> 
+                                        <li>The impact of eco-friendly detergents will help to not contaminate water.</li>
+                                        <li>Filtering laundry water before disposal can enhance water quality and minimize environmental impact.</li>
                                     </span> : null}
 
                                 </div>
@@ -452,7 +456,7 @@ function SanitaryInpection() {
                     </ul>
                     <label>The level of safety of the water source can be rated from risk score (e.g. very high risk (7-8), high risk (5-6), medium risk (3-4) and low risk (1-2)).</label>
                 </div> */}
-                    
+                
                 <section className='section-h2s mx-5'>
                 <h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
                    
@@ -474,6 +478,59 @@ function SanitaryInpection() {
 
                    
                     </section>
+                    {/* <section className='section-h2s'>
+                        <div className='h2s-cards row align-items-start justify-content-around mb-5'>
+                            <h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
+                            <div className='card' >
+                                <div class="card-header">
+                                    domestic animals
+                                </div>
+
+                                <div className='card-body'>
+                                    <img className='' style={{ width: '100%', height: '250px' }} src={domestic_animal} alt="domestic animals" />
+                                </div>
+
+                            </div>
+                            <div className='card' style={{ width: '18rem' }}>
+                                <div class="card-header">
+                                    Diapers Disposal
+                                </div>
+
+                                <div className='card-body'>
+                                    <img className='' style={{ width: '100%', height: '250px' }} src={diapers} />
+                                </div> </div>
+                            <div className='card' style={{ width: '18rem' }}>
+                                <div class="card-header">
+                                    Open defaction
+                                </div>
+                                <div className='card-body'>
+
+                                    <img className='card-img-top' style={{ width: '100%', height: '250px' }} src={pit} alt="pit toilets" />
+                                </div> </div>
+
+
+                            <div className='card' style={{ width: '18rem' }}>
+
+                                <div class="card-header">
+                                    Agricultural Activities
+                                </div>
+
+                                <div className='card-body' style={{ font: '16px' }}>
+                                    <img className='' style={{ width: '100%', height: '250px' }} src={farming} />
+                                </div> </div>
+
+
+                            <div className='card' style={{ width: '18rem' }}>
+
+                                <div class="card-header">
+                                    waste Water
+                                </div>
+                                <div className='card-body'>
+                                    <img className='' style={{ width: '100%', height: '250px' }} src={waterwaste} />
+                                </div>
+                            </div>
+                        </div>
+                    </section> */}
                 </div>
 
             </div>

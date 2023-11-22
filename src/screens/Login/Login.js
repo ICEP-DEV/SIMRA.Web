@@ -119,7 +119,7 @@ function Login() {
 
                 }
                 else if (loginData.data.results[0].role === "municipal") {
-                    navigate('/municipality')
+                    navigate('/municipality1')
                 }
 
             }
