@@ -110,7 +110,7 @@ function Reference_pathogen() {
                 <h2 className='text-primary text-center'>Reference Pathogen</h2>
                 <div className='container-wrapper' style={{ textAlign: 'center' }}>
                     <div className='lvl3'  >
-                        <div className='form-group' style={{ display: 'flex' }}>
+                        <div className='form-group'>
                             <label style={{ textAlign: 'left' }}>Reference Pathogen</label>
                             <select
                                 onChange={(event) => handlePathogen(event.target.value)} className='selection-fib  form-select-lg '>

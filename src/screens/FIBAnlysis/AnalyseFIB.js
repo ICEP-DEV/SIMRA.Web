@@ -184,7 +184,7 @@ const FibAnalysis = () => {
           <div className='container-wrapper'>
             <ToastContainer />
             <div id='fib_section'>
-            <div className='group '>
+         
               <div className='fib_selection'>
                 {/* <label className='fib_selection_label text-center'> Select an FIB</label> */}
                 <select
@@ -211,9 +211,7 @@ const FibAnalysis = () => {
                   ))}
                 </select>}
                 {selectedFIB.indicator === 'Other' && <span>
-<div>
-
-</div>
+                <div className='group-mst'>
                   <div className='form-group'>
                     <label>Indicator</label>
                     <input type='text' placeholder='Indicator' onChange={(event) => setFIB(event.target.value)} />
@@ -256,9 +254,10 @@ const FibAnalysis = () => {
                     </span>}
 
                   </div>
+                  </div>
                 </span>}
               </div>
-          </div>
+       
               <div className='container-fib'>
                 {selectedFIB.indicator !== 'Other' &&
                   <div className='fib_content' id='fib_content' >
