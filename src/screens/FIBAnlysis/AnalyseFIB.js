@@ -211,7 +211,9 @@ const FibAnalysis = () => {
                   ))}
                 </select>}
                 {selectedFIB.indicator === 'Other' && <span>
+<div>
 
+</div>
                   <div className='form-group'>
                     <label>Indicator</label>
                     <input type='text' placeholder='Indicator' onChange={(event) => setFIB(event.target.value)} />
@@ -222,8 +224,8 @@ const FibAnalysis = () => {
                   </div>
                   <div className='form-group'>
                     <label>Best-Fit Model</label>
-                    <select onChange={(event) => handlebestFitModel(event.target.value)}>
-                      <option value=''>--- Select Best Fit Model ---</option>
+                    <select onChange={(event) => handlebestFitModel(event.target.value)}  className='selection-fib form-select-sm'>
+                      <option value=''disabled selected>Select Best Fit Model</option>
                       <option value='exponential'>Exponential</option>
                       <option value='beta-poisson'>Beta Poisson</option>
                     </select>
@@ -231,7 +233,7 @@ const FibAnalysis = () => {
                   <div className='form-group'>
                     <label>Ratio</label>
                     <div>
-                      <input type='text' placeholder='Indicator Ratio' onChange={(event) => setIndicatorRatio(event.target.value)} max="4" />
+                      <input type='text' className='mb-4' placeholder='Indicator Ratio' onChange={(event) => setIndicatorRatio(event.target.value)} max="4" />
                       <label style={{ fontWeight: '600', fontSize: '1.2em', margin: '0 5px' }}>:</label>
                       <input type='text' placeholder='Pathogen Ratio' onChange={(event) => setPathogenRatio(event.target.value)} />
                     </div>
@@ -242,12 +244,12 @@ const FibAnalysis = () => {
                     {BestFitModel === 'beta-poisson' && <span>
                       <label><input type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label>
                       <label> Beta
-                        <input type='radio' name='parameter' value='beta' onChange={handleRadio} />
+                        <input type='radio'className='radio-path' name='parameter' value='beta' onChange={handleRadio} />
                         <input type='text' placeholder='Beta' disabled={BetaParameter} onChange={(event) => setBeta(event.target.value)} />
                       </label>
 
                       <label> N50
-                        <input type='radio' name='parameter' value='n50' onChange={handleRadio} />
+                        <input type='radio' className='radio-path' name='parameter' value='n50' onChange={handleRadio} />
                         <input type='text' placeholder='N50' disabled={N50Parameter} onChange={(event) => setN50(event.target.value)} />
                       </label>
 

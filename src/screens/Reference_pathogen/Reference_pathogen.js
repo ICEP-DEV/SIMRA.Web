@@ -109,11 +109,11 @@ function Reference_pathogen() {
                 <Header />
                 <h2 className='text-primary text-center'>Reference Pathogen</h2>
                 <div className='container-wrapper' style={{ textAlign: 'center' }}>
-                    <div className='lvl3' style={{ margin: '25px' }} >
+                    <div className='lvl3'  >
                         <div className='form-group' style={{ display: 'flex' }}>
                             <label style={{ textAlign: 'left' }}>Reference Pathogen</label>
                             <select
-                                onChange={(event) => handlePathogen(event.target.value)} >
+                                onChange={(event) => handlePathogen(event.target.value)} className='selection-fib  form-select-lg '>
                                 <option value="" disabled selected>Select Pathogen</option>
                                 {Pathogens.map((pathogen, xid) => (
                                     <option key={xid} value={xid}>
@@ -122,7 +122,8 @@ function Reference_pathogen() {
                                 ))}
                             </select>
                         </div>
-                        {TempPathogen.pathogen !== "Other" && <div className='form-group' >
+                        {TempPathogen.pathogen !== "Other" && 
+                        <div   className='group'>
                             <div className='form-group'>
                                 <label className='mst_label'>Pathogen</label>
                                 <input className='mt-2' type='text' value={Pathogen} disabled />
@@ -162,33 +163,44 @@ function Reference_pathogen() {
                         {TempPathogen.pathogen === "Other" && <div className='form-group'  >
                             <div className='form-group'>
                                 <label className='mst_label'>Reference Pathogen</label>
-                                <input className='mt-2' type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
+                                <input className='w-25' type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
                             </div >
                             <div className='form-group'>
                                 <label className='mst_label'>Best Fit Model</label>
-                                <select onChange={(event) => setBestFitModel(event.target.value)}>
+                                <select onChange={(event) => setBestFitModel(event.target.value)}  className='selection-fib  form-select-lg mt-3'>
                                     <option value='' disabled selected>Select Best Fit Model</option>
                                     <option value='exponential'>Exponential</option>
                                     <option value='beta-poisson'>Beta-Poisson</option>
                                 </select>
                             </div >
                             <div className='form-group'>
-                                <label>Parameter</label>
+                                <h3>Parameter</h3>
+                               
                                 {BestFitModel === 'exponential' && <input type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />}
-                                {BestFitModel === 'beta-poisson' && <span>
-                                    <label><input type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label>
+                                {BestFitModel === 'beta-poisson' && <span >
+                                <div  className='group'>
+                                <div className='form-group-path'>
+                                    
+                                    <label>
+                                        <input  className='mt-4' type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label> 
+                                    </div>
+                                    <div className='form-group-path'>
                                     <label> Beta
-                                        <input type='radio' name='parameter' value='beta' onChange={handleRadio} />
+                                        <input className='radio-path'
+                                        type='radio' name='parameter' value='beta' onChange={handleRadio} />
                                         <input type='text' placeholder='Beta' disabled={BetaParameter} onChange={(event) => setBeta(event.target.value)} />
                                     </label>
-
+                                    </div>
+                            <div className='form-group-path'>
                                     <label> N50
-                                        <input type='radio' name='parameter' value='n50' onChange={handleRadio} />
+                                        <input className='radio-path' type='radio' name='parameter' value='n50' onChange={handleRadio} />
                                         <input type='text' placeholder='N50' disabled={N50Parameter} onChange={(event) => setN50(event.target.value)} />
                                     </label>
-
+                                    </div>
+                                </div>
                                 </span>}
                             </div>
+                         
                         </div>}
                         <p>Enter The Count:</p>
                         <input
@@ -196,7 +208,7 @@ function Reference_pathogen() {
                             onChange={(event) => setUserCount(event.target.value)}
                         />
                         <div>
-                            <button className='btn btn-success w-25 mt-4' onClick={next_to_qmra}>Next</button>
+                            <button className='btn btn-success w-25 mt-4 mb-5' onClick={next_to_qmra}>Next</button>
 
                         </div>
                     </div>
@@ -204,7 +216,7 @@ function Reference_pathogen() {
 
                 </div>
 
-            </div>
+            </div><div className='mb-5'></div>
             <footer>
                 <Footer />
             </footer>

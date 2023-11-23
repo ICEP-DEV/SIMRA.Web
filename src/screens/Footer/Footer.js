@@ -91,8 +91,9 @@ function Footer() {
      
         <div class="container">
         <div class="row">
-          <div class="col-md-6 col-sm-6 col-xs-12">
-        <label  >Copyright <AiOutlineCopyrightCircle/> <Link to={'https://www.icep.co.za/'}>ICEP</Link>. All rights Reserved</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">s
+        <label  >Copyright <AiOutlineCopyrightCircle/> <Link className="link-info"
+        to={'https://www.icep.co.za/'}>ICEP</Link>. All rights Reserved</label>
     
 </div>
   <div class="col-md-6 col-sm-6 col-xs-6">

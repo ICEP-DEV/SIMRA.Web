@@ -14,11 +14,10 @@
 .reference_selection
 {
     width: 100%;
-    margin: 0 15%;
 }
 .selection-fib 
 {
-    width: 500px;
+    width: 50%;
 }
 .group
 {
@@ -27,10 +26,18 @@
 }
 .form-group
 {
-    margin: 20px 20px 20px 0px;
+    margin: 0px 20px 10px 20px;
 }
 
-@media screen and (max-width: 1480px) {
+@media screen and (max-width: 700px)
+{
+    .selection-fib 
+    {
+        width: 80%;
+       
+    }
+}
+@media screen and (max-width: 1500px) {
 .container-fib .group
 {
   display: flex;
@@ -46,11 +53,7 @@
 {
     width: 65%;
 }
-.selection-fib 
-{
-    width: 75%;
-   
-}
+
 .container-fib
 {
     
@@ -91,6 +94,10 @@
 .btn-next
 {
     margin-bottom: 10%;
+}
+.other-span
+{
+    margin: 1%;
 }
 }
 
