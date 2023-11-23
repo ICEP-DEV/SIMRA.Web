@@ -63,7 +63,7 @@ function Home() {
           iteration="1"
           fillMode="none">
 
-          <p className='para font_7 wixui-richtext_text text-center text-dark ' >
+          <p className='para  text-center text-dark ' >
             SIMRA is a cutting-edge web tool revolutionizing water resource management. It evaluates and mitigates microbial risks in water sources,<br />
             providing a robust framework for addressing health hazards from contamination. With seamless data integration, advanced modeling, <br />
             and decision support, SIMRA empowers stakeholders to protect public health and ensure water system sustainability. <br />
@@ -83,7 +83,7 @@ function Home() {
 
             <div className='h2s-cards row align-items-start justify-content-around'>
 
-              <div className='card text-bg-primary' style={{ width: '18rem' }} >
+              <div className='card text-bg-primary mb-5'   >
                 <h5 className='text-center'>Household</h5>
                 <div className='card-body  text-center '>
                   <p className='text-light'> SIMRA makes risk assessment and management accessible to everyone, especially those with limited resources.<br />
@@ -91,13 +91,13 @@ function Home() {
                 </div>
 
               </div>
-              <div className='card text-bg-primary' style={{ width: '18rem' }}>
+              <div className='card text-bg-primary  mb-5' >
                 <h5 className='text-center'>Intermidiate</h5>
                 <div className='card-body text-center '>
                   <p className='text-light'>This level of SIMRA goes beyond the basics, offering detailed water quality analysis and advanced microbial risk assessment tools. <br />
                     It's tailored for water treatment plant managers, government officials, researchers, and experts who need in-depth and comprehensive data.</p>
                 </div> </div>
-              <div className='card text-bg-primary ' style={{ width: '18rem' }}>
+              <div className='card text-bg-primary ' >
                 <h5 className='text-center'>Expert</h5>
                 <div className='card-body  text-center '>
                   <p className='text-light '>At the advanced level, SIMRA is designed for experts, microbiologists,

@@ -27,7 +27,7 @@ color: #fff;
 }
 .para
 {
-    font-size: 20px;
+    font-size: 1.3rem;
    
     writing-mode: horizontal-tb;
     color: rgb(46, 43, 43);
@@ -39,7 +39,7 @@ section {
     flex-direction: column;
   
     min-height: 400px;
-    padding-top: 100px;
+    padding-top: 50px;
   }
 .section-1
 {
@@ -170,14 +170,22 @@ width: 80%;
 width: 100%;
 
 }
- 
-  @media screen and (max-height: 450px) {
+ .h2s-cards .card 
+ {
+  width: '18rem'
+ }
+  @media screen and (max-width: 1024px) {
     
-    .section-2 .para
+    .para
     {
-      font-size: 12px;
+      font-size: 0.9rem;
+      word-spacing: 0.1em;
     }
-    
+   
+    .h2s-cards .card 
+    {
+      margin-bottom: 10%;
+    }
    }
  
   
