@@ -109,7 +109,7 @@ function Reference_pathogen() {
                 <Header />
                 <h2 className='text-primary text-center'>Reference Pathogen</h2>
                 <div className='container-wrapper' style={{ textAlign: 'center' }}>
-                    <div className='lvl3'  >
+                <div id='fib_section' className='mt-3' >
                         <div className='form-group'>
                             <label style={{ textAlign: 'left' }}>Reference Pathogen</label>
                             <select
@@ -125,27 +125,27 @@ function Reference_pathogen() {
                         {TempPathogen.pathogen !== "Other" && 
                         <div   className='group'>
                             <div className='form-group'>
-                                <label className='mst_label'>Pathogen</label>
+                                <label >Pathogen</label>
                                 <input className='mt-2' type='text' value={Pathogen} disabled />
                             </div>
                             <div className='form-group'>
-                                <label className='mst_label'>Best Fit Model</label>
+                                <label>Best Fit Model</label>
                                 <input className='mt-2' type='text' value={BestFitModel} disabled />
                             </div >
                             {BestFitModel === 'exponential' &&
                                 <div className='form-group'>
-                                    <label className='mst_label'>Constant</label>
+                                    <label >Constant</label>
                                     <input className='mt-2' type='text' value={Constant} disabled />
                                 </div>}
 
                             {(BestFitModel === 'beta-poisson') && (<span className='form-group'>
-                                <label className='mst_label'>Alpha</label>
+                                <label >Alpha</label>
                                 <input className='mt-2' type='text' value={alpha} disabled />
                             </span>)}
 
                             {(BestFitModel === 'beta-poisson') && (<span >
                                 {beta && <span className='form-group'>
-                                    <label className='mst_label'>Beta</label>
+                                    <label >Beta</label>
                                     <input className='mt-2' type='text' value={beta} disabled />
                                 </span>
                                 }
@@ -154,7 +154,7 @@ function Reference_pathogen() {
 
                             {(BestFitModel === 'beta-poisson') && (<span>
                                 {!beta && <span className='form-group'>
-                                    <label className='mst_label'>N50</label>
+                                    <label >N50</label>
                                     <input className='mt-2' type='text' value={n50} disabled />
                                 </span>
                                 }
@@ -167,23 +167,29 @@ function Reference_pathogen() {
                             </div >
                             <div className='form-group'>
                                 <label className='mst_label'>Best Fit Model</label>
-                                <select onChange={(event) => setBestFitModel(event.target.value)}  className='selection-fib  form-select-lg mt-3'>
+                                <select onChange={(event) => setBestFitModel(event.target.value)}  className='selection-bfm  form-select-lg mt-3 p-2'>
                                     <option value='' disabled selected>Select Best Fit Model</option>
                                     <option value='exponential'>Exponential</option>
                                     <option value='beta-poisson'>Beta-Poisson</option>
                                 </select>
                             </div >
+                            <div className='container-fib'>
+                            
                             <div className='form-group'>
-                                <h3>Parameter</h3>
-                               
-                                {BestFitModel === 'exponential' && <input type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />}
+                            <h3 className='text-center'>Parameter</h3> 
+                            
+                                {BestFitModel === 'exponential' && <span>
+                                <input type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />
+                                </span>}
                                 {BestFitModel === 'beta-poisson' && <span >
-                                <div  className='group'>
+                                
+                             
                                 <div className='form-group-path'>
                                     
                                     <label>
                                         <input  className='mt-4' type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label> 
                                     </div>
+                                    <div  className='group'>
                                     <div className='form-group-path'>
                                     <label> Beta
                                         <input className='radio-path'
@@ -200,20 +206,21 @@ function Reference_pathogen() {
                                 </div>
                                 </span>}
                             </div>
+                            </div>
                          
                         </div>}
-                        <p>Enter The Count:</p>
-                        <input
-                            type="number"
-                            onChange={(event) => setUserCount(event.target.value)}
-                        />
-                        <div>
-                            <button className='btn btn-success w-25 mt-4 mb-5' onClick={next_to_qmra}>Next</button>
-
-                        </div>
+                        <div className='count-fib'>
+                                <p>Enter The Count:</p>
+                                <input
+                                    type="number"
+                                    onChange={(event) => setUserCount(event.target.value)}
+                                />
+              </div>
+                        
+                       
                     </div>
 
-
+                    <button className='btn btn-success w-25 mt-4 mb-5' onClick={next_to_qmra}>Next</button>
                 </div>
 
             </div><div className='mb-5'></div>

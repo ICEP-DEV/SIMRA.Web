@@ -203,7 +203,8 @@ const MST = () => {
                   ))}
                 </select>}
                 {selectedMST.maker === 'Other' && <span>
-<div className='group-mst'>
+              <div className='group-mst'>
+                
                   <div className='form-group '>
                     
                     <label>Marker</label>
@@ -256,20 +257,20 @@ const MST = () => {
 
 
                       <div className='group ' >
-                      <div className='' style={{ margin: '20px' }}>
-                      <label className='mst_label'>Marker</label>
+                      <div className='form-group'>
+                      <label >Marker</label>
                     <input className='mt-2' type='text' value={Maker} disabled />
                       </div>
-                      <div className='' style={{ margin: '20px' }}>
-                      <label className='mst_label'>Ratio</label>
+                      <div className='form-group'>
+                      <label >Ratio</label>
                     <input className='mt-2' type='text' value={Ratio} disabled />
                       </div>
-                      <div className='' style={{ margin: '20px' }}>
-                      <label className='mst_label'>Pathogen</label>
+                      <div className='form-group'>
+                      <label >Pathogen</label>
                     <input className='mt-2' type='text' value={Pathogen} disabled />
                       </div>
-                      <div className='' style={{ margin: '20px' }}>
-                      <label className='mst_label'>Best Fit Model</label>
+                      <div className='form-group'>
+                      <label>Best Fit Model</label>
                     <input className='mt-2' type='text' value={BestFitModel} disabled />
                       </div>
 
@@ -278,8 +279,8 @@ const MST = () => {
                 
                   <div>
                     {(BestFitModel === 'exponential') && (<span className='form-group'>
-                      <label className='mst_label'>constant</label>
-                      <input className='mt-2' type='text' value={Constant} disabled />
+                      <label >constant</label>
+                      <input className='mt-2 w-25' type='text' value={Constant} disabled />
                     </span>)}
                   </div>
                   <div  className='group' style={{ display: 'flex'}}>

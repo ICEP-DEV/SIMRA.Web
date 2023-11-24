@@ -1,0 +1,21 @@
+.card-lvl3
+{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    height: 350px;
+    font-size: 14px;
+    border: 1px solid rgb(110, 106, 106);
+}
+.card-lvl3:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.section-lvl3
+{
+    width: 100%;
+    height: 600px;
+}
+.header-lvl3
+{
+    border-bottom: 2px solid black;
+}

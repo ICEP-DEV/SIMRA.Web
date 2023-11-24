@@ -183,7 +183,7 @@ const FibAnalysis = () => {
         <div>
           <div className='container-wrapper'>
             <ToastContainer />
-            <div id='fib_section'>
+            <div id='fib_section' >
          
               <div className='fib_selection'>
                 {/* <label className='fib_selection_label text-center'> Select an FIB</label> */}
@@ -214,15 +214,15 @@ const FibAnalysis = () => {
                 <div className='group-mst'>
                   <div className='form-group'>
                     <label>Indicator</label>
-                    <input type='text' placeholder='Indicator' onChange={(event) => setFIB(event.target.value)} />
+                    <input className='mst_label' type='text' placeholder='Indicator' onChange={(event) => setFIB(event.target.value)} />
                   </div>
                   <div className='form-group'>
-                    <label>Reference Pathogen</label>
-                    <input type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
+                    <label>Pathogen</label>
+                    <input  className='mst_label' type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
                   </div>
                   <div className='form-group'>
                     <label>Best-Fit Model</label>
-                    <select onChange={(event) => handlebestFitModel(event.target.value)}  className='selection-fib form-select-sm'>
+                    <select onChange={(event) => handlebestFitModel(event.target.value)}  className='selection-bfm  form-select-lg mt-3 p-2'>
                       <option value=''disabled selected>Select Best Fit Model</option>
                       <option value='exponential'>Exponential</option>
                       <option value='beta-poisson'>Beta Poisson</option>
@@ -231,26 +231,36 @@ const FibAnalysis = () => {
                   <div className='form-group'>
                     <label>Ratio</label>
                     <div>
-                      <input type='text' className='mb-4' placeholder='Indicator Ratio' onChange={(event) => setIndicatorRatio(event.target.value)} max="4" />
+                      <input  type='text' className=' mst_label mb-4' placeholder='Indicator Ratio' onChange={(event) => setIndicatorRatio(event.target.value)} max="4" />
                       <label style={{ fontWeight: '600', fontSize: '1.2em', margin: '0 5px' }}>:</label>
                       <input type='text' placeholder='Pathogen Ratio' onChange={(event) => setPathogenRatio(event.target.value)} />
                     </div>
                   </div>
+                
                   <div className='form-group'>
-                    <label>Parameter</label>
-                    {BestFitModel === 'exponential' && <input type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />}
+                  <h3 className='text-center'>Parameter</h3> 
+                    {BestFitModel === 'exponential' && <input className='mst_label' type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />}
                     {BestFitModel === 'beta-poisson' && <span>
-                      <label><input type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label>
+                    <div  className='group'>
+                     <div className='form-group-path '>
+                   
+                      <label className='mt-4 mb-4'><input  type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label>
+                      
+                      </div>
+                     
+                      <div className='form-group-path'>
                       <label> Beta
-                        <input type='radio'className='radio-path' name='parameter' value='beta' onChange={handleRadio} />
-                        <input type='text' placeholder='Beta' disabled={BetaParameter} onChange={(event) => setBeta(event.target.value)} />
+                        <input  type='radio'className='radio-path' name='parameter' value='beta' onChange={handleRadio} />
+                        <input   type='text' placeholder='Beta' disabled={BetaParameter} onChange={(event) => setBeta(event.target.value)} />
                       </label>
-
+</div>
+<div className='form-group-path'>
                       <label> N50
-                        <input type='radio' className='radio-path' name='parameter' value='n50' onChange={handleRadio} />
+                        <input   type='radio' className='radio-path' name='parameter' value='n50' onChange={handleRadio} />
                         <input type='text' placeholder='N50' disabled={N50Parameter} onChange={(event) => setN50(event.target.value)} />
                       </label>
-
+</div>
+</div>
                     </span>}
 
                   </div>
@@ -264,19 +274,19 @@ const FibAnalysis = () => {
              
                     <div className='group ' >
                       <div className='form-group'>
-                        <label className='mst_label'>FIB</label>
+                        <label >FIB</label>
                         <input className='input_fib mt-2' type='text' value={FIB} disabled />
                       </div>
                       <div className='form-group' >
-                        <label className='mst_label'>Ratio</label>
+                        <label >Ratio</label>
                         <input className='input_fib mt-2' type='text' value={Ratio} disabled />
                       </div>
                       <div className='form-group' >
-                        <label className='mst_label'>Pathogen</label>
+                        <label >Pathogen</label>
                         <input className='input_fib mt-2' type='text' value={Pathogen} disabled />
                       </div>
                       <div className='form-group'  >
-                      <label className='mst_label'>Best Fit Model</label>
+                      <label >Best Fit Model</label>
                       <input className='input_fib mt-2' type='text' value={BestFitModel} disabled />
                       </div>
                     </div>
