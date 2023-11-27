@@ -20,7 +20,7 @@
 .line {
   width: 5px;
   height: 100px;
-  background: linear-gradient(45deg, cyan, #fff);
+  background: linear-gradient(45deg,#0d6efd, #fff);
   margin: 10px;
   animation: line 1s linear infinite;
   border-radius: 20px;

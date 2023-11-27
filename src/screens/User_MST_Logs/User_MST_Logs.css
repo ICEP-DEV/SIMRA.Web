@@ -36,6 +36,7 @@ tr:hover {
 {
     width: 100%;
     font-size: 11px;
+    overflow: scroll;
     
 }
 .report-header .btn-search-report

@@ -58,7 +58,7 @@ export default function QMRAApp() {
       indicator: fib_mst_info.fib,
       estimated_count: fib_mst_info.estimated_count,
       ratio: fib_mst_info.ratio,
-      is_customized: false,
+      is_customized_indicator: fib_mst_info.is_customized_mst,
       is_customize_Pathogen: false,
       pathogen: fib_mst_info.pathogen
     }
@@ -72,7 +72,6 @@ export default function QMRAApp() {
       count: fib_mst_info.count,
       maker: fib_mst_info.mst,
       ratio: fib_mst_info.ratio,
-      is_customize_Pathogen: IsCustomizePathogen,
       estimated_count: fib_mst_info.estimated_count,
       is_customized_mst: fib_mst_info.is_customized_mst,
       pathogen: fib_mst_info.pathogen
@@ -85,7 +84,7 @@ export default function QMRAApp() {
       n50: fib_mst_info.n50,
       best_fit_model: fib_mst_info.best_fit_model,
       count: Number(fib_mst_info.count),
-      is_customize_Pathogen: false,
+      is_customize_Pathogen: fib_mst_info.is_customized_mst,
       pathogen: fib_mst_info.pathogen
     }
 
@@ -167,7 +166,7 @@ export default function QMRAApp() {
       }
 
       else if (fib_mst_info.type === 'ref_path') {
-        axios.post("http://localhost:3001/api/reference_pathofen", qmra_data)
+        axios.post("http://localhost:3001/api/reference_pathogens_test", reference_path)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {
@@ -314,20 +313,23 @@ export default function QMRAApp() {
                 </tr>
               }
 
-              {Mst_Fib.type === 'mst' &&
+              {/* {Mst_Fib.type === 'mst' &&
                 <tr>
                   <td>Customized MST</td>
                   <td>{Mst_Fib.is_customized_mst === true && <label>Yes</label>}
                     {Mst_Fib.is_customized_mst === false && <label>No</label>}
                   </td>
-                </tr>}
-              {Mst_Fib.type === 'fib' &&
-                <tr>
-                  <td>Customized FIB</td>
-                  <td>{Mst_Fib.is_customized_mst === true && <label>Yes</label>}
-                    {Mst_Fib.is_customized_mst === false && <label>No</label>}
-                  </td>
-                </tr>}
+                </tr>} */}
+              {/* {Mst_Fib.type === 'fib' && */}
+              <tr>
+                {Mst_Fib.type === 'mst' && <td>Customized Microbial Source Tracking</td>}
+                {Mst_Fib.type === 'fib' && <td>Customized Fical Indicator Bacteria</td>}
+                {Mst_Fib.type === 'ref_path' && <td>Customized Reference Pathogen</td>}
+                <td>{Mst_Fib.is_customized_mst === true && <label>Yes</label>}
+                  {Mst_Fib.is_customized_mst === false && <label>No</label>}
+                </td>
+              </tr>
+              {/* } */}
             </table>
             <button className='btn btn-success w-25 mt-5' onClick={sendQmra}>Submit</button>
           </div>

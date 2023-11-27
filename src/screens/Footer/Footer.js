@@ -37,7 +37,7 @@ function Footer() {
             <h8 className="personName">Prof Maggy NB Momba</h8><br></br>
             <HiOutlineMail /> <span> MombaMNB@tut.ac.za </span> <br></br>
             <AiFillPhone /><span> W: +27 12 382 6365</span><br></br>
-            <AiFillPhone /><span> M: +27 82 513 7395/+78 460 6259</span><br></br>
+            <AiFillPhone /><span> M: +27 82 513 7395/+27 78 460 6259</span><br></br>
         
             <h8 className="personName">Prof Lizzy Monyatsi</h8><br></br>
             <HiOutlineMail /> <span> monyatsil@tut.ac.za</span> <br></br>
@@ -91,8 +91,9 @@ function Footer() {
      
         <div class="container">
         <div class="row">
-          <div class="col-md-6 col-sm-6 col-xs-12">
-        <label  >Copyright <AiOutlineCopyrightCircle/> <Link to={'https://www.icep.co.za/'}>ICEP</Link>. All rights Reserved</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">s
+        <label  >Copyright <AiOutlineCopyrightCircle/> <Link className="link-info"
+        to={'https://www.icep.co.za/'}>ICEP</Link>. All rights Reserved</label>
     
 </div>
   <div class="col-md-6 col-sm-6 col-xs-6">

@@ -172,6 +172,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        width: 50%;
     }
     .yes_no{
         width: 30%;

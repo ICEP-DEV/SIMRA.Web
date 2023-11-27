@@ -193,8 +193,8 @@ function User_H2S_Logs() {
   <tbody>
     <tr  scope="row">
     
-      <td>  <input type='date' className='control-from  start_date w-100' onChange={(event) => setStartDate(event.target.value)}  /></td>
-      <td> <input type='date' className='control-from end_date w-100' onChange={(event) => setEndDate(event.target.value)} /></td>
+      <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)}  /></td>
+      <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
       
     </tr>
    

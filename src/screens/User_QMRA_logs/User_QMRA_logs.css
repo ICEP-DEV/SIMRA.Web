@@ -73,5 +73,6 @@ tr:hover {
 .reports
 {
     margin-left: 0;
+    overflow: scroll;
 }
 }

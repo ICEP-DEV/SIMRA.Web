@@ -14,11 +14,10 @@
 .reference_selection
 {
     width: 100%;
-    margin: 0 15%;
 }
 .selection-fib 
 {
-    width: 500px;
+    width: 50%;
 }
 .group
 {
@@ -27,10 +26,25 @@
 }
 .form-group
 {
-    margin: 20px 20px 20px 0px;
+    margin: 0px 20px 10px 20px;
+}
+.count-fib
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-@media screen and (max-width: 1480px) {
+@media screen and (max-width: 700px)
+{
+    .selection-fib 
+    {
+        width: 80%;
+        margin-left: 0%;
+       
+    }
+}
+@media screen and (max-width: 1609px) {
 .container-fib .group
 {
   display: flex;
@@ -46,11 +60,7 @@
 {
     width: 65%;
 }
-.selection-fib 
-{
-    width: 75%;
-   
-}
+
 .container-fib
 {
     
@@ -76,9 +86,7 @@
 .group .form-group
 {
     
-   width: 100%;
-   margin: 10px;
-   margin-left: 10%;
+   width: 80%;
 }
 .mst_label
 {
@@ -91,6 +99,14 @@
 .btn-next
 {
     margin-bottom: 10%;
+}
+.other-span
+{
+    margin: 1%;
+}
+.label-fib
+{
+    font-size: 16px;
 }
 }
 

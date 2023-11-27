@@ -12,9 +12,9 @@ function Municipality() {
             <Admin_NavBar />
             <div className='content-municipalities'>
                 <Header />
-                <div className='container-wrapper'>
+                <div className='container-wrapper mb-5'>
                     <div>
-                        <img src={drink} className='home-img d-flex justify-content-start' />
+                       
                     </div>
                     <section>
                         {/* <img className='home-img d-flex justify-content-start'
