@@ -1,0 +1,7 @@
+
+@media (max-width: 768px) {
+    .container-wrapper .table-parameter td
+   {
+    font-size: 10px;
+   }
+}

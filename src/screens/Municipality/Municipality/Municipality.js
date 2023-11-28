@@ -13,7 +13,7 @@ function Municipality() {
              
                 <div className='content'>
                     <Header />
-                    <div className='container-wrapper'>
+                    <div className='container-wrapper '>
                         <div>
                         <img src={drink} className='home-img'/>
                         </div>
@@ -21,6 +21,7 @@ function Municipality() {
                           
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

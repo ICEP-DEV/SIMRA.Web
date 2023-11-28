@@ -1,0 +1,112 @@
+
+#fib_section{
+    text-align: left;
+    padding-left: 10%;
+}
+.fib_selection_label, .reference_selection_label{
+    width: 20%;
+}
+.container-fib
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.reference_selection
+{
+    width: 100%;
+}
+.selection-fib 
+{
+    width: 50%;
+}
+.group
+{
+    display: flex;
+  
+}
+.form-group
+{
+    margin: 0px 20px 10px 20px;
+}
+.count-fib
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 700px)
+{
+    .selection-fib 
+    {
+        width: 80%;
+        margin-left: 0%;
+       
+    }
+}
+@media screen and (max-width: 1609px) {
+.container-fib .group
+{
+  display: flex;
+
+  flex: column;
+}
+#fib_section
+{
+    text-align: left;
+    padding-left: 0;
+}
+.input_fib
+{
+    width: 65%;
+}
+
+.container-fib
+{
+    
+  display: inline-block;
+  width: 100%;
+}
+.reference_selection, .fib_selection
+{
+    margin: 0 ;
+    margin-left: 10%;
+    width: 100%;
+}
+.container-fib .fib_content
+{
+    width: 100%;
+}
+.group
+{
+   
+    flex-direction: column;
+    
+}
+.group .form-group
+{
+    
+   width: 80%;
+}
+.mst_label
+{
+    font-size: 16px;
+}
+.count-fib
+{
+    margin-left: 10%;
+}
+.btn-next
+{
+    margin-bottom: 10%;
+}
+.other-span
+{
+    margin: 1%;
+}
+.label-fib
+{
+    font-size: 16px;
+}
+}
+

@@ -2,6 +2,7 @@ import Sidebar from '../../Level1/Sidebar/Sidebar';
 import Header from '../../../Header/Header';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import Navbar from '../../../Navbar/Navbar';
 import axios from 'axios';
 
 function H2S_Logs_Reports() {
@@ -135,9 +136,7 @@ function H2S_Logs_Reports() {
 
     return (
         <div className='hero-all' >
-            <div className='sidenav'>
-                <Sidebar />
-            </div>
+            <Navbar/>
 
             <div className='main-all'>
 

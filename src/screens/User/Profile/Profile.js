@@ -3,6 +3,7 @@ import React  from "react";
 import Sidebar  from '../Level1/Sidebar/Sidebar';
 import { useSelector } from 'react-redux';
 import  "./Profile.css";
+import Navbar from "../../Navbar/Navbar";
 
 function Profile (){
 
@@ -12,10 +13,7 @@ function Profile (){
     return(
 <div className='hero-all' >
 
-    <div className='sidenav'>
-        <Sidebar />
-    </div>
-
+   <Navbar/>
     <div className='main-all'>
         <div className='content'>
             <div className='container-wrapper'>
@@ -45,7 +43,7 @@ function Profile (){
          
                 
 
-                <button className="btn-data">Update</button>
+                <button className="btn btn-dark w-25">Update</button>
                 
                 </div>
                 

@@ -1,8 +1,9 @@
 import './SamplingData.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../Level1/Sidebar/Sidebar';
+import Footer from '../../Footer/Footer';
 import Header from '../../Header/Header';
+import Navbar from '../../Navbar/Navbar';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { sampling_details } from '../../../Redux/sampling_data'
@@ -72,19 +73,21 @@ function SamplingData() {
 
     return (
         <div className='hero-all' >
-            <div className='sidenav'>
+            {/* <div className='sidenav'>
                 <Sidebar />
-            </div>
-
-            <div className='main-all'>
+            </div> */}
+<Navbar/>
+          
 
                 <div className='content'>
                     <Header />
                     <div className='container-wrapper'>
+                    <h2>Sampling Data</h2>
+                    
                         <div className='form-group'>
-                            <label>Province</label>
-                            <select onChange={getAllMunicipalities}>
-                                <option>---Select---</option>
+                            {/* <label>Province</label> */}
+                            <select className='form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
+                                <option>Select Province</option>
                                 {provinces.map((prov, xid) => (
                                     <option key={xid} className="control-form" value={prov.province_id} >{prov.province_name}</option>
                                 ))}
@@ -92,18 +95,18 @@ function SamplingData() {
                         </div>
 
                         <div className='form-group'>
-                            <label>Municipality</label>
-                            <select onChange={SelectMunicipality}>
-                                <option>---Select---</option>
+                            {/* <label>Municipality</label> */}
+                            <select className='form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
+                                <option>Select Municipality</option>
                                 {Municipalities.map((muni, xid) => (
                                     <option key={xid} className="control-form" value={muni.muni_id} >{muni.muni_name}</option>
                                 ))}
                             </select>
                         </div>
                         <div className='form-group'>
-                            <label>Water Source</label>
-                            <select className='select-sampling_data' onChange={(event) => setWaterSource(event.target.value)}>
-                                <option value='' className="control-form">---Select---</option>
+                            {/* <label>Water Source</label> */}
+                            <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={(event) => setWaterSource(event.target.value)}>
+                                <option value='' className="control-form">Select Water Source</option>
                                 <option value='River' className="control-form">River</option>
                                 <option value='Dam' className="control-form">Dam</option>
                                 <option value='Spring' className="control-form">Spring</option>
@@ -116,17 +119,17 @@ function SamplingData() {
                             </select>
                         </div>
                         <div className='form-group'>
-                            <label>Water Accessibility</label>
-                            <select className='select-sampling_data' onChange={(event) => setWaterAccessibility(event.target.value)}>
-                                <option value='' className="control-form">---Select---</option>
+                            {/* <label>Water Accessibility</label> */}
+                            <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={(event) => setWaterAccessibility(event.target.value)}>
+                                <option value='' className="control-form">Select Water Accessibility</option>
                                 <option value='Hard' className="control-form">Hard</option>
                                 <option value='Easy' className="control-form">Easy</option>
                             </select>
                         </div>
                         <div className='form-group'>
-                            <label>Weather Condition</label>
-                            <select className='select-sampling_data' onChange={(event) => setWeatherCondition(event.target.value)}>
-                                <option value='' className="control-form">---Select---</option>
+                            {/* <label>Weather Condition</label> */}
+                            <select className='select-sampling_data form-select w-75 mb-5 align-self-center ' onChange={(event) => setWeatherCondition(event.target.value)}>
+                                <option value='' className="control-form">Select Weather Condition</option>
                                 <option value='Dry' className="control-form">Dry</option>
                                 <option value='Windy' className="control-form">Windy</option>
                                 <option value='cloudy' className="control-form">cloudy</option>
@@ -138,12 +141,16 @@ function SamplingData() {
                                 <option value='Sunny' className="control-form">Sunny</option>
                             </select>
                         </div>
-                        <button className='btn-data' onClick={submit_sampling_data}>Next</button>
+                        <button className='btn btn-dark btn-lg btn-block w-25' onClick={submit_sampling_data}>Next</button>
                     </div>
 
                 </div>
+                <footer>
+                <Footer/>  
+                </footer>
+              
             </div>
-        </div>
+
     );
 }
 export default SamplingData

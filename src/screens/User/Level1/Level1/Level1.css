@@ -7,6 +7,18 @@
     height: 50px;
     border-radius: 12px;
 }
+.img-h2s
+{
+    width: 100%;
+    height: 150px;
+}
+.card-h2s
+{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 250px;
+    height: 350px;
+
+}
 .lvl1 h2
 {
 
