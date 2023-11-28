@@ -7,7 +7,7 @@ function Users(){
    
     const api = "http://localhost:3001/api/"
    
-    const [users,setUsers]=useState({});
+    const [users,setUsers]=useState([{}]);
     const [datafound,setDataFound]=useState({});
 
     useEffect(() => {
@@ -16,6 +16,7 @@ function Users(){
             setDataFound(response.data.success)
             if (response.data.success === true) {
                 setUsers(response.data.results)
+                console.log(users)
              
               }
             
@@ -42,7 +43,7 @@ return(
                                         
                                     </tr>
 
-                                    {/* {users.map((user, xid) => (
+                                     {users.map((user, xid) => (
                                         <tr key={xid} className="survey_tr" scope="row">
                                             <td className="survey_td _td">{user.email}</td>
                                             <td className="survey_td">{user.mobileNo}</td>
@@ -52,7 +53,7 @@ return(
                                             <td className="survey_td">{user.role}</td>
                                             
                                         </tr>
-                                    ))} */}
+                                    ))} 
                                 </table>
 </div>
         </div>
