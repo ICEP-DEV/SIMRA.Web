@@ -1,17 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import image from '../../assets/dam101.jpg';
 import image1 from '../../assets/dam.jpg';
 import image2 from '../../assets/dam_kzn.jpg';
 import { Carousel } from 'react-responsive-carousel';
 import './Home.css';
-import { useSelector } from 'react-redux';
 import MovingComponent from '../animations/component';
 import Footer from '../Footer/Footer'
 function Home() {
-  let navigate = useNavigate();
-  let user_info = useSelector((state) => state.user.value)
 
   return (
     <div className='hero' >
@@ -19,10 +15,6 @@ function Home() {
       <div className=''>
         <Navbar />
       </div>
-
-
-
-
       <Carousel className='carousel'
         autoPlay={true}
         infiniteLoop={true}
@@ -32,16 +24,16 @@ function Home() {
 
         <div >
 
-          <img src={image1} alt="Image 1" />
+          <img src={image1} alt="screen 1" />
 
 
         </div>
         <div>
-          <img src={image2} alt="Image 2" />
+          <img src={image2} alt="screen 2" />
 
         </div>
         <div>
-          <img src={image} alt="Image 3" />
+          <img src={image} alt="screen 3" />
 
         </div>
         {/* Add more images as needed */}

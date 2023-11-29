@@ -7,9 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import { api } from '../../Data/API';
 
 function User_MST_Logs() {
-    const api = "http://localhost:3001/api/"
     let user_info = useSelector((state) => state.user.value)
 
     const [Provinces, setProvinces] = useState([])
@@ -46,7 +46,7 @@ function User_MST_Logs() {
             }
         })
 
-        axios.get(api + "get_provinces").then(response => {
+        axios.get(api + 'get_provinces').then(response => {
             setProvinces(response.data.results)
 
         }, err => {
@@ -99,7 +99,7 @@ function User_MST_Logs() {
         var count = 0
         var temp_array = StoredReport
 
-        axios.get(api + "get_municipalities/" + _province).then(response => {
+        axios.get(api + 'get_municipalities/' + _province).then(response => {
             setMunicipalities(response.data.results)
 
         }, err => {

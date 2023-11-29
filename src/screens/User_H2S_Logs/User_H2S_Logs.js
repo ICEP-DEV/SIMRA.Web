@@ -7,9 +7,8 @@ import Navbar from '../Navbar/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
-
+import { api } from '../../Data/API'
 function User_H2S_Logs() {
-  const api = "http://localhost:3001/api/"
 
   const [Provinces, setProvinces] = useState([])
   const [Report, setReport] = useState([])
@@ -26,8 +25,8 @@ function User_H2S_Logs() {
   const lastIndex = CurrentPage * record_per_page
   const firdIndex = lastIndex - record_per_page
   const record = Report.slice(firdIndex, lastIndex)
-  const number_of_pages = Math.ceil(record.length / record_per_page)
-  const number = [...Array(number_of_pages + 1).keys()].slice
+  // const number_of_pages = Math.ceil(record.length / record_per_page)
+  // const number = [...Array(number_of_pages + 1).keys()].slice
   const PagePerNumber = []
   for (let i = 1; i <= Math.ceil(Report.length / record_per_page); i++) {
     PagePerNumber.push(i)
@@ -37,7 +36,7 @@ function User_H2S_Logs() {
 
   useEffect(() => {
     var userId = user_info.userId
-    console.log(userId)
+    
     setUserId(userId)
     axios.get(api + 'get_userhistory_h2s/' + userId).then((response) => {
       setFoundReport(response.data.success)
@@ -47,8 +46,7 @@ function User_H2S_Logs() {
         setTotalRecord(response.data.result.length)
       }
     })
-
-    axios.get(api + "get_provinces").then(response => {
+    axios.get(api + 'get_provinces').then(response => {
       setProvinces(response.data.results)
 
     }, err => {
@@ -56,7 +54,7 @@ function User_H2S_Logs() {
     })
 
 
-  }, []);
+  }, [user_info.userId]);
 
   function display_search_report() {
     if (startDate === '' || endDate === '') {
@@ -94,18 +92,6 @@ function User_H2S_Logs() {
         setStoredReport(response.data.result)
       }
     })
-  }
-
-  function checkForUserInfo(id) {
-    var temp_array = StoredReport
-    if (id === true) {
-      setReport(temp_array.filter(value => {
-        return value.user().includes(id)
-      }))
-    }
-    else {
-      setReport(StoredReport)
-    }
   }
 
   function filter_by_province(_province) {
@@ -191,7 +177,7 @@ function User_H2S_Logs() {
     </tr>
   </thead>
   <tbody>
-    <tr  scope="row">
+    <tr  >
     
       <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)}  /></td>
       <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
@@ -227,7 +213,7 @@ function User_H2S_Logs() {
     </tr>
   </thead>
   <tbody>
-    <tr  scope="row">
+    <tr  >
     
     <td className="w-25"> 
       <select onChange={(event) => search_by_weekday(event.target.value)} className=" w-100 p-2">
@@ -329,7 +315,7 @@ function User_H2S_Logs() {
                   </tr>
 
                   {record.map((report, xid) => (
-                    <tr key={xid} className="survey_tr" scope="row">
+                    <tr key={xid} className="survey_tr" >
                       <td className="survey_td _td">{report.muni_name}</td>
                       <td className="survey_td">{report.sample_date}</td>
                       <td className="survey_td">{report.type}</td>

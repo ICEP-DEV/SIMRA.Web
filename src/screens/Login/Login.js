@@ -1,12 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 // import Loader from '../Loader/Loader';
 
 import Load_Waves from '../Pop_Up/load/Load_Waves';
-import logo from './logo3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
@@ -15,8 +14,6 @@ import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
 import logo1 from '../../assets/Simra_logo.png'
 import { api } from '../../Data/API';
-import tutlogo from '../../assets/TUT_white.png';
-import { GiHamburgerMenu } from 'react-icons/gi';
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -34,11 +31,6 @@ function Login() {
     const [Password, setPassword] = useState('')
     const [RePassword, setRePassword] = useState('')
     const [Level, setLevel] = useState('')
-    const [showNav, setShowNav] = useState(false);
-
-    const toggleNav = () => {
-        setShowNav(!showNav);
-    };
 
     const [values, setValues] = useState({
         username: "",
@@ -109,7 +101,6 @@ function Login() {
                     user_firstname: loginData.data.results[0].firstname,
                     user_lastname: loginData.data.results[0].lastname,
                     user_mobileNo: loginData.data.results[0].mobileNo,
-                    user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
                 }
                 dispatch(user_details(user_info))
@@ -363,21 +354,13 @@ function Login() {
 
     // pop up modal fucntions
     const [isShow, invokeModal] = React.useState(false)
-    const initModal = () => {
-        return invokeModal(!false)
-    }
-    const [invokeModals] = React.useState(false)
-    const initModals = () => {
-        return invokeModals(!false)
-    }
+
+
     const modalClose = () => {
         return invokeModal(false)
     }
 
     const [isShowsing, invokeModalsing] = React.useState(false)
-    const initModalsing = () => {
-        return invokeModalsing(!false)
-    }
     const modalClosesing = () => {
         return invokeModalsing(false)
     }

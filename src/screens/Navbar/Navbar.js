@@ -9,7 +9,6 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import logo1 from '../../assets/Simra_logo.png';
 import { remove_details } from "../../Redux/user";
 import { remove_sample_details } from "../../Redux/sampling_data"
-import { api } from '../../Data/API'
 
 function Navbar() {
     const navigate = useNavigate();
@@ -23,7 +22,9 @@ function Navbar() {
         if (user_info !== undefined) {
             setUserType(user_info.user_level)
             if (sampling_info !== undefined) {
-                setIsFoundSamplingData(false)
+                if (Object.keys(sampling_info).length !== 0) {
+                    setIsFoundSamplingData(false)
+                }
             }
         }
         else {
@@ -42,14 +43,6 @@ function Navbar() {
     function logout() {
         dispatch(remove_details());
         dispatch(remove_sample_details())
-        axios.get(api+'logout',).then(response => {
-            if (response.data) {
-                console.log(response.data)
-                localStorage.removeItem('jsonwebtoken')
-            }
-        }).catch(error => {
-            console.log(error)
-        })
         navigate("/")
     }
 

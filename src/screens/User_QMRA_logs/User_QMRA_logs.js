@@ -7,9 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import { api } from '../../Data/API'
 
 function User_QMRA_logs() {
-    const api = "http://localhost:3001/api/"
 
     let user_info = useSelector((state) => state.user.value)
 
@@ -28,8 +28,8 @@ function User_QMRA_logs() {
     const lastIndex = CurrentPage * record_per_page
     const firdIndex = lastIndex - record_per_page
     const record = Report.slice(firdIndex, lastIndex)
-    const number_of_pages = Math.ceil(record.length / record_per_page)
-    const number = [...Array(number_of_pages + 1).keys()].slice
+    // const number_of_pages = Math.ceil(record.length / record_per_page)
+    // const number = [...Array(number_of_pages + 1).keys()].slice
     const PagePerNumber = []
     for (let i = 1; i <= Math.ceil(Report.length / record_per_page); i++) {
         PagePerNumber.push(i)
@@ -56,7 +56,7 @@ function User_QMRA_logs() {
         })
 
 
-    }, []);
+    }, [user_info.userId]);
 
     function display_search_report() {
         if (startDate === '' || endDate === '') {
@@ -169,104 +169,104 @@ function User_QMRA_logs() {
                     <Header />
                     <h2 className='text-primary text-center'>FECAL INDICATOR BACTERIA (FIB) Logs</h2>
                     <div className='container-wrap'>
-                   
-                    <div className='report-header  '>
-            <div id='search_date ' >
-            <table className="table-logs table table-bordered w-75">
-    <thead className=''>
-    <tr>
-      
-      <th scope="col " className='report-heading'>Start Date</th>
-      <th scope="col" className='report-heading' >End Date</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr  scope="row">
-    
-      <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)}  /></td>
-      <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
-      
-    </tr>
-   
-   
-  </tbody>
-</table>
-<button onClick={display_search_report} className="btn btn-success btn-search-report w-25 mb-5 ">Show Results</button>
-            </div>
-             
-<table className="table-logs table table-bordered w-75">
-    <thead className='thead-dark'>
-    <tr>
-      
-      <th scope="col " className='report-heading'>WeekDays</th>
-      <th scope="col" className='report-heading'>Province</th>
-      <th scope='col' className='report-heading'>Municipalities</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr  scope="row">
-    
-      <td className="w-25 "> 
-      <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
-                    <option value=''>All Weekdays</option>
-                    <option value='Monday'>Monday</option>
-                    <option value='Tuesday'>Tuesday</option>
-                    <option value='Wednesday'>Wednesday</option>
-                    <option value='Thursday'>Thursday</option>
-                    <option value='Friday'>Friday</option>
-                    <option value='Saturday'>Saturday</option>
-                    <option value='Sunday'>Sunday</option>
-                  </select>
-         </td>
-        
-             
-                  {/* <label>Province</label> */}
-                  <td className="w-25">
-                  <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
-                    <option value=''>All Provinces</option>
-                    {Provinces.map((province, xid) => (
-                      <option key={xid} value={province.province_id} >{province.province_name}</option>
-                    ))}
-                  </select>
-               
-                  </td>
-                 <td className="w-25">
-                 <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
-                    <option value=''>All Municipalities</option>
-                    {Municipalities.map((muni, xid) => (
-                      <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
-                    ))}
-                  </select>
-                 </td>
-    </tr>
-   
-   
-  </tbody>
-</table>
-              
-              <div id='stats_summary'  className=' text-primary mt-5' >
-                <h3>Total Records: {TotalRecord}</h3>
-              </div>
 
-            </div>
-                        
+                        <div className='report-header  '>
+                            <div id='search_date ' >
+                                <table className="table-logs table table-bordered w-75">
+                                    <thead className=''>
+                                        <tr>
+
+                                            <th scope="col " className='report-heading'>Start Date</th>
+                                            <th scope="col" className='report-heading' >End Date</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr >
+
+                                            <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)} /></td>
+                                            <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                                <button onClick={display_search_report} className="btn btn-success btn-search-report w-25 mb-5 ">Show Results</button>
+                            </div>
+
+                            <table className="table-logs table table-bordered w-75">
+                                <thead className='thead-dark'>
+                                    <tr>
+
+                                        <th scope="col " className='report-heading'>WeekDays</th>
+                                        <th scope="col" className='report-heading'>Province</th>
+                                        <th scope='col' className='report-heading'>Municipalities</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr >
+
+                                        <td className="w-25 ">
+                                            <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
+                                                <option value=''>All Weekdays</option>
+                                                <option value='Monday'>Monday</option>
+                                                <option value='Tuesday'>Tuesday</option>
+                                                <option value='Wednesday'>Wednesday</option>
+                                                <option value='Thursday'>Thursday</option>
+                                                <option value='Friday'>Friday</option>
+                                                <option value='Saturday'>Saturday</option>
+                                                <option value='Sunday'>Sunday</option>
+                                            </select>
+                                        </td>
+
+
+                                        {/* <label>Province</label> */}
+                                        <td className="w-25">
+                                            <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
+                                                <option value=''>All Provinces</option>
+                                                {Provinces.map((province, xid) => (
+                                                    <option key={xid} value={province.province_id} >{province.province_name}</option>
+                                                ))}
+                                            </select>
+
+                                        </td>
+                                        <td className="w-25">
+                                            <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
+                                                <option value=''>All Municipalities</option>
+                                                {Municipalities.map((muni, xid) => (
+                                                    <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
+                                                ))}
+                                            </select>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            <div id='stats_summary' className=' text-primary mt-5' >
+                                <h3>Total Records: {TotalRecord}</h3>
+                            </div>
+
+                        </div>
+
                         <div className='reports'>
                             {(FoundReport === true) && (
                                 <table className="table survay_table w-75">
                                     <tr className="survey_tr">
-                                        <th scope="col"className="survey_th _th">Municipalities</th>
-                                        <th  scope="col" className="survey_th">Date</th>
-                                        <th   scope="col" className="survey_th ">Indicator</th>
-                                        <th  scope="col" className="survey_th ">Pathogen</th>
-                                        <th  scope="col" className="survey_th ">Estimated Count</th>
-                                        <th  scope="col" className="survey_th ">probability</th>
-                                        <th   scope="col" className="survey_th ">Likelihood</th>
+                                        <th scope="col" className="survey_th _th">Municipalities</th>
+                                        <th scope="col" className="survey_th">Date</th>
+                                        <th scope="col" className="survey_th ">Indicator</th>
+                                        <th scope="col" className="survey_th ">Pathogen</th>
+                                        <th scope="col" className="survey_th ">Estimated Count</th>
+                                        <th scope="col" className="survey_th ">probability</th>
+                                        <th scope="col" className="survey_th ">Likelihood</th>
                                     </tr>
 
                                     {record.map((report, xid) => (
-                                        <tr key={xid} className="survey_tr" scope="row">
+                                        <tr key={xid} className="survey_tr" >
                                             <td className="survey_td _td">{report.muni_name}</td>
                                             <td className="survey_td ">{report.sample_date}</td>
                                             <td className="survey_td">{report.indicator}</td>
@@ -297,7 +297,7 @@ function User_QMRA_logs() {
                 <label>{FoundReport.message}</label>
 
               </div>)} */}
-                       
+
                         </div>
                     </div>
                 </div>

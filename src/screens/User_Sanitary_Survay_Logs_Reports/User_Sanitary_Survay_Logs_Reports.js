@@ -26,8 +26,8 @@ function User_Sanitary_Survay_Logs_Reports() {
     const lastIndex = CurrentPage * record_per_page
     const firdIndex = lastIndex - record_per_page
     const record = Report.slice(firdIndex, lastIndex)
-    const number_of_pages = Math.ceil(record.length / record_per_page)
-    const number = [...Array(number_of_pages + 1).keys()].slice
+    // const number_of_pages = Math.ceil(record.length / record_per_page)
+    // const number = [...Array(number_of_pages + 1).keys()].slice
     const PagePerNumber = []
     for (let i = 1; i <= Math.ceil(Report.length / record_per_page); i++) {
         PagePerNumber.push(i)
@@ -53,9 +53,7 @@ function User_Sanitary_Survay_Logs_Reports() {
         }, err => {
             console.log(err)
         })
-
-
-    }, []);
+    }, [user_info.userId]);
 
     function display_search_report() {
         if (startDate === '' || endDate === '') {
@@ -181,7 +179,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr scope="row">
+                                        <tr>
 
                                             <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)} /></td>
                                             <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
@@ -205,7 +203,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr scope="row">
+                                    <tr>
 
                                         <td className="w-25">
                                             <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
@@ -260,8 +258,8 @@ function User_Sanitary_Survay_Logs_Reports() {
                                             <th className="survey_th ">Risk Type</th>
                                         </tr>
                                     </thead>
-                                    {Report.map((report, xid) => (
-                                        <tr key={xid} className="survey_tr" scope="row">
+                                    {record.map((report, xid) => (
+                                        <tr key={xid} className="survey_tr">
                                             <td className="survey_td _td">{report.muni_name}</td>
                                             <td className="survey_td">{report.sample_date}</td>
                                             <td className="survey_td">{report.type}</td>
@@ -282,7 +280,6 @@ function User_Sanitary_Survay_Logs_Reports() {
                                                 </li>
                                             ))}
                                         </ul>
-
                                     </nav>
                                 )}
                             </div>
