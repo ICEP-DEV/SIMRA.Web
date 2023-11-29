@@ -66,7 +66,6 @@ function Navbarhome() {
                 <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
             </div>
             <div className={`nav-links ${showNav ? 'show' : ''}`}>
-            <div className="navbar-subs mt-2" onClick={() => navigate('/events')}><span className="nav-label">Events</span></div>
                 <li className="navbar-subs" onClick={() => navigate('/login')}><span type="button" className="btn btn-success nav-label">Sign In</span></li>
             </div>
             <div className="hamburger" onClick={toggleNav}>
