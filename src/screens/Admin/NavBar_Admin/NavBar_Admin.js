@@ -1,11 +1,11 @@
 
 
 import { useNavigate } from 'react-router-dom';
-import Simra_logo from '../../assets/Simra_logo.png'
+import Simra_logo from '../../../assets/Simra_logo.png'
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { remove_details } from "../../Redux/user"
+import { remove_details } from "../../../Redux/user"
 
 function Admin_Side_Bar() {
     const navigate = useNavigate();
@@ -22,6 +22,9 @@ function Admin_Side_Bar() {
         navigate("/municipality1")
     }
 
+    function user() {
+        navigate("/user")
+    }
     function logout() {
         dispatch(remove_details());
         navigate("/")
@@ -31,11 +34,14 @@ function Admin_Side_Bar() {
 
 
         <div className="topnav">
-            <div className="navbar-subs "><div className="wrapper"></div>
-                <Link to={"/municipality"}> <img className="rounded-img" src={Simra_logo} /></Link></div>
+           <div className="logo float-left">
+                <Link to={"/home"}> <img className="rounded-img" src={Simra_logo} /></Link>
+            </div>
+
+
 
             <div className="navbar-subs" onClick={home}><span className="nav-label">Home</span></div>
-            
+    
             {/* <div className="navbar-subs report-dropdown" onClick={report}>
                 <span className='nav-label'>Report</span> */}
                 {/* <div className='dropdown-content'>
@@ -49,8 +55,8 @@ function Admin_Side_Bar() {
             <button className=" btn btn-success fw-bold" >Signout</button>
                 </div>
 
-
-        </div>
+                </div>
+       
     )
 }
 
