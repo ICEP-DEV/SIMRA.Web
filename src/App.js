@@ -22,7 +22,12 @@ import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 import UserProfileUpdate from './screens/Profile/Profile';
 import Level3 from './screens/Level3/Level3';
 import Reference_pathogen from './screens/Reference_pathogen/Reference_pathogen';
+import Events from './screens/Events/Events';
+import Events_admin from './screens/Events_admin/Events_admin'
 import AdminDashboard from './screens/Admin/AdminDashboard/AdminDashboard';
+import Users from './screens/Admin/Users/Users';
+/**admin reports */
+import H2SReport from './screens/Admin/H2SReport/H2SReport';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -56,11 +61,12 @@ function App() {
         <Route exact path='/level3' element={<Level3 />} />
         <Route exact path='/reference_pathogen' element={<Reference_pathogen />} />
 <Route exact path='/admin' element={<AdminDashboard/>} />
-        {/*
-        <Route exact path='/data_results' element={<DataResults />} />
+        
+        <Route exact path='/users' element={<Users />} />
       
-         */}
-
+        
+<Route exact path='/h2sreport' element={<H2SReport/>}/>
+<Route exact path='/events' element={<Events/>}/>
       </Routes>
     </Router>
   );

@@ -69,6 +69,7 @@ function Navbar() {
                 <li className="navbar-subs" onClick={() => navigate('/home')}>Home</li>
                 <li className="navbar-subs" onClick={Profile}>Profile</li>
                 <li className="navbar-subs" onClick={data}>Sampling Data</li>
+                <li className="navbar-subs" onClick={() => navigate('/events')}>Events</li>
                 <div className="navbar-subs dropdown" hidden={IsFoundSamplingData}>
                     {sampling_info !== undefined && <div>
                         <span className="nav-label dropbtn">Levels</span>

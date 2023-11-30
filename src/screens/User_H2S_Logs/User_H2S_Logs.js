@@ -203,26 +203,14 @@ function User_H2S_Logs() {
 </table>
 <button onClick={display_search_report} className="btn btn-success btn-search-report  mb-5">Show Results</button>
             </div>
-              {/* <div id='search_date ' >
-                <span className='survey_date'>
-                  <label className='survey_date_label'>From</label>
-                  <input type='date' className='control-from  start_date w-50' onChange={(event) => setStartDate(event.target.value)}  />
-                </span><br/>
-                <span className='survey_date'>
-                  <label className='survey_date_label'>To</label>
-                  <input type='date' className='control-from end_date w-50' onChange={(event) => setEndDate(event.target.value)} />
-                </span>
-
-                <button onClick={display_search_report} className="btn btn-dark btn-search-report w-50">Show Results</button>
-
-              </div> */}
+           
 <table className="table-logs table table-bordered w-75">
     <thead className='thead-dark'>
     <tr>
       
-      <th scope="col " className='report-heading'>WeekDays</th>
-      <th scope="col" className='report-heading'>Province</th>
-      <th scope='col' className='report-heading'>Municipalities</th>
+      <th  className='report-heading'>WeekDays</th>
+      <th  className='report-heading'>Province</th>
+      <th  className='report-heading'>Municipalities</th>
      
     </tr>
   </thead>
@@ -260,57 +248,13 @@ function User_H2S_Logs() {
                       <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
                     ))}
                   </select>
-                 </td>
-              
-                  {/* <label>Municipalities</label> */}
-                  
-              
-             
-      
-      
+                 </td>   
     </tr>
    
    
   </tbody>
 </table>
-              {/* <div  className='group ' style={{ display: 'flex',marginTop:'2%'}}>
-              <div className='' style={{ margin: '40px' }}>
-            
-                   <label>WeekDays</label> 
-                  <select onChange={(event) => search_by_weekday(event.target.value)}>
-                    <option value=''>All Weekdays</option>
-                    <option value='Monday'>Monday</option>
-                    <option value='Tuesday'>Tuesday</option>
-                    <option value='Wednesday'>Wednesday</option>
-                    <option value='Thursday'>Thursday</option>
-                    <option value='Friday'>Friday</option>
-                    <option value='Saturday'>Saturday</option>
-                    <option value='Sunday'>Sunday</option>
-                  </select>
-                 
-                <input type='checkbox' onChange={(event) => checkForUserInfo(event.target.checked)} /> 
-              </div>
-              <div id='filter_by_province'>
              
-                   <label>Province</label> 
-                  <select onChange={(e) => filter_by_province(e.target.value)}>
-                    <option value=''>All Provinces</option>
-                    {Provinces.map((province, xid) => (
-                      <option key={xid} value={province.province_id} >{province.province_name}</option>
-                    ))}
-                  </select>
-               
-              
-                  <label>Municipalities</label> 
-                  <select onChange={(e) => filter_by_municipality(e.target.value)} style={{marginLeft:'35px'}}>
-                    <option value=''>All Municipalities</option>
-                    {Municipalities.map((muni, xid) => (
-                      <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
-                    ))}
-                  </select>
-              
-              </div>
-              </div> */}
               <div id='stats_summary'  className=' text-primary mt-5' >
                 <h3>Total Records: {TotalRecord}</h3>
               </div>
