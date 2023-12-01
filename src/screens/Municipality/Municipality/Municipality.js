@@ -15,7 +15,7 @@ function Municipality() {
                     <Header />
                     <div className='container-wrapper '>
                         <div>
-                        <img src={drink} className='home-img'/>
+                        {/* <img src={drink} className='home-img'/> */}
                         </div>
                         <div>
                           
