@@ -28,6 +28,7 @@ import AdminDashboard from './screens/Admin/AdminDashboard/AdminDashboard';
 import Users from './screens/Admin/Users/Users';
 /**admin reports */
 import H2SReport from './screens/Admin/H2SReport/H2SReport';
+import Event_Admin from './screens/Admin/Event_Admin/Event_Admin';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -67,6 +68,7 @@ function App() {
         
 <Route exact path='/h2sreport' element={<H2SReport/>}/>
 <Route exact path='/events' element={<Events/>}/>
+<Route exact path='/event_admin' element={<Event_Admin/>}/>
       </Routes>
     </Router>
   );

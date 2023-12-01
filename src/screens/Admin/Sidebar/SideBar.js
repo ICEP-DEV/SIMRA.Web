@@ -35,7 +35,7 @@ function SideBar (){
             <div className="side-subs" onClick={() => navigate('/users')}>
 <span> <FaUser  className="icon" /> Customers</span>
             </div>
-            <div className="side-subs" onClick={() => navigate('/users')}>
+            <div className="side-subs" onClick={() => navigate('/event_admin')}>
 <span> <MdEventAvailable  className="icon" /> Events</span>
             </div>
 
