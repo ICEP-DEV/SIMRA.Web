@@ -8,6 +8,12 @@
 .section-report{
     margin: 10px;
     border: 1px rgb(26, 25, 25) solid;
+    padding: 10px;
+
+}
+
+#report_per_prov{
+    width: 50%;
 }
 
 .collapsible{
@@ -25,6 +31,22 @@
     background-color: #555;
 }
 
+.upper_report{
+    display: flex;
+}
+
+#today_report{
+    text-align: left;
+    padding: 10px;
+}
+
+.province_name, .municipal_name{
+    width: 80%;
+}
+
+.province_count, .municipal_count{
+    text-align: right;
+}
 /* .province-content{
     padding: 0 18px;
     max-height: 0;
