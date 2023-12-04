@@ -78,7 +78,11 @@ function formatDateAndTime(date) {
         'base64' // Output type (you can change it to 'blob' if needed)
       );
     });
+    const state = { isOpen: false };
+const handlezoom = () =>
+{
 
+}
   return (
     <div className='hero-all'>
       <Navbar />
@@ -91,7 +95,7 @@ function formatDateAndTime(date) {
           <div className="row">
             {data.map((item) => (
               <div key={item._id} className="col-md-6 mb-4">
-                <Card className="h-100 ">
+                <Card className="h-100 w-50 ">
                   <div className="d-block">
                     <div className="mb-3">
                       <Card.Img

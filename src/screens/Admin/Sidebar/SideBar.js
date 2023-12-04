@@ -46,10 +46,10 @@ function SideBar (){
 
                     <ul className="dropdown-menu">
                         <li className='dropdown-item' onClick={() => navigate('/h2sreport')}>H2S</li>
-                        <li className='dropdown-item' onClick={() => navigate('/survay_logs')}>Sanitary</li>
+                        <li className='dropdown-item' onClick={() => navigate('/survay_admin')}>Sanitary</li>
                         
 
-                            <li className='dropdown-item' onClick={() => navigate('/qmra_logs')}>FIB</li>
+                            <li className='dropdown-item' onClick={() => navigate('/fib_admin')}>FIB</li>
                      
 
                     

@@ -33,6 +33,7 @@ function H2SReport(){
   }
     useEffect(() => {
         axios.get(api+"get_all_summary_h2s").then(response => {
+          setTotalRecord(0)
             setIsDataLoaded(response.data.success)
             setFoundReport(response.data.success)
             if (response.data.success === true) {

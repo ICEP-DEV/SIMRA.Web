@@ -29,6 +29,8 @@ import Users from './screens/Admin/Users/Users';
 /**admin reports */
 import H2SReport from './screens/Admin/H2SReport/H2SReport';
 import Event_Admin from './screens/Admin/Event_Admin/Event_Admin';
+import Fib_Admin from './screens/Admin/FIB-Admin/Fib_Admin';
+import Survay_Admin from './screens/Admin/Survay_Admin/Survay_Admin';
 /*import DataResults from './screens/AnalysisResults/AnalysisResults';
 */
 
@@ -69,6 +71,8 @@ function App() {
 <Route exact path='/h2sreport' element={<H2SReport/>}/>
 <Route exact path='/events' element={<Events/>}/>
 <Route exact path='/event_admin' element={<Event_Admin/>}/>
+<Route exact path='/fib_admin' element={<Fib_Admin/>}/>
+<Route exact path='/survay_admin' element={<Survay_Admin/>}/>
       </Routes>
     </Router>
   );
