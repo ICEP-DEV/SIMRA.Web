@@ -173,7 +173,7 @@ function formatDateAndTime(date) {
 
         <section className='section-h2s'>
 
-          <h2 className='text-primary text-center'>Simra Levels</h2>
+          <h2 className='text-primary text-center mb-4'>Simra Levels</h2>
           <div className='level1-desccription'>
 
             <div className='h2s-cards row align-items-start justify-content-around'>
@@ -210,23 +210,16 @@ function formatDateAndTime(date) {
         {/*** */}
 
         
-<section className='section-events' style={{background:'red'}}>
+<section className='section-events' >
 
+<h2 className='text-primary text-center'>Events</h2>
 
-
-<Carousel className='carousel'
-        autoPlay={true}
-        infiniteLoop={true}
-        showStatus={false}
-        showThumbs={false}
-      >
-
-<div className="row" style={{margin:'10%'}}>
+<div className="row"  >
             {data.map((item) => (
               <div key={item._id} className="col-md-6 mb-4">
-                <Card className="h-100 ">
+                <Card className=" " style={{height:'550px',width:'80%'}}>
                   <div className="d-block">
-                    <div className="mb-3">
+                    <div className="mb-3 mt-2">
                       <Card.Img
                         variant="top"
                         src={item.image ? item.image : ''}
@@ -247,7 +240,7 @@ function formatDateAndTime(date) {
           </div>         
               
         {/* Add more images as needed */}
-      </Carousel>
+ 
 
 
 

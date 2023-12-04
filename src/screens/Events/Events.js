@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Resizer from 'react-image-file-resizer'; // Import the library
 import { api } from '../../Data/API';
-
+import './Events.css'
 const Events = () => {
   const [data, setData] = useState([]);
   let navigate = useNavigate();
@@ -92,12 +92,12 @@ const handlezoom = () =>
       <div className='container-wrapper mb-5'>
        
        
-          <div className="row">
+          <div className="row" style={{margin:'10%'}}>
             {data.map((item) => (
               <div key={item._id} className="col-md-6 mb-4">
-                <Card className="h-100 w-50 ">
+                <Card className=" " style={{minheight:'550px',width:'80%'}}>
                   <div className="d-block">
-                    <div className="mb-3">
+                  <div className="mb-3 mt-3">
                       <Card.Img
                         variant="top"
                         src={item.image ? item.image : ''}
