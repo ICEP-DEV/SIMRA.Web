@@ -2,14 +2,36 @@ import './Municipality.css'
 import Footer from '../Footer/Footer';
 import Admin_NavBar from '../Admin_NavBar/Admin_NavBar';
 import Header from '../Header/Header';
-import drink from './girldrinking.png'
-import { FaTooth } from 'react-icons/fa';
-import tapwater from '../../assets/tapwater.jpg';
-import { useState } from 'react';
+import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { api } from '../../Data/API';
 function Municipality() {
 
-    const [Collapse, setCollapse] = useState(false)
+    const [Provinces, setProvinces] = useState([])
+    const [IsProvinces, setIsProvinces] = useState(false)
     const [ExpandSelectedProvince, setExpandSelectedProvince] = useState([])
+    const [AllMunicipalities, setAllMunicipalities] = useState([])
+    const [FiteredMunicipalities, setFiteredMunicipalities] = useState([])
+    const [IsMunicipalities, setIsMunicipalities] = useState(false)
+    const [Province_Id, setProvince_Id] = useState('')
+
+
+    useEffect(() => {
+        axios.get(api + 'get_results_per_province').then(respond => {
+            setProvinces(respond.data.results)
+            setIsProvinces(respond.data.success)
+        }, err => {
+            console.log(err)
+        })
+
+        axios.get(api + 'get_results_per_municipalities').then(respond => {
+            console.log(respond.data.success)
+            setIsMunicipalities(respond.data.success)
+            setAllMunicipalities(respond.data.results)
+        }, err => {
+            console.log(err)
+        })
+    }, [])
 
     function collapse(province_id) {
         var newId = {
@@ -32,33 +54,38 @@ function Municipality() {
 
                         <div className='section-report'>
                             <h5>Total Reports For Every province</h5>
-                            <button className='collapsible' onClick={() => collapse('gau')}>Gauteng</button>
-                            {/* <button className='collapsible' data-bs-toggle='collapse' data-bs-target="#collapse1" aria-expanded='false' aria-controls='collapse1'>Gauteng</button> */}
+                            {IsProvinces && <>
+                            {Provinces.map((prov, xid)=>(
+                                <button className='collapsible' onClick={() => collapse(prov.province_id)}>{prov.province_name}</button>
+                            ))}
+                                {IsMunicipalities && <>
+                                    {ExpandSelectedProvince.province_id === 'gau' &&
+                                        <div className='drop-province' id='collapse1'>
+                                            <div className='province-content'>
+                                                <table>
+                                                    <th>Municipality</th>
+                                                    <th>results</th>
+                                                    <tr>
+                                                        <td>Thswane </td>
+                                                        <td>10 </td>
+                                                    </tr>
+                                                    <tr> 
+                                                        <td>Metropo </td>
+                                                        <td>30 </td>
+                                                    </tr> <tr>
+                                                        <td>Jozi </td>
+                                                        <td>500 </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    }
+                                </>}
 
-                            {ExpandSelectedProvince.province_id === 'gau' &&
-                                <div className='drop-province' id='collapse1'>
-                                    <div className='province-content'>
-                                        <table>
-                                            <th>Municipality</th>
-                                            <th>results</th>
-                                            <tr>
-                                                <td>Thswane </td>
-                                                <td>10 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Metropo </td>
-                                                <td>30 </td>
-                                            </tr> <tr>
-                                                <td>Jozi </td>
-                                                <td>500 </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            }
+                            </>}
+
 
                             <button className='collapsible' onClick={() => collapse('lim')}>Limpopo</button>
-                            {/* <button className='collapsible' data-bs-toggle='collapse' data-bs-target="#collapse2" aria-expanded='false' aria-controls='collapse2'>Limpopo</button> */}
                             {ExpandSelectedProvince.province_id === 'lim' &&
                                 <div className='drop-province' id='collapse2'>
                                     <div className='province-content'>
@@ -80,6 +107,7 @@ function Municipality() {
                                     </div>
                                 </div>
                             }
+
 
                         </div>
 
