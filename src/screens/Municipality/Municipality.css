@@ -12,7 +12,7 @@
 
 }
 
-#report_per_prov{
+.description-report{
     width: 50%;
 }
 
@@ -52,3 +52,10 @@
     max-height: 0;
     overflow: hidden;
 }  */
+
+.content-report{
+    display: flex;
+}
+.btn-disabled{
+    background-color: rgba(61, 60, 60, 0.466);
+}
