@@ -1,0 +1,60 @@
+
+.form_content_switch{
+    position: relative;
+}
+
+.switch_h2s{
+    position: absolute;
+    left: 50%;
+    width: 50%;
+}
+.h2s-label
+{
+text-align: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+.img-h2s
+{
+   
+    height: 150px;
+    width: 100%;
+}
+.card-img-top
+{
+    height: 150px;
+    width: 100%;
+}
+.card-h2s
+{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 200px;
+    height: 250px;
+  
+
+}
+.card-body p{
+font-size: 16px;
+}
+
+.h2s-cards .card 
+{
+    width: 18rem;
+    height: 20rem;
+  
+}
+.section-h2s
+{
+    width: 100%;
+   margin-bottom: 5%;
+ 
+}
+@media only screen and (max-width: 768px) {
+   
+    .h2s-label
+    {
+        font-size: small;
+    }
+    
+}

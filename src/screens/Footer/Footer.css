@@ -1,0 +1,91 @@
+
+.contact-info{
+   
+    background-color:#26272b;
+    padding:45px 0 20px;
+    font-size:17px;
+    line-height:24px;
+    color:#a7a4a4;
+}
+.contact-info hr{
+    border-top-color:#bbb;
+  opacity:0.5
+}
+.personName{
+    font-weight: bold;
+}
+.contact-info hr.small
+{
+    margin:  20px 0;
+}
+
+/* .contact_detail{
+    margin: 0 20px;
+    margin-left: 10%;
+    font-size: 12px;
+   
+} */
+.contact-info h6
+{
+    color:#fff;
+    font-size:16px;
+    text-transform:uppercase;
+    margin-top:5px;
+    letter-spacing:2px
+}
+
+/* .end_footer{
+    text-align: center;
+    background-color:#06BCFB;
+    width: 100%;
+    color: #fff;
+ 
+} */
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none;
+ display: flex;
+}
+.social-icons link{
+    display:inline-table;
+    margin-bottom: 4px;
+}
+.socials
+{
+  background-color: #bbb;
+  border-radius: 50%;
+  width: 350px;
+  height: 100px;
+}
+.social-subs
+{
+    margin: 5% 0;
+    width: 150px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+
+}
+.social-subs .facebook:hover
+{
+    background-color: rgb(23, 49, 197);
+    width: 50px;
+    
+}
+.social-subs .instagram:hover
+{
+background-color: #a20043;
+align-items: center;
+
+}
+.social-subs .linkedin:hover
+{
+    background-color: #43b0f1;
+}
+.social-subs .twitter:hover
+{
+    background-color: #a3b7ca;
+    color: black;
+}

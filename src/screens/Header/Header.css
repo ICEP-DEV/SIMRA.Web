@@ -1,0 +1,23 @@
+.userHeader
+{
+    text-align: right;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 1.2em;
+   
+}
+
+.user_profile{
+    margin-right: 20px;
+}
+@media (max-width: 768px) {
+
+    .userHeader
+    {
+        font-size: 0.5em;
+    }
+    .user_profile
+    {
+        width: 0.5em;
+    }
+}

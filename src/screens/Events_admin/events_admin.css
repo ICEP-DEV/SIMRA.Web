@@ -1,0 +1,9 @@
+.input text{
+    width: 90%;
+    align-items: center;
+}
+.mb-3{
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-items: center;
+}
