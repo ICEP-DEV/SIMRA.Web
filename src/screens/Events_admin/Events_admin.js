@@ -18,6 +18,8 @@ const Add_Events = () => {
   const [venue, setVenue] = useState('');
   const [date, setDate] = useState(new Date());
   const [image, setImage] = useState(null);
+  const [selectedMunicapal, setSelectedMunicapal] = useState('');
+  const [MunicipalApiData, setMunicipalApiData] = useState([]);
   let navigate = useNavigate();
   const [dateTime, setDateTime] = useState(new Date());
   const [events, setEvents] = useState([]);
@@ -46,18 +48,50 @@ const Add_Events = () => {
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
+  const handleMuniChange = (e) => {
+    const selectedOption = MunicipalApiData.find((item) => item.muni_id === e.target.value);
+    setSelectedMunicapal({ value: selectedOption.muni_id, label: selectedOption.muni_name });
+  };
  // Fetch events data when the component mounts
  useEffect(() => {
-  const fetchEvents = async () => {
+  // const fetchEvents = async () => {
+  //   try {
+  //     const response = await axios.get(api + 'getEvents');
+  //     setEvents(response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching events:', error.message);
+  //   }
+  // };
+  // fetchEvents();
+  // const fetchMunicipal = async () => {
+  //   try {
+  //     const responses = await axios.get(api + 'getEventsMunicipal');
+  //     // const data = await responses.json();
+  //     setMunicipalApiData(responses.data); // Update the state with the fetched data
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // };
+
+  // // Call the fetch function
+  // fetchMunicipal();
+  const fetchData = async () => {
     try {
-      const response = await axios.get(api + 'getEvents');
-      setEvents(response.data);
+      const [eventsResponse, municipalResponse] = await Promise.all([
+        axios.get(api + 'getEvents'),
+        axios.get(api + 'getMunicipal'),
+      ]);
+
+      setEvents(eventsResponse.data);
+      console.log("municiapl",municipalResponse)
+      setMunicipalApiData(municipalResponse.data);
     } catch (error) {
-      console.error('Error fetching events:', error.message);
+      console.error('Error fetching data:', error.message);
     }
   };
 
-  fetchEvents();
+  fetchData();
+
 }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
 
 const handleUpdateEvent = (eventId) => {
@@ -134,6 +168,8 @@ function formatDateAndTime(date) {
     formData.append('venue', venue);
     formData.append('date', dateTime);
     formData.append('image', image);
+    formData.append('muni_id',selectedMunicapal.value);
+    formData.append('muni_name', selectedMunicapal.label);
     
 
     try {
@@ -144,7 +180,7 @@ function formatDateAndTime(date) {
         },
       });
 
-      //console.log(response.data);
+      console.log(response.data);
       setTitle('');
       setDescription('');
       setVenue('');
@@ -162,9 +198,27 @@ function formatDateAndTime(date) {
       <h2 style={{ textAlign: 'center'}}>Add Events</h2>
     <div className='container-wrapper mt-3 mb-3'>
       
-   <div className='mb-50'>
-      <h4 style={{ textAlign: 'center', marginBottom:"3%"}}>Event Details</h4>
-      <form onSubmit={handleFormSubmit}>
+       <div className='mb-50'>
+          <h4 style={{ textAlign: 'center', marginBottom:"3%"}}>Event Details</h4>
+          <form onSubmit={handleFormSubmit}>
+           <div className="mb-3">
+          <label>Select Municipality:</label>
+          <select
+          className="form-control"
+            value={selectedMunicapal.value}
+            onChange={handleMuniChange}
+          >
+            <option value="">Select...</option>
+            {MunicipalApiData.map((item) => (
+              <option key={item.muni_id} value={item.muni_id}>
+                {item.muni_name}
+              </option>
+            ))}
+          </select>
+
+          <p>Selected Municipality id: {selectedMunicapal.value}</p>
+          <p>Selected Municipality Name: {selectedMunicapal.label}</p>
+          </div> 
         <div className="mb-3">
           <label className="form-label">Title:</label>
           <input type="text" className="form-control" value={title} required onChange={handleTitleChange} />
