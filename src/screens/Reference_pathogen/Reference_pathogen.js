@@ -64,7 +64,7 @@ function Reference_pathogen() {
         else {
             setIsCustomized(true)
         }
-    }
+    }  
 
     function handleRadio(event) {
         console.log(event.target.value)

@@ -1,6 +1,10 @@
-// import React, { useState } from 'react';
-// import Chart from "react-apexcharts";
-// function graph(){
+ import React, { useState } from 'react';
+ import Amplify from 'aws-amplify'
+ import {AmplifyProvider} from '@aws-amplify/ui-react';
+ import '@aws-amplify/ui-react/styles.css'
+ function Graph(){
+
+ 
 //     const [state, setState] = useState({
 //         options: {
 //           colors: ["#4472c4", "#ed7d31", "#a5a5a5", "#ffc000", "#5b9bd5", "#70ad47", "#264478", "#9e480e"],
@@ -105,5 +109,5 @@
 //         </div>
 //       </div>
 //       );
-// }
-// export default graph
+}
+ export default Graph
