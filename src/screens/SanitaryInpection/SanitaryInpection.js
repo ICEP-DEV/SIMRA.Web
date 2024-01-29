@@ -21,7 +21,7 @@ import slider from '../../Data/slider';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-​
+
 function SanitaryInpection() {
     var navigate = useNavigate()
     let sampling_info = useSelector((state) => state.sampling.value)
@@ -31,7 +31,7 @@ function SanitaryInpection() {
     let [SelectPopUp, setSelectPopUp] = useState(false);
     const [Methods] = useState(methods)
     useEffect(() => {
-​
+
         if (DataAnalysis.message !== "adedd hydrogensulfide") {
             if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
             else if (DataAnalysis.total_avarage > 25 && DataAnalysis.total_avarage < 51) { setbackgroundColor("rgba(255, 255, 0, 0.733)") }
@@ -41,15 +41,15 @@ function SanitaryInpection() {
         else {
             if (DataAnalysis.status === true) {
                 setbackgroundColor("rgba(216, 0, 0, 0.986)")
-​
+
             }
             else {
                 setbackgroundColor("rgba(0, 128, 0, 0.719)")
             }
         }
-​
+
     }, [DataAnalysis])
-​
+
     let sanitary = <div className='headerModal'>
         <h2>Analysis: Sanitary Survey</h2>
         <h3>Risk Characterization</h3>
@@ -58,17 +58,17 @@ function SanitaryInpection() {
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
         </div>
     </div>;
-​
+
     let h2s = <div>
         <h2>Analysis: H2S</h2>
         <h3>Risk Characterization</h3>
-​
+
         <div className='form-group'>
             <label>{DataAnalysis.risk_type}</label>
             <input type='text' className='low_risk risk_parce' style={{ backgroundColor: backgroundColor }} disabled />
         </div>
     </div>
-​
+
     const [SanitaryInpectionItems, setSanitaryInpectionItems] = useState(
         {
             pitLatrine: false,
@@ -82,14 +82,14 @@ function SanitaryInpection() {
             samplingId: 0
         }
     );
-​
-​
+
+
     const handleChangeUpdate = (e) => {
         let sanitary = SanitaryInpectionItems;
         sanitary[e.target.value] = e.target.checked;
         setSanitaryInpectionItems(sanitary)
     }
-​
+
     function senduseSanitaryInpectionSurvey() {
         //validate the radio buttons
         console.log(SanitaryInpectionItems)
@@ -109,8 +109,8 @@ function SanitaryInpection() {
             //initModalsing();
             return;
         }
-​
-​
+
+
         // if (!sampling_info.longitude || !sampling_info.latitude) {
         //     toast.error("Won't be able to proceed since we couldn't get your location!", {
         //         position: "top-right",
@@ -124,7 +124,7 @@ function SanitaryInpection() {
         //     });
         //     return;
         // }
-​
+
         // else {
         //Call in sampling data api
         axios.post(api + "sampling_data", sampling_info).then((response) => {
@@ -153,13 +153,13 @@ function SanitaryInpection() {
             }, err => {
                 console.log(err)
             })
-​
+
             axios.post(api + "sanitary_inspection_survey", SanitaryInpectionItems)
                 .then((result) => {
                     setDataAnalysis(result.data)
                     console.log(DataAnalysis)
                     // navigate("/data_results", { state: { temp } })
-​
+
                     if (result.data.success === true) {
                         if (DataAnalysis.message !== "added hydrogensulfide") {
                             if (DataAnalysis.total_avarage < 26) { setbackgroundColor("rgba(0, 128, 0, 0.719)") }
@@ -176,10 +176,10 @@ function SanitaryInpection() {
                             }
                         }
                     }
-​
+
                     // setSelectPopUp(true)
                     initModal();
-​
+
                 }, err => {
                     console.log(err)
                 })
@@ -187,10 +187,10 @@ function SanitaryInpection() {
             console.log(err)
         })
     }
-​
-​
+
+
     // }
-​
+
     let display_methods = <div className="box box_with_carousel">
         <Carousel useKeyboardArrows={true} className='carousel-sanitary'>
             {Methods.map((method, xid) => (
@@ -201,13 +201,13 @@ function SanitaryInpection() {
                     <div className='method_img'>
                         <img src={method.image} alt={method.method} className='image_method_class' />
                     </div>
-​
+
                 </div>
             ))}
         </Carousel>
         <button className='btn btn-primary' onClick={() => navigate('/h2s_survey')}>OK</button>
     </div>
-​
+
     const [isShowsing, invokeModalsing] = React.useState(false)
     const initModalsing = () => {
         return invokeModalsing(!false)
@@ -260,9 +260,9 @@ function SanitaryInpection() {
       ],
     
       };
-​
+
     return (
-​
+
         <div className='hero-all' >
             <Navbar />
             <div className='main-all'>
@@ -271,7 +271,7 @@ function SanitaryInpection() {
                     <Header />
                     <h2 className='text-primary text-center'>Sanitary Inpection</h2>
                     <div className='sanitaryInpection'>
-​
+
                         {/* Pop up test methods */}
                         <PooUp trigger={SelectPopUp} setTrigger={setSelectPopUp}>
                             {display_methods}
@@ -281,17 +281,17 @@ function SanitaryInpection() {
                                 <Modal.Title>Methods</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-​
+
                             {display_methods}
-​
+
                             </Modal.Body>
                             <Modal.Footer></Modal.Footer>
                         </Modal>
                         <Level2PopUp>
-​
+
                         </Level2PopUp>
                         <Level3PopUp>
-​
+
                         </Level3PopUp>
                         {/* validation pop up */}
                         <Modal show={isShowsing} onHide={modalClosesing} >
@@ -299,21 +299,21 @@ function SanitaryInpection() {
                                 <Modal.Title>Analysis results</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-​
+
                                 all the field the must be checked
-​
+
                             </Modal.Body>
                             <Modal.Footer></Modal.Footer>
                         </Modal>
-​
+
                         {/* data results pop up */}
-​
+
                         <Modal show={isShow} onHide={modalClose} size="md" >
-​
+
                             <Modal.Header closeButton>
                                 <Modal.Title>Results</Modal.Title>
                             </Modal.Header>
-​
+
                             <Modal.Body>
                                 {(DataAnalysis.message !== "added hydrogensulfide") && (<div style={{textTransform:'capitalize' ,fontSize:'1.1em', fontWeight:'600'}}>
                                     {sanitary}
@@ -321,8 +321,8 @@ function SanitaryInpection() {
                                 {(DataAnalysis.message === "added hydrogensulfide") && (<div>
                                     {h2s}
                                 </div>)}
-​
-​
+
+
                                 <div className='methods' style={{margin: '0 50px', padding:'10px', color:'white', backgroundColor:'grey'}}>
                                     {SanitaryInpectionItems.pitLatrine ? <span className='controlMethods'>
                                         <h4>Pit Latrines</h4>
@@ -330,7 +330,7 @@ function SanitaryInpection() {
                                         <li>Build and maintain pit latrines properly, and safely dispose of waste after emptying.. </li>
                                         <li>Flush toilets or proper well-maintained pit latrine construction. </li> 
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.domesticAnimal ? <span className='controlMethods'>
                                         <h4>Domestic Animals</h4>
                                         <li>Implement proper waste management for animal feaces. </li>
@@ -338,48 +338,48 @@ function SanitaryInpection() {
                                         <li>Establish buffer zones between livestock areas and water bodies. </li>
                                         <li>Reduce contamination risks through effective planning and separation. </li>
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.diaperDisposal ? <span className='controlMethods'>
                                         <h4>Diapers Deposition</h4>
                                         <li>Women should be encouraged to stop dumping children's feces in the stream. </li>
                                         <li>The responsible solution is to dispose of diapers in designated waste bins. </li>
                                         <li>Using cloth diapers is a helpful and eco-friendly alternative. </li>
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.wasteWaterRelease ? <span className='controlMethods'>
                                         <h4>Release of Wastewater</h4>
                                         <li>Households must be connected to sewage systems. </li>
                                         <li>Ensure effective wastewater treatment to reduce pollution. </li>
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.openDefaction ? <span className='controlMethods'>
                                         <h4>Open Defecation</h4>   
                                         <li>Open defecation poses health and environmental risks, especially when it contaminates water bodies. </li>
                                         <li>Build and maintain public and household toilets to discourage open defecation.</li>
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.unprotectedWaterSource ? <span className='controlMethods'>
                                         <h4>Unprotected Water Sources</h4>                                        
                                         <li>Establish and protect water sources to prevent contamination from surface runoff or human activities. </li>
                                         <li>Fencing the area remove faecal matter deposited by livestock, and sweep wellhead area. </li>
                                         <li>Communities should use protected and treated water sources.</li>
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.agriculturalActivity ? <span className='controlMethods'>
                                         <h4>Agricultural Activities</h4>
                                         <li>To maintain soil health, implement erosion control measures such as planting cover crops and establishing vegetative buffer zones along water bodies.</li>
                                     </span> : null}
-​
+
                                     {SanitaryInpectionItems.observerLaundryActivity ? <span className='controlMethods'>
                                         <h4>Laundry Activities</h4>
                                         <li>Proper disposal of laundry wastewater must be done by using sewage pipes.</li> 
                                         <li>The impact of eco-friendly detergents will help to not contaminate water.</li>
                                         <li>Filtering laundry water before disposal can enhance water quality and minimize environmental impact.</li>
                                     </span> : null}
-​
+
                                 </div>
-​
-​
+
+
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="dark" onClick={function (event) { modalClose(); initModals()}}>
@@ -449,14 +449,14 @@ function SanitaryInpection() {
                                         name='SanitaryInpectionItems' value='observerLaundryActivity' />
                                 </label>
                             </div>
-​
+
                         </div>
-​
+
                         <button onClick={senduseSanitaryInpectionSurvey} className='btn btn-success btn-lg justify-content-center mt-5 w-25'>Submit</button>
-​
-​
+
+
                     </div>
-​
+
                     {/* <div id='sanitary_description ' className='text-primary mb-2'>
                     <h3>How can I do sanitary Inspection? </h3>
                     <ul>
@@ -471,7 +471,7 @@ function SanitaryInpection() {
                 <section className='section-h2s mx-5'>
                 <h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
                    
-​
+
                 <Slider {...settings}>
                 {slider.map((d) => (
                 <div className='alert alert-secondary text-dark w-75 '>
@@ -483,10 +483,10 @@ function SanitaryInpection() {
                     </div>
                 </div>
                 ))}
-​
+
                 </Slider> 
-​
-​
+
+
                    
                     </section>
                     {/* <section className='section-h2s'>
@@ -496,17 +496,17 @@ function SanitaryInpection() {
                                 <div class="card-header">
                                     domestic animals
                                 </div>
-​
+
                                 <div className='card-body'>
                                     <img className='' style={{ width: '100%', height: '250px' }} src={domestic_animal} alt="domestic animals" />
                                 </div>
-​
+
                             </div>
                             <div className='card' style={{ width: '18rem' }}>
                                 <div class="card-header">
                                     Diapers Disposal
                                 </div>
-​
+
                                 <div className='card-body'>
                                     <img className='' style={{ width: '100%', height: '250px' }} src={diapers} />
                                 </div> </div>
@@ -515,24 +515,24 @@ function SanitaryInpection() {
                                     Open defaction
                                 </div>
                                 <div className='card-body'>
-​
+
                                     <img className='card-img-top' style={{ width: '100%', height: '250px' }} src={pit} alt="pit toilets" />
                                 </div> </div>
-​
-​
+
+
                             <div className='card' style={{ width: '18rem' }}>
-​
+
                                 <div class="card-header">
                                     Agricultural Activities
                                 </div>
-​
+
                                 <div className='card-body' style={{ font: '16px' }}>
                                     <img className='' style={{ width: '100%', height: '250px' }} src={farming} />
                                 </div> </div>
-​
-​
+
+
                             <div className='card' style={{ width: '18rem' }}>
-​
+
                                 <div class="card-header">
                                     waste Water
                                 </div>
@@ -543,12 +543,11 @@ function SanitaryInpection() {
                         </div>
                     </section> */}
                 </div>
-​
+
             </div>
             <footer><Footer /></footer>
         </div>
     );
 }
-​
 
 export default SanitaryInpection

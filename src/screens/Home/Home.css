@@ -172,7 +172,12 @@ width: 100%;
 }
  .h2s-cards .card 
  {
-  width: '18rem'
+  width: 18rem;
+ }
+ .h2s-cards .card:hover
+ {
+  width: 20rem ;
+font-weight: 500;
  }
   @media screen and (max-width: 1024px) {
     
@@ -180,6 +185,7 @@ width: 100%;
     {
       font-size: 0.9rem;
       word-spacing: 0.1em;
+      font-weight: 500;
     }
    
     .h2s-cards .card 

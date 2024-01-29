@@ -2,10 +2,10 @@ import Admin_Side_Bar from "../../Admin_NavBar/Admin_NavBar";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import { api } from "../../../Data/API";
 function Users(){
    
-    const api = "http://localhost:3001/api/"
+ 
    
     const [users,setUsers]=useState([{}]);
     const [datafound,setDataFound]=useState({});

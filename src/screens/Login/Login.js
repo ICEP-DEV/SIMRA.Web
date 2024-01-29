@@ -106,7 +106,7 @@ function Login() {
                 dispatch(user_details(user_info))
 
                 if (loginData.data.results[0].role === "user") {
-                    navigate('/home')
+                    navigate('/sampling_data')
 
                 }
                 else if (loginData.data.results[0].role === "municipal") {

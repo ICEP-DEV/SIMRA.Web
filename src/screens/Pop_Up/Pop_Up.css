@@ -18,6 +18,8 @@
     max-width: 540px;
     background-color: white;
     position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .popup-inner-header {
@@ -28,3 +30,13 @@
     top: 15px;
     right: 15px;
 }
+@media screen and (max-height: 500px) {
+    
+    .register-popup-inner
+    {
+    
+      float:right;
+      overflow-y: visible;
+  
+    }
+     }

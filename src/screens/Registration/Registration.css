@@ -31,7 +31,7 @@
 }
 .reg-card
 {
-    width: 727px;
+    width:80%;
     height: 813px;
     margin-left: 200px; /* Same as the width of the sidebar */
     padding: 0px 10px;
@@ -58,7 +58,15 @@
     margin-top: 20px;
     text-align: center;
 }
-
+@media screen and (max-height: 500px) {
+    
+  .reg-card
+  {
+  
+    float:right;
+    overflow-y: visible;
+  }
+   }
 
 /*-------------------------------------------------------------------*/
 
