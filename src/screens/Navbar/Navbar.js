@@ -60,7 +60,7 @@ function Navbar() {
             </div>
             <div className={`nav-links ${showNav ? 'show' : ''}`}>
                 <li className="navbar-subs" onClick={() => navigate('/home')}>Home</li>
-                <li className="navbar-subs" onClick={Profile}>Profile</li>
+                {/* <li className="navbar-subs" onClick={Profile}>Profile</li> */}
                 <li className="navbar-subs" onClick={data}>Sampling Data</li>
                 <div className="navbar-subs dropdown" hidden={IsFoundSamplingData}>
                     {sampling_info !== undefined && <div>

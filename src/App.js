@@ -26,8 +26,13 @@ import Add_Events from './screens/Events_admin/Events_admin'
 import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 import Level3 from './screens/Level3/Level3';
 import Reference_pathogen from './screens/Reference_pathogen/Reference_pathogen';
-import Users from './screens/Municipality/Users/users'
-
+import Admin from './screens/Admin/AdminDashboard/AdminDashboard';
+/**admin reports */
+import Users from './screens/Admin/Users/Users';
+import H2SReport from './screens/Admin/H2SReport/H2SReport';
+import Event_Admin from './screens/Admin/Event_Admin/Event_Admin';
+import Fib_Admin from './screens/Admin/FIB-Admin/Fib_Admin';
+import Survay_Admin from './screens/Admin/Survay_Admin/Survay_Admin';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
@@ -61,6 +66,13 @@ function App() {
         <Route exact path='/level3' element={<Level3 />} />
         <Route exact path='/reference_pathogen' element={<Reference_pathogen />} />
         <Route exact path='/user' element={<Users />} />
+        <Route exact path ='/admin' element={<Admin/>} />
+                
+<Route exact path='/h2sreport' element={<H2SReport/>}/>
+<Route exact path='/events' element={<Events/>}/>
+<Route exact path='/event_admin' element={<Event_Admin/>}/>
+<Route exact path='/fib_admin' element={<Fib_Admin/>}/>
+<Route exact path='/survay_admin' element={<Survay_Admin/>}/>
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
       

@@ -13,6 +13,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import Resizer from 'react-image-file-resizer'; // Import the library
+
 function Home() {
   const [data, setData] = useState([]);
   let navigate = useNavigate();
@@ -66,13 +67,7 @@ function Home() {
       );
     });
 
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
+    
 
   return (
     <div className='hero' >
@@ -192,10 +187,10 @@ function Home() {
 <section>
   <h2 className='text-primary text-center'>Events</h2>
   <div>
-  <Slider {...settings}>
-  <div className="row-home">
+
+  <div class="d-flex flex-row" style={{ float:"left", clear: "both" }}>
             {data.map((item) => (
-              <div key={item._id} className="col-md-4 mb-2">
+              <div key={item._id} >
                 <Card className="h-100">
                   <div className="d-flex flex-column">
                     <div className="mb-3">
@@ -217,9 +212,10 @@ function Home() {
               </div>
             ))}
           </div>
-    </Slider>
+
 
   </div>
+
 </section>
       </section>
 
