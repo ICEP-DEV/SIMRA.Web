@@ -1,0 +1,48 @@
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #0063EA;
+    color: whitesmoke;
+    font-size: 20px;
+    margin: 0 5px 0 0;
+}
+
+.sidebar-subs {
+    margin: 35% 0;
+    text-align: center;
+    color: white;
+}
+
+.sidebar-subs:hover{
+    cursor: pointer;
+}
+
+.sidenav {
+    background-color: #0063EA;
+    height: 100vh;
+    /* Full-height: remove this if you want "auto" height */
+    width: 200px;
+    /* Set the width of the sidebar */
+    position: fixed;
+    /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    left: 0;
+    padding-top: 20px;
+
+}
+
+.sidenav a {
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.logo {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+}

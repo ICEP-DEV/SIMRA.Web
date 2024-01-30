@@ -1,0 +1,21 @@
+.landingPage_class
+{
+    background-image: url('../../assets/hands.avif');
+    width: 100%;
+}
+.nav
+{
+background-color: #0059D4;
+width: 100%;
+}
+.carousel
+{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+.para h4{
+    font-family:'cursive'
+}

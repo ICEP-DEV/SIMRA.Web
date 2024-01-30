@@ -1,71 +1,176 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Poppins:ital,wght@1,300&display=swap');
 
-  .logo a img{
-    visibility: hidden;
-  }
-  .topnav {
-    /* background-color: linear-gradient(#4884EE,#06BCFB); */
-    background-color:#26272b;
-    color: #fff;
-    width: 100%;
-    font-size: 16px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-  
-   
-  }
-  .nav-links
-  {
-  display: flex;
-  justify-content: space-around;
+  /* .logo a img{
+  visibility: hidden;
+} */
+.topnav {
+  background-color: #26272b;
+  color: #fff;
   width: 100%;
+  font-size: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center; 
+  /* justify-content: space-between; */
+
+}
+
+.nav-links
+{
+  padding-left: 25%;
+  display: flex;
+  float: right;
+  /* justify-content:space-between; */
+  /* gap: 1.2em; */
+  align-items:right;
+  width: 100%;
+  list-style: none;
+}
+/* .rounded-img{
+  padding-left: 36%;
+} */
+
+.logo {
+  padding-left: 8%;
+}
+.topnav .navbar-subs {
+  margin: 0 20px;
+  cursor: pointer;
+  float: right;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  width: 20%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1.5em;
+
+}
+
+.topnav .navbar-subs:hover {
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+.topnav .navbar-subs .split {
+  float: righ;
+
+  color: white;
+}
+.navbar .nav-item:not(:last-child) {
+  margin-right: 35px;
+}
+.dropdown-toggle::after {
+   transition: transform 0.15s linear; 
+}
+.show.dropdown .dropdown-toggle::after {
+  transform: translateY(3px);
+}
+
+.rounded-img {
+
+  width: 90px;
+
+  border-radius: 50%;
+
+}
+.navbar-subs:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content li  {
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+.dropdown-content li:hover {
+  background-color: #f0f0f0;
+}
+
+
+.navbar-subs:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li a {
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+.navbar-subs .btn{
+float: right;
+}
+
+@media screen and (max-height: 600px) {
+  .topnav .navbar-subs :not(:first-child) {
+    display: none;
   }
-  .topnav .nav-links .navbar-subs {
-    float: left;
-    padding: 12px;
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 400;
-    line-height: 1.5em;
-    font-weight: bolder;
-    font-family: 'Poppins', sans-serif;
-    margin: 0 40px;
-  
+
+
+}
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Show/hide navigation links for smaller screens */
+@media (max-width: 1086px) {
+  .topnav{
+    /* padding-left: 5%;
+    padding-right:10%; */
+    justify-content: space-between;
   }
-  
-  .topnav .navbar-subs:hover {
-    color: 	#00b1ff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  
+  .logo{
+    padding-left: 5%;
+
   }
-  
-  .topnav .navbar-subs .split {
-    float: right;
-    color: white;
+  .hamburger{
+    padding-right:5%;
   }
-  .nav-label {
-    width: 100%;
-  }
-  .rounded-img {
-  
-    width: 170px;
-    height: 60px;
-  
-  }
-  .nav_content {
-  
+  .nav-links {
+    display: none;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    display: block;
-   
+    float: right;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color:  #26272b;
+    z-index: 1;
+    transition: all 0.3s ease;
   }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+    
+  }
+
+  .navbar-subs a img{
+    display: none;
+  }
+  /* .logo a img{
+    visibility: visible;
+   
+  } */
+}
   
   /*  Hover dropdown collaps */
   .dropbtn {
@@ -90,7 +195,7 @@
   }
   
   .dropdown .dropdown-link:hover {
-    color: rgb(5, 63, 5);
+    color: rgb(5, 14, 63);
     margin-left: -16px;
   
   }
@@ -155,6 +260,7 @@
       top: 60px;
       left: 0;
       right: 0;
+      /* width: 50%; */
       background-color:#26272b;
       z-index: 1;
       transition: all 0.3s ease;
@@ -172,8 +278,10 @@
     .navbar-subs a img{
       display: none;
     }
+
     .logo a img{
       visibility: visible;
      
     }
+   
   }

@@ -1,11 +1,12 @@
 import { FaUserAlt } from "react-icons/fa";
-import { RiTestTubeLine } from "react-icons/ri";
-import { FcSurvey } from "react-icons/fc";
-import { AiOutlineFile, AiOutlineVideoCameraAdd, AiOutlineLogout } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+import {FiLogOut} from "react-icons/fi";
+import { AiOutlineFile, AiFillHome} from "react-icons/ai";
+import {GoVideo} from "react-icons/go"
+import { useNavigate,Link } from 'react-router-dom';
 import "./Sidebar.css";
-import { Outlet, Link } from "react-router-dom";
 import logo from './logo.png';
+import { IconContext } from "react-icons";
+
 
 console.log(logo);
 function Sidebar() {
@@ -16,31 +17,38 @@ function Sidebar() {
 <div className="logo">
 <img src={logo} style={{marginLeft:'25px'}} />Simra<br></br>
 </div>
-           
+<IconContext.Provider value={{ className: "side-icon" }}>
+
+    <div className="sidebar-subs">
+<Link to ='/home'><AiFillHome className="icon"/><br></br>Home</Link>
+    </div>
             <div className="sidebar-subs">
-                <a href=""><FaUserAlt   size={'3rem'}/> Profile</a>
+              
+ 
+                <Link to="/profile"><FaUserAlt  className="icon" /><br></br> Profile</Link>
             </div> 
 
-            <div className="sidebar-subs">
-                <Link to="/" ><RiTestTubeLine />H2S</Link>
+            {/* <div className="sidebar-subs">
+                <a href=""><RiTestTubeLine   /><br></br>H2S</a>
             </div>
 
             <div className="sidebar-subs">
-                <Link to="/"><RiTestTubeLine />Sanitary</Link>
+                <a href=""><FcSurvey  /><br></br>Survey</a>
+            </div> */}
+
+            <div className="sidebar-subs">
+                <a href=""><AiOutlineFile  /><br></br>File</a>
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><AiOutlineFile  size={'3rem'} />File</a>
+              
+                <Link to="/video"><GoVideo   className="icon" /> <br></br>Video</Link>
             </div>
 
             <div className="sidebar-subs">
-                <a href=""><AiOutlineVideoCameraAdd  size={'3rem'} /> Video</a>
+                <a href=""><FiLogOut /><br></br> Logout</a>
             </div>
-
-            <div className="sidebar-subs">
-                <a href=""><AiOutlineLogout size={'3rem'}/> Logout</a>
-            </div>
-
+            </IconContext.Provider>
         </div>
     )
 }

@@ -9,6 +9,13 @@
   min-height: 100vh;
   padding: 50px;
  }
+ .prof_head
+ {
+  font-weight: bold;
+  color:#00b1ff;
+  font-family: poppins;
+  text-align: center;
+ }
 .container-w{
   padding-top: 50px;
   display: block;
@@ -16,7 +23,7 @@
   margin-right: auto;
   background-color: #E1E4E8;
   border-radius: 15px;
-  color: #09330d;
+  color: 	#00b1ff;
   width: 70%;
   height: 70vh;
   text-align: center;
@@ -24,17 +31,36 @@
 .profile-input{
  width: 500px;
 border: none;
-border-bottom: 2px solid black;
+padding: 10px;
 }
  .profile-main
 {
    padding: 15px;
 } 
+
 .profile-main h1{
  
-  
     margin-bottom: 55px;
 
+}
+.btn-updateSub {
+  padding: 15px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #000000;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.btn-updateSub:hover {background-color: #1064ff}
+
+.btn-updateSub:active {
+  background-color: #0f0f0ff8;
+  box-shadow: 0 5px #666;
+  transform: translateY(18px);
 }
 @media only screen and (max-width: 745px) {
     
@@ -47,10 +73,10 @@ border-bottom: 2px solid black;
         /* display: flex; */
         justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */
-        min-height: 100vh;
+        min-height: 80vh;
         margin: auto;
         padding: auto;
-        height: auto;
+       
     }
     p{
         font-size: 14px;}
@@ -63,9 +89,8 @@ border-bottom: 2px solid black;
       .profile-input{
         width: auto;
       }
-      .btn-data{
+      .btn-updateSub{
         width: auto;
-
         height: auto;
       }
     

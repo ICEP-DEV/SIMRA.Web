@@ -1,7 +1,7 @@
 .btn-reg
 {
     position: absolute;
-    background-color: #0063EA;
+    background-color:#198754;
     width: 150px;
     border: none;
     border-radius: 5px;
@@ -62,49 +62,3 @@
 
 /*-------------------------------------------------------------------*/
 
-
-.register-popup{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.register-popup-inner{
-    padding: 70px;
-    width: 100%;
-    max-width: 640px;
-    background-color: white;
-    position: relative;
-}
-
-.popup-inner-header {
-    position: absolute;
-    font-size: 2em;
-    transform: translate(-50%, -50%);
-    text-align: right;
-    top: 15px;
-    right: 15px;
-}
-
-.popup-btn-rotate:hover{
-    animation: rotate 1s linear;
-    cursor: pointer;
-}
-
-@keyframes rotate{
-    0%{
-        transform: rotate(0deg);
-    }
-    50%{
-        transform: rotate(180deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-}

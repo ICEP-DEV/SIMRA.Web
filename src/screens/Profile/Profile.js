@@ -5,6 +5,7 @@ import "./Profile.css";
 import { FiEdit2 } from 'react-icons/fi';
 import axios from 'axios';
 import { user_details } from "../../Redux/user";
+import Footer from '../Footer/Footer';
 
 function UserProfileUpdate() {
   const user_info = useSelector((state) => state.user.value);
@@ -14,7 +15,8 @@ function UserProfileUpdate() {
     
     user_firstname:'',
     user_lastname: '',
-    user_mobileNo:''
+    user_mobileNo:'',
+    user_email:''
     // Add more fields as needed
   });
                    
@@ -57,8 +59,8 @@ function UserProfileUpdate() {
       </div>
 
       <div className='main-all'>
-        <div className='content-w'>
-          <div className='container-w'>
+        <div className='profile-main'>
+          <div className='container-wrapper'>
 
             <div className="profile-main">
               <h1>My Profile</h1>
@@ -95,15 +97,26 @@ function UserProfileUpdate() {
                     <FiEdit2 className="edit-icon" />
                   </div>
                 </div>
+                <div className="sub">
+                  Email
+                  <br></br>
+                  <div className="input-container">
+                    <input className="profile-input" type="email" id="user_email"
+                      name="user_email" placeholder={user_info.user_email}value={state.user_email} onChange={handleInputChange} />
+                    <FiEdit2 className="edit-icon" />
+                  </div>
+                </div>
 
-                <button className="btn-data" type="submit">Update</button>
+                <button className="btn btn-success w-25 p-2" type="submit">Update</button>
               </form>
             </div>
 
           </div>
         </div>
       </div>
-
+      <footer>
+                <Footer />
+            </footer>
     </div>
   );
 }

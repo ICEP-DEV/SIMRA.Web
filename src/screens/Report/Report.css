@@ -1,77 +1,74 @@
-/*p,
-li {
-  text-align: justify;
-}
-ins {
-  background-color: #a0ffa0;
-}
-del {
-  background-color: #ffa0a0;
-}
-.code {
-  background-color: #eeeeee;
-}
-.codex {
-  background-color: #ffffe0;
-}
-
-.container {
-  width: 80%;
-  align-items: center;
-}
-.report {
-  margin-top: 200px;
-  text-align: center;
-  border-spacing: 5;
-  border: 1px solid black;
-}
-.tableHead {
-    border: 1px solid black;
-    height: 200px;
-}
-th {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  width: 400px;
-  font-weight: normal;
-  height: 150px;
-  border: 1px solid black;
-}
-th {
-  border: 1px solid black;
-  height: 150px;
-}
-.tableData {
+.container-wrap {
+    padding: 50px;
 
 }
-td {
-  height: 50px;
-  border: 1px solid black;
-}*/
-/* Can't eliminate the spacing no matter what I try *//*
-.thh:first-child {
-  height: 100px;
+.reports{
+    display:flex;
+    
 }
-.thh:not(:first-child) {
-  height: 10px;
+.card-rows{
+    display:inline-block;
+
 }
 
-td:nth-child(2) {
-  background-color: #fce300;
+.card{
+    display:flex;
+    text-align:center;
+    justify-content: center;
+    align-items: center;
+    left: auto;
+    right: auto;
 }
-td:nth-child(3) {
-  background-color: #cc7a0e;
+.card-circle{
+    width: 70px;
+    height: 70px;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-radius: 50%;
+   justify-content:center;
+    border: rgb(119, 118, 118) solid 1px;
 }
-td:nth-child(4) {
-  background-color: #a0ffa0;
+
+.sanitary_score{
+    margin-top:20px;
+    font-size: 1.2em;
+    font-weight: 400;
 }
-td:nth-child(5) {
-  background-color: #fce300;
+
+
+.catchment, .risk_type{
+    font-weight: 500;
 }
-td:nth-child(6) {
-  background-color: #cc7a0e;
+.date {
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    background: green;
+    background-image: none;
+    border: none;
 }
-td:nth-child(7) {
-  background-color: #f51414;
+
+.date {
+    width: 60%;
+    font-size: 1.15rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
 }
-*/
+
+.province {
+    width: 30%;
+    font-size: 1.15rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
+}

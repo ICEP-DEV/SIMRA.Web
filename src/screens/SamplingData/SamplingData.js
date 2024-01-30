@@ -12,7 +12,7 @@ import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import Loader from '../Loader/Loader';
+import { api } from '../../Data/API';
 import Load_Waves from '../Pop_Up/load/Load_Waves';
 
 function SamplingData() {
@@ -33,7 +33,6 @@ function SamplingData() {
     let [Level3UserPopUp, setLevel3UserPopUp] = useState(false);
     const [ButtonPopup, setButtonPopup] = useState(false);
 
-    const api = 'http://localhost:3001/api/'
 
     useEffect(() => {
         axios.get(api + 'get_provinces').then(response => {
@@ -175,14 +174,14 @@ function SamplingData() {
     </div>
 
     const leve2popup = <div>
-        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
-        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
+        <button className='level_popup level1_class ' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
+        <button className='level_popup level2_class ' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
     </div>
 
     const leve3popup = <div>
-        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
-        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
-        <button className='level_popup level3_class' onClick={()=> navigate('/mst')}>Level Three (Expert)</button>
+        <button className='level_popup level1_class  ' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
+        <button className='level_popup level2_class ' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
+        <button className='level_popup level3_class ' onClick={()=> navigate('/level3')}>Level Three (Expert)</button>
     </div>
 
     return (
@@ -190,12 +189,13 @@ function SamplingData() {
             <Navbar />
             <div className='content'>
                 <Header />
+                <h2 className='text-primary text-center'>Sampling Data</h2>
                 <div className='container-wrapper'>
                 <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
                         <div></div>
                     </Load_Waves>
                     <ToastContainer />
-                    <h2 className='samp_header text-primary'>Sampling Data</h2>
+                  
                     <PopUpAlert trigger={PopUpAlertMessage} setTrigger={setPopUpAlertMessage} >
                         {AlertMessage}
                     </PopUpAlert>
@@ -256,7 +256,7 @@ function SamplingData() {
                            
                         </select>
                     </div>
-                    <button className='btn btn-success btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
+                    <button className='btn btn-success btn-lg w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
 
             </div>

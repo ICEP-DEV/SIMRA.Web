@@ -29,9 +29,8 @@
   background-color: #E1E4E8;
   border-radius: 15px;
   padding-top: 10px; 
-  color: #09330d;
-  width: 70%;
-  height: 70vh;
+  width: 80%;
+  min-height: 80vh;
   text-align: center;
  }
  h2
@@ -63,11 +62,17 @@
   margin: 5px 25px;
   border-radius: 5px;
  }
-
+.samp_header
+{
+  color: 	#00b1ff;
+  font-family: poppins;
+  font-weight: bold;
+  text-align: center;
+}
  .level1_class{
-  background-color: #82d1dbad;
+  background-color: #adb5bd;
   border: none;
-  width: 50%;
+  width: 60%;
   font-weight: bold;
   color: rgb(24, 3, 3);
   padding: 15px 32px;
@@ -77,13 +82,13 @@
   font-family: poppins;
  }
  .level1_class:hover {
-  background-color: rgb(133, 204, 252);
+  background-color:#000;
   color: whitesmoke;
 }
  .level2_class{
-  background-color: #50524dad;
+  background-color: #0d6efd;
   border: none;
-  width: 50%;
+  width: 60%;
   font-weight: bold;
   color: rgb(24, 3, 3);
   padding: 15px 32px;
@@ -93,13 +98,13 @@
   font-family: poppins;
  }
  .level2_class:hover {
-  background-color: rgba(194, 192, 190, 0.856);
+  background-color:#000;
   color: whitesmoke;
 }
  .level3_class{
-  background-color: #b6dd7cad;
+  background-color: #198754;
   border: none;
-  width: 50%;
+  width: 60%;
   font-weight: bold;
   color: rgb(24, 3, 3);
   padding: 15px 32px;
@@ -109,7 +114,7 @@
   font-family: poppins;
  }
  .level3_class:hover {
-  background-color: rgba(115, 148, 96, 0.842);
+  background-color:#000;
   color: whitesmoke;
 }
 
@@ -128,7 +133,12 @@
     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
     @media (max-width: 768px) {
       .select-sampling_data:hover{
-        background-color: rgb(7, 65, 224);
+        background-color: #0d6efd;
         color: white;
+      }
+      .container-wrapper
+      {
+       padding-bottom: 5%;
+       
       }
     }

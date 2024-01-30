@@ -4,7 +4,7 @@ import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loader from '../Loader/Loader';
-// import logo from './logo3.png';
+import Load_Waves from '../Pop_Up/load/Load_Waves';
 import { useDispatch, useSelector } from 'react-redux';
 import { user_details } from "../../Redux/user";
 import { Modal, Button } from 'react-bootstrap';
@@ -13,12 +13,18 @@ import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
 import { setAuthenticationHeader } from '../../utils/authenticate';
 import logo1 from '../../assets/Simra_logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
+    
     let user_info = useSelector((state) => state.use)
     const dispatch = useDispatch();
-
-
+    const [visible, setVisible] = useState(false);
+    const togglePassword = () => {
+        setVisible(!visible);
+      };
+    
     let [RegisterPopUp, setRegisterPopUp] = useState(false);
     let navigate = useNavigate();
     const [ButtonPopup, setButtonPopup] = useState(false);
@@ -30,22 +36,30 @@ function Login() {
     const [Password, setPassword] = useState('')
     const [RePassword, setRePassword] = useState('')
     const [Level, setLevel] = useState('')
-
+    const [passwordHint, setPasswordHint] = useState('');
 
 
     const [values, setValues] = useState({
         username: "",
         password: ""
     });
+    const checkPasswordStrength = (password) => {
+        const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 
+        if (password.match(strongPasswordRegex)) {
+            setPasswordHint('Strong password!');
+        } else {
+            setPasswordHint('Password should be 8-15 characters and include at least one uppercase letter, one lowercase letter, one number, and one special characte.');
+        }
+    };
     const handleChangeUpdate = e => {
         const { name, value } = e.target;
         setValues(prevState => ({
             ...prevState,
             [name]: value
-        }));
+        }));   // Check password strength and set hint
+        checkPasswordStrength(value);
     }
-
     // set up login button using gmail account
     const onSuccess = async () => {
         if (values.username === "" && values.password === "") {
@@ -104,15 +118,16 @@ function Login() {
                     user_mobileNo: loginData.data.results[0].mobileNo,
                     user_role: loginData.data.results[0].role,
                     user_password: loginData.data.results[0].password,
+                    user_email: loginData.data.results[0].email
                 }
                 console.log(loginData.data.results[0])
-                
+
                 dispatch(user_details(user_info))
                 const token = loginData.data.token;
                 localStorage.setItem('jsonwebtoken', token);
-                 // set default headers 
-                setAuthenticationHeader(token) 
-                console.log(token)  
+                // set default headers 
+                setAuthenticationHeader(token)
+                console.log(token)
 
                 if (loginData.data.results[0].role === "user") {
                     navigate('/home')
@@ -129,7 +144,10 @@ function Login() {
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')
                 }
-
+                else if(loginData.data.results[0].role === "admin")
+                {
+                    navigate('/admin')
+                }
             }
             else {
                 toast.warn(loginData.data.message + "!", {
@@ -392,7 +410,7 @@ function Login() {
 
     let RegisterForm = <div>
         <div className='register-form'>
-            <h3 className='header-txt'><b>Create An Account</b></h3>
+            <h3 className='header-txt' style={{ textAlign: 'center' }}><b>Create An Account</b></h3>
             <div className='form-group'>
                 <label>First Name:</label>
                 <input type="text" className='control-form' onChange={(event) => setFirstname(event.target.value)} />
@@ -410,18 +428,24 @@ function Login() {
                 <input type="number" className="control-form" onChange={(event) => setPhoneNumber(event.target.value)} />
             </div>
             <div className='form-group'>
-                <label>Password:</label>
-                <input type="password" className="control-form" onChange={(event) => setPassword(event.target.value)} />
+            <label>Password:</label>
+                <input  type={visible ? 'text' : 'password'} className="control-form" onChange={(event) => setPassword(event.target.value)} />
+                <small style={{color:'red'}}>Enter strong password!, Password should be 8-15 characters and include at least one uppercase letter, one lowercase letter, one number, and one special characte.</small>
             </div>
             <div className='form-group'>
                 <label>Confirm Password:</label>
-                <input type="password" className="control-form" onChange={(event) => setRePassword(event.target.value)} />
+                <input  type={visible ? 'text' : 'password'} className="control-form" onChange={(event) => setRePassword(event.target.value)} />
+                <FontAwesomeIcon
+                icon={visible ? faEye : faEyeSlash}
+                className='eye-icon'
+                onClick={togglePassword}
+            />
             </div>
             <div className='form-group'>
 
                 <label> User Level:</label>
-                <select className='select-sampling_data control-form' onChange={(event) => setLevel(event.target.value)} >
-                    <option value='' className="control-form" disabled selected>---Select---</option>
+                <select className='select-sampling_data control-form p-2' onChange={(event) => setLevel(event.target.value)} >
+                    <option value='' className="control-form" disabled selected>Select Level</option>
                     <option value='1' className="control-form">Level One (Household)</option>
                     <option value='2' className="control-form">Level Two (Intermediate)</option>
                     <option value='3' className="control-form">Level Three (Expert)</option>
@@ -430,13 +454,14 @@ function Login() {
             </div>
         </div>
         <div className='form-group'>
-            <button className='btn btn-primary' onClick={handleRegistration}>Create Account</button>
+            <button className='btn btn-primary btn-reg' onClick={handleRegistration}>Create Account</button>
         </div>
 
     </div>
 
     return (
         <div className='all-contents'>
+           
             <ToastContainer />
             {/*
                             All field should be filled
@@ -495,6 +520,7 @@ function Login() {
                     Enter password
 
                 </Modal.Body>
+                
                 <Modal.Footer>
                     <Button variant="dark" onClick={modalClosesing}>
                         Ok
@@ -502,26 +528,21 @@ function Login() {
                 </Modal.Footer>
             </Modal>
             <div className='login-container'>
-                <div className='welcome'>
-                    <div className='logo-login'>
-                        <img className='logo-login' src={logo1} alt='logo' />
-                    </div>
-                    <h1>Welcome</h1>
-                    SIMRA, tool integrates  <br></br>
-                    the current water and <br></br>
-                    sanitation risk assessment <br></br>
-                    and management methods <br></br>
-                    into one harmonised tool<br></br>
-                </div>
-                <div className='login-card'>
+                
+              
 
-                    <div className='main-login' id='main-login'>
+                  <img src={logo1} className='logo-login' />
 
                         {/* <h3 className='text-center mb-5'><b>SIMRA</b></h3> */}
-                        <h3 className='header-txt'><b>Login </b></h3>
+                        <h3 className='header-txt text-light text-center mt-3'><b>Sign In </b></h3>
                         <div className='mb-4'>
-                            {/* <label htmlFor='username' className='lables'>Username</label> <br /> */}
-                            <input className='input-login' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
+                               <FontAwesomeIcon
+                icon={visible ? faEye : faEyeSlash}
+                className='eye-icon'
+                onClick={togglePassword}
+            />
+                            {/* <label htmlFor'username' className='lables'>Username</label> <br /> */}
+                            <input className='border border-primary input-login ' type="username" onChange={handleChangeUpdate} name='username' value={setValues.username} placeholder='Enter Username' />
                             <small>
 
                             </small>
@@ -529,35 +550,41 @@ function Login() {
 
                         <div className='mb-5'>
                             {/* <label htmlFor='password'>Password</label> <br /> */}
-                            <input className='input-login' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />
-
+                    <input className='border border-primary input-login ' type="password" onChange={handleChangeUpdate} name='password' value={setValues.password} placeholder='Enter Password' />       
+         
+          
                             <small>
-                                <div className="form-check">
+                                {/* <div className="form-check">
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" for="exampleCheck1">Remember me</label>
-                                </div>
+                                     <label className="form-check-label" for="exampleCheck1">Remember me</label> 
+                                </div> */}
+                                <label className='forgotpasswd text'>Forgot Password?</label>
                             </small>
                         </div>
 
-                        <Loader trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                        <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
                             {displayLoader}
-                        </Loader>
+                        </Load_Waves>
                         <Register trigger={RegisterPopUp} setTrigger={setRegisterPopUp} >
                             {RegisterForm}
                         </Register>
                         <div className='login-grid'>
 
-                            <button className='btn-login' onClick={onSuccess}>Log In</button>
-
-                            <small className='txt-signup'>
-                                Don't have an account ? <button onClick={() => setRegisterPopUp(true)} className='btn btn-light ms-2'>Sign Up</button>
-                            </small>
+                            <button className='btn btn-primary btn-login  mb-3' onClick={onSuccess}>Sign In</button>
+                            <br></br>
+                          
+                              <div  className='txt-signup '>
+                              <label className='text-light'> Don't have an account ? </label>
+                                <button onClick={() => setRegisterPopUp(true)} className='btn btn-light text-dark ms-2'>Sign Up</button>
+                              </div>
+                                
+                           
 
                         </div>
 
-                    </div>
+                   
 
-                </div>
+                
 
             </div>
         </div>

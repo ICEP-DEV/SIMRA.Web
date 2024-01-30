@@ -63,11 +63,9 @@ function Report() {
         <div className='hero-all' >
             <Admin_NavBar />
 
-            <div className='content'>
+      
                 <Header />
-                <div className='container-wrapper'>
-
-
+                <div className='container-wrapper mb-3'>
                     <div className='summary_report'>
                         <h2>Report Summary</h2>
                         <div className='inner_summary_report'>
@@ -78,10 +76,10 @@ function Report() {
                                         <Pie data={survay}
                                         />
                                     </div>
-                                    <div className='decript_summary'>
+                                    <div className='_decript_summary'>
                                         {SurveyRisktype.map((risk, xid)=>(
                                              <div key={xid} className='stats_summary'>
-                                                <label><span className='color_report' style={{backgroundColor:SurveyColours[xid], width:'20px', height:'20px'}}></span>{risk}</label>
+                                                <label><span className='color_report' style={{backgroundColor:SurveyColours[xid]}}></span>{risk} ({SurveyValues[xid]})</label>
                                             </div>
                                         ))}
                                         {/* <img src={sanitary_data} alt="summary" /> */}
@@ -100,10 +98,10 @@ function Report() {
                                         <Pie data={h2s}
                                         />
                                     </div>
-                                    <div className='decript_summary'>
+                                    <div className='_decript_summary'>
                                     {H2SRisktype.map((risk, xid)=>(
                                             <div key={xid} className='stats_summary'>
-                                                <label><span className='color_report' style={{backgroundColor:H2SColours[xid]}}></span>{risk}</label>
+                                                <label style={{color:'black'}}><span className='color_report' style={{backgroundColor:H2SColours[xid]}}></span>{risk}  ({SurveyValues[xid]})</label>
                                             </div>
                                         ))}
                                     </div>
@@ -114,10 +112,9 @@ function Report() {
                             )}
                             {IsFoundH2S === false && (<div>No Data Found</div>)}
                         </div>
-
                     </div>
                 </div>
-            </div>
+
             <footer>
                 <Footer />
             </footer>

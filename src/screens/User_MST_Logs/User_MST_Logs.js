@@ -10,8 +10,8 @@ import React, { useEffect, useState } from 'react';
 
 function User_MST_Logs() {
     const api = "http://localhost:3001/api/"
-    let user_info = useSelector((state) => state.user.value)
-
+ 
+   let user_info = useSelector((state) => state.user.value)
     const [Provinces, setProvinces] = useState([])
     const [Report, setReport] = useState([])
     const [Municipalities, setMunicipalities] = useState([])
@@ -164,62 +164,87 @@ function User_MST_Logs() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
+                    <h2 className='text-primary text-center'>MICROBIAL SOURCE TRACKING(MST) Logs</h2>
                     <div className='container-wrap'>
-                        <h2>MST Logs</h2>
-                        <div className='report-header'>
-                            <div id='search_date'>
-                                <span className='survey_date'>
-                                    <label className='survey_date_label'>From</label>
-                                    <input type='date' className='control-from  start_date' onChange={(event) => setStartDate(event.target.value)} />
-                                </span>
-                                <span className='survey_date'>
-                                    <label className='survey_date_label'>To</label>
-                                    <input type='date' className='control-from end_date' onChange={(event) => setEndDate(event.target.value)} />
-                                </span>
+                     
+                    <div className='report-header  '>
+            <div id='search_date ' >
+            <table className="table-logs table table-bordered w-75">
+    <thead className='thead-dark'>
+    <tr>
+      
+      <th scope="col " className='report-heading'>Start Date</th>
+      <th scope="col" className='report-heading'>End Date</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr  scope="row">
+    
+      <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)}  /></td>
+      <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
+      
+    </tr>
+   
+   
+  </tbody>
+</table>
+<button onClick={display_search_report} className="btn btn-success btn-search-report w-25 mb-5">Show Results</button>
+            </div>
+          
+<table className="table-logs table table-bordered w-75 ">
+    <thead className='thead-dark'>
+    <tr>
+      
+      <th scope="col " className='report-heading'>WeekDays</th>
+      <th scope="col" className='report-heading'>Province</th>
+      <th scope='col' className='report-heading'>Municipalities</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr  scope="row">
+    
+      <td className="w-25"> 
+      <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
+                    <option value=''>All Weekdays</option>
+                    <option value='Monday'>Monday</option>
+                    <option value='Tuesday'>Tuesday</option>
+                    <option value='Wednesday'>Wednesday</option>
+                    <option value='Thursday'>Thursday</option>
+                    <option value='Friday'>Friday</option>
+                    <option value='Saturday'>Saturday</option>
+                    <option value='Sunday'>Sunday</option>
+                  </select>
+         </td>
+                  <td className="w-25">
+                  <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
+                    <option value=''>All Provinces</option>
+                    {Provinces.map((province, xid) => (
+                      <option key={xid} value={province.province_id} >{province.province_name}</option>
+                    ))}
+                  </select>
+               
+                  </td>
+                 <td className="w-25">
+                 <select onChange={(e) => filter_by_municipality(e.target.value)}  className="w-100 p-2" >
+                    <option value=''>All Municipalities</option>
+                    {Municipalities.map((muni, xid) => (
+                      <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
+                    ))}
+                  </select>
+                 </td>
+ 
+    </tr>
+   
+   
+  </tbody>
+</table>
+              <div id='stats_summary'  className=' text-primary mt-5' >
+                <h3>Total Records: {TotalRecord}</h3>
+              </div>
 
-                                <button onClick={display_search_report} className="btn btn-primary btn-search-report">Show Results</button>
-
-                            </div>
-                            <div>
-                                <span className='survey_province'>
-                                    <label>WeekDays</label>
-                                    <select onChange={(event) => search_by_weekday(event.target.value)}>
-                                        <option value=''>All Weekdays</option>
-                                        <option value='Monday'>Monday</option>
-                                        <option value='Tuesday'>Tuesday</option>
-                                        <option value='Wednesday'>Wednesday</option>
-                                        <option value='Thursday'>Thursday</option>
-                                        <option value='Friday'>Friday</option>
-                                        <option value='Saturday'>Saturday</option>
-                                        <option value='Sunday'>Sunday</option>
-                                    </select></span>
-                                {/* <input type='checkbox' onChange={(event) => checkForUserInfo(event.target.checked)} /> */}
-                            </div>
-                            <div id='filter_by_province'>
-                                <span className='survey_province'>
-                                    <label>Province</label>
-                                    <select onChange={(e) => filter_by_province(e.target.value)}>
-                                        <option value=''>All Provinces</option>
-                                        {Provinces.map((province, xid) => (
-                                            <option key={xid} value={province.province_id} >{province.province_name}</option>
-                                        ))}
-                                    </select>
-                                </span>
-                                <span className='survey_province'>
-                                    <label>Municipalities</label>
-                                    <select onChange={(e) => filter_by_municipality(e.target.value)}>
-                                        <option value=''>All Municipalities</option>
-                                        {Municipalities.map((muni, xid) => (
-                                            <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
-                                        ))}
-                                    </select>
-                                </span>
-                            </div>
-                            <div id='stats_summary' style={{ color: 'black' }}>
-                                <h3>Total Records: {TotalRecord}</h3>
-                            </div>
-
-                        </div>
+            </div>
 
                         <div className='reports'>
                             {(FoundReport === true) && (
@@ -227,7 +252,7 @@ function User_MST_Logs() {
                                     <tr className="survey_tr">
                                         <th className="survey_th _th">Municipalities</th>
                                         <th className="survey_th">Date</th>
-                                        <th className="survey_th ">Maker gene</th>
+                                        <th className="survey_th ">Marker gene</th>
                                         <th className="survey_th ">Estimated Count</th>
                                         <th className="survey_th ">Pathogen</th>
                                         <th className="survey_th ">probability</th>
