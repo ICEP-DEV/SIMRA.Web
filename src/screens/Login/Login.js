@@ -112,6 +112,10 @@ function Login() {
                 else if (loginData.data.results[0].role === "municipal") {
                     navigate('/municipality')
                 }
+                else if(loginData.data.results[0].role === "admin")
+                {
+                    navigate('/admin')
+                }
 
             }
             else {

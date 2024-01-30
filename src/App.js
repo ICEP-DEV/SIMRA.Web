@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Login from './screens/Login/Login';
 import Home from './screens/Home/Home'
 import SamplingData from './screens/SamplingData/SamplingData';
@@ -26,7 +27,12 @@ import Add_Events from './screens/Events_admin/Events_admin'
 import H2S_Logs_Reports from './screens/H2S_Logs_Reports/H2S_Logs_Reports';
 import Level3 from './screens/Level3/Level3';
 import Reference_pathogen from './screens/Reference_pathogen/Reference_pathogen';
-import Users from './screens/Municipality/Users/users'
+import Users from './screens/Admin/Users/Users';
+import AdminDashboard from './screens/Admin/AdminDashboard/AdminDashboard';
+import Manage_Events from './screens/Admin/Events_muni/events_muni.js';
+import AdminSurvey from './screens/Admin/Survay_Admin/Survay_Admin';
+import H2SReport from './screens/Admin/H2SReport/H2SReport';
+
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -60,7 +66,12 @@ function App() {
         <Route exact path='/profile' element={< UserProfileUpdate />} />
         <Route exact path='/level3' element={<Level3 />} />
         <Route exact path='/reference_pathogen' element={<Reference_pathogen />} />
-        <Route exact path='/user' element={<Users />} />
+        <Route exact path='/users' element={<Users />} />
+        <Route exact path='/admin' element={<AdminDashboard/>} />
+        <Route exact path='/manage_events' element={<Manage_Events/>} /> 
+        <Route exact path='/h2sreport' element={<H2SReport />} />
+        <Route exact path='/survay_logs' element={<AdminSurvey />} />
+
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
       
