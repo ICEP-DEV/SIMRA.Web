@@ -21,7 +21,7 @@ function Admin_Side_Bar() {
     function home() {
         navigate("/municipality")
     }
-    
+
     function events() {
         navigate("/add_events")
     }
@@ -43,13 +43,15 @@ function Admin_Side_Bar() {
         <div className="topnav">
             <div className="navbar-subs "><div className="wrapper"></div>
                 <Link to={"/municipality"}> <img className="rounded-img" src={Simra_logo} /></Link></div>
-                <div className="navbar-subs" onClick={() => navigate('/piechart')}><span className="nav-label">Reports</span></div>
-                <div className="navbar-subs" onClick={() => navigate('/add_events')}><span className="nav-label">Add Events</span></div>
-                     <div className="navbar-subs" onClick={() => navigate('/map_coordinates')}><span className="nav-label">Map</span></div>
+            <div className="navbar-subs" onClick={() => navigate('/piechart')}><span className="nav-label">Reports</span></div>
+            <div className="navbar-subs" onClick={() => navigate('/add_events')}><span className="nav-label">Add Events</span></div>
+            <div className="navbar-subs" onClick={() => window.open("https://sharescreen-c520c.web.app")}><span className="nav-label">Map</span></div>
+
+            {/* <div className="navbar-subs" onClick={() => navigate('/map_coordinates')}><span className="nav-label">Map</span></div> */}
             <div className="navbar-subs" onClick={user}><span className="nav-label">Users</span></div>
             {/* <div className="navbar-subs report-dropdown" onClick={report}>
                 <span className='nav-label'>Report</span> */}
-                {/* <div className='dropdown-content'>
+            {/* <div className='dropdown-content'>
 
                     <Link className='dropdown-link' to='/sanitary_report'>Sanitary Survey</Link><br></br>
                     <Link className='dropdown-link' to='/h2s_report'>H2S</Link>
@@ -57,8 +59,8 @@ function Admin_Side_Bar() {
 
             {/* </div> */}
             <div className="navbar-subs split" onClick={logout}>
-            <button className=" btn btn-success fw-bold" >Signout</button>
-                </div>
+                <button className=" btn btn-success fw-bold" >Signout</button>
+            </div>
 
 
         </div>

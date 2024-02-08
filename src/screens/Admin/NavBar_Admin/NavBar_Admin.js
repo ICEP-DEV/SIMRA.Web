@@ -23,7 +23,7 @@ function Admin_Side_Bar() {
     }
 
     function user() {
-        navigate("/user")
+        navigate("/users")
     }
     function logout() {
         dispatch(remove_details());

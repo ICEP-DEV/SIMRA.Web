@@ -276,6 +276,17 @@ function SanitaryInpection() {
                         <PooUp trigger={SelectPopUp} setTrigger={setSelectPopUp}>
                             {display_methods}
                         </PooUp>
+                        <Modal show={isShows} onHide={modalCloses} size="md">
+                            <Modal.Header closeButton onClick={modalCloses}>
+                                <Modal.Title>Methods</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+
+                            {display_methods}
+
+                            </Modal.Body>
+                            <Modal.Footer></Modal.Footer>
+                        </Modal>
                         <Level2PopUp>
 
                         </Level2PopUp>
@@ -371,7 +382,7 @@ function SanitaryInpection() {
 
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="dark" onClick={function (event) { modalClose(); setSelectPopUp(true)}}>
+                                <Button variant="dark" onClick={function (event) { modalClose(); initModals()}}>
                                     Ok
                                 </Button>
                             </Modal.Footer>

@@ -282,25 +282,7 @@ function formatDateAndTime(date) {
    <div className='mb-50'>
       <h4 style={{ textAlign: 'center', marginBottom:"3%"}}>Event Details</h4>
       <form onSubmit={handleFormSubmit}>
-      <div className='form-group'>
-                        {/* <label>Province</label> */}
-                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
-                            <option>Select Province</option>
-                            {provinces.map((prov, xid) => (
-                                <option key={xid} className="control-form" value={prov.province_id} >{prov.province_name}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className='form-group'>
-                        {/* <label>Municipality</label> */}
-                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
-                            <option>Select Municipality</option>
-                            {Municipalities.map((muni, xid) => (
-                                <option key={xid} className="control-form" value={muni.muni_id} >{muni.muni_name}</option>
-                            ))}
-                        </select>
-                    </div>
+    
         <div className="mb-3">
           <label className="form-label">Title:</label>
           <input type="text" className="form-control" value={title} required onChange={handleTitleChange} />

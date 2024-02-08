@@ -11,11 +11,11 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { FaUser } from "react-icons/fa";
 import { MdEventAvailable } from "react-icons/md";
 
-function SideBar (){
+function SideBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     let user_info = useSelector((state) => state.user.value)
-    
+
     useEffect(() => {
         if (user_info === undefined) {
             navigate("/")
@@ -29,42 +29,45 @@ function SideBar (){
         navigate("/")
     }
 
-    return(
+    return (
         <div className=''>
             <div className="sidebar">
                 <Link to={"/admin"}> <img className="rounded-img" src={Simra_logo} /></Link></div>
             <div className="side-subs" onClick={() => navigate('/users')}>
-<span> <FaUser  className="icon" />Users</span>
+                <span> <FaUser className="icon" />Users</span>
             </div>
             <div className="side-subs" onClick={() => navigate('/manage_events')}>
-<span> <MdEventAvailable  className="icon" />Events</span>
+                <span> <MdEventAvailable className="icon" />Events</span>
             </div>
 
             <div className="side-subs dropdown " >
-                    <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                    <TbReportAnalytics  className="icon" />Reports
-                    </a>
+                <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <TbReportAnalytics className="icon" />Reports
+                </a>
 
-                    <ul className="dropdown-menu">
-                        <li className='dropdown-item' onClick={() => navigate('/h2sreport')}>H2S</li>
-                        <li className='dropdown-item' onClick={() => navigate('/survay_logs')}>Sanitary</li>
-                    
-                            <li className='dropdown-item' onClick={() => navigate('/fib_report')}>FIB</li>
-                    
-                            <li className='dropdown-item' onClick={() => navigate('/mst_admin')}>MST</li>
-                   
+                <ul className="dropdown-menu">
+                    <li className='dropdown-item' onClick={() => navigate('/h2sreport')}>H2S</li>
+                    <li className='dropdown-item' onClick={() => navigate('/survay_report')}>Sanitary</li>
 
-                    </ul>
+                    <li className='dropdown-item' onClick={() => navigate('/fib_report')}>FIB</li>
 
-                </div>
+                    <li className='dropdown-item' onClick={() => navigate('/mst_admin')}>MST</li>
 
-    
-<div className="side-subs">
-<span><FaLocationDot  className="icon" />Map</span>
-</div>
-<div className="side-subs">
-<button className='btn btn-success' onClick={logout}>Logout</button>
-</div>
+
+                </ul>
+
+            </div>
+
+            <div className="side-subs">
+
+
+            </div>
+            <div className="side-subs">
+                <span onClick={() => window.open("https://sharescreen-c520c.web.app")}><FaLocationDot className="icon" />Map</span>
+            </div>
+            <div className="side-subs">
+                <button className='btn btn-success' onClick={logout}>Logout</button>
+            </div>
         </div>
     )
 }

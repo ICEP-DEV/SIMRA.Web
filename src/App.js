@@ -10,7 +10,8 @@ import Level2 from './screens/Level2/Level2';
 import FibAnalysis from './screens/FIBAnlysis/AnalyseFIB';
 import QMRA from './screens/QMRA/Parameters'
 import Municipality from './screens/Municipality/Municipality';
-import Report from './screens/Municipality_Report/Report'
+import Report from './screens/Municipality_Report/Report';
+import AdminSurvey from './screens/Admin/Survay_Admin/Survay_Admin.js';
 import Survay_Report from './screens/Survay_Report/Survay_Report';
 import H2S_Report from './screens/H2S_Report/H2S_Report';
 import User_H2S_Logs from './screens/User_H2S_Logs/User_H2S_Logs';
@@ -30,8 +31,9 @@ import Reference_pathogen from './screens/Reference_pathogen/Reference_pathogen'
 import Users from './screens/Admin/Users/Users';
 import AdminDashboard from './screens/Admin/AdminDashboard/AdminDashboard';
 import Manage_Events from './screens/Admin/Events_muni/events_muni.js';
-import AdminSurvey from './screens/Admin/Survay_Admin/Survay_Admin';
 import H2SReport from './screens/Admin/H2SReport/H2SReport';
+import Admin_MST from './screens/Admin/MST-admin/mst_admin.js'
+import FIB_Admin from './screens/Admin/FIB-Admin/Fib_Admin.js'
 
 
 import './App.css';
@@ -70,8 +72,13 @@ function App() {
         <Route exact path='/admin' element={<AdminDashboard/>} />
         <Route exact path='/manage_events' element={<Manage_Events/>} /> 
         <Route exact path='/h2sreport' element={<H2SReport />} />
-        <Route exact path='/survay_logs' element={<AdminSurvey />} />
+        <Route exact path='/survay_report' element={<AdminSurvey />} />
+        <Route exact path='/mst_admin' element={<Admin_MST />} />
+        <Route exact path='/fib_report' element={<FIB_Admin />} />
 
+
+        
+        
         {/*
         <Route exact path='/data_results' element={<DataResults />} />
       
