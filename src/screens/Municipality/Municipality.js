@@ -2,6 +2,9 @@ import './Municipality.css'
 import Footer from '../Footer/Footer';
 import Admin_NavBar from '../Admin_NavBar/Admin_NavBar';
 import Header from '../Header/Header';
+
+import Total_Report_Per_Province from './Total_Report_Per_Province/Total_Report_Per_Province'
+import H2S_Report_per_Province from './H2S_Report_per_Province/H2S_Report_per_Province'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { api } from '../../Data/API';
@@ -11,14 +14,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Municipality() {
-    //province Reports
-    const [Provinces, setProvinces] = useState([])
-    const [IsProvinces, setIsProvinces] = useState(false)
-    const [ExpandSelectedProvince, setExpandSelectedProvince] = useState([])
-    const [AllMunicipalities, setAllMunicipalities] = useState([])
-    const [IsFoundMunicipality, setIsFoundMunicipality] = useState(false)
-    const [FiteredMunicipalities, setFiteredMunicipalities] = useState([])
-
 
     // H2S reports
     const [H2SPovinces, setH2SPovinces] = useState([])
@@ -35,19 +30,7 @@ function Municipality() {
 
 
     useEffect(() => {
-        axios.get(api + 'get_results_per_province').then(respond => {
-            setProvinces(respond.data.results)
-            setIsProvinces(respond.data.success)
-        }, err => {
-            console.log(err)
-        })
-
-        axios.get(api + 'get_results_per_municipalities').then(respond => {
-            console.log(respond.data.success)
-            setAllMunicipalities(respond.data.results)
-        }, err => {
-            console.log(err)
-        })
+       
         //get_h2s_by_province
         axios.get(api + 'get_h2s_by_province').then(respond => {
             setH2SPovincesFound(respond.data.success)
@@ -55,28 +38,10 @@ function Municipality() {
             setH2SPovinces(respond.data.rows)
             setH2SMunicipalitiesRisk(respond.data.results)
             setH2SMunicipalities(respond.data.result)
-            console.log(respond.data)
         }, err => {
             console.log(err)
         })
     }, [])
-
-    // report for province
-    const province_report = {
-        labels: Provinces.map(value => { return value.province_name }),
-        datasets: [{
-            data: Provinces.map(value => { return value.province_total }),
-            backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
-        }]
-    }
-    //report for municipality
-    const municipal_report = {
-        labels: FiteredMunicipalities.map(value => { return value.muni_name }),
-        datasets: [{
-            data: FiteredMunicipalities.map(value => { return value.muni_count }),
-            backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
-        }]
-    }
 
     //h2s report per province
     const h2s_province_report = {
@@ -95,26 +60,13 @@ function Municipality() {
         }]
     }
 
-        //h2s report per risk
-        const h2s_risk_report = {
-            labels: FilteredH2SMunicipalitiesRisk.map(value => { return value.risk_type }),
-            datasets: [{
-                data: FilteredH2SMunicipalitiesRisk.map(value => { return value.count_risk }),
-                backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
-            }]
-        }
-
-    function collapse_province(province_id) {
-        var newId = {
-            province_id: province_id
-        }
-
-        var tempFilter = AllMunicipalities
-        setIsFoundMunicipality(true)
-        setFiteredMunicipalities(tempFilter.filter(muni => {
-            return muni.province_id?.toLocaleLowerCase().includes(province_id?.toLocaleLowerCase())
-        }))
-        setExpandSelectedProvince(newId)
+    //h2s report per risk
+    const h2s_risk_report = {
+        labels: FilteredH2SMunicipalitiesRisk.map(value => { return value.risk_type }),
+        datasets: [{
+            data: FilteredH2SMunicipalitiesRisk.map(value => { return value.count_risk }),
+            backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
+        }]
     }
 
     function h2s_province(province_id) {
@@ -163,56 +115,13 @@ function Municipality() {
 
                         <div className='section-report' id='report_per_prov'>
                             <h5>Total Reports For Every province</h5>
-                            <div className='content-report'>
-                                <div className='description-report'>
-                                    {IsProvinces && <>
-                                        {Provinces.map((prov, xid) => (
-                                            <div key={xid}>
-                                                <table>
-                                                    <tr onClick={() => collapse_province(prov.province_id)} className='collapsible' >
-                                                        <td className='province_name'>{prov.province_name}</td>
-                                                        <td className='province_count'>{prov.province_total}</td>
-                                                    </tr>
-                                                </table>
-                                                {ExpandSelectedProvince.province_id === prov.province_id && <>
-                                                    <div className='drop-province' id='collapse1'>
-                                                        <div className='province-content'>
-                                                            <table>
-                                                                <th className='municipal_name'>Municipality</th>
-                                                                <th className='municipal_count'>results</th>
-                                                                {FiteredMunicipalities.map((muni, xid) => (
-                                                                    <tr key={xid}>
-                                                                        <td className='municipal_name'>{muni.muni_name} </td>
-                                                                        <td className='municipal_count'>{muni.muni_count}</td>
-                                                                    </tr>
-                                                                ))}
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </>}
-                                            </div>
-                                        ))}
-                                    </>}
-                                </div>
-                                <div className='report_visualization'>
-                                    {!IsFoundMunicipality && <>
-                                        <div className='pie-display' style={{ width: '400px', height: '400px' }}>
-                                            <Pie data={province_report} />
-                                        </div>
-                                    </>}
-                                    {IsFoundMunicipality && <>
-                                        <div className='pie-display' style={{ width: '400px', height: '400px' }}>
-                                            <Pie data={municipal_report} />
-                                        </div>
-                                    </>}
-
-                                </div>
-                            </div>
+                            <Total_Report_Per_Province />
                         </div>
 
                         <div className='section-report' id='report_per_prov'>
                             <h5>Total H2S Reports For Every province</h5>
-                            <div className='content-report'>
+                            <H2S_Report_per_Province />
+                            {/* <div className='content-report'>
                                 <div className='description-report'>
                                     {H2SPovincesFound && <>
                                         {H2SPovinces.map((prov, xid) => (
@@ -266,19 +175,19 @@ function Municipality() {
                                 </div>
                                 <div className='report_visualization'>
                                     {isFoundH2SPovinces && <div className='pie-display' style={{ width: '400px', height: '400px' }}>
-                                            <Pie data={h2s_province_report} />
-                                        </div>
+                                        <Pie data={h2s_province_report} />
+                                    </div>
                                     }
-                                    
+
                                     {isFoundH2SMunicipality && <div className='pie-display' style={{ width: '400px', height: '400px' }}>
-                                            <Pie data={h2s_municipal_report} />
-                                        </div>}
-                                        
+                                        <Pie data={h2s_municipal_report} />
+                                    </div>}
+
                                     {isFoundH2SMunicipalityRisk && <div className='pie-display' style={{ width: '400px', height: '400px' }}>
-                                            <Pie data={h2s_risk_report} />
-                                        </div>}
+                                        <Pie data={h2s_risk_report} />
+                                    </div>}
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                         <div className="section-reports">
