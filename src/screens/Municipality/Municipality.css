@@ -40,11 +40,11 @@
     padding: 10px;
 }
 
-.province_name, .municipal_name{
+.province_name, .municipal_name, .risk_name{
     width: 80%;
 }
 
-.province_count, .municipal_count{
+.province_count, .municipal_count, .risk_count{
     text-align: right;
 }
 /* .province-content{
@@ -52,6 +52,14 @@
     max-height: 0;
     overflow: hidden;
 }  */
+
+.risk_name, .risk_count{
+    background-color: #68686893;
+}
+.risk_char{
+    margin: 10px 0;
+    
+}
 
 .content-report{
     display: flex;

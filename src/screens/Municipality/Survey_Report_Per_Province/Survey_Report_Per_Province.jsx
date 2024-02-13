@@ -6,9 +6,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
-function H2S_Report_per_Province() {
-    // H2S reports
+function Survey_Report_Per_Province() {
+    // Survey reports
     //province Reports
     const [Provinces, setProvinces] = useState([])
     const [IsProvinces, setIsProvinces] = useState(false)
@@ -29,7 +28,7 @@ function H2S_Report_per_Province() {
     useEffect(() => {
 
         //get_h2s_by_province
-        axios.get(api + 'h2s_province').then(respond => {
+        axios.get(api + 'survey_province').then(respond => {
             setIsProvinces(respond.data.success)
             if (respond.data.success) {
                 setProvinces(respond.data.results)
@@ -41,8 +40,8 @@ function H2S_Report_per_Province() {
         })
     }, [])
 
-    //h2s report per province
-    const h2s_province_report = {
+     //h2s report per province
+     const h2s_province_report = {
         labels: Provinces.map(value => { return value.province_name }),
         datasets: [{
             data: Provinces.map(value => { return value.muni_count }),
@@ -77,7 +76,7 @@ function H2S_Report_per_Province() {
 
 
     function h2s_province(province_id) {
-        axios.get(api + 'h2s_municipality/' + province_id).then(respond => {
+        axios.get(api + 'survey_municipality/' + province_id).then(respond => {
             setIsFoundMunicipality(respond.data.success)
             if (respond.data.success) {
 
@@ -98,7 +97,7 @@ function H2S_Report_per_Province() {
         console.log(municipal_id)
         setSelectedMunicipality(municipal_id)
 
-        axios.get(api + 'h2s_risk_results/' + municipal_id).then(respond => {
+        axios.get(api + 'survey_risk_results/' + municipal_id).then(respond => {
             setIsFoundRiskCharacters(respond.data.success)
             if (respond.data.success) {
                 setRiskCharacters(respond.data.results)
@@ -179,4 +178,4 @@ function H2S_Report_per_Province() {
     )
 }
 
-export default H2S_Report_per_Province;
+export default Survey_Report_Per_Province;
