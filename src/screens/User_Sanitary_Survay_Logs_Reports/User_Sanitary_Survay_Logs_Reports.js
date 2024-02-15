@@ -9,6 +9,11 @@ import Header from '../Header/Header';
 import { useSelector } from 'react-redux';
 import { api } from '../../Data/API'
 
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 function User_Sanitary_Survay_Logs_Reports() {
 
     const [Provinces, setProvinces] = useState([])
@@ -20,6 +25,10 @@ function User_Sanitary_Survay_Logs_Reports() {
     const [endDate, setEndDate] = useState('')
     const [FoundReport, setFoundReport] = useState(false)
     const [UserId, setUserId] = useState(0)
+    const [IsTable, setIsTable] = useState(true)
+    const [IsVisual, setIsVisual] = useState(false)
+
+
     // Pagination
     const [CurrentPage, setCurrentPage] = useState(1)
     const record_per_page = 5
@@ -153,9 +162,67 @@ function User_Sanitary_Survay_Logs_Reports() {
         }
     }
 
+    function catchmentArea(catchment) {
+        var temp_array = StoredReport
+        console.log(temp_array)
+        var count = 0
+        if (catchment !== '') {
+            setReport(temp_array.filter(value => {
+                return value.type.toLocaleLowerCase().includes(catchment.toLocaleLowerCase())
+            }))
+            for (var k = 0; k < StoredReport.length; k++) {
+                if (StoredReport[k].type.toLocaleLowerCase() === catchment.toLocaleLowerCase()) {
+                    count++
+                }
+            }
+            setTotalRecord(count)
+        }
+        else {
+            setReport(StoredReport)
+        }
+    }
+
+
+    function riskType(typeRisk) {
+        var temp_array = StoredReport
+        console.log(temp_array)
+        var count = 0
+        if (typeRisk !== '') {
+            setReport(temp_array.filter(value => {
+                return value.risk_type.toLocaleLowerCase().includes(typeRisk.toLocaleLowerCase())
+            }))
+            for (var k = 0; k < StoredReport.length; k++) {
+                if (StoredReport[k].risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase()) {
+                    count++
+                }
+            }
+            setTotalRecord(count)
+        }
+        else {
+            setReport(StoredReport)
+        }
+    }
+
+    function setTotable(){
+        setIsTable(true)
+        setIsVisual(false)
+    }
+
+    function setToVisual(){
+        setIsTable(false)
+        setIsVisual(true)
+    }
 
     //change page 
     const paginate = (page_number) => setCurrentPage(page_number)
+
+    const risk_results = {
+        labels: Report.map(value => { return value.risk_type }),
+        datasets: [{
+            data: Report.map(value => { return value.total_avarage }),
+            backgroundColor: [ 'red', 'purple',"green", 'black', 'white']
+        }]
+    }
 
     return (
         <div className='hero-all'>
@@ -199,7 +266,8 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         <th scope="col " className='report-heading'>WeekDays</th>
                                         <th scope="col" className='report-heading'>Province</th>
                                         <th scope='col' className='report-heading'>Municipalities</th>
-
+                                        <th scope='col' className='report-heading'>Catchment Area</th>
+                                        <th scope='col' className='report-heading'>Risk Type</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -234,7 +302,31 @@ function User_Sanitary_Survay_Logs_Reports() {
                                                 ))}
                                             </select>
                                         </td>
+                                        <td className="w-25">
+                                            <select onChange={(e) => catchmentArea(e.target.value)} className="w-100 p-2" >
+                                                <option value='' className="control-form">Select Water Source</option>
+                                                <option value='River' className="control-form">River</option>
+                                                <option value='Dam' className="control-form">Dam</option>
+                                                <option value='Spring' className="control-form">Spring</option>
+                                                <option value='Borehole' className="control-form">Borehole</option>
+                                                <option value='Dug Well' className="control-form">Dug Well</option>
+                                                <option value='Household Tap Water' className="control-form">Household Tap Water</option>
+                                                <option value='Housewater Stored Water' className="control-form">Housewater Stored Water</option>
+                                                <option value='Wastewater Treatment Plant' className="control-form">Wastewater Treatment Plant</option>
+                                                <option value='water Treatment Plant' className="control-form">water Treatment Plant</option>
+                                            </select>
+                                        </td>
 
+                                        <td className="w-25">
+                                            <select onChange={(e) => riskType(e.target.value)} className="w-100 p-2" >
+                                                <option value='' className="control-form">Select Risk Type</option>
+                                                <option value='Low Risk' className="control-form">Low Risk</option>
+                                                <option value='Medium Risk' className="control-form">Medium Risk</option>
+                                                <option value='High Risk' className="control-form">High Risk</option>
+                                                <option value='Very High Risk' className="control-form">Very High Risk</option>
+                                            </select>
+
+                                        </td>
                                     </tr>
 
 
@@ -247,42 +339,53 @@ function User_Sanitary_Survay_Logs_Reports() {
                         </div>
 
                         <div className='reports'>
-                            {(FoundReport === true) && (
-                                <table className="table  table-bordered survay_table">
-                                    <thead class="thead-dark">
-                                        <tr className="survey_tr">
-                                            <th className="survey_th _th">Municipalities</th>
-                                            <th className="survey_th">Date</th>
-                                            <th className="survey_th ">Catchment Area</th>
-                                            <th className="survey_th ">Total Average</th>
-                                            <th className="survey_th ">Risk Type</th>
-                                        </tr>
-                                    </thead>
-                                    {record.map((report, xid) => (
-                                        <tr key={xid} className="survey_tr">
-                                            <td className="survey_td _td">{report.muni_name}</td>
-                                            <td className="survey_td">{report.sample_date}</td>
-                                            <td className="survey_td">{report.type}</td>
-                                            <td className="survey_td">{report.total_avarage}</td>
-                                            <td className="survey_td">{report.risk_type}</td>
-                                        </tr>
-                                    ))}
-                                </table>
-                            )}
+                            <button className='btn btn-success' disabled={IsTable} onClick={setTotable}>Table</button>
+                            <button className='btn btn-primary' disabled={IsVisual} onClick={setToVisual}>Visual</button>
 
-                            <div className='page_numbers' >
+                            {IsTable && <>
                                 {(FoundReport === true) && (
-                                    <nav className='pagination'>
-                                        <ul class="pagination justify-content-center">
-                                            {PagePerNumber.map((number, xid) => (
-                                                <li key={xid} className='page-item'>
-                                                    <button onClick={() => paginate(number)} className='page-link'>{number}</button>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </nav>
+                                    <table className="table  table-bordered survay_table">
+                                        <thead class="thead-dark">
+                                            <tr className="survey_tr">
+                                                <th className="survey_th _th">Municipalities</th>
+                                                <th className="survey_th">Date</th>
+                                                <th className="survey_th ">Catchment Area</th>
+                                                <th className="survey_th ">Total Average</th>
+                                                <th className="survey_th ">Risk Type</th>
+                                            </tr>
+                                        </thead>
+                                        {record.map((report, xid) => (
+                                            <tr key={xid} className="survey_tr">
+                                                <td className="survey_td _td">{report.muni_name}</td>
+                                                <td className="survey_td">{report.sample_date}</td>
+                                                <td className="survey_td">{report.type}</td>
+                                                <td className="survey_td">{report.total_avarage}</td>
+                                                <td className="survey_td">{report.risk_type}</td>
+                                            </tr>
+                                        ))}
+                                    </table>
                                 )}
-                            </div>
+
+                                <div className='page_numbers' >
+                                    {(FoundReport === true) && (
+                                        <nav className='pagination'>
+                                            <ul class="pagination justify-content-center">
+                                                {PagePerNumber.map((number, xid) => (
+                                                    <li key={xid} className='page-item'>
+                                                        <button onClick={() => paginate(number)} className='page-link'>{number}</button>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </nav>
+                                    )}
+                                </div>
+                            </>}
+
+                            {IsVisual&& <div>
+                                <Pie data={risk_results} />
+
+                            </div>}
+
                         </div>
                     </div>
                 </div>

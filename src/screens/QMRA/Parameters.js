@@ -288,7 +288,7 @@ export default function QMRAApp() {
                 <td>{Mst_Fib.count}</td>
               </tr>
               {Mst_Fib.best_fit_model === 'exponential' && <tr>
-                <td>Constant</td>
+                <td>Constant(K)</td>
                 <td>{Mst_Fib.constant}</td>
               </tr>}
               {Mst_Fib.best_fit_model === 'beta-poisson' &&

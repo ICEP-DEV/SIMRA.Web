@@ -239,7 +239,7 @@ const FibAnalysis = () => {
                 
                   <div className='form-group'>
                     <label className='label-fib text-center'>Parameter</label>
-                    {BestFitModel === 'exponential' && <input type='text' className='mst_label'  placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />}
+                    {BestFitModel === 'exponential' && <input type='text' className='mst_label'  placeholder='Constant(K)' onChange={(event) => setConstant(event.target.value)} max="4" />}
                     {BestFitModel === 'beta-poisson' && <span>
                       <label><input  className=' mst_label mb-4 w-75' type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label>
                       <label> Beta
@@ -283,7 +283,7 @@ const FibAnalysis = () => {
                     
                     <div>
                       {(BestFitModel === 'exponential') && (<span className='form-group'>
-                        <label className='mst_label'>constant</label>
+                        <label className='mst_label'>constant(K)</label>
                         <input className='form-input' type='text' value={Constant} disabled />
                       </span>)}
                     </div>

@@ -134,7 +134,7 @@ function Reference_pathogen() {
                             </div >
                             {BestFitModel === 'exponential' &&
                                 <div className='form-group'>
-                                    <label className='label-fib' >Constant</label>
+                                    <label className='label-fib' >Constant(K)</label>
                                     <input  className='input_fib mt-2' type='text' value={Constant} disabled />
                                 </div>}
 
@@ -178,7 +178,7 @@ function Reference_pathogen() {
                             <label className='text-center'>Parameter</label>
                             
                                 {BestFitModel === 'exponential' && <span>
-                                <input type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />
+                                <input type='text' placeholder='Constant(K)' onChange={(event) => setConstant(event.target.value)} max="4" />
                                 </span>}
                                 {BestFitModel === 'beta-poisson' && <span >
                                 

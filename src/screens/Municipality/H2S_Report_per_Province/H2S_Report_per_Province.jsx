@@ -46,7 +46,7 @@ function H2S_Report_per_Province() {
         labels: Provinces.map(value => { return value.province_name }),
         datasets: [{
             data: Provinces.map(value => { return value.muni_count }),
-            backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
+            backgroundColor: ['red', 'purple', 'blue', 'green', 'yellow', 'pink', 'brown', 'black', 'white']
         }]
     }
     //h2s report per municipality
@@ -54,7 +54,7 @@ function H2S_Report_per_Province() {
         labels: AllMunicipalities.map(value => { return value.muni_name }),
         datasets: [{
             data: AllMunicipalities.map(value => { return value.count_risk }),
-            backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
+            backgroundColor: [ 'blue', 'brown', "yellow", 'pink', 'red', 'purple',"green", 'black', 'white']
         }]
     }
 
@@ -63,7 +63,7 @@ function H2S_Report_per_Province() {
         labels: RiskCharacters.map(value => { return value.risk_type }),
         datasets: [{
             data: RiskCharacters.map(value => { return value.count_risk }),
-            backgroundColor: ["green", "yellow", 'pink', 'red', 'purple', 'blue', 'brown', 'black', 'white']
+            backgroundColor: [ 'pink',"green", "yellow", 'red', 'purple', 'blue', 'brown', 'black', 'white']
         }]
     }
 

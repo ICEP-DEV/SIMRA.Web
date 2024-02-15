@@ -232,7 +232,7 @@ const MST = () => {
                   </div>
                   <div className='form-group'>
                     <label className='text-center'>Parameter</label>
-                    {BestFitModel === 'exponential' && <input type='text' placeholder='Constant' onChange={(event) => setConstant(event.target.value)} max="4" />}
+                    {BestFitModel === 'exponential' && <input type='text' placeholder='Constant(K)' onChange={(event) => setConstant(event.target.value)} max="4" />}
                     {BestFitModel === 'beta-poisson' && <span>
                       <label><input  className='form-input' type='text' placeholder='Alpha' onChange={(event) => setAlpha(event.target.value)} /></label>
                       <label> Beta
@@ -279,7 +279,7 @@ const MST = () => {
                 
                   <div>
                     {(BestFitModel === 'exponential') && (<span className='form-group'>
-                      <label >constant</label>
+                      <label >constant(K)</label>
                       <input className='mt-2 w-25' type='text' value={Constant} disabled />
                     </span>)}
                   </div>
