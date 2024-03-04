@@ -8,6 +8,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { api } from '../../Data/API'
+
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 function User_H2S_Logs() {
 
   const [Provinces, setProvinces] = useState([])
@@ -19,6 +25,14 @@ function User_H2S_Logs() {
   const [endDate, setEndDate] = useState('')
   const [FoundReport, setFoundReport] = useState(false)
   const [UserId, setUserId] = useState(0)
+  const [IsTable, setIsTable] = useState(true)
+  const [IsVisual, setIsVisual] = useState(false)
+
+  const [VisualColor, setVisualColor] = useState([])
+  const [VisualRiskType, setVisualRiskType] = useState([])
+  const [VisualRiskCount, setVisualRiskCount] = useState([])
+
+
   // Pagination
   const [CurrentPage, setCurrentPage] = useState(1)
   const record_per_page = 5
@@ -36,7 +50,7 @@ function User_H2S_Logs() {
 
   useEffect(() => {
     var userId = user_info.userId
-    
+
     setUserId(userId)
     axios.get(api + 'get_userhistory_h2s/' + userId).then((response) => {
       setFoundReport(response.data.success)
@@ -46,9 +60,17 @@ function User_H2S_Logs() {
         setTotalRecord(response.data.result.length)
       }
     })
+
+    axios.get(api + 'get_user_h2s_stats_visual_byId/' + userId).then((response) => {
+      if (response.data.success) {
+        console.log(response)
+        setVisualColor(response.data.color)
+        setVisualRiskType(response.data.risk_type)
+        setVisualRiskCount(response.data.risk_count)
+      }
+    })
     axios.get(api + 'get_provinces').then(response => {
       setProvinces(response.data.results)
-
     }, err => {
       console.log(err)
     })
@@ -152,6 +174,25 @@ function User_H2S_Logs() {
     }
   }
 
+  const risk_results = {
+    labels: VisualRiskType,
+    datasets: [{
+        data: VisualRiskCount,
+        backgroundColor: VisualColor
+    }]
+}
+
+
+  function setTotable() {
+    setIsTable(true)
+    setIsVisual(false)
+  }
+
+  function setToVisual() {
+    setIsTable(false)
+    setIsVisual(true)
+  }
+
   //change page 
   const paginate = (page_number) => setCurrentPage(page_number)
 
@@ -164,31 +205,31 @@ function User_H2S_Logs() {
           <Header />
           <h2 className='text-primary text-center'>hydrogen Sulfide Logs</h2>
           <div className='container-wrap '>
-          
+
             <div className='report-header  '>
-            <div id='search_date ' >
-            <table className="table-logs-date table table-bordered w-50">
-    <thead className='thead-dark'>
-    <tr>
-      
-      <th scope="col " className='report-heading'>Start Date</th>
-      <th scope="col" className='report-heading'>End Date</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr  >
-    
-      <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)}  /></td>
-      <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
-      
-    </tr>
-   
-   
-  </tbody>
-</table>
-<button onClick={display_search_report} className="btn btn-success btn-search-report  mb-5">Show Results</button>
-            </div>
+              <div id='search_date ' >
+                <table className="table-logs-date table table-bordered w-50">
+                  <thead className='thead-dark'>
+                    <tr>
+
+                      <th scope="col " className='report-heading'>Start Date</th>
+                      <th scope="col" className='report-heading'>End Date</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  >
+
+                      <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)} /></td>
+                      <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
+
+                    </tr>
+
+
+                  </tbody>
+                </table>
+                <button onClick={display_search_report} className="btn btn-success btn-search-report  mb-5">Show Results</button>
+              </div>
               {/* <div id='search_date ' >
                 <span className='survey_date'>
                   <label className='survey_date_label'>From</label>
@@ -202,63 +243,63 @@ function User_H2S_Logs() {
                 <button onClick={display_search_report} className="btn btn-dark btn-search-report w-50">Show Results</button>
 
               </div> */}
-<table className="table-logs table table-bordered w-75">
-    <thead className='thead-dark'>
-    <tr>
-      
-      <th scope="col " className='report-heading'>WeekDays</th>
-      <th scope="col" className='report-heading'>Province</th>
-      <th scope='col' className='report-heading'>Municipalities</th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr  >
-    
-    <td className="w-25"> 
-      <select onChange={(event) => search_by_weekday(event.target.value)} className=" w-100 p-2">
-                    <option value=''>All Weekdays</option>
-                    <option value='Monday'>Monday</option>
-                    <option value='Tuesday'>Tuesday</option>
-                    <option value='Wednesday'>Wednesday</option>
-                    <option value='Thursday'>Thursday</option>
-                    <option value='Friday'>Friday</option>
-                    <option value='Saturday'>Saturday</option>
-                    <option value='Sunday'>Sunday</option>
-                  </select>
-         </td>
-        
-             
-                  {/* <label>Province</label> */}
-                  <td className="w-25"> 
-                  <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
-                    <option value=''>All Provinces</option>
-                    {Provinces.map((province, xid) => (
-                      <option key={xid} value={province.province_id} >{province.province_name}</option>
-                    ))}
-                  </select>
-               
-                  </td>
-                  <td className="w-25"> 
-                 <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
-                    <option value=''>All Municipalities</option>
-                    {Municipalities.map((muni, xid) => (
-                      <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
-                    ))}
-                  </select>
-                 </td>
-              
-                  {/* <label>Municipalities</label> */}
-                  
-              
-             
-      
-      
-    </tr>
-   
-   
-  </tbody>
-</table>
+              <table className="table-logs table table-bordered w-75">
+                <thead className='thead-dark'>
+                  <tr>
+
+                    <th scope="col " className='report-heading'>WeekDays</th>
+                    <th scope="col" className='report-heading'>Province</th>
+                    <th scope='col' className='report-heading'>Municipalities</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  >
+
+                    <td className="w-25">
+                      <select onChange={(event) => search_by_weekday(event.target.value)} className=" w-100 p-2">
+                        <option value=''>All Weekdays</option>
+                        <option value='Monday'>Monday</option>
+                        <option value='Tuesday'>Tuesday</option>
+                        <option value='Wednesday'>Wednesday</option>
+                        <option value='Thursday'>Thursday</option>
+                        <option value='Friday'>Friday</option>
+                        <option value='Saturday'>Saturday</option>
+                        <option value='Sunday'>Sunday</option>
+                      </select>
+                    </td>
+
+
+                    {/* <label>Province</label> */}
+                    <td className="w-25">
+                      <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
+                        <option value=''>All Provinces</option>
+                        {Provinces.map((province, xid) => (
+                          <option key={xid} value={province.province_id} >{province.province_name}</option>
+                        ))}
+                      </select>
+
+                    </td>
+                    <td className="w-25">
+                      <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
+                        <option value=''>All Municipalities</option>
+                        {Municipalities.map((muni, xid) => (
+                          <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
+                        ))}
+                      </select>
+                    </td>
+
+                    {/* <label>Municipalities</label> */}
+
+
+
+
+
+                  </tr>
+
+
+                </tbody>
+              </table>
               {/* <div  className='group ' style={{ display: 'flex',marginTop:'2%'}}>
               <div className='' style={{ margin: '40px' }}>
             
@@ -297,49 +338,60 @@ function User_H2S_Logs() {
               
               </div>
               </div> */}
-              <div id='stats_summary'  className=' text-primary mt-5' >
+              <div id='stats_summary' className=' text-primary mt-5' >
                 <h3>Total Records: {TotalRecord}</h3>
               </div>
 
             </div>
 
             <div className='reports'>
-              {(FoundReport === true) && (
-                <table className="table survay_table w-75">
-                  <tr className="survey_tr">
-                    <th className="survey_th _th">Municipalities</th>
-                    <th className="survey_th">Date</th>
-                    <th className="survey_th ">Catchment Area</th>
-                    <th className="survey_th ">Status</th>
-                    <th className="survey_th ">Risk Type</th>
-                  </tr>
-
-                  {record.map((report, xid) => (
-                    <tr key={xid} className="survey_tr" >
-                      <td className="survey_td _td">{report.muni_name}</td>
-                      <td className="survey_td">{report.sample_date}</td>
-                      <td className="survey_td">{report.type}</td>
-                      <td className="survey_td">{report.status}</td>
-                      <td className="survey_td">{report.risk_type}</td>
-                    </tr>
-                  ))}
-                </table>
-              )}
-              <div className='page_numbers' >
+              <button className='btn btn-success' disabled={IsTable} onClick={setTotable}>Table</button>
+              <button className='btn btn-primary' disabled={IsVisual} onClick={setToVisual}>Visual</button>
+              {IsTable && <>
                 {(FoundReport === true) && (
-                  <nav className='pagination'>
-                    <ul class="pagination justify-content-center">
-                      {PagePerNumber.map((number, xid) => (
-                        <li key={xid} className='page-item'>
-                          <button onClick={() => paginate(number)} className='page-link'>{number}</button>
-                        </li>
-                      ))}
-                    </ul>
+                  <table className="table survay_table w-75">
+                    <tr className="survey_tr">
+                      <th className="survey_th _th">Municipalities</th>
+                      <th className="survey_th">Date</th>
+                      <th className="survey_th ">Catchment Area</th>
+                      <th className="survey_th ">Status</th>
+                      <th className="survey_th ">Risk Type</th>
+                    </tr>
 
-                  </nav>
+                    {record.map((report, xid) => (
+                      <tr key={xid} className="survey_tr" >
+                        <td className="survey_td _td">{report.muni_name}</td>
+                        <td className="survey_td">{report.sample_date}</td>
+                        <td className="survey_td">{report.type}</td>
+                        <td className="survey_td">{report.status}</td>
+                        <td className="survey_td">{report.risk_type}</td>
+                      </tr>
+                    ))}
+                  </table>
                 )}
-              </div>
+                <div className='page_numbers' >
+                  {(FoundReport === true) && (
+                    <nav className='pagination'>
+                      <ul class="pagination justify-content-center">
+                        {PagePerNumber.map((number, xid) => (
+                          <li key={xid} className='page-item'>
+                            <button onClick={() => paginate(number)} className='page-link'>{number}</button>
+                          </li>
+                        ))}
+                      </ul>
+
+                    </nav>
+                  )}
+                </div>
+              </>}
+
+              {IsVisual && <div>
+                <Pie data={risk_results} />
+
+              </div>}
+
             </div>
+
           </div>
         </div>
       </div>
