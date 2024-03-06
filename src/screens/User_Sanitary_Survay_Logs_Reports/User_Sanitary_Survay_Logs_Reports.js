@@ -9,10 +9,11 @@ import Header from '../Header/Header';
 import { useSelector } from 'react-redux';
 import { api } from '../../Data/API'
 
+import { CChart } from '@coreui/react-chartjs'
 import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Colors } from 'chart.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend); 
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 function User_Sanitary_Survay_Logs_Reports() {
 
@@ -28,6 +29,13 @@ function User_Sanitary_Survay_Logs_Reports() {
     const [IsTable, setIsTable] = useState(true)
     const [IsVisual, setIsVisual] = useState(false)
 
+
+    const [TotalVisualRiskCount, setTotalVisualRiskCount] = useState([])
+    const [VisualColor, setVisualColor] = useState([])
+    const [VisualRiskType, setVisualRiskType] = useState([])
+    const [VisualRiskCount, setVisualRiskCount] = useState([])
+    const [IsVisualPie, setIsVisualPie] = useState(true)
+    const [IsVisualBar, setIsVisualBar] = useState(false)
 
     // Pagination
     const [CurrentPage, setCurrentPage] = useState(1)
@@ -53,9 +61,24 @@ function User_Sanitary_Survay_Logs_Reports() {
                 setStoredReport(response.data.result)
                 setReport(response.data.result)
                 setTotalRecord(response.data.result.length)
+                searchforcollection(response.data.result)
             }
         })
-
+        /*
+                axios.get(api + 'get_user_survey_stats_visual_byId/' + userId).then((response) => {
+                    if (response.data.success) {
+                        //Total Visualization
+                        setTotalVisualColor(response.data.color)
+                        setTotalVisualRiskType(response.data.risk_type)
+                        setTotalVisualRiskCount(response.data.risk_count)
+        
+                        //Assigned for displaying Visualization
+                        setVisualColor(response.data.color)
+                        setVisualRiskType(response.data.risk_type)
+                        setVisualRiskCount(response.data.risk_count)
+                    }
+                })
+        */
         axios.get(api + "get_provinces").then(response => {
             setProvinces(response.data.results)
 
@@ -63,6 +86,48 @@ function User_Sanitary_Survay_Logs_Reports() {
             console.log(err)
         })
     }, [user_info.userId]);
+
+
+    const permVisualColor = ["rgba(216, 0, 0, 0.986)", "rgb(201, 199, 105)", "rgba(255, 255, 0, 0.733)", "rgba(0, 128, 0, 0.719)"]
+    const permVisualRiskType = ["Very High Risk", "High Risk", "Medium Risk", "Low Risk"]
+    function searchforcollection(collection) {
+        var veryHighCount = 0
+        var highCount = 0
+        var mediumCount = 0
+        var lowCount = 0
+        for (var k = 0; k < collection.length; k++) {
+            if (collection[k].risk_type.toLocaleLowerCase() === "Very High Risk".toLocaleLowerCase()) {
+                veryHighCount++;
+            }
+            else if (collection[k].risk_type.toLocaleLowerCase() === "High Risk".toLocaleLowerCase()) {
+                highCount++;
+            }
+            else if (collection[k].risk_type.toLocaleLowerCase() === "Medium Risk".toLocaleLowerCase()) {
+                mediumCount++;
+            }
+            else if (collection[k].risk_type.toLocaleLowerCase() === "Low Risk".toLocaleLowerCase()) {
+                lowCount++;
+            }
+        }
+        var tempCounts = []
+        tempCounts.push(veryHighCount)
+        tempCounts.push(highCount)
+        tempCounts.push(mediumCount)
+        tempCounts.push(lowCount)
+        setTotalVisualRiskCount(tempCounts)
+        setVisualRiskCount(tempCounts)
+        setVisualColor(permVisualColor)
+        setVisualRiskType(permVisualRiskType)
+    }
+
+    function selectAll() {
+        setReport(StoredReport)
+        setTotalRecord(StoredReport.length)
+        setVisualColor(permVisualColor)
+        setVisualRiskType(permVisualRiskType)
+        setVisualRiskCount(TotalVisualRiskCount)
+        console.log(TotalVisualRiskCount)
+    }
 
     function display_search_report() {
         if (startDate === '' || endDate === '') {
@@ -100,47 +165,70 @@ function User_Sanitary_Survay_Logs_Reports() {
                 setTotalRecord(response.data.result.length)
             }
         })
+
+        // Visualization
+        axios.get(api + 'get_user_survey_stats_visual/' + startDate + '/' + endDate + '/' + UserId).then((response) => {
+            console.log("second", response.data)
+
+            if (response.data.success === true) {
+                setVisualColor(response.data.color)
+                setVisualRiskType(response.data.risk_type)
+                setVisualRiskCount(response.data.risk_count)
+            }
+        })
     }
+
 
     function filter_by_province(_province) {
         var count = 0
         var temp_array = StoredReport
+        if (_province !== '') {
+            axios.get(api + "get_municipalities/" + _province).then(response => {
+                setMunicipalities(response.data.results)
 
-        axios.get(api + "get_municipalities/" + _province).then(response => {
-            setMunicipalities(response.data.results)
-
-        }, err => {
-            console.log(err)
-        })
-        setReport(temp_array.filter(value => {
-            return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase())
-        }))
-
-        for (var k = 0; k < StoredReport.length; k++) {
-            if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
-                count++
+            }, err => {
+                console.log(err)
+            })
+            setReport(temp_array.filter(value => {
+                return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase())
+            }))
+            searchforcollection(temp_array.filter(value => { return value.province_id.toLocaleLowerCase().includes(_province.toLocaleLowerCase()) }))
+            for (var k = 0; k < StoredReport.length; k++) {
+                if (StoredReport[k].province_id.toLocaleLowerCase() === _province.toLocaleLowerCase()) {
+                    count++
+                }
             }
+
+            setTotalRecord(count)
         }
-        setTotalRecord(count)
+        else {
+            selectAll()
+        }
+
     }
 
     function filter_by_municipality(_muni) {
         var temp_array = StoredReport
         var count = 0
-        if (_muni === '') {
-            setReport(StoredReport)
-            return
+
+        if (_muni !== '') {
+            setReport(temp_array.filter(value => {
+                return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase())
+            }))
+
+            searchforcollection(temp_array.filter(value => { return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase()) }))
+
+            for (var k = 0; k < Report.length; k++) {
+                if (Report[k].muni_id.toLocaleLowerCase() === _muni.toLocaleLowerCase()) {
+                    count++
+                }
+            }
+            setTotalRecord(count)
+        }
+        else {
+            selectAll()
         }
 
-        setReport(temp_array.filter(value => {
-            return value.muni_id.toLocaleLowerCase().includes(_muni.toLocaleLowerCase())
-        }))
-        for (var k = 0; k < Report.length; k++) {
-            if (Report[k].muni_id.toLocaleLowerCase() === _muni.toLocaleLowerCase()) {
-                count++
-            }
-        }
-        setTotalRecord(count)
     }
 
     function search_by_weekday(day) {
@@ -150,38 +238,44 @@ function User_Sanitary_Survay_Logs_Reports() {
             setReport(temp_array.filter(value => {
                 return value.weekday.toLocaleLowerCase().includes(day.toLocaleLowerCase())
             }))
+
+            searchforcollection(temp_array.filter(value => { return value.weekday.toLocaleLowerCase().includes(day.toLocaleLowerCase()) }))
+
             for (var k = 0; k < StoredReport.length; k++) {
                 if (StoredReport[k].weekday.toLocaleLowerCase() === day.toLocaleLowerCase()) {
                     count++
                 }
             }
+
             setTotalRecord(count)
         }
+
         else {
-            setReport(StoredReport)
+            selectAll()
         }
     }
 
     function catchmentArea(catchment) {
         var temp_array = StoredReport
-        console.log(temp_array)
         var count = 0
         if (catchment !== '') {
             setReport(temp_array.filter(value => {
                 return value.type.toLocaleLowerCase().includes(catchment.toLocaleLowerCase())
             }))
+            searchforcollection(temp_array.filter(value => { return value.type.toLocaleLowerCase().includes(catchment.toLocaleLowerCase()) }))
+
             for (var k = 0; k < StoredReport.length; k++) {
                 if (StoredReport[k].type.toLocaleLowerCase() === catchment.toLocaleLowerCase()) {
                     count++
                 }
             }
+
             setTotalRecord(count)
         }
         else {
-            setReport(StoredReport)
+            selectAll()
         }
     }
-
 
     function riskType(typeRisk) {
         var temp_array = StoredReport
@@ -189,8 +283,10 @@ function User_Sanitary_Survay_Logs_Reports() {
         var count = 0
         if (typeRisk !== '') {
             setReport(temp_array.filter(value => {
-                return value.risk_type.toLocaleLowerCase().includes(typeRisk.toLocaleLowerCase())
+                return value.risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase()
             }))
+            searchforcollection(temp_array.filter(value => { return value.risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase() }))
+
             for (var k = 0; k < StoredReport.length; k++) {
                 if (StoredReport[k].risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase()) {
                     count++
@@ -199,28 +295,38 @@ function User_Sanitary_Survay_Logs_Reports() {
             setTotalRecord(count)
         }
         else {
-            setReport(StoredReport)
+            selectAll()
         }
     }
 
-    function setTotable(){
+    function setTotable() {
         setIsTable(true)
         setIsVisual(false)
     }
 
-    function setToVisual(){
+    function setToVisual() {
         setIsTable(false)
         setIsVisual(true)
+    }
+
+    function setToVisualPie() {
+        setIsVisualBar(false)
+        setIsVisualPie(true)
+    }
+
+    function setToVisualBar() {
+        setIsVisualBar(true)
+        setIsVisualPie(false)
     }
 
     //change page 
     const paginate = (page_number) => setCurrentPage(page_number)
 
     const risk_results = {
-        labels: Report.map(value => { return value.risk_type }),
+        labels: VisualRiskType,
         datasets: [{
-            data: Report.map(value => { return value.total_avarage }),
-            backgroundColor: [ 'red', 'purple',"green", 'black', 'white']
+            data: VisualRiskCount,
+            backgroundColor: VisualColor
         }]
     }
 
@@ -275,7 +381,7 @@ function User_Sanitary_Survay_Logs_Reports() {
 
                                         <td className="w-25">
                                             <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
-                                                <option value=''>All Weekdays</option>
+                                                <option value='' disabled selected>All Weekdays</option>
                                                 <option value='Monday'>Monday</option>
                                                 <option value='Tuesday'>Tuesday</option>
                                                 <option value='Wednesday'>Wednesday</option>
@@ -287,7 +393,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         </td>
                                         <td className="w-25">
                                             <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
-                                                <option value=''>All Provinces</option>
+                                                <option value='' disabled selected>All Provinces</option>
                                                 {Provinces.map((province, xid) => (
                                                     <option key={xid} value={province.province_id} >{province.province_name}</option>
                                                 ))}
@@ -296,7 +402,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         </td>
                                         <td className="w-25">
                                             <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
-                                                <option value=''>All Municipalities</option>
+                                                <option value='' disabled selected>All Municipalities</option>
                                                 {Municipalities.map((muni, xid) => (
                                                     <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
                                                 ))}
@@ -304,7 +410,7 @@ function User_Sanitary_Survay_Logs_Reports() {
                                         </td>
                                         <td className="w-25">
                                             <select onChange={(e) => catchmentArea(e.target.value)} className="w-100 p-2" >
-                                                <option value='' className="control-form">Select Water Source</option>
+                                                <option value='' disabled selected className="control-form">Select Water Source</option>
                                                 <option value='River' className="control-form">River</option>
                                                 <option value='Dam' className="control-form">Dam</option>
                                                 <option value='Spring' className="control-form">Spring</option>
@@ -319,7 +425,7 @@ function User_Sanitary_Survay_Logs_Reports() {
 
                                         <td className="w-25">
                                             <select onChange={(e) => riskType(e.target.value)} className="w-100 p-2" >
-                                                <option value='' className="control-form">Select Risk Type</option>
+                                                <option value='' disabled selected  className="control-form">Select Risk Type</option>
                                                 <option value='Low Risk' className="control-form">Low Risk</option>
                                                 <option value='Medium Risk' className="control-form">Medium Risk</option>
                                                 <option value='High Risk' className="control-form">High Risk</option>
@@ -337,10 +443,9 @@ function User_Sanitary_Survay_Logs_Reports() {
                             </div>
 
                         </div>
-
                         <div className='reports'>
-                            <button className='btn btn-success' disabled={IsTable} onClick={setTotable}>Table</button>
-                            <button className='btn btn-primary' disabled={IsVisual} onClick={setToVisual}>Visual</button>
+                            <button className='btn btn-success btn-option' disabled={IsTable} onClick={setTotable}>Table</button>
+                            <button className='btn btn-primary btn-option' disabled={IsVisual} onClick={setToVisual}>Visual</button>
 
                             {IsTable && <>
                                 {(FoundReport === true) && (
@@ -381,11 +486,43 @@ function User_Sanitary_Survay_Logs_Reports() {
                                 </div>
                             </>}
 
-                            {IsVisual&& <div>
-                                <Pie data={risk_results} />
-
-                            </div>}
-
+                            {IsVisual &&
+                                < div className='visuals'>
+                                    <br />
+                                    <button className='btn btn-success btn-option' disabled={IsVisualPie} onClick={setToVisualPie}>Pie Chart</button>
+                                    <button className='btn btn-primary btn-option' disabled={IsVisualBar} onClick={setToVisualBar}>Graph Bar</button>
+                                    <div className='visual'>
+                                        <div className='display-graph'>
+                                            {IsVisualPie && <Pie data={risk_results} />}
+                                            {IsVisualBar && <CChart
+                                                type="bar"
+                                                data={{
+                                                    labels: VisualRiskType,
+                                                    datasets: [
+                                                        {
+                                                            label: 'Risk Results',
+                                                            backgroundColor: VisualColor,
+                                                            data: VisualRiskCount,
+                                                        },
+                                                    ],
+                                                }}
+                                                labels="Risk Results"
+                                            />}
+                                        </div>
+                                        <div className='info-display'>
+                                            {VisualRiskCount.map((visual, xid) => (
+                                                <div className='results-info' key={xid}>
+                                                    <tr >
+                                                        <td id='color_circle' style={{ backgroundColor: VisualColor[xid] }}></td>&nbsp;
+                                                        <td>{VisualRiskType[xid]}</td>
+                                                        <td>{visual}</td>
+                                                    </tr>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -394,7 +531,6 @@ function User_Sanitary_Survay_Logs_Reports() {
                 <Footer />
             </footer>
         </div>
-
     );
 }
 export default User_Sanitary_Survay_Logs_Reports

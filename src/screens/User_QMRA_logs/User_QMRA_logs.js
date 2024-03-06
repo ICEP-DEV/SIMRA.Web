@@ -22,6 +22,18 @@ function User_QMRA_logs() {
     const [endDate, setEndDate] = useState('')
     const [FoundReport, setFoundReport] = useState(false)
     const [UserId, setUserId] = useState('')
+    const [IsTable, setIsTable] = useState(true)
+    const [IsVisual, setIsVisual] = useState(false)
+  
+    const [TotalVisualColor, setTotalVisualColor] = useState([])
+    const [TotalVisualRiskType, setTotalVisualRiskType] = useState([])
+    const [TotalVisualRiskCount, setTotalVisualRiskCount] = useState([])
+    const [VisualColor, setVisualColor] = useState([])
+    const [VisualRiskType, setVisualRiskType] = useState([])
+    const [VisualRiskCount, setVisualRiskCount] = useState([])
+    const [IsVisualPie, setIsVisualPie] = useState(true)
+    const [IsVisualBar, setIsVisualBar] = useState(false)
+
 
     const [CurrentPage, setCurrentPage] = useState(1)
     const record_per_page = 5
@@ -45,6 +57,8 @@ function User_QMRA_logs() {
                 setStoredReport(response.data.results)
                 setReport(response.data.results)
                 setTotalRecord(response.data.results.length)
+                
+                searchforcollection(response.data.results)
             }
         })
 
@@ -58,6 +72,27 @@ function User_QMRA_logs() {
 
     }, [user_info.userId]);
 
+    const permVisualColor = ["black", "white"]
+    const permVisualRiskType = ["Risk", "No Risk"]
+    function searchforcollection(collection) {
+      var riskCount = 0;
+      var noRiskCount = 0
+      for (var k = 0; k < collection.length; k++) {
+        if (Math.round(collection[k].probability_of_infection) < 1 ) {
+          noRiskCount++;
+        }
+        else{
+          riskCount++;
+        }
+       
+      }
+      var tempCounts = []
+      tempCounts.push(riskCount)
+      tempCounts.push(noRiskCount)
+      setVisualRiskCount(tempCounts)
+      setVisualColor(permVisualColor)
+      setVisualRiskType(permVisualRiskType)
+    }
     function display_search_report() {
         if (startDate === '' || endDate === '') {
             toast.warn("All date should be selected!", {
@@ -210,7 +245,7 @@ function User_QMRA_logs() {
 
                                         <td className="w-25 ">
                                             <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
-                                                <option value=''>All Weekdays</option>
+                                                <option value='' disabled selected>All Weekdays</option>
                                                 <option value='Monday'>Monday</option>
                                                 <option value='Tuesday'>Tuesday</option>
                                                 <option value='Wednesday'>Wednesday</option>
@@ -225,7 +260,7 @@ function User_QMRA_logs() {
                                         {/* <label>Province</label> */}
                                         <td className="w-25">
                                             <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
-                                                <option value=''>All Provinces</option>
+                                                <option value='' disabled selected>All Provinces</option>
                                                 {Provinces.map((province, xid) => (
                                                     <option key={xid} value={province.province_id} >{province.province_name}</option>
                                                 ))}
@@ -234,7 +269,7 @@ function User_QMRA_logs() {
                                         </td>
                                         <td className="w-25">
                                             <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
-                                                <option value=''>All Municipalities</option>
+                                                <option value='' disabled selected>All Municipalities</option>
                                                 {Municipalities.map((muni, xid) => (
                                                     <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
                                                 ))}

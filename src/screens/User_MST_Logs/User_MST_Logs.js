@@ -207,7 +207,7 @@ function User_MST_Logs() {
     
       <td className="w-25"> 
       <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
-                    <option value=''>All Weekdays</option>
+                    <option value='' disabled selected>All Weekdays</option>
                     <option value='Monday'>Monday</option>
                     <option value='Tuesday'>Tuesday</option>
                     <option value='Wednesday'>Wednesday</option>
@@ -219,7 +219,7 @@ function User_MST_Logs() {
          </td>
                   <td className="w-25">
                   <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
-                    <option value=''>All Provinces</option>
+                    <option value='' disabled selected>All Provinces</option>
                     {Provinces.map((province, xid) => (
                       <option key={xid} value={province.province_id} >{province.province_name}</option>
                     ))}
@@ -228,7 +228,7 @@ function User_MST_Logs() {
                   </td>
                  <td className="w-25">
                  <select onChange={(e) => filter_by_municipality(e.target.value)}  className="w-100 p-2" >
-                    <option value=''>All Municipalities</option>
+                    <option value='' disabled selected>All Municipalities</option>
                     {Municipalities.map((muni, xid) => (
                       <option key={xid} value={muni.muni_id} >{muni.muni_name}</option>
                     ))}
