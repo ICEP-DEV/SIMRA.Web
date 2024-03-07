@@ -169,7 +169,7 @@ function H2S() {
                     <h2 className='text-primary text-center'>Hydrogen Sulfide (H₂S)</h2>
                     <div className='container-wrapper'>
             
-                    <BiHelpCircle size={'30px'} className="d-flex justify-content-end"/>
+                    {/* <BiHelpCircle size={'30px'} className="d-flex justify-content-end"/> */}
 
 
                         <div className='h2s'>

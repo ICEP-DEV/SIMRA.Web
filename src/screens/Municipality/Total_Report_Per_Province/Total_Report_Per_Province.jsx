@@ -18,7 +18,7 @@ function Total_Report_Per_Province() {
     const [FiteredMunicipalities, setFiteredMunicipalities] = useState([])
 
     useEffect(() => {
-        axios.get(api + 'get_results_per_province').then(respond => {
+        axios.get(api + 'get_results_per_province').then(respond => {//get provinces
             setProvinces(respond.data.results)
             setIsProvinces(respond.data.success)
         }, err => {
@@ -26,7 +26,7 @@ function Total_Report_Per_Province() {
         })
 
         axios.get(api + 'get_results_per_municipalities').then(respond => {
-            setAllMunicipalities(respond.data.results)
+            setAllMunicipalities(respond.data.results)///get municipalities
         }, err => {
             console.log(err)
         })

@@ -1,11 +1,9 @@
 .hero
 {
     margin: 0;
-   
-color: #fff;
-     overflow-x: hidden;
-    
-
+   color: #fff;
+    overflow-x: hidden;
+  
 }
 .legend {
   text-align: center;
@@ -25,11 +23,15 @@ color: #fff;
   height: 700px;
 
 }
+.vl {
+  border-left: 6px solid #0059D4;
+  height: 30px;
+}
 .para
 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
    
-    writing-mode: horizontal-tb;
+    /* writing-mode: horizontal-tb; */
     color: rgb(46, 43, 43);
    
 }
@@ -64,9 +66,8 @@ section {
 {
     width: 100%;
    background-color: #fff;
-   display: flex;
-  justify-content: flex-start;
-  align-items: center; 
+  
+ 
  color: rgb(46, 43, 43);
    
 }

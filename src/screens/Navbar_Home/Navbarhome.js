@@ -65,7 +65,7 @@ function Navbarhome() {
             <div className="logo">
                 <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
             </div>
-            <div className={`nav-links ${showNav ? 'show' : ''}`}>
+            <div className={`nav-links ${showNav ? 'show' : ''}`} style={{ float: 'right'}}>
                 <li className="navbar-subs" onClick={() => navigate('/login')}><span type="button" className="btn btn-success nav-label">Sign In</span></li>
             </div>
             <div className="hamburger" onClick={toggleNav}>
