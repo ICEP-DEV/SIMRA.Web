@@ -1,20 +1,32 @@
 import './SamplingData.css'
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-import Sidebar from '../Sidebar/Sidebar';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import Navbar from '../Navbar/Navbar';
+import PopUpAlert from '../Pop_Up/Pop_Up'
 import axios from 'axios'
-function SamplingData() {
+import { useDispatch, useSelector } from 'react-redux';
+import { sampling_details } from '../../Redux/sampling_data'
+import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
+import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
 
+function SamplingData() {
+    let user_info = useSelector((state) => state.user.value)
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const tempData = useLocation();
-    const [UserId] = useState(tempData.state.userId)
     const [provinces, setProvinces] = useState([])
     const [Municipalities, setMunicipalities] = useState([])
     const [WaterSource, setWaterSource] = useState('');
     const [WaterAccessibility, setWaterAccessibility] = useState('');
     const [WeatherCondition, setWeatherCondition] = useState('');
-    const [Municipality,setMunicipality] = useState('');
-    const [Province,setProvince] = useState('');
+    const [Municipality, setMunicipality] = useState('');
+    const [Province, setProvince] = useState('');
+    const [Longitude, setLongitude] = useState('')
+    const [Latitude, setLatitude] = useState('')
+    const [PopUpAlertMessage, setPopUpAlertMessage] = useState(false)
+    let [Level2UserPopUp, setLevel2UserPopUp] = useState(false);
+    let [Level3UserPopUp, setLevel3UserPopUp] = useState(false);
 
     const api = 'http://localhost:3001/api/'
 
@@ -24,11 +36,15 @@ function SamplingData() {
         }, err => {
             console.log(err)
         })
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            setLongitude(longitude)
+            setLatitude(latitude)
+        })
     }, [provinces])
 
     function getAllMunicipalities(event) {
         var prov_id = event.target.value
-        console.log(prov_id)
         axios.get(api + 'get_municipalities/' + prov_id).then(response => {
             setMunicipalities(response.data.results)
             setProvince(response.data.results)
@@ -41,10 +57,10 @@ function SamplingData() {
     }
 
     function submit_sampling_data() {
-        if(Province === ""){
+        if (Province === "") {
             return
         }
-        if(Municipality === ""){
+        if (Municipality === "") {
             return
         }
         if (WaterSource === "") {
@@ -60,25 +76,67 @@ function SamplingData() {
             type: WaterSource,
             waterAccessability: WaterAccessibility,
             weatherCondition: WeatherCondition,
-            userId: UserId,
-            muni_id: Municipality
+            muni_id: Municipality,
+            userId: user_info.userId,
+            latitude: Latitude,
+            longitude: Longitude
         }
-        navigate('/level1', { state: { temp } })
+        dispatch(sampling_details(temp))
+        // if (Latitude === '' || Longitude === '') {
+        //     PopUpAlertMessage(true)
+        // }
+
+        if (user_info.user_level === 1) {
+            navigate('/h2s_survey')
+        }
+        else if (user_info.user_level === 2) {
+            setLevel2UserPopUp(true)
+        }
+        else if (user_info.user_level === 3) {
+            setLevel3UserPopUp(true)
+        }
     }
+
+    let AlertMessage = <div>
+        <p>Cannot detect your location. You can proceed with the application but it will not
+            give the results and we won't be able to save the information you provide</p>
+        <br />
+        <button className='btn btn-success' onClick={() => navigate('/level1')}></button>
+    </div>
+
+    const leve2popup = <div>
+        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
+        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
+    </div>
+
+    const leve3popup = <div>
+        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
+        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
+        <button className='level_popup level3_class' onClick={()=> navigate('/mst')}>Level Three(Expert)</button>
+    </div>
 
     return (
         <div className='hero-all' >
-            <div className='sidenav'>
-                <Sidebar />
-            </div>
-
-            <div className='main-all'>
-                <div className='content'>
-                    <div className='container-wrapper'>
+            <Navbar />
+            <div className='content'>
+                <Header />
+                <h2 className='text-primary text-center'>Sampling Data</h2>
+                <div className='container-wrapper'>
+                   
+                    <PopUpAlert trigger={PopUpAlertMessage} setTrigger={setPopUpAlertMessage} >
+                        {AlertMessage}
+                    </PopUpAlert>
+                    <Level2PopUp trigger={Level2UserPopUp} setTrigger={setLevel2UserPopUp}>
+                        {leve2popup}
+                    </Level2PopUp>
+                    <Level3PopUp trigger={Level3UserPopUp} setTrigger={setLevel3UserPopUp}>
+                        {leve3popup}
+                    </Level3PopUp>
                     <div className='form-group'>
-                        <label>Province</label>
-                        <select onChange={getAllMunicipalities}>
-                            <option>---Select---</option>
+                        {/* <label>Province</label> */}
+                        <div className='mt-5'></div>
+                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
+                            <option>Select a Province</option>
                             {provinces.map((prov, xid) => (
                                 <option key={xid} className="control-form" value={prov.province_id} >{prov.province_name}</option>
                             ))}
@@ -86,18 +144,18 @@ function SamplingData() {
                     </div>
 
                     <div className='form-group'>
-                        <label>Municipality</label>
-                        <select onChange={SelectMunicipality}>
-                            <option>---Select---</option>
+                        {/* <label>Municipality</label> */}
+                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
+                            <option>Select a Municipality</option>
                             {Municipalities.map((muni, xid) => (
                                 <option key={xid} className="control-form" value={muni.muni_id} >{muni.muni_name}</option>
                             ))}
                         </select>
                     </div>
                     <div className='form-group'>
-                        <label>Water Source</label>
-                        <select className='select-sampling_data' onChange={(event) => setWaterSource(event.target.value)}>
-                            <option value='' className="control-form">---Select---</option>
+                        {/* <label>Water Source</label> */}
+                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={(event) => setWaterSource(event.target.value)}>
+                            <option value='' className="control-form">Select a Water Source</option>
                             <option value='River' className="control-form">River</option>
                             <option value='Dam' className="control-form">Dam</option>
                             <option value='Spring' className="control-form">Spring</option>
@@ -106,39 +164,36 @@ function SamplingData() {
                             <option value='Household Tap Water' className="control-form">Household Tap Water</option>
                             <option value='Housewater Stored Water' className="control-form">Housewater Stored Water</option>
                             <option value='Wastewater Treatment Plant' className="control-form">Wastewater Treatment Plant</option>
-                            <option value='water Treatment Plant' className="control-form">water Treatment Plant</option>
+                            <option value='water Treatment Plant' className="control-form">Water Treatment Plant</option>
                         </select>
                     </div>
                     <div className='form-group'>
-                        <label>Water Accessibility</label>
-                        <select className='select-sampling_data' onChange={(event) => setWaterAccessibility(event.target.value)}>
-                            <option value='' className="control-form">---Select---</option>
+                        {/* <label>Water Accessibility</label> */}
+                        <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={(event) => setWaterAccessibility(event.target.value)}>
+                            <option value='' className="control-form">Select Water Accessibility</option>
                             <option value='Hard' className="control-form">Hard</option>
                             <option value='Easy' className="control-form">Easy</option>
                         </select>
                     </div>
                     <div className='form-group'>
-                        <label>Weather Condition</label>
-                        <select className='select-sampling_data' onChange={(event) => setWeatherCondition(event.target.value)}>
-                            <option value='' className="control-form">---Select---</option>
+                        {/* <label>Weather Condition</label> */}
+                        <select className='select-sampling_data form-select w-75 mb-5 align-self-center ' onChange={(event) => setWeatherCondition(event.target.value)}>
+                            <option value='' className="control-form">Select a Weather Condition</option>
                             <option value='Dry' className="control-form">Dry</option>
-                            <option value='Windy' className="control-form">Windy</option>
-                            <option value='cloudy' className="control-form">cloudy</option>
-                            <option value='Snow' className="control-form">Snow</option>
-                            <option value='Thunder and Lightning' className="control-form">Thunder and Lightning</option>
-                            <option value='Frost and Ice' className="control-form">Frost and Ice</option>
-                            <option value='Rainy' className="control-form">Rainy</option>
-                            <option value='Fog' className="control-form">Fog</option>
-                            <option value='Sunny' className="control-form">Sunny</option>
+                            <option value='Windy' className="control-form">Wet</option>
+                           
                         </select>
                     </div>
-                    <button className='btn-data' onClick={submit_sampling_data}>Next</button>
-                    </div>
-                
+                    <button className='btn btn-success btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
+
             </div>
-            {/* f */}
+            <footer>
+                <Footer />
+            </footer>
+
         </div>
+
     );
 }
 export default SamplingData

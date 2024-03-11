@@ -1,23 +1,8 @@
-
-.body{
-    background-color: blue;
-    height: 100vh;
+.home-img
+{
+    width: 300px;
 }
-
-.content{
-    display: flex;
+.content-municipalities
+{
     
-}
-
-.left{
-    width: 20%;
-}
-
-.right{
-    width: 80%;
-    height: 95vh;
-    background-color: white;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    margin-top: 5px;
 }
