@@ -5,7 +5,11 @@ import Header from '../Header/Header';
 
 import Total_Report_Per_Province from './Total_Report_Per_Province/Total_Report_Per_Province';
 import H2S_Report_per_Province from './H2S_Report_per_Province/H2S_Report_per_Province';
-import Survey_Report_Per_Province from './Survey_Report_Per_Province/Survey_Report_Per_Province'
+import Survey_Report_Per_Province from './Survey_Report_Per_Province/Survey_Report_Per_Province';
+import FIB_Report_Per_Province from './FIB_Report_Per_Province/FIB_Report_Per_Province';
+import MST_Report_Per_Province from './MST_Report_Per_Province/MST_Report_per_Province';
+
+
 
 import axios from 'axios'
 import { useEffect, useState } from 'react';
@@ -68,8 +72,16 @@ function Municipality() {
                             <h5>Total Survey Reports For Every province</h5>
                             <Survey_Report_Per_Province />
                         </div>
+                        <div className="section-report" id='report_per_prov'>
+                            <h5>Total fib Reports For Every province</h5>
+                            <FIB_Report_Per_Province/>
+                        </div>
+                        <div className="section-report" id='report_per_prov'>
+                            <h5>Total MST Reports For Every province</h5>
+                            <MST_Report_Per_Province/>
+                        </div>
 
-
+                        
                     </div>
                 </div>
             </div>

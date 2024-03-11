@@ -7,8 +7,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-function H2S_Report_per_Province() {
-    // H2S reports
+function MST_Report_Per_Province(){
+     // MST reports
     //province Reports
     const [Provinces, setProvinces] = useState([])
     const [IsProvinces, setIsProvinces] = useState(false)
@@ -28,10 +28,10 @@ function H2S_Report_per_Province() {
 
     useEffect(() => {
 
-        //get_h2s_by_province
-        axios.get(api + 'h2s_province').then(respond => {
+        //get_fib_by_province
+        axios.get(api + 'mst_province').then(respond => {
             setIsProvinces(respond.data.success)
-            console.log("h2sprov"+respond.data.success);
+            //console.log(respond.data.success);
             if (respond.data.success) {
                 setProvinces(respond.data.results)
                 setIsProvincesView(respond.data.success)
@@ -42,20 +42,20 @@ function H2S_Report_per_Province() {
         })
     }, [])
 
-    //h2s report per province
+    //fib report per province
     const h2s_province_report = {
         labels: Provinces.map(value => { return value.province_name }),
         datasets: [{
             data: Provinces.map(value => { return value.muni_count }),
-            backgroundColor: ['red', 'purple', 'blue', 'green', 'yellow', 'pink', 'brown', 'black', 'white']
+            backgroundColor: ['yellow','brown', 'black', 'pink', 'red', 'purple', 'blue', 'green',  'white']
         }]
     }
-    //h2s report per municipality
+    //fib report per municipality
     const h2s_municipal_report = {
         labels: AllMunicipalities.map(value => { return value.muni_name }),
         datasets: [{
             data: AllMunicipalities.map(value => { return value.count_risk }),
-            backgroundColor: [ 'blue', 'brown', "yellow", 'pink', 'red', 'purple',"green", 'black', 'white']
+            backgroundColor: ['purple',"green","yellow", 'pink', 'blue', 'brown', 'red',  'black', 'white']
         }]
     }
 
@@ -78,7 +78,7 @@ function H2S_Report_per_Province() {
 
 
     function h2s_province(province_id) {
-        axios.get(api + 'h2s_municipality/' + province_id).then(respond => {
+        axios.get(api + 'mst_municipality/' + province_id).then(respond => {
             setIsFoundMunicipality(respond.data.success)
             if (respond.data.success) {
 
@@ -99,7 +99,7 @@ function H2S_Report_per_Province() {
         console.log(municipal_id)
         setSelectedMunicipality(municipal_id)
 
-        axios.get(api + 'h2s_risk_results/' + municipal_id).then(respond => {
+        axios.get(api + 'mst_risk_results/' + municipal_id).then(respond => {
             setIsFoundRiskCharacters(respond.data.success)
             if (respond.data.success) {
                 setRiskCharacters(respond.data.results)
@@ -118,7 +118,7 @@ function H2S_Report_per_Province() {
     }
 
     return (
-        <div className='content-report'>
+        <div className='content-report'> 
             <div className='description-report'>
                 {IsProvinces && <>
                     {Provinces.map((prov, xid) => (
@@ -178,6 +178,7 @@ function H2S_Report_per_Province() {
             </div>
         </div>
     )
+
 }
 
-export default H2S_Report_per_Province;
+export default MST_Report_Per_Province;
