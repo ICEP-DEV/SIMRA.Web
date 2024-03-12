@@ -31,10 +31,11 @@ function User_MST_Logs() {
     const [IsTable, setIsTable] = useState(true)
     const [IsVisual, setIsVisual] = useState(false)
     const [TotalVisualColor, setTotalVisualColor] = useState([])
-  const [TotalVisualRiskType, setTotalVisualRiskType] = useState([])
-  const [TotalVisualRiskCount, setTotalVisualRiskCount] = useState([])
+    const [TotalVisualRiskType, setTotalVisualRiskType] = useState([])
+    const [TotalVisualRiskCount, setTotalVisualRiskCount] = useState([])
     const [VisualColor, setVisualColor] = useState([])
     const [VisualRiskType, setVisualRiskType] = useState([])
+    const [VisualMarkerType, setMarkerRiskType] = useState([])
     const [VisualRiskCount, setVisualRiskCount] = useState([])
     const [IsVisualPie, setIsVisualPie] = useState(true)
     const [IsVisualBar, setIsVisualBar] = useState(false)
@@ -84,7 +85,7 @@ function User_MST_Logs() {
     }, [user_info.userId]);
 
     ///pop up toast
-    function display_search_report() {
+     function display_search_report() {
         if (startDate === '' || endDate === '') {
             toast.warn("All date should be selected!", {
                 position: "top-right",
@@ -121,39 +122,60 @@ function User_MST_Logs() {
               setTotalRecord(response.data.results.length)
             }
         })
-    }
+      }
 
     ///vsiuals
-    const permVisualColor = ["black", "white","Red","Green","Yellow"]
+    const permVisualColor = ["black", "white","red","green","yellow"]
     const permVisualRiskType = ["BacCow", "donkey","Pig-2-Bac","BacCan","BacHum"]
     function searchforcollection(collection) {
-    var riskCount = 0;
-    var noRiskCount = 0
-    for (var k = 0; k < collection.length; k++) {
-      if (collection[k].maker.toLocaleLowerCase() === "BacCow".toLocaleLowerCase()) {
-        noRiskCount++;
-      }
-      else if (collection[k].maker.toLocaleLowerCase() === "donkey".toLocaleLowerCase()) {
-        riskCount++;
-      }
-      else if (collection[k].maker.toLocaleLowerCase() === "Pig-2-Bac".toLocaleLowerCase()) {
-        riskCount++;
-      }
-      else if (collection[k].maker.toLocaleLowerCase() === "BacCan".toLocaleLowerCase()) {
-        riskCount++;
-      }
-      else if (collection[k].maker.toLocaleLowerCase() === "BacHum".toLocaleLowerCase()) {
-        riskCount++;
-      }
-      
-    }
-    var tempCounts = []
-    tempCounts.push(riskCount)
-    tempCounts.push(noRiskCount)
-    setVisualRiskCount(tempCounts)
-    setVisualColor(permVisualColor)
-    setVisualRiskType(permVisualRiskType)
-  }
+      var totalPerc=[];
+        var Count = 0;
+        var BacCowCount = 0;
+       
+        var donkeyCount =0;
+        var Pig_2_BacCount =0 ;
+        var BacCanCount = 0;
+        var BacHumCount = 0;
+        for (var k = 0; k < collection.length; k++) {
+          if (collection[k].maker.toLocaleLowerCase() === "BacCow".toLocaleLowerCase()) {
+            BacCowCount++;
+          }
+          else if (collection[k].maker.toLocaleLowerCase() === "donkey".toLocaleLowerCase()) {
+            donkeyCount++;
+          }
+          else if (collection[k].maker.toLocaleLowerCase() === "Pig-2-Bac".toLocaleLowerCase()) {
+            Pig_2_BacCount++;
+          }
+          else if (collection[k].maker.toLocaleLowerCase() === "BacCan".toLocaleLowerCase()) {
+            BacCanCount++;
+          }
+          else if (collection[k].maker.toLocaleLowerCase() === "BacHum".toLocaleLowerCase()) {
+            BacHumCount++;
+          }
+          
+        }
+        var total=BacHumCount+BacCanCount+donkeyCount+BacCowCount+Pig_2_BacCount;
+        var tempCounts = []
+        tempCounts.push(BacHumCount)
+        tempCounts.push(BacCanCount)
+        tempCounts.push(Pig_2_BacCount)
+        tempCounts.push(donkeyCount)
+        tempCounts.push(BacCowCount)
+
+        totalPerc.push((BacHumCount/total)*100)
+        totalPerc.push((BacCanCount/total)*100)
+        totalPerc.push((donkeyCount/total)*100)
+        totalPerc.push((BacCowCount/total)*100)
+        totalPerc.push((Pig_2_BacCount/total)*100)
+        
+
+
+
+        setMarkerRiskType(totalPerc)
+        setVisualRiskCount(tempCounts)
+        setVisualColor(permVisualColor)
+        setVisualRiskType(permVisualRiskType)
+     }
 
     function selectAll() {
     setReport(StoredReport)
@@ -253,10 +275,10 @@ function User_MST_Logs() {
         }
     }
 
-    const risk_results = {
+  const risk_results = {
     labels: VisualRiskType,
     datasets: [{
-      data: VisualRiskCount,
+      data: VisualMarkerType,
       backgroundColor: VisualColor
     }]
   }
@@ -415,64 +437,67 @@ function User_MST_Logs() {
                                             </tr>
                                         ))}
                                     </table>
-                                )}
-                                <div className='page_numbers' >
-                                    {(FoundReport === true) && (
-                                        <nav className='pagination'>
-                                            <ul class="pagination justify-content-center">
-                                                {PagePerNumber.map((number, xid) => (
-                                                    <li key={xid} className='page-item'>
-                                                        <button onClick={() => paginate(number)} className='page-link'>{number}</button>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </nav>
-                                    )}
-                                </div>
+                                  )}
+                                  <div className='page_numbers' >
+                                      {(FoundReport === true) && (
+                                          <nav className='pagination'>
+                                              <ul class="pagination justify-content-center">
+                                                  {PagePerNumber.map((number, xid) => (
+                                                      <li key={xid} className='page-item'>
+                                                          <button onClick={() => paginate(number)} className='page-link'>{number}</button>
+                                                      </li>
+                                                  ))}
+                                              </ul>
+                                          </nav>
+                                      )}
+                                  </div>
                                 {(FoundReport.success === false) && (<div >
                                     <label>{FoundReport.message}</label>
 
                                 </div>)}
-                                 {IsVisual &&
-                < div className='visuals'>
-                  <br />
-                  <button className='btn btn-success btn-option' disabled={IsVisualPie} onClick={setToVisualPie}>Pie Chart</button>
-                  <button className='btn btn-primary btn-option' disabled={IsVisualBar} onClick={setToVisualBar}>Graph Bar</button>
-                  <div className='visual'>
-                    <div className='display-graph'>
-                      {IsVisualPie && <Pie data={risk_results} />}
-                      {IsVisualBar && <CChart
-                        type="bar"
-                        data={{
-                          labels: VisualRiskType,
-                          datasets: [
-                            {
-                              label: 'Risk Results',
-                              backgroundColor: VisualColor,
-                              data: VisualRiskCount,
-                            },
-                          ],
-                        }}
-                        labels="Risk Results"
-                      />}
-                    </div>
-                    <div className='info-display'>
-                      {VisualRiskCount.map((visual, xid) => (
-                        <div className='results-info' key={xid}>
-                          <tr >
-                            <td id='color_circle' style={{ backgroundColor: VisualColor[xid] }}></td>&nbsp;
-                            <td>{VisualRiskType[xid]}</td>
-                            <td>{visual}</td>
-
-                          </tr>
-                        </div>
-                      ))}
-
-                    </div>
-                  </div>
-                </div>
-              }
                             </>}
+                            {IsVisual &&
+                            < div className='visuals'>
+                              <br />
+                              <button className='btn btn-success btn-option' disabled={IsVisualPie} onClick={setToVisualPie}>Pie Chart</button>
+                              <button className='btn btn-primary btn-option' disabled={IsVisualBar} onClick={setToVisualBar}>Graph Bar</button>
+                              <div className='visual'>
+                                <div className='display-graph'>
+                                  {IsVisualPie && <Pie data={risk_results}  />}
+                                  
+                                  {IsVisualBar && <CChart
+                                    type="bar"
+                                    data={{
+                                      labels: VisualRiskType,
+                                      datasets: [
+                                        {
+                                          label: 'Marker Results',
+                                          backgroundColor: VisualColor,
+                                          data: VisualRiskCount,
+                                        },
+                                      ],
+                                    }}
+                                    labels="Marker Results"
+                                  //style={{ height: '800px' }}
+                                  />}
+                                </div>
+                                <div className='info-display'>
+                                  {VisualRiskCount.map((visual, xid) => (
+                                    <div className='results-info' key={xid}>
+                                      <tr >
+                                        <td id='color_circle' style={{ backgroundColor: VisualColor[xid] }}></td>&nbsp;
+                                        <td>{VisualRiskType[xid]}</td>
+                                        <td>{visual}</td>
+
+                                      </tr>
+                                    </div>
+                                  ))}
+
+                                </div>
+                              </div>
+                            </div>  
+                            }
+                           
                         </div>
                     </div>
                 </div>
