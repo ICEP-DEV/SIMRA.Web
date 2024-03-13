@@ -53,10 +53,10 @@ function Municipality() {
                 <div className='container-wrapper mb-5'>
                     <h2>Simra Reports</h2>
                     <div className='reports' >
-                        <div id='today_report' className='section-report'>
+                        {/* <div id='today_report' className='section-report'>
                             <h5>Todays Report</h5>
                             <h6>0 &nbsp;Reported</h6>
-                        </div>
+                        </div> */}
 
 
                         <div className='section-report' id='report_per_prov'>

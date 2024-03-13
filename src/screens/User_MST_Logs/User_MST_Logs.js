@@ -39,6 +39,9 @@ function User_MST_Logs() {
     const [VisualRiskCount, setVisualRiskCount] = useState([])
     const [IsVisualPie, setIsVisualPie] = useState(true)
     const [IsVisualBar, setIsVisualBar] = useState(false)
+    const [VisualColors, setVisualColors] = useState([])
+    const [VisualRiskTypes, setVisualRiskTypes] = useState([])
+    const [VisualRiskCounts, setVisualRiskCounts] = useState([])
 
     // Pagination
     const [CurrentPage, setCurrentPage] = useState(1)
@@ -125,14 +128,18 @@ function User_MST_Logs() {
       }
 
     ///vsiuals
-    const permVisualColor = ["black", "white","red","green","yellow"]
-    const permVisualRiskType = ["BacCow", "donkey","Pig-2-Bac","BacCan","BacHum"]
+      const permVisualColors = ["red", "green"]
+    const permVisualRiskTypes = ["Risk", "Low Risk"]
+    const permVisualColor = ["black", "white","red","green","yellow","orange"]
+    const permVisualRiskType = ["BacCow(Cow)", "CyTB(Chicken)","Pig-2-Bac(Pig)","BacCan(Dog)","BacHum(Human)","Other"]
     function searchforcollection(collection) {
+       var riskCount = 0;
+      var noRiskCount = 0;
       var totalPerc=[];
         var Count = 0;
         var BacCowCount = 0;
-       
-        var donkeyCount =0;
+       var otherCount =0;
+        var CyTBCount =0;
         var Pig_2_BacCount =0 ;
         var BacCanCount = 0;
         var BacHumCount = 0;
@@ -140,8 +147,8 @@ function User_MST_Logs() {
           if (collection[k].maker.toLocaleLowerCase() === "BacCow".toLocaleLowerCase()) {
             BacCowCount++;
           }
-          else if (collection[k].maker.toLocaleLowerCase() === "donkey".toLocaleLowerCase()) {
-            donkeyCount++;
+          else if (collection[k].maker.toLocaleLowerCase() === "CyTB".toLocaleLowerCase()) {
+            CyTBCount++;
           }
           else if (collection[k].maker.toLocaleLowerCase() === "Pig-2-Bac".toLocaleLowerCase()) {
             Pig_2_BacCount++;
@@ -152,21 +159,46 @@ function User_MST_Logs() {
           else if (collection[k].maker.toLocaleLowerCase() === "BacHum".toLocaleLowerCase()) {
             BacHumCount++;
           }
+          else{
+            otherCount++;
+          }
           
         }
-        var total=BacHumCount+BacCanCount+donkeyCount+BacCowCount+Pig_2_BacCount;
-        var tempCounts = []
-        tempCounts.push(BacHumCount)
-        tempCounts.push(BacCanCount)
-        tempCounts.push(Pig_2_BacCount)
-        tempCounts.push(donkeyCount)
-        tempCounts.push(BacCowCount)
 
-        totalPerc.push((BacHumCount/total)*100)
-        totalPerc.push((BacCanCount/total)*100)
-        totalPerc.push((donkeyCount/total)*100)
+        for (var k = 0; k < collection.length; k++) {
+        if (Math.round(collection[k].probability_of_infection) < 1 ) {
+          noRiskCount++;
+        }
+        else  {
+          riskCount++;
+        }
+       
+      }
+      //for risk
+       var tempRiskCounts = []
+      tempRiskCounts.push(riskCount)
+      tempRiskCounts.push(noRiskCount)
+      setVisualRiskCounts(tempRiskCounts)
+      setVisualColors(permVisualColors)
+      setVisualRiskTypes(permVisualRiskTypes)
+
+      //for marker
+
+        var total=BacCowCount+CyTBCount+Pig_2_BacCount+BacCanCount+BacHumCount+otherCount;
+        var tempCounts = []
+        tempCounts.push(BacCowCount)
+        tempCounts.push(CyTBCount)
+        tempCounts.push(Pig_2_BacCount)
+        tempCounts.push(BacCanCount)
+        tempCounts.push(BacHumCount)
+         tempCounts.push(otherCount)
+
         totalPerc.push((BacCowCount/total)*100)
+        totalPerc.push((CyTBCount/total)*100)
         totalPerc.push((Pig_2_BacCount/total)*100)
+        totalPerc.push((BacCanCount/total)*100)
+        totalPerc.push((BacHumCount/total)*100)
+         totalPerc.push((otherCount/total)*100)
         
 
 
@@ -280,6 +312,14 @@ function User_MST_Logs() {
     datasets: [{
       data: VisualMarkerType,
       backgroundColor: VisualColor
+    }]
+  }
+
+  const risk_result = {
+    labels: VisualRiskTypes,
+    datasets: [{
+      data: VisualRiskCounts,
+      backgroundColor: VisualColors
     }]
   }
 
@@ -464,6 +504,8 @@ function User_MST_Logs() {
                               <div className='visual'>
                                 <div className='display-graph'>
                                   {IsVisualPie && <Pie data={risk_results}  />}
+                                  <br></br>
+                                  {IsVisualPie && <Pie data={risk_result}  />}
                                   
                                   {IsVisualBar && <CChart
                                     type="bar"
@@ -480,6 +522,25 @@ function User_MST_Logs() {
                                     labels="Marker Results"
                                   //style={{ height: '800px' }}
                                   />}
+                                  <br></br>
+                                  <br></br>
+                                  <br></br>
+                                  <br></br>
+                                   {IsVisualBar && <CChart
+                                    type="bar"
+                                    data={{
+                                      labels: VisualRiskTypes,
+                                      datasets: [
+                                        {
+                                          label: 'RiskResults',
+                                          backgroundColor: VisualColors,
+                                          data: VisualRiskCounts,
+                                        },
+                                      ],
+                                    }}
+                                    labels="Risk Results"
+                                  //style={{ height: '800px' }}
+                                  />}
                                 </div>
                                 <div className='info-display'>
                                   {VisualRiskCount.map((visual, xid) => (
@@ -492,8 +553,22 @@ function User_MST_Logs() {
                                       </tr>
                                     </div>
                                   ))}
+                                  <br></br>
+                                  <br></br>
+                                    {VisualRiskCounts.map((visuals, xid) => (
+                                    <div className='Risk results-info' key={xid}>
+                                      <tr >
+                                        <td id='color_circle' style={{ backgroundColor: VisualColors[xid] }}></td>&nbsp;
+                                        <td>{VisualRiskTypes[xid]}</td>
+                                        <td>{visuals}</td>
+
+                                      </tr>
+                                    </div>
+                                  ))}
+
 
                                 </div>
+                                
                               </div>
                             </div>  
                             }
