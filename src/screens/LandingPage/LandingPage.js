@@ -17,17 +17,8 @@ function LandingPage() {
       <div className=''>
         <Navbar />
       </div>
-      {/* <section className='landing-carousel'>
-        <div>
-          <h3 className='text-center p-2 mt 5' >Hi, Welcome To Simra</h3>
-        </div>
-{/* <div className='line-landing d-flex mb-2'>
-  <div className='box-1'></div>
-  <div className='box-2'></div>
-  <div className='box-3'></div>
-</div> }
-      </section> */}
-      {/* <Carousel className='carousel'
+      
+       <Carousel className='carousel'
         autoPlay={true}
         infiniteLoop={true}
         showStatus={false}
@@ -48,17 +39,17 @@ function LandingPage() {
           <img src={image} alt="screen 3" />
 
         </div>
-        { Add more images as needed }
-      </Carousel> */}
+        
+      </Carousel> 
 
 
       <section className='section-2 '>
-      <div className='d-inline-flex p-2'> <div className='vl p-1'></div> <h2 className='text-dark'>About Simra</h2> </div>
+      <div className='d-inline-flex'> <div className='vl p-1'></div> <h2 className='text-dark'>About Simra</h2> </div>
 
 <div className='row-landing '>
   <div className='column-landin'>
     <div className='p-3'>
-      <img src={image3} style={{width:'80%', height:'450px'}}/>
+      <img src={image3}/>
     </div>
   </div>
   <div className='column-landin'>
@@ -71,7 +62,7 @@ function LandingPage() {
           iteration="1"
           fillMode="none">
 
-          <p className='para font_7 wixui-richtext_text text-center text-dark ' >
+          <p className='about-simra text-center text-dark ' >
             SIMRA is a cutting-edge web tool revolutionizing water resource management. It evaluates and mitigates microbial risks in water sources,<br />
             providing a robust framework for addressing health hazards from contamination. With seamless data integration, advanced modeling, <br />
             and decision support, SIMRA empowers stakeholders to protect public health and ensure water system sustainability. <br />
@@ -90,7 +81,8 @@ function LandingPage() {
 
         <section className='section-h2s'>
 
-        <div className='d-inline-flex'> <div className='vl p-1'></div> <h2 className='text-dark'>Simra Levels</h2> </div>
+        <div className='d-inline-flex'>
+           <div className='vl p-1'></div> <h2 className='text-dark'>Simra Levels</h2> </div>
           <div className='level1-desccription'>
 
             <div className='h2s-cards row align-items-start justify-content-around'>
@@ -126,24 +118,17 @@ function LandingPage() {
         </section>
         {/*** */}
 
-        <MovingComponent
-          type="fadeInFromRight"
-          duration="1000ms"
-          delay="0.2s"
-          direction="normal"
-          timing="ease"
-          iteration="1"
-          fillMode="none">
+       
 
           <h2 className='text-primary text-center'>Is your water safe for drinking purposes? </h2>
-          <p className='para font_7 wixui-richtext_text text-center text-dark ' >
+          <p className='about-simra font_7 wixui-richtext_text text-center text-dark ' >
             While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
             Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
             Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
 
           </p>
 
-        </MovingComponent>
+   
 
       </section>
 

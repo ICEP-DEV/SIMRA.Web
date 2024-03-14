@@ -1,6 +1,6 @@
 
 
-.register-popup{
+.register-popup1{
     position: fixed;
     top: 0;
     left: 0;
@@ -10,12 +10,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
-
+.register-popup{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #E1E4E8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .register-popup-inner{
     padding: 70px;
     width: 100%;
     max-width: 540px;
+
     background-color: white;
     position: relative;
 }
@@ -28,3 +40,18 @@
     top: 15px;
     right: 15px;
 }
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+    .register-popup-inner {
+      width: 90%; /* Adjust width for medium-sized screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .register-popup-inner {
+      width: 100%; /* Adjust width for smaller screens */
+      padding: 10px; /* Decrease padding for smaller screens */
+    }
+  }

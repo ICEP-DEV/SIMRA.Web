@@ -107,14 +107,14 @@ function Reference_pathogen() {
             <Navbar />
             <div className='content'>
                 <Header />
-                <h2 className='text-primary text-center'>Reference Pathogen</h2>
+                <h2 className='text-primary text-center'>Pathogen</h2>
                 <div className='container-wrapper' style={{ textAlign: 'center' }}>
                 <div id='fib_section' className='mt-3' >
                         <div className='form-group'>
-                            <label style={{ textAlign: 'left' }}>Reference Pathogen</label>
+                            <label style={{ textAlign: 'left' }}>Pathogen</label>
                             <select
                                 onChange={(event) => handlePathogen(event.target.value)} className='selection-fib  form-select-lg '>
-                                <option value="" disabled selected>Select Pathogen</option>
+                                <option value="" disabled selected>Select a Pathogen</option>
                                 {Pathogens.map((pathogen, xid) => (
                                     <option key={xid} value={xid}>
                                         {pathogen.pathogen}
@@ -162,8 +162,8 @@ function Reference_pathogen() {
                         </div>}
                         {TempPathogen.pathogen === "Other" && <div className='form-group'  >
                             <div className='form-group'>
-                                <label className='mst_label'>Reference Pathogen</label>
-                                <input  className=' mst_label ' type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
+                                <label className='mst_label'>Pathogen</label>
+                                <input  className=' mst_label ' type='text' placeholder='Pathogen' onChange={(event) => setPathogen(event.target.value)} />
                             </div >
                             <div className='form-group'>
                                 <label className='mst_label'>Best Fit Model</label>
@@ -178,7 +178,7 @@ function Reference_pathogen() {
                             <label className='text-center'>Parameter</label>
                             
                                 {BestFitModel === 'exponential' && <span>
-                                <input type='text' placeholder='Constant(K)' onChange={(event) => setConstant(event.target.value)} max="4" />
+                                <input type='text' placeholder='Constant(The value of K)' onChange={(event) => setConstant(event.target.value)} max="4" />
                                 </span>}
                                 {BestFitModel === 'beta-poisson' && <span >
                                 
@@ -206,7 +206,7 @@ function Reference_pathogen() {
                          
                         </div>}
                         <div className='form-group'>
-             <p>Enter The Count:</p>
+             <p>Enter The Count(CFU/100ml):</p>
               <input  className='form-input'
                 type="number"
                 onChange={(event) => setUserCount(event.target.value)}

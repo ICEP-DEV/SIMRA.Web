@@ -14,6 +14,7 @@ import Register from '../Registration/Registration'
 import 'react-toastify/dist/ReactToastify.css';
 import logo1 from '../../assets/Simra_logo.png'
 import { api } from '../../Data/API';
+import PasswordStrength from './passwordStrength';
 
 function Login() {
     let user_info = useSelector((state) => state.use)
@@ -374,45 +375,49 @@ function Login() {
             <h3 className='header-txt' style={{ textAlign: 'center' }}><b>Create An Account</b></h3>
             <div className='form-group'>
                 <label>First Name:</label>
-                <input type="text" className='control-form' onChange={(event) => setFirstname(event.target.value)} />
+                <input type="text" className='border border-1 control-form rounded' onChange={(event) => setFirstname(event.target.value)} />
             </div>
             <div className='form-group'>
                 <label>Last Name:</label>
-                <input type="text" className="control-form" onChange={(event) => setLastname(event.target.value)} />
+                <input type="text" className="border border-1 control-form rounded" onChange={(event) => setLastname(event.target.value)} />
             </div>
             <div className='form-group'>
                 <label>Email:</label>
-                <input type="email" className="control-form" onChange={(event) => setEmail(event.target.value)} />
+                <input type="email" className="border border-1 control-form rounded" onChange={(event) => setEmail(event.target.value)} />
             </div>
             <div className='form-group'>
-                <label>Mobile Number:</label>
-                <input type="number" className="control-form" onChange={(event) => setPhoneNumber(event.target.value)} />
+                <label>Mobile Number:</label> 
+                <input type="number" className="border border-1 control-form rounded"  onChange={(event) => setPhoneNumber(event.target.value)} />
             </div>
             <div className='form-group'>
                 <label>Password:</label>
-                <input type="password" className="control-form" onChange={(event) => setPassword(event.target.value)} />
+                <input type="password" className="border border-1 control-form rounded" onChange={(event) => setPassword(event.target.value)} />
             </div>
+            <PasswordStrength password={Password}/>
             <div className='form-group'>
                 <label>Confirm Password:</label>
-                <input type="password" className="control-form" onChange={(event) => setRePassword(event.target.value)} />
+                <input type="password" className="border border-1 control-form rounded" onChange={(event) => setRePassword(event.target.value)} />
             </div>
             <div className='form-group'>
 
                 <label> User Level:</label>
-                <select className='select-sampling_data control-form p-2' onChange={(event) => setLevel(event.target.value)} >
+                <select className='border border-1 form-select  p-2 rounded' onChange={(event) => setLevel(event.target.value)} >
                     <option value='' className="control-form" disabled selected>Select Level</option>
                     <option value='1' className="control-form">Level One (Household)</option>
-                    <option value='2' className="control-form">Level Two (Intermediate)</option>
-                    <option value='3' className="control-form">Level Three (Expert)</option>
+                    {/* <option value='2' className="control-form">Level Two (Intermediate)</option>
+                    <option value='3' className="control-form">Level Three (Expert)</option> */}
                 </select>
 
             </div>
         </div>
         <div className='form-group'>
-            <button className='btn btn-primary btn-reg' onClick={handleRegistration}>Create Account</button>
+            <button className='btn btn-primary btn-lg' onClick={handleRegistration}>Create Account</button>
         </div>
 
     </div>
+    function forgotpasswd(){
+        navigate('/forgotpasswrd')
+    }
 
     return (
         <div className='all-contents'>
@@ -506,7 +511,7 @@ function Login() {
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                      <label className="form-check-label" for="exampleCheck1">Remember me</label> 
                                 </div> */}
-                        <label className='forgotpasswd text'>Forgot Password?</label>
+                        {/* <label className='forgotpasswd text' onClick={forgotpasswd}>Forgot Password?</label> */}
                     </small>
                 </div>
 

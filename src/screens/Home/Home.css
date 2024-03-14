@@ -16,6 +16,7 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
 .card-home
 {
 
@@ -183,10 +184,32 @@ width: 100%;
       word-spacing: 0.1em;
     }
    
-    .h2s-cards .card 
-    {
-      margin-bottom: 10%;
-    }
+    
    }
+   /* Adjustments for laptop view */
+@media screen and (min-width: 768px) {
+  /* Center the "Simra Levels" section */
+  .section-h2s {
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  /* Adjust the width of the cards */
+  .card {
+    width: calc(33.33% - 40px); /* 40px for margin */
+    margin: 20px;
+  }
+
+  /* Remove margin from the last card to avoid extra spacing */
+  .card:last-child {
+    margin-right: 0;
+  }
+
+  /* Increase padding for better spacing */
+  .card-body {
+    padding: 20px;
+  }
+}
+
  
   

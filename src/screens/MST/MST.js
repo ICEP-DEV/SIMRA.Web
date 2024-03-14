@@ -191,7 +191,7 @@ const MST = () => {
                 </select>
               </div>
               <div className='reference_selection'>
-                {/* <label className='reference_selection_label'>Reference Pathogen</label> */}
+                {/* <label className='reference_selection_label'>Pathogen</label> */}
                 {selectedMST.maker !== 'Other' && <select
                   className='selection-fib  form-select-lg mb-3 mt-5'
                   onChange={(event) => handlePathogenRatio(event.target.value)} >
@@ -212,7 +212,7 @@ const MST = () => {
                   </div>
                   <div className='form-group'>
                     <label>Pathogen</label>
-                    <input  className='form-input' type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
+                    <input  className='form-input' type='text' placeholder='Pathogen' onChange={(event) => setPathogen(event.target.value)} />
                   </div>
                   <div className='form-group'>
                     <label>Best-Fit Model</label>
@@ -311,7 +311,7 @@ const MST = () => {
 
               
                 <div className='form-group'>
-             <p>Enter The Count:</p>
+             <p>Enter The Count(CFU/100ml):</p>
               <input  className='form-input'
                 type="number"
                 onChange={(event) => setUserCount(event.target.value)}

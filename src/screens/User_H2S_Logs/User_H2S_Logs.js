@@ -226,6 +226,50 @@ function User_H2S_Logs() {
     }
   }
 
+  function catchmentArea(catchment) {
+    var temp_array = StoredReport
+    var count = 0
+    if (catchment !== '') {
+        setReport(temp_array.filter(value => {
+            return value.type.toLocaleLowerCase().includes(catchment.toLocaleLowerCase())
+        }))
+        searchforcollection(temp_array.filter(value => { return value.type.toLocaleLowerCase().includes(catchment.toLocaleLowerCase()) }))
+
+        for (var k = 0; k < StoredReport.length; k++) {
+            if (StoredReport[k].type.toLocaleLowerCase() === catchment.toLocaleLowerCase()) {
+                count++
+            }
+        }
+
+        setTotalRecord(count)
+    }
+    else {
+        selectAll()
+    }
+}
+
+function riskType(typeRisk) {
+    var temp_array = StoredReport
+    console.log(temp_array)
+    var count = 0
+    if (typeRisk !== '') {
+        setReport(temp_array.filter(value => {
+            return value.risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase()
+        }))
+        searchforcollection(temp_array.filter(value => { return value.risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase() }))
+
+        for (var k = 0; k < StoredReport.length; k++) {
+            if (StoredReport[k].risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase()) {
+                count++
+            }
+        }
+        setTotalRecord(count)
+    }
+    else {
+        selectAll()
+    }
+}
+
   function search_by_weekday(day) {
     var temp_array = StoredReport
     var count = 0
@@ -284,10 +328,10 @@ function User_H2S_Logs() {
       <Navbar />
       <div className='main-all'>
         <ToastContainer />
-        <div className='content'>
+        <div className='content text-center'>
           <Header />
           <h2 className='text-primary text-center'>hydrogen Sulfide Logs</h2>
-          <div className='container-wrap '>
+      
 
             <div className='report-header  '>
               <div id='search_date ' >
@@ -317,13 +361,14 @@ function User_H2S_Logs() {
                     <th scope="col " className='report-heading'>WeekDays</th>
                     <th scope="col" className='report-heading'>Province</th>
                     <th scope='col' className='report-heading'>Municipalities</th>
-
+                    <th scope='col' className='report-heading'>Catchment Area</th>
+                    <th scope='col' className='report-heading'>Risk Type</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr  >
 
-                    <td className="w-25">
+                    <td className="w-15">
                       <select onChange={(event) => search_by_weekday(event.target.value)} className=" w-100 p-2">
                         <option value='' disabled selected>All Weekdays</option>
                         <option value='Monday'>Monday</option>
@@ -338,7 +383,7 @@ function User_H2S_Logs() {
 
 
                     {/* <label>Province</label> */}
-                    <td className="w-25">
+                    <td className="w-15">
                       <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
                         <option value='' disabled selected>All Provinces</option>
                         {Provinces.map((province, xid) => (
@@ -347,7 +392,7 @@ function User_H2S_Logs() {
                       </select>
 
                     </td>
-                    <td className="w-25">
+                    <td className="w-15">
                       <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
                         <option value='' disabled selected>All Municipalities</option>
                         {Municipalities.map((muni, xid) => (
@@ -355,6 +400,30 @@ function User_H2S_Logs() {
                         ))}
                       </select>
                     </td>
+                    <td className="w-10">
+                                            <select onChange={(e) => catchmentArea(e.target.value)} className="w-100 p-2" >
+                                                <option value='' disabled selected className="control-form">Water Source</option>
+                                                <option value='River' className="control-form">River</option>
+                                                <option value='Dam' className="control-form">Dam</option>
+                                                <option value='Spring' className="control-form">Spring</option>
+                                                <option value='Borehole' className="control-form">Borehole</option>
+                                                <option value='Dug Well' className="control-form">Dug Well</option>
+                                                <option value='Household Tap Water' className="control-form">Household Tap Water</option>
+                                                <option value='Housewater Stored Water' className="control-form">Housewater Stored Water</option>
+                                                <option value='Wastewater Treatment Plant' className="control-form">Wastewater Treatment Plant</option>
+                                                <option value='water Treatment Plant' className="control-form">water Treatment Plant</option>
+                                            </select>
+                                        </td>
+
+                                        <td className="w-15">
+                                            <select onChange={(e) => riskType(e.target.value)} className="w-100 p-2" >
+                                                <option value='' disabled selected  className="control-form">Risk Type</option>
+                                                <option value='No Risk' className="control-form">No Risk</option>
+                                                <option value='Risk' className="control-form">Risk</option>
+
+                                            </select>
+
+                                        </td>
                   </tr>
 
                 </tbody>
@@ -372,7 +441,7 @@ function User_H2S_Logs() {
               {IsTable && <>
 
                 {(FoundReport === true) && (
-                  <table className="table survay_table w-75">
+                  <table className="table survay_table">
                     <tr className="survey_tr">
                       <th className="survey_th _th">Municipalities</th>
                       <th className="survey_th">Date</th>
@@ -437,7 +506,7 @@ function User_H2S_Logs() {
                         <div className='results-info' key={xid}>
                           <tr >
                             <td id='color_circle' style={{ backgroundColor: VisualColor[xid] }}></td>&nbsp;
-                            <td>{VisualRiskType[xid]}</td>
+                            <td className='risktype'>{VisualRiskType[xid]}</td>
                             <td>{visual}</td>
 
                           </tr>
@@ -451,7 +520,7 @@ function User_H2S_Logs() {
 
             </div>
 
-          </div>
+         
         </div>
       </div>
       <footer>

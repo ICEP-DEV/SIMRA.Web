@@ -19,7 +19,7 @@ import Level3PopUp from '../Pop_Up/Pop_Up_Level3';
 import { api } from '../../Data/API';
 import slider from '../../Data/slider';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
 function SanitaryInpection() {
@@ -51,7 +51,7 @@ function SanitaryInpection() {
     }, [DataAnalysis])
 
     let sanitary = <div className='headerModal'>
-        <h2>Analysis: Sanitary Survey</h2>
+        <h2>Analysis: Sanitary Inspection Survey</h2>
         <h3>Risk Characterization</h3>
         <div className='form-group'>
             <label>{DataAnalysis.risk_type}</label>
@@ -60,7 +60,7 @@ function SanitaryInpection() {
     </div>;
 
     let h2s = <div>
-        <h2>Analysis: H2S</h2>
+        <h2>Analysis: H₂S</h2>
         <h3>Risk Characterization</h3>
 
         <div className='form-group'>
@@ -197,7 +197,7 @@ function SanitaryInpection() {
                 <div className="slide" key={xid}>
                     <h1>Method: {method.id}</h1>
                     <h3>{method.method}</h3><br />
-                    <label style={{ color: 'black', fontSize: '15px' }}>{method.description}</label>
+                    <label style={{ color: 'black', fontSize:'15px' }}>{method.description}</label>
                     <div className='method_img'>
                         <img src={method.image} alt={method.method} className='image_method_class' />
                     </div>
@@ -229,37 +229,37 @@ function SanitaryInpection() {
     const modalClosesing = () => {
         return invokeModalsing(false)
     }
-
+    
     const settings = {
         dots: true,
         centerMode: true,
-        centerPadding: '10px',
+    centerPadding: '10px',
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 6000,
-        cssEase: "linear",
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    arrows: false,
-                    slidesToShow: 3,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    arrows: false,
-                    slidesToShow: 1,
-                },
-            },
-        ],
-
-    };
+      speed: 2000,
+      autoplaySpeed: 6000,
+      cssEase: "linear",
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: false,
+            slidesToShow: 1,
+          },
+        },
+      ],
+    
+      };
 
     return (
 
@@ -269,7 +269,7 @@ function SanitaryInpection() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
-                    <h2 className='text-primary text-center'>Sanitary Inpection</h2>
+                    <h2 className='text-primary text-center'>Sanitary Inspection</h2>
                     <div className='sanitaryInpection'>
 
                         {/* Pop up test methods */}
@@ -282,11 +282,14 @@ function SanitaryInpection() {
                             </Modal.Header>
                             <Modal.Body>
 
-                                {display_methods}
+                            {display_methods}
 
                             </Modal.Body>
-                            <Modal.Footer></Modal.Footer>
+                            <Modal.Footer>
+                                
+                            </Modal.Footer>
                         </Modal>
+                        
                         <Level2PopUp>
 
                         </Level2PopUp>
@@ -300,7 +303,7 @@ function SanitaryInpection() {
                             </Modal.Header>
                             <Modal.Body>
 
-                                all the field the must be checked
+                                all the fields must be checked
 
                             </Modal.Body>
                             <Modal.Footer></Modal.Footer>
@@ -315,7 +318,7 @@ function SanitaryInpection() {
                             </Modal.Header>
 
                             <Modal.Body>
-                                {(DataAnalysis.message !== "added hydrogensulfide") && (<div style={{ textTransform: 'capitalize', fontSize: '1.1em', fontWeight: '600' }}>
+                                {(DataAnalysis.message !== "added hydrogensulfide") && (<div style={{textTransform:'capitalize' ,fontSize:'1.1em', fontWeight:'600'}}>
                                     {sanitary}
                                 </div>)}
                                 {(DataAnalysis.message === "added hydrogensulfide") && (<div>
@@ -323,12 +326,12 @@ function SanitaryInpection() {
                                 </div>)}
 
 
-                                <div className='methods' style={{ margin: '0 50px', padding: '10px', color: 'white', backgroundColor: 'grey' }}>
+                                <div className='methods' style={{margin: '0 50px', padding:'10px', color:'white', backgroundColor:'grey'}}>
                                     {SanitaryInpectionItems.pitLatrine ? <span className='controlMethods'>
                                         <h4>Pit Latrines</h4>
                                         <li>Keep pit latrines 50m from water sources </li>
                                         <li>Build and maintain pit latrines properly, and safely dispose of waste after emptying.. </li>
-                                        <li>Flush toilets or proper well-maintained pit latrine construction. </li>
+                                        <li>Flush toilets or proper well-maintained pit latrine construction. </li> 
                                     </span> : null}
 
                                     {SanitaryInpectionItems.domesticAnimal ? <span className='controlMethods'>
@@ -353,13 +356,13 @@ function SanitaryInpection() {
                                     </span> : null}
 
                                     {SanitaryInpectionItems.openDefaction ? <span className='controlMethods'>
-                                        <h4>Open Defecation</h4>
+                                        <h4>Open Defecation</h4>   
                                         <li>Open defecation poses health and environmental risks, especially when it contaminates water bodies. </li>
                                         <li>Build and maintain public and household toilets to discourage open defecation.</li>
                                     </span> : null}
 
                                     {SanitaryInpectionItems.unprotectedWaterSource ? <span className='controlMethods'>
-                                        <h4>Unprotected Water Sources</h4>
+                                        <h4>Unprotected Water Sources</h4>                                        
                                         <li>Establish and protect water sources to prevent contamination from surface runoff or human activities. </li>
                                         <li>Fencing the area remove faecal matter deposited by livestock, and sweep wellhead area. </li>
                                         <li>Communities should use protected and treated water sources.</li>
@@ -372,7 +375,7 @@ function SanitaryInpection() {
 
                                     {SanitaryInpectionItems.observerLaundryActivity ? <span className='controlMethods'>
                                         <h4>Laundry Activities</h4>
-                                        <li>Proper disposal of laundry wastewater must be done by using sewage pipes.</li>
+                                        <li>Proper disposal of laundry wastewater must be done by using sewage pipes.</li> 
                                         <li>The impact of eco-friendly detergents will help to not contaminate water.</li>
                                         <li>Filtering laundry water before disposal can enhance water quality and minimize environmental impact.</li>
                                     </span> : null}
@@ -382,19 +385,19 @@ function SanitaryInpection() {
 
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="dark" onClick={function (event) { modalClose(); initModals() }}>
+                                <Button variant="dark" onClick={function (event) { modalClose(); initModals()}}>
                                     Ok
                                 </Button>
                             </Modal.Footer>
                         </Modal>
                         <div className='table '>
                             <h3 className='pt-2'>Questionnaire</h3>
-                            <div className='form-header' style={{ padding: '15px 0' }}>
-                                <label className='header_form_label questinare' style={{ textAlign: 'center', fontSize: '1.2em' }}>Questions</label>
-                                <label className='header_form_label yes_no' style={{ fontSize: '1.2em' }}>No/Yes</label>
+                            <div className='form-header' style={{padding:'15px 0'}}>
+                                <label className='header_form_label questinare' style={{ textAlign: 'center', fontSize:'1.2em' }}>Questions</label>
+                                <label className='header_form_label yes_no' style={{fontSize:'1.2em'}}>No/Yes</label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>1. Are There pit-latrines (Pit toilets)?</label>
+                                <label className='header_form_label questinare'>1. Are There any pit-latrines (Pit toilets)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="pitLatrine" />
@@ -408,7 +411,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>3. Diapers Disposal (Throwing away diapers)?</label>
+                                <label className='header_form_label questinare'>3. Diapers Disposal (Throwing away of diapers)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value="diaperDisposal" />
@@ -422,7 +425,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>5. Open defaction (Public toilets )?</label>
+                                <label className='header_form_label questinare'>5. Open defecation (Public toilets )?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='openDefaction' />
@@ -443,7 +446,7 @@ function SanitaryInpection() {
                                 </label>
                             </div>
                             <div className='form_content'>
-                                <label className='header_form_label questinare'>8. Observer laundry Activities (Washing)?</label>
+                                <label className='header_form_label questinare'>8. Observed laundry Activities (Washing)?</label>
                                 <label className='header_form_label yes_no form-check form-switch'>
                                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefaultSI" onChange={handleChangeUpdate}
                                         name='SanitaryInpectionItems' value='observerLaundryActivity' />
@@ -467,27 +470,27 @@ function SanitaryInpection() {
                     </ul>
                     <label>The level of safety of the water source can be rated from risk score (e.g. very high risk (7-8), high risk (5-6), medium risk (3-4) and low risk (1-2)).</label>
                 </div> */}
+                
+                <section className='section-h2s mx-5'>
+                <h2 className='text-dark text-center'>Sanitary Inspection Examples</h2>
+                   
 
-                    <section className='section-h2s mx-5'>
-                        <h2 className='text-dark text-center'>Sanitary Inpection Examples</h2>
+                <Slider {...settings}>
+                {slider.map((d) => (
+                <div className='alert alert-secondary text-dark w-75 '>
+                    <div 
+                    className='p-2 text-center'> {d.heading}
+                    </div>
+                <div className='image-div w-75 flex justify-center '>
+                    <img src={d.image} className='image-sani w-100 rounded' />
+                    </div>
+                </div>
+                ))}
+
+                </Slider> 
 
 
-                        <Slider {...settings}>
-                            {slider.map((d) => (
-                                <div className='alert alert-secondary text-dark w-75 '>
-                                    <div
-                                        className='p-2 text-center'> {d.heading}
-                                    </div>
-                                    <div className='image-div w-75 flex justify-center '>
-                                        <img src={d.image} className='image-sani w-100 rounded' />
-                                    </div>
-                                </div>
-                            ))}
-
-                        </Slider>
-
-
-
+                   
                     </section>
                     {/* <section className='section-h2s'>
                         <div className='h2s-cards row align-items-start justify-content-around mb-5'>

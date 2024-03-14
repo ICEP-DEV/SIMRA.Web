@@ -32,3 +32,89 @@ width: 15%;
       
     }
 }
+
+/* Add these styles to your Level3.css file */
+
+/* Styles for larger screens */
+@media (min-width: 768px) {
+    .section-lvl3 {
+      padding: 20px;
+    }
+  
+    .card-lvl3 {
+      width: 18rem;
+      margin: 0 auto;
+    }
+  
+    .image-lvl3,
+    .image-sani {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  /* Styles for smaller screens */
+  @media (max-width: 767px) {
+    .section-lvl3 {
+      padding: 10px;
+    }
+  
+    .card-lvl3 {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .header-lvl3 h3 {
+      font-size: 18px;
+    }
+  
+    .image-lvl3,
+    .image-sani {
+      width: 100%;
+      height: auto;
+    }
+  }
+  /* Add these styles to your Level3.css file */
+
+.section-lvl3 {
+    padding: 20px;
+  }
+  
+  .card-lvl3 {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    max-width: 350px; /* Adjust as needed */
+  }
+  
+  .header-lvl3 {
+    margin-bottom: 15px;
+  }
+  
+  .header-lvl3 h3 {
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .card-lvl3 > div {
+    margin-bottom: 10px;
+  }
+  
+  .card-lvl3 li {
+    color: hsl(0, 0%, 40%);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  .image-lvl3,
+  .image-sani {
+    display: block;
+    margin-top: 15px;
+    max-width: 100%;
+    height: auto;
+  }
+  

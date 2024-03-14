@@ -53,29 +53,3 @@ width: 25%;
 .results-info{
   margin: 10px ;
 }
-
-
-@media (max-width: 768px) {
-.report-heading
-{
-  font-size: 12px;
-}
-
-.table-data
-{
-  width: 20px;
-}
-.table-logs
-{
-  margin-left: 15%;
-}
-.table-logs-date
-{
-  margin-left: 15%;
-}
-.btn-search-report
-{
-width: 50%;
-}
-
-}

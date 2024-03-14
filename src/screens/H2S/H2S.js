@@ -15,7 +15,8 @@ import h2s from '../../assets/h2s.png';
 import sample from '../../assets/sample.png';
 import tube from '../../assets/tube.jpg';
 import tests from '../../assets/tests.jpg';
-import container from '../../assets/container.png';
+import container from '../../assets/step4.jpeg';
+import step3 from '../../assets/step3.jpeg';
 import {BiHelpCircle} from 'react-icons/bi';
 function H2S() {
     const navigate = useNavigate();
@@ -214,7 +215,7 @@ function H2S() {
 
                                 <section className='section-h2s'> 
                   
-                  <h5 className='text-center mb-3'>How can I do H2S test?</h5>
+                  <h5 className='text-center mb-3'>How can I do H₂S test?</h5>
 <div className='level1-desccription'>
                          
                           <div className='h2s-cards row align-items-start justify-content-around  mb-5'>
@@ -234,10 +235,10 @@ function H2S() {
                                   <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
                               </div> </div>
                               <div className='card' style={{width:'16rem'}}>
-                                  <img className='card-img-top' src={tube} />
+                                  <img className='card-img-top' src={step3} />
                                   <div className='card-body'>
                                   <h5>Step 3</h5>
-                                  <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                                  <p>	Insert H₂S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
                               </div> </div>
                               <div className='card' style={{width:'16rem'}}>
                                   <img className='card-img-top' src={container} />

@@ -190,7 +190,7 @@ const FibAnalysis = () => {
                 <select
                   className='selection-fib form-select-lg mb-3 mt-5  '
                   onChange={(event) => handlemstselection(event.target.value)} >
-                  <option value="" disabled selected>Select An Indicator</option>
+                  <option value="" disabled selected>Select An Indicator (Micro-Organism)</option>
                   {FIBs.map((fib, xid) => (
                     <option key={xid} value={xid} >
                       {fib.indicator}
@@ -218,7 +218,7 @@ const FibAnalysis = () => {
                   </div>
                   <div className='form-group'>
                     <label className='label-fib'>Pathogen</label>
-                    <input  className='mst_label' type='text' placeholder='Reference Pathogen' onChange={(event) => setPathogen(event.target.value)} />
+                    <input  className='mst_label' type='text' placeholder='Pathogen' onChange={(event) => setPathogen(event.target.value)} />
                   </div>
                   <div className='form-group'>
                     <label className='label-fib'>Best-Fit Model</label>
@@ -283,7 +283,7 @@ const FibAnalysis = () => {
                     
                     <div>
                       {(BestFitModel === 'exponential') && (<span className='form-group'>
-                        <label className='mst_label'>constant(K)</label>
+                        <label className='mst_label'>constant(The value of K)</label>
                         <input className='form-input' type='text' value={Constant} disabled />
                       </span>)}
                     </div>
@@ -315,7 +315,7 @@ const FibAnalysis = () => {
                   </div>}
               </div>
               <div className='form-group'>
-             <p>Enter The Count:</p>
+             <p>Enter The Count(CFU/100ml):</p>
               <input  className='form-input'
                 type="number"
                 onChange={(event) => setUserCount(event.target.value)}

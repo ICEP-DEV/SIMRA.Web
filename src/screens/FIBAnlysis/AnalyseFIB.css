@@ -70,7 +70,7 @@
 .reference_selection, .fib_selection
 {
     margin: 0 ;
-    margin-left: 10%;
+    /* margin-left: 10%; */
     width: 100%;
 }
 .container-fib .fib_content
@@ -109,4 +109,3 @@
     font-size: 16px;
 }
 }
-

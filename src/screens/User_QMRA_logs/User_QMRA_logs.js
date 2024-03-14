@@ -283,10 +283,10 @@ function User_QMRA_logs() {
             <Navbar />
             <div className='main-all'>
                 <ToastContainer />
-                <div className='content'>
+                <div className='content text-center'>
                     <Header />
                     <h2 className='text-primary text-center'>FECAL INDICATOR BACTERIA (FIB) Logs</h2>
-                    <div className='container-wrap'>
+                 
 
                         <div className='report-header  '>
                             <div id='search_date ' >
@@ -470,7 +470,7 @@ function User_QMRA_logs() {
                             }
 
                         </div>
-                    </div>
+                
                 </div>
             </div>
             <footer>

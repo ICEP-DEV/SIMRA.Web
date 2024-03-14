@@ -322,8 +322,8 @@ export default function QMRAApp() {
                 </tr>} */}
               {/* {Mst_Fib.type === 'fib' && */}
               <tr>
-                {Mst_Fib.type === 'mst' && <td>Customized Microbial Source Tracking</td>}
-                {Mst_Fib.type === 'fib' && <td>Customized Fical Indicator Bacteria</td>}
+                {Mst_Fib.type === 'mst' && <td>Customized Marker-gene</td>}
+                {Mst_Fib.type === 'fib' && <td>Customized Feacal Micro-organism </td>}
                 {Mst_Fib.type === 'ref_path' && <td>Customized Reference Pathogen</td>}
                 <td>{Mst_Fib.is_customized_mst === true && <label>Yes</label>}
                   {Mst_Fib.is_customized_mst === false && <label>No</label>}

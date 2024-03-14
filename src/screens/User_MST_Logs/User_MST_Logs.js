@@ -350,10 +350,10 @@ function User_MST_Logs() {
             <Navbar />
             <div className='main-all'>
                 <ToastContainer />
-                <div className='content'>
+                <div className='content text-center'>
                     <Header />
                     <h2 className='text-primary text-center'>MICROBIAL SOURCE TRACKING(MST) Logs</h2>
-                    <div className='container-wrap'>
+                   
                      
                     <div className='report-header  '>
             <div id='search_date ' >
@@ -387,7 +387,7 @@ function User_MST_Logs() {
       <th scope="col " className='report-heading'>WeekDays</th>
       <th scope="col" className='report-heading'>Province</th>
       <th scope='col' className='report-heading'>Municipalities</th>
-      <th scope='col' className='report-heading'>Marker</th>
+      <th scope='col' className='report-heading'>Marker Gene</th>
      
     </tr>
   </thead>
@@ -555,6 +555,10 @@ function User_MST_Logs() {
                                   ))}
                                   <br></br>
                                   <br></br>
+                                  
+                             
+                            
+                                  
                                     {VisualRiskCounts.map((visuals, xid) => (
                                     <div className='Risk results-info' key={xid}>
                                       <tr >
@@ -564,8 +568,10 @@ function User_MST_Logs() {
 
                                       </tr>
                                     </div>
+                                    
                                   ))}
-
+<br></br>
+                                  <br></br>
 
                                 </div>
                                 
@@ -574,7 +580,7 @@ function User_MST_Logs() {
                             }
                            
                         </div>
-                    </div>
+                   
                 </div>
             </div>
             <footer>

@@ -49,7 +49,7 @@ function Level3() {
 
                         <div className='main-level1'>
                             <div className='table3'>
-                                <Link to='/reference_pathogen' class="btn btn-success btn-sanitary">Reference Pathogen</Link>
+                                <Link to='/reference_pathogen' class="btn btn-success btn-sanitary">Pathogen</Link>
                                 <Link to='/mst' className='btn btn-success btn-sanitary'>MST</Link>
                             </div>
                         </div>

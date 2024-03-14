@@ -280,5 +280,10 @@
       visibility: visible;
      
     }
-   
+    .navbar-subs span
+    {
+font-size: 10px;
+
+    }
   }
+  

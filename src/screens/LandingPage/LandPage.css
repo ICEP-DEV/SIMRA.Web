@@ -125,6 +125,17 @@ section {
 {
   margin-top: 10%;
 }
+@media only screen and (max-width: 768px) {
+  .h2s-cards {
+    flex-direction: column;
+  }
+  
+  .card {
+    width: auto;
+    margin-bottom: 1rem;
+  }
+}
+
 .user-text {
   width: 50%;
   background-color: rgba(24, 22, 22, 0.493);
@@ -222,13 +233,65 @@ section {
     height: 60vh;
   }
 
-  .para {
-    font-size: 12px;
-  }
-
+  
   .carousel {
     height: 250px;
   }
+  .column-landin .about-simra
+  {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .row-landing {
+    display: flex;
+    flex-direction: column;
+  }
+  .column-landin {
+    width: 100%;
+  }
+  .column-landin img 
+  {
+    width: 80%;
+   
+  }
+}
+
+/* Adjustments for laptop view */
+@media screen and (min-width: 768px) {
+  /* Center the "Simra Levels" section */
+  .section-h2s {
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  /* Adjust the width of the cards */
+  .card {
+    width: calc(33.33% - 40px); /* 40px for margin */
+    margin: 20px;
+  }
+
+  /* Remove margin from the last card to avoid extra spacing */
+  .card:last-child {
+    margin-right: 0;
+  }
+
+  /* Increase padding for better spacing */
+  .card-body {
+    padding: 20px;
+  }
+}
+
+.about-simra
+{
+  font-size: 14px;
+}
+
+.column-landin img
+{
+  width: 80%;
+  height: 80%;
 }
 
 .landingPage_class
@@ -251,4 +314,30 @@ width: 100%;
 }
 .para h4{
     font-family:'cursive'
+}
+/* Add this CSS to your LandPage.css file */
+
+/* Adjustments for laptop view */
+@media screen and (min-width: 768px) {
+  /* Center the "Simra Levels" section */
+  .section-h2s {
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  /* Adjust the width of the cards */
+  .card {
+    width: calc(33.33% - 40px); /* 40px for margin */
+    margin: 20px;
+  }
+
+  /* Remove margin from the last card to avoid extra spacing */
+  .card:last-child {
+    margin-right: 0;
+  }
+
+  /* Increase padding for better spacing */
+  .card-body {
+    padding: 20px;
+  }
 }
