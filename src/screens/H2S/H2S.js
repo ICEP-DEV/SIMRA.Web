@@ -215,7 +215,7 @@ function H2S() {
 
                                 <section className='section-h2s'> 
                   
-                  <h5 className='text-center mb-3'>How can I do H2S test?</h5>
+                  <h5 className='text-center mb-3'>How can I do H₂S test?</h5>
 <div className='level1-desccription'>
                          
                           <div className='h2s-cards row align-items-start justify-content-around  mb-5'>
