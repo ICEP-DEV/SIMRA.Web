@@ -8,60 +8,70 @@
 .all-contents 
 {
     background-size: 100%;
-    height: 100%;
-    padding: 3.82%;
-     /* background-color:#a5c473; */
+   height: 100vh;
+  background: #fff;
+ 
+ font-family: 'Poppins';
+ padding-top: 10%;
+    
 } 
-.form-check
-{
-margin-left: 19%;
-color: #fff;
-}
+
 
 .login {
-   
+    animation: 1s ease-out 0s 1 slideInLeft;
     padding: 40px;
 }
 .login-container
 {
-    box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
+    animation: 1s ease-out 0s 1 slideInLeft;
+    box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.2);
     background-color:#26272b;
-    width: 40%;
-    height: 713px;
-   
-   text-transform: uppercase;
-   animation: 1s ease-out 0s 1 slideInLeft;
-   margin-left: auto;
-   margin-right: auto;
-}
-
-
-.input-login {
-
-   width: 70%;
-padding: 12px 20px;
-  margin: 8px 0;
-  border: none;
-  border: 1px solid #404042;
- 
-
-}
-.login-subs 
-{
-    display: block;
-    align-items: center;
-    display: block;
-    margin-left: auto;
-   margin-right: auto;
-   color: #fff;
-   width: 55%;
-}
-
-.login-label
-{
+    border-radius: 15px;
+    width: 454px;
+    height: 650px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 1%;
+
+}
+.forgotpasswd
+{
+    margin-left: 55%;
+    color: #fff;
+}
+.login-card
+{
+    width: 727px;
+    height: 613px;
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+    background-color: #fff;
+    float: right;
+    border-top-left-radius: 80px 80px;
+    border-bottom-left-radius:80px 80px ;
+}
+.login-txt 
+{
+    position: absolute;
+    left: 20%;
+    top: 20%;
+}
+.fa-eye{
+padding-left: 85%;
+}
+.input-login {
+
+   width: 60%;
+    padding: 12px 20px;
+  margin: 8px 0;
+  margin-top: 10%;
+  border: none;
+ background-color: #fff;
+ border-radius: 20px;
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
 }
 img{
     width:50px
@@ -79,128 +89,109 @@ float: left;
 }
 .main-login
 {
+position:relative;
+top: 10%;
 margin-left: 150px;
 font-size: 18px;
 height: 613px;
-display: block;
-margin-left: auto;
-margin-right: auto;
 
 }
 
-.btn-reg
+/* .welcome .logo-login 
 {
-    background-color: #4884EE;
-}
+
+ margin-bottom: 95%;
+ margin-top: 10%;
+} */
+
 .login-grid .btn-login 
 {
-   
-  
+    /* position: absolute; */
+    /* background-color:#198754; */
     font-size: larger;
     width: 150px;
     border: none;
-    border-radius: 5px;
-    
+    border-radius: 5px;;
     padding: 5px;
     color: #fff;
     display: block;
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
 }
 .txt-signup
 {
    
-    bottom: 15%;
-
-    font-size: 12px;
-    color: #fff;
-  
-}
-.logo-login
-{
-    width: 100px;
+    margin-top:111px;
+   
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+.logo-login
+{
+    width: 140px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
 .header-txt 
 {
- margin-bottom: 15%;
- text-align: center;
- color: #fff;
- text-transform: uppercase;
+    text-transform: uppercase;
 }
 @media only screen and (max-width: 768px) {
     .all-contents 
 {
   
-    /* height: 100vh; */
-    background-size: 100%;
    
-    width: 90vh;
-    position: fixed;
-} 
+    
+ min-height: 100%;
 
+    width: 100%;
+ 
+} 
+.logo-login
+{
+    width: 40%;
+    
+}
 .login-container
 {
   
-    width: 90%;
-    height: 80%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
-    position: fixed;
-}
-.login-card
-{
-    width: 60%;
-    height: 100%;
-    
-}
-
-.input-login {
-
-   width: 90%;
-font-size: 12px;
+    width: 70%;
+   
+   
  
-  
+}  
+.password-input-container {
+    position: absolute;
+    display: inline-block;
 }
-
-
-.main-login
-{
-
-top: 1%;
-font-size: 12px;
-height: 250px;
-
-
-}
-.login-container .welcome
-{
-    position:absolute;
-
-  left: 2%;  
-  font-size: 10px;
-  width: 30%;
- 
-}
-
-
+  .eye-icon {
+    position: absolute;
+    right: 170px;
+    top: 50%;
+    transform: translateY(-100%);
+    cursor: pointer;
+    padding-left: 100px;
+    /* Other styles for the eye icon */
+  }
 .login-grid .btn-login 
 {
   
-     width: 50%;  
-     font-size: 12px;
-     display: block;
-     margin: auto;
+    
+     font-size: 16px; 
 }
 .txt-signup
 {
-    color: #fff;
+  
+  
   font-size: 11px;}
- 
+  .forgotpasswd
+  {
+    font-size: 11px;
+  }
+
 }
 
 .form-group{

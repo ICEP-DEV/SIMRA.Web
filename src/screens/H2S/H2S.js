@@ -1,31 +1,28 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer,} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Carousel } from "react-responsive-carousel";
 import methods from '../../Data/methods';
 import './H2S.css';
 import h2s from '../../assets/h2s.png';
-import blackstrip from '../../assets/blackstrip.png';
-import whitestrip from '../../assets/whitestrip.png';
 import sample from '../../assets/sample.png';
-import borehole from '../../assets/borehole.jpg';
 import tube from '../../assets/tube.jpg';
 import tests from '../../assets/tests.jpg';
-
+import container from '../../assets/step4.jpeg';
+import step3 from '../../assets/step3.jpeg';
+import {BiHelpCircle} from 'react-icons/bi';
 function H2S() {
     const navigate = useNavigate();
     let sampling_info = useSelector((state) => state.sampling.value)
     const [Methods, setMethods] = useState(methods)
     const [selectedOption, setSelectedOption] = useState({ isFound: false });
-    const [Longitude, setLongitude] = useState('')
-    const [Latitude, setLatitude] = useState('')
     const [IsContiminated, setIsContiminated] = useState(false);
     const [ResultsStatus, setResultsStatus] = useState(false);
 
@@ -80,21 +77,21 @@ function H2S() {
 
     const handleButtonClick = (color) => {
         console.log(selectedOption)
-        if (!sampling_info.longitude || !sampling_info.latitude) {
-            toast.error("Won't be able to proceed since we could not get your location!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            return;
-        }
+        // if (!sampling_info.longitude || !sampling_info.latitude) {
+        //     toast.error("Won't able to proceed since we could get your location!", {
+        //         position: "top-right",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "light",
+        //     });
+        //     return;
+        // }
 
-        else {
+        // else {
             axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
                 // Assign to Coordinates object
                 var coordinates = {
@@ -138,7 +135,7 @@ function H2S() {
                 console.log(err)
             })
 
-        }
+        // }
     };
 
     let display_methods = <div className="box box_with_carousel">
@@ -165,13 +162,21 @@ function H2S() {
                 <ToastContainer />
                 <div className='content'>
                     <Header />
+                  
+
+
+
+
                     <h2 className='text-primary text-center'>Hydrogen Sulfide (H₂S)</h2>
                     <div className='container-wrapper'>
+            
+                    {/* <BiHelpCircle size={'30px'} className="d-flex justify-content-end"/> */}
+
+
                         <div className='h2s'>
-                            
-                            <div className='text-center '>
-                           
-                                <h3 className='text-primary mt-2 '>Choose Test Result:</h3>
+                         
+                            <div className='text-center mt-5'>
+                                <h3>Choose Test Result:</h3>
 
                                 <div className='form_content form_content_switch'>
                                     <label className='header_form_label yes_no form-check form-switch'>
@@ -192,24 +197,75 @@ function H2S() {
                                 </div>
                                 <br></br>
 
-                                <button onClick={initModal} className='btn btn-success font-size: small; w-25' type="submit" value="Submit" >SUBMIT</button>
+                                <button onClick={initModal} className='btn btn-success w-25' type="submit" value="Submit" >
+                                    SUBMIT
+                                </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
-                                    <p className='alert-light h2s-label '>
-                                        Presence or absence of faecal contamination in water source may be indicated by colour change on  (H₂S) paper strip test from white to black.
+                                    <p className='alert-light h2s-label'>
+                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H₂S paper strip test from white to black.
                                     </p>
-                                    <label className='alert alert-danger h2s-label w-75' >WARNING: Remember to wear gloves when using  (H₂S) paper strips</label>
-                                    <label className='alert alert-light h2s-label w-75 '>Hydrogen sulfide (H₂S) is a colourless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
+                                    <label className='alert alert-danger h2s-label w-75'>Warning: Remember to wear gloves when using H₂S  paper strips
+                                    <br/>
+
+                                    Hydrogen sulfide (H₂S) is a colorless gas with a foul odor of rotten eggs, posing risks such as eye and respiratory irritation.
                                     Exposure can cause serious effects like apnea, coma, convulsions, as well as symptoms such as dizziness, 
-                                    headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.</label>
+                                    headaches, weakness, irritability, insomnia, and stomach upset; in liquid form, it may lead to frostbite.                                    </label>
+                                    {/* <label className='alert alert-light  h2s-label w-75'></label> */}
                                 </div>
 
+                                <section className='section-h2s'> 
+                  
+                  <h5 className='text-center mb-3'>How can I do H2S test?</h5>
+<div className='level1-desccription'>
+                         
+                          <div className='h2s-cards row align-items-start justify-content-around  mb-5'>
 
+                              <div className='card' style={{width:'16rem'}} >
+                                  <img className='card-img-top' src={sample}   />
+                                  <div className='card-body'>
+                                  <h5>Step 1</h5>
+                                  <p>	Collect 100 mL of water sample to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
+                                  </div>
+                                  
+                              </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                  <img className='card-img-top' src={tests} />
+                                  <div className='card-body'>
+                                  <h5>Step 2</h5>
+                                  <p>	Add 20 drop (1 mL) into tubes containing growth solution.</p>
+                              </div> </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                  <img className='card-img-top' src={step3} />
+                                  <div className='card-body'>
+                                  <h5>Step 3</h5>
+                                  <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                              </div> </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                  <img className='card-img-top' src={container} />
+                                  <div className='card-body' style={{font:'16px'}}>
+                                  <h5>Step 4</h5>
+                                  <p>	Then place it in a container covered with cloth and place it in warm place for 24-36 hours.</p>
+                              </div> </div>
+                              <div className='card' style={{width:'16rem'}}>
+                                
+                                  <img className='card-img-top' src={h2s} />
+                                  <div className='card-body'>
+                                  <h5>Step 5</h5>
+                                  <p>	Check the colour change of paper strip.If colour change to black it means water is faecal contaminated.</p>
+                              </div> </div>
+
+
+
+
+                          </div>
+                      </div>
+</section>
                                 {/* <button className='btn btn-success mt-5' type="submit" value="Submit" onClick={handleButtonClick}>
                         DONE
                     </button> */}
                                 <Modal show={isShow} onHide={modalClose}>
                                     <Modal.Header closeButton onClick={modalClose}>
-                                        <Modal.Title>Results: </Modal.Title>
+                                        <Modal.Title>Results</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
                                         Are you sure you want to submit the results ?
@@ -219,7 +275,7 @@ function H2S() {
                             Close
                         </Button> */}
                                         <Button variant="dark" onClick={function (event) { handleSubmitButton(); handleButtonClick(); initModals() }}>
-                                            Yes
+                                            yes
                                         </Button>
                                     </Modal.Footer>
                                 </Modal>
@@ -229,7 +285,7 @@ function H2S() {
                                         <Modal.Title>Methods</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        {ResultsStatus === false && (
+                                        {ResultsStatus == false && (
                                             <div>
                                                 <p>NO RISK !!!  </p>
                                                 <p>WATER IS CLEAN, THERE IS NO FAECAL CONTAMINATION </p>
@@ -261,52 +317,7 @@ function H2S() {
                         </div>
                   
                     </div>
-                    <section className='section-h2s'> 
-                  
-                    <h5 className='text-center mb-3 display-6 text-primary'>How can I do H₂S test?</h5>
-<div className='level1-desccription'>
-                           
-                            <div className='h2s-cards row align-items-start justify-content-around'>
-
-                                <div className='card' >
-                                    <img className='card-img-top' src={sample} />
-                                    <div className='card-body'>
-                                    <h5>Step 1</h5>
-                                    <p>	Collect a 100 ml sample of water  to be tested. (e.i. water from tap, stage container, spring, borehole, dam)</p>
-                                    </div>
-                                    
-                                </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={tests} />
-                                    <div className='card-body'>
-                                    <h5>Step 2</h5>
-                                    <p>	Add 20 drop (1 ml) into tubes containing growth solution.</p>
-                                </div> </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={tube} />
-                                    <div className='card-body'>
-                                    <h5>Step 3</h5>
-                                    <p>	Insert the (H₂S) paper strip into the tube and secure it by a cotton wool so that it remains at the top centre of the tube. </p>
-                                </div> </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={borehole} />
-                                    <div className='card-body' style={{font:'16px'}}>
-                                    <h5>Step 4</h5>
-                                    <p>	Then place it in a container covered with a cloth and place it in warm place for 24-36 hours.</p>
-                                </div> </div>
-                                <div className='card' style={{width:'18rem'}}>
-                                    <img className='card-img-top' src={h2s} />
-                                    <div className='card-body'>
-                                    <h5>Step 5</h5>
-                                    <p>	Check if the colour of paper strip changed. If the colour changed to black it means water is faecal contaminated.</p>
-                                </div> </div>
-
-
-
-
-                            </div>
-                        </div>
-</section>
+                 
                 </div>
             </div>
             <footer><Footer /> </footer>

@@ -1,8 +1,69 @@
-.home-img
-{
-    width: 300px;
+
+.section-reports{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
 }
-.content-municipalities
-{
+
+.section-report{
+    margin: 10px;
+    border: 1px rgb(26, 25, 25) solid;
+    padding: 10px;
+
+}
+
+.description-report{
+    width: 50%;
+}
+
+.collapsible{
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible:hover{
+    background-color: #555;
+}
+
+.upper_report{
+    display: flex;
+}
+
+#today_report{
+    text-align: left;
+    padding: 10px;
+}
+
+.province_name, .municipal_name, .risk_name{
+    width: 80%;
+}
+
+.province_count, .municipal_count, .risk_count{
+    text-align: right;
+}
+/* .province-content{
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+}  */
+
+.risk_name, .risk_count{
+    background-color: #68686893;
+}
+.risk_char{
+    margin: 10px 0;
     
+}
+
+.content-report{
+    display: flex;
+}
+.btn-disabled{
+    background-color: rgba(61, 60, 60, 0.466);
 }

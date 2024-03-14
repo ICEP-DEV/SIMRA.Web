@@ -1,21 +1,33 @@
 
 
-.register-popup{
+.register-popup1{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.719);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.register-popup{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #E1E4E8;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .register-popup-inner{
     padding: 70px;
     width: 100%;
-    max-width: 640px;
+    max-width: 540px;
+
     background-color: white;
     position: relative;
 }
@@ -28,20 +40,3 @@
     top: 15px;
     right: 15px;
 }
-
-/* .popup-btn-rotate:hover{
-    animation: rotate 1s linear; 
-    cursor: pointer;
-} */
-
-/* @keyframes rotate{
-    0%{
-        transform: rotate(0deg);
-    }
-    50%{
-        transform: rotate(180deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-} */

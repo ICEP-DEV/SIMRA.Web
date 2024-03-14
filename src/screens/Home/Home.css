@@ -1,15 +1,20 @@
 .hero
 {
     margin: 0;
-   
-color: #fff;
-     overflow-x: hidden;
-    
-
+   color: #fff;
+    overflow-x: hidden;
+  
 }
-.img-carousel
-{
-height: 50vh;
+.legend {
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .card-home
 {
@@ -18,11 +23,15 @@ height: 50vh;
   height: 700px;
 
 }
+.vl {
+  border-left: 6px solid #0059D4;
+  height: 30px;
+}
 .para
 {
-    font-size: 18px;
-    font-weight: lighter;
-    writing-mode: horizontal-tb;
+    font-size: 1.2rem;
+   
+    /* writing-mode: horizontal-tb; */
     color: rgb(46, 43, 43);
    
 }
@@ -32,7 +41,7 @@ section {
     flex-direction: column;
   
     min-height: 400px;
-    padding-top: 100px;
+    padding-top: 50px;
   }
 .section-1
 {
@@ -57,9 +66,8 @@ section {
 {
     width: 100%;
    background-color: #fff;
-   display: flex;
-  justify-content: start;
-  align-items: center; 
+  
+ 
  color: rgb(46, 43, 43);
    
 }
@@ -161,20 +169,23 @@ width: 80%;
 .carousel
 {
 width: 100%;
+
 }
- 
-  @media screen and (max-height: 450px) {
-    .carousel
-    {
-      height: 60vh;
-    }
+ .h2s-cards .card 
+ {
+  width: '18rem'
+ }
+  @media screen and (max-width: 1024px) {
+    
     .para
     {
-      font-size: 11px;
+      font-size: 0.9rem;
+      word-spacing: 0.1em;
     }
-    .carousel
+   
+    .h2s-cards .card 
     {
-      height: 250px;
+      margin-bottom: 10%;
     }
    }
  

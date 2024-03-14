@@ -1,95 +1,244 @@
-import React from "react";
-import MovingComponent from '../animations/component';
-import { Link,useNavigate } from "react-router-dom";
-import Footer from "../Footer/Footer";
-import glassofwater from'../../assets/glassofwater.jpg';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import logo from '../../assets/logo2.png'
-import image from '../../assets/borehole.jpg';
-import image1 from '../../assets/flowingriver.jpg';
-import image2 from '../../assets/dwater.avif';
-function LandingPage (){
-  const navigate = useNavigate();
-  function login() {
-    navigate("/login")
-}
-return(
-    <div className="landingPage_class ">
 
-<div className="topnav">
-            
-            <div className="navbar-subs" onClick={login} ><span className="nav-label">Login</span></div>
-            <div className="navbar-subs" ><span className='nav-label'>Events</span></div>
-            <div className="navbar-subs "><div className="wrapper"></div>
-                <Link to={"/home"}> <img className="rounded-img" src={logo} /></Link></div>
-            <div className="navbar-subs" ><span className="nav-label">Report</span></div>
-            <div className="navbar-subs split" ><span className="nav-label">Signout</span></div>
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
+import Resizer from 'react-image-file-resizer'; // Import the library
+import image from '../../assets/dam101.jpg';
+import image1 from '../../assets/dam.jpg';
+import image2 from '../../assets/dam_kzn.jpg';
+import { Carousel } from 'react-responsive-carousel';
+import './LandPage.css';
+import MovingComponent from '../animations/component';
+import Footer from '../Footer/Footer';
+import Navbar from '../Navbar_Home/Navbarhome';
+import image3 from '../../assets/landing-image.png';
+function LandingPage() {
+  const [data, setData] = useState([]);
+  let navigate = useNavigate();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/getEvents');
+        const resizedData = await resizeImages(response.data); // Resize the images
+        setData(resizedData);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+  
+    fetchData();
+  }, []);
+  const resizeImages = async (eventsData) => {
+    // Resize each image in the events data
+    const resizedData = await Promise.all(
+      eventsData.map(async (item) => {
+        if (item.image) {
+          try {
+            const resizedImage = await resizeImage(item.image, 200, 200); // Adjust the size as needed
+            return { ...item, image: resizedImage };
+          } catch (error) {
+            console.error('Error resizing image:', error.message);
+            return item;
+          }
+        }
+        return item;
+      })
+    );
+
+    return resizedData;
+  };
+  function formatDateAndTime(date) {
+    if (!date) return ''; // Handle the case where date is undefined or null
+  
+    // If date is already a string, parse it into a Date object
+    const dateObject = typeof date === 'string' ? new Date(date) : date;
+  
+    // Format the date and time
+    return dateObject.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    
+      hour12: false, // Use 24-hour format
+    });
+  }
+
+  const resizeImage = (file, maxWidth, maxHeight) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        maxWidth,
+        maxHeight,
+        'JPEG', // Output format (you can change it to 'PNG' if needed)
+        100, // Image quality (100 means no compression)
+        0, // Rotation (0 means no rotation)
+        (uri) => {
+          resolve(uri);
+        },
+        'base64' // Output type (you can change it to 'blob' if needed)
+      );
+    });
+
+  
+
+  return (
+    <div className='hero' >
+
+      <div className=''>
+        <Navbar />
+      </div>
+      {/* <section className='landing-carousel'>
+        <div>
+          <h3 className='text-center p-2 mt 5' >Hi, Welcome To Simra</h3>
+        </div>
+{/* <div className='line-landing d-flex mb-2'>
+  <div className='box-1'></div>
+  <div className='box-2'></div>
+  <div className='box-3'></div>
+</div> }
+      </section> */}
+      <Carousel className='carousel'
+        autoPlay={true}
+        infiniteLoop={true}
+        showStatus={false}
+        showThumbs={false}
+      >
+
+        <div >
+
+          <img src={image1} alt="screen 1" />
 
 
         </div>
-<div className="landing-content">
-<Carousel
-      autoPlay={true}
-      infiniteLoop={true}
-      showStatus={false}
-      showThumbs={false}
-    >
-      <div>
-        <img src={image1} alt="Image 1" style={{height:'800px'}}  />
-       
-      </div>
-      <div> 
-        <img src={image2} alt="Image 2" style={{height:'800px'}}/>
-      </div>
-      <div>
-        <img src={image} alt="Image 3" style={{height:'800px'}} />
-      </div>
-      {/* Add more images as needed */}
-    </Carousel>
-<section className='section-2 px-5'>
-<h1>Information</h1>
-        <div className='row gx-5 align-items-center'>
+        <div>
+          <img src={image2} alt="screen 2" />
 
- 
-<div className='col-lg-6 order-lg-2'>
-<MovingComponent
-          type="fadeInFromLeft"
+        </div>
+        <div>
+          <img src={image} alt="screen 3" />
+
+        </div>
+       
+      </Carousel>
+     
+
+      <section className='section-2'>
+      <section className=''>
+<div className='d-inline-flex p-2'> <div className='vl p-1'></div> <h2 className='text-dark'>Events</h2> </div>
+
+        <div className="row">
+          {data.map((item) => (
+            <div key={item._id} className="col-md-4 mb-4">
+              <Card className="h-100 ">
+                <div className="d-block">
+                  <div className="mb-3">
+                    <a href={item.image ? item.image : ''} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={item.image ? item.image : ''}
+                        alt={item.title}
+                        className="img-fluid rounded"
+                        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                      />
+                    </a>
+                  </div>
+                  <Card.Body className="flex-grow-1">
+                    <Card.Title style={{ textAlign: 'center', textTransform: 'uppercase' }}>{item.title}</Card.Title>
+                    <Card.Text>{item.description}</Card.Text>
+                    <p>Venue: {item.venue}</p>
+                    <p>Date and Time: {formatDateAndTime(item.date)}</p>
+                  </Card.Body>
+                </div>
+              </Card>
+            </div>
+          ))}
+        </div>
+     
+          <div className='w-100' >
+          <button className='btn btn-primary' style={{display:'block', marginLeft:'auto', marginRight:'auto'}} 
+          onClick={() => navigate('/login')}>See More</button>
+          </div>
+        
+
+        </section>
+       
+      <div className='d-inline-flex p-2'> <div className='vl p-1'></div> <h2 className='text-dark'>About Simra</h2> </div>
+
+<div className='row-landing '>
+  <div className='column-landin'>
+    <div className='p-3'>
+      <img src={image3} style={{width:'80%', height:'450px'}}/>
+    </div>
+  </div>
+  <div className='column-landin'>
+  <MovingComponent
+          type="glowing"
           duration="1000ms"
           delay="0.2s"
           direction="normal"
           timing="ease"
           iteration="1"
           fillMode="none">
-            
-          <p className='para ' >
-          	<h4 >What are the households' water treatment methods?</h4>
-            <li>Boiling: Bring the water to a rolling boil and maintain it for at least 5 minutes. Allow the water to cool before use. </li>
-            <li>SODIS (Solar Water Disinfection): Fill clear, plastic bottles with water and leave them in direct sunlight for at least six hours (or longer if it cloudy). disinfect the water. </li>
-            <li> Chemical Disinfection: Add a cap full of bleach in 25l of water. Allow the treated water to sit for a specific contact time before consuming.</li>
-            <li>Filtration: Choose a water filter certified for the removal of specific contaminants (e.g., use a cloth folded 8 times/ clay pots/ceramic filters). </li>
-            <br></br>
-            “Everyone has the right to have access to sufficient food and water.” </p>
+
+          <p className='para font_7 wixui-richtext_text text-center ' >
+            SIMRA is a cutting-edge web tool revolutionizing water resource management. It evaluates and mitigates microbial risks in water sources,<br />
+            providing a robust framework for addressing health hazards from contamination. With seamless data integration, advanced modeling, <br />
+            and decision support, SIMRA empowers stakeholders to protect public health and ensure water system sustainability. <br />
+            Its ability to integrate diverse data sources, simulate contaminant behavior, and facilitate scenario analysis enables effective risk management strategies.<br />
+            User-friendly interfaces and interactive visualizations promote transparent communication, fostering informed discussions. <br />
+            SIMRA's iterative approach supports continuous monitoring and adaptation, refining interventions and enhancing risk management practices over time.<br />
+            Overall, SIMRA marks a significant advancement in water resource management, <br />
+            offering a comprehensive solution for assessing and managing microbial risks to promote long-term public health and water system vitality.</p>
 
         </MovingComponent>
+  </div>
+
 </div>
-       <div className='col-lg-6 order-lg-2'>
-        <div className='p-5'>
-        {/* <img className='img-fluid ' style={{width:'600px' ,height:'300px'}} src={dwater}/> */}
-        </div>
-     
-       </div>
-       </div>
-       <div className='row gx-5 align-items-center'>
-       <div className='col-lg-6 order-lg-2'>
-        <div className='p-5'>
-        <img className='img-fluid ' style={{width:'400px' ,height:'300px'}} src={glassofwater}/>
-        </div>
-     
-       </div>
- {/*** */}
-<div className='col-lg-6 order-lg-2'>
-<MovingComponent
+
+
+
+        <section className='section-h2s mt-6'>
+
+        <div className='d-inline-flex'> <div className='vl p-1'></div> <h2 className='text-dark'>Simra Levels</h2> </div>
+          <div className='level1-desccription'>
+
+            <div className='h2s-cards row align-items-start justify-content-around'>
+
+              <div className='card bg-warning' style={{ width: '18rem' }} >
+                <h5 className='text-center text-light'>Household</h5>
+                <div className='card-body  text-center '>
+                  <p className='text-light'> SIMRA makes risk assessment and management accessible to everyone, especially those with limited resources.<br />
+                    It's designed to be simple, easy to use, and practical for a wide range of users, including households and individuals.</p>
+                </div>
+
+              </div>
+              <div className='card text-bg-primary' style={{ width: '18rem' }}>
+                <h5 className='text-center'>Intermidiate</h5>
+                <div className='card-body text-center '>
+                  <p className='text-light'>This level of SIMRA goes beyond the basics, offering detailed water quality analysis and advanced microbial risk assessment tools. <br />
+                    It's tailored for water treatment plant managers, government officials, researchers, and experts who need in-depth and comprehensive data.</p>
+                </div> </div>
+              <div className='card text-bg-danger ' style={{ width: '18rem' }}>
+                <h5 className='text-center'>Expert</h5>
+                <div className='card-body  text-center '>
+                  <p className='text-light '>At the advanced level, SIMRA is designed for experts, microbiologists,
+                    and researchers seeking in-depth microbial analysis and advanced risk assessment capabilities.<br></br>
+                    It provides molecular biology techniques and detailed reports to meet the specific needs of these professionals.</p>
+                </div> </div>
+
+
+
+
+
+            </div>
+          </div>
+        </section>
+        {/*** */}
+
+        <MovingComponent
           type="fadeInFromRight"
           duration="1000ms"
           delay="0.2s"
@@ -97,24 +246,32 @@ return(
           timing="ease"
           iteration="1"
           fillMode="none">
-          <p className='para ' >
-            <h4>Is your water safe for drinking purposes? </h4>
-          While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
-           Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
-           Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
-            </p>
+
+          <h2 className='text-primary text-center'>Is your water safe for drinking purposes? </h2>
+          <p className='para font_7 wixui-richtext_text text-center text-dark ' >
+            While water may appear clear,  <br></br>it may not necessarily be safe for drinking. <br></br>
+            Such water can potentially lead to diarrheal and other waterborne diseases. <br></br>
+            Hence, it is essential for you to regularly monitor the quality of your water. <br></br>
+
+          </p>
 
         </MovingComponent>
-</div>
-       
-       </div>
-      </section>
-</div>
-<footer>
-    <Footer/>
-</footer>
-    </div>
-)
-}
 
- export default LandingPage;
+      </section>
+
+
+      <footer>
+
+
+
+        <Footer />
+
+      </footer>
+    </div>
+
+
+
+
+  )
+}
+export default LandingPage;

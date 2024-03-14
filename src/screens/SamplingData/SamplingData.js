@@ -10,6 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { sampling_details } from '../../Redux/sampling_data'
 import Level2PopUp from '../Pop_Up/Pop_Up_Level2'
 import Level3PopUp from '../Pop_Up/Pop_Up_Level3'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { api } from '../../Data/API';
+import Load_Waves from '../Pop_Up/load/Load_Waves';
 
 function SamplingData() {
     let user_info = useSelector((state) => state.user.value)
@@ -27,8 +31,8 @@ function SamplingData() {
     const [PopUpAlertMessage, setPopUpAlertMessage] = useState(false)
     let [Level2UserPopUp, setLevel2UserPopUp] = useState(false);
     let [Level3UserPopUp, setLevel3UserPopUp] = useState(false);
+    const [ButtonPopup, setButtonPopup] = useState(false);
 
-    const api = 'http://localhost:3001/api/'
 
     useEffect(() => {
         axios.get(api + 'get_provinces').then(response => {
@@ -57,19 +61,70 @@ function SamplingData() {
     }
 
     function submit_sampling_data() {
+        setButtonPopup(true)
         if (Province === "") {
+            toast.warn(`Select Province`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (Municipality === "") {
+            toast.warn(`Select Municipality`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (WaterSource === "") {
+            toast.warn(`Select Water Source`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (WaterAccessibility === "") {
+            toast.warn(`Select Water Accessibility`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         if (WeatherCondition === "") {
+            toast.warn(`Select Weather Condition`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return
         }
         var temp = {
@@ -82,37 +137,51 @@ function SamplingData() {
             longitude: Longitude
         }
         dispatch(sampling_details(temp))
-        // if (Latitude === '' || Longitude === '') {
-        //     PopUpAlertMessage(true)
-        // }
 
-        if (user_info.user_level === 1) {
-            navigate('/h2s_survey')
+        if (Latitude === '' || Longitude === '') {
+            toast.warn(`Cannot detect your location you can proceed with the application but you will not
+            get the results and we wont be able to capture your information provided!`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
-        else if (user_info.user_level === 2) {
-            setLevel2UserPopUp(true)
-        }
-        else if (user_info.user_level === 3) {
-            setLevel3UserPopUp(true)
-        }
+
+        setTimeout(() => {
+            setButtonPopup(false)
+            if (user_info.user_level === 1) {
+                navigate('/h2s_survey')
+            }
+            else if (user_info.user_level === 2) {
+                setLevel2UserPopUp(true)
+            }
+            else if (user_info.user_level === 3) {
+                setLevel3UserPopUp(true)
+            }
+        }, 6000)
+
     }
-
     let AlertMessage = <div>
-        <p>Cannot detect your location. You can proceed with the application but it will not
-            give the results and we won't be able to save the information you provide</p>
+        <p>Cannot detect your location you can proceed with the application but it will not
+            get the results and we wont be able to capture your information provided</p>
         <br />
         <button className='btn btn-success' onClick={() => navigate('/level1')}></button>
     </div>
 
     const leve2popup = <div>
-        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
-        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
+        <button className='level_popup level1_class ' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
+        <button className='level_popup level2_class ' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
     </div>
 
     const leve3popup = <div>
-        <button className='level_popup level1_class' onClick={() =>navigate('/h2s_survey')}>Level One(Household)</button>
-        <button className='level_popup level2_class' onClick={() =>navigate('/fib_analysis')}>Level Two(Intermidiate)</button>
-        <button className='level_popup level3_class' onClick={()=> navigate('/mst')}>Level Three(Expert)</button>
+        <button className='level_popup level1_class  ' onClick={() =>navigate('/h2s_survey')}>Level One (Household)</button>
+        <button className='level_popup level2_class ' onClick={() =>navigate('/fib_analysis')}>Level Two (Intermidiate)</button>
+        <button className='level_popup level3_class ' onClick={()=> navigate('/level3')}>Level Three (Expert)</button>
     </div>
 
     return (
@@ -122,7 +191,11 @@ function SamplingData() {
                 <Header />
                 <h2 className='text-primary text-center'>Sampling Data</h2>
                 <div className='container-wrapper'>
-                   
+                <Load_Waves trigger={ButtonPopup} setTrigger={setButtonPopup}>
+                        <div></div>
+                    </Load_Waves>
+                    <ToastContainer />
+                  
                     <PopUpAlert trigger={PopUpAlertMessage} setTrigger={setPopUpAlertMessage} >
                         {AlertMessage}
                     </PopUpAlert>
@@ -134,9 +207,8 @@ function SamplingData() {
                     </Level3PopUp>
                     <div className='form-group'>
                         {/* <label>Province</label> */}
-                        <div className='mt-5'></div>
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={getAllMunicipalities}>
-                            <option>Select a Province</option>
+                            <option>Select Province</option>
                             {provinces.map((prov, xid) => (
                                 <option key={xid} className="control-form" value={prov.province_id} >{prov.province_name}</option>
                             ))}
@@ -146,7 +218,7 @@ function SamplingData() {
                     <div className='form-group'>
                         {/* <label>Municipality</label> */}
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={SelectMunicipality}>
-                            <option>Select a Municipality</option>
+                            <option>Select Municipality</option>
                             {Municipalities.map((muni, xid) => (
                                 <option key={xid} className="control-form" value={muni.muni_id} >{muni.muni_name}</option>
                             ))}
@@ -155,7 +227,7 @@ function SamplingData() {
                     <div className='form-group'>
                         {/* <label>Water Source</label> */}
                         <select className='select-sampling_data form-select w-75 mb-4 align-self-center' onChange={(event) => setWaterSource(event.target.value)}>
-                            <option value='' className="control-form">Select a Water Source</option>
+                            <option value='' className="control-form">Select Water Source</option>
                             <option value='River' className="control-form">River</option>
                             <option value='Dam' className="control-form">Dam</option>
                             <option value='Spring' className="control-form">Spring</option>
@@ -164,7 +236,7 @@ function SamplingData() {
                             <option value='Household Tap Water' className="control-form">Household Tap Water</option>
                             <option value='Housewater Stored Water' className="control-form">Housewater Stored Water</option>
                             <option value='Wastewater Treatment Plant' className="control-form">Wastewater Treatment Plant</option>
-                            <option value='water Treatment Plant' className="control-form">Water Treatment Plant</option>
+                            <option value='water Treatment Plant' className="control-form">water Treatment Plant</option>
                         </select>
                     </div>
                     <div className='form-group'>
@@ -178,13 +250,13 @@ function SamplingData() {
                     <div className='form-group'>
                         {/* <label>Weather Condition</label> */}
                         <select className='select-sampling_data form-select w-75 mb-5 align-self-center ' onChange={(event) => setWeatherCondition(event.target.value)}>
-                            <option value='' className="control-form">Select a Weather Condition</option>
+                            <option value='' className="control-form">Select Weather Condition</option>
                             <option value='Dry' className="control-form">Dry</option>
                             <option value='Windy' className="control-form">Wet</option>
                            
                         </select>
                     </div>
-                    <button className='btn btn-success btn-lg  w-25' onClick={submit_sampling_data}>Next</button>
+                    <button className='btn btn-success btn-lg w-25' onClick={submit_sampling_data}>Next</button>
                 </div>
 
             </div>

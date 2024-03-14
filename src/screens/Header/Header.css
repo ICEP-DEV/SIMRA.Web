@@ -2,10 +2,9 @@
 {
     text-align: right;
     margin-right: 10px;
-    padding: 50px;
+    padding: 10px;
     font-size: 1.2em;
-    color:#0059D4;
-    ;
+   
 }
 
 .user_profile{
@@ -13,15 +12,12 @@
 }
 @media (max-width: 768px) {
 
-    .userHeader{
+    .userHeader
+    {
         font-size: 0.5em;
-      
     }
     .user_profile
     {
-        font-size: 0.9em;
-       left: 0;
-       right: 0;
-       margin-right: 0;
+        width: 0.5em;
     }
 }

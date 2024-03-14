@@ -1,8 +1,6 @@
 .content{
   font-size: 20px;
   min-height: 100vh;
-
- 
  }
  .select-sampling_data
  {
@@ -28,12 +26,12 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  /* background-color: #E1E4E8; */
   border-radius: 15px;
-  color: #09330d;
-  width: 90%;
-  height: 70vh;
+  padding-top: 10px; 
+  width: 80%;
+  min-height: 80vh;
   text-align: center;
-  background-color: #e1e4e8;
  }
  h2
  {
@@ -43,11 +41,12 @@
   word-spacing: 1px;
   line-height: 1.5em;
   padding-bottom: 15px;
- font-family: "Playfair Display", serif;
+ font-family:'Lucida Grande'
  }
 
 
  .form-group{
+    padding: 10px;
      display: flex;
      flex-direction: column;
      margin: 15px 0;
@@ -61,21 +60,63 @@
 
  .level_popup{
   margin: 5px 25px;
-  border-radius: 12px;
-
+  border-radius: 5px;
  }
-
+.samp_header
+{
+  color: 	#00b1ff;
+  font-family: poppins;
+  font-weight: bold;
+  text-align: center;
+}
  .level1_class{
-  background-color: #76865cad;
+  background-color: #adb5bd;
+  border: none;
+  width: 60%;
+  font-weight: bold;
+  color: rgb(24, 3, 3);
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  font-family: poppins;
  }
-
+ .level1_class:hover {
+  background-color:#000;
+  color: whitesmoke;
+}
  .level2_class{
-  background-color: #50524dad;
+  background-color: #0d6efd;
+  border: none;
+  width: 60%;
+  font-weight: bold;
+  color: rgb(24, 3, 3);
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  font-family: poppins;
  }
-
+ .level2_class:hover {
+  background-color:#000;
+  color: whitesmoke;
+}
  .level3_class{
-  background-color: #b6dd7cad;
+  background-color: #198754;
+  border: none;
+  width: 60%;
+  font-weight: bold;
+  color: rgb(24, 3, 3);
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  font-family: poppins;
  }
+ .level3_class:hover {
+  background-color:#000;
+  color: whitesmoke;
+}
 
    select{
      width: 50%;
@@ -92,7 +133,12 @@
     /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
     @media (max-width: 768px) {
       .select-sampling_data:hover{
-       
+        background-color: #0d6efd;
         color: white;
+      }
+      .container-wrapper
+      {
+       padding-bottom: 5%;
+       
       }
     }

@@ -3,6 +3,38 @@
 }
 
 .mst_label{
-    width: 20%;
+     width: 20%; 
     text-align: left;
+}
+/* .group-mst
+{
+
+} */
+.selection-bfm
+{
+    width: 20%;
+}
+.form-input
+{
+    width: 25%;
+}
+@media screen and (max-width: 1610px) {
+   .form-input 
+   {
+width: 75%;
+
+    }
+    .form-group
+    {
+      margin-left: 10%;
+       
+    }
+    .group-mst .form-group
+    {
+        margin-left: 0%;
+    }
+    .mst_label{
+        width: 55%; 
+       text-align: left;
+   }
 }
