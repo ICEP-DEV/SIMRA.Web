@@ -238,7 +238,7 @@ function H2S() {
                                   <img className='card-img-top' src={step3} />
                                   <div className='card-body'>
                                   <h5>Step 3</h5>
-                                  <p>	Insert H2S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
+                                  <p>	Insert H₂S paper strip into the tube and secured by a cotton wool so that it remains at the top centre of the tube. </p>
                               </div> </div>
                               <div className='card' style={{width:'16rem'}}>
                                   <img className='card-img-top' src={container} />

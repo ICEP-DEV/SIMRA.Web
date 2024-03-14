@@ -128,7 +128,7 @@ function H2S() {
                     <Header />
                     <div className='container-wrapper'>
                         <div className='h2s'>
-                            <h2>Hydrogen Sulfide(H2S)</h2>
+                            <h2>Hydrogen Sulfide(H₂S)</h2>
                             <div className='text-center mt-5'>
                                 <h3>Choose Test Result:</h3>
                                 <button
@@ -182,7 +182,7 @@ function H2S() {
                                 </button>
                                 <div style={{ marginTop: '25px', textAlign: 'left' }}>
                                     <p>
-                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H2S paper strip test from white to black.
+                                        Presence or absence of faecal contamination in water source may be indicated by colour change on H₂S paper strip test from white to black.
                                     </p>
                                 </div>
 

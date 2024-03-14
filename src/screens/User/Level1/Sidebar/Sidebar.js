@@ -61,7 +61,7 @@ function Sidebar() {
                 </div>
                 <div className='dropdown-content'>
                     <Link className='dropdown-link' to='/sanitary_survay_logs_report'>Sanitary Survey</Link><br></br>
-                    <Link className='dropdown-link' to='/h2s_logs_report'>H2S</Link>
+                    <Link className='dropdown-link' to='/h2s_logs_report'>H₂S</Link>
                 </div>
 
             </div>

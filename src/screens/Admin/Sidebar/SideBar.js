@@ -46,7 +46,7 @@ function SideBar (){
                     </a>
 
                     <ul className="dropdown-menu">
-                        <li className='dropdown-item' onClick={() => navigate('/h2sreport')}>H2S</li>
+                        <li className='dropdown-item' onClick={() => navigate('/h2sreport')}>H₂S</li>
                         <li className='dropdown-item' onClick={() => navigate('/survay_logs')}>Sanitary</li>
                     
                             <li className='dropdown-item' onClick={() => navigate('/fib_report')}>FIB</li>

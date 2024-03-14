@@ -26,12 +26,12 @@ function Level1() {
                             <div className='main-level1'>
                                 <div className='table3'>
                                     <Link to='/sanitaryInpection' class="btn btn-dark btn-sanitary">Sanitary Survey</Link>
-                                    <Link to='/h2s_testing' className='btn btn-dark btn-sanitary'>H2S</Link>
+                                    <Link to='/h2s_testing' className='btn btn-dark btn-sanitary'>H₂S</Link>
                                 </div>
                             </div>
                             <div className='level1-desccription'>
                            
-                            <label> How can I do H2S test?</label>
+                            <label> How can I do H₂S test?</label>
                             <div className='row align-items-start justify-content-around'>
                             <div className='card-h2s'>
                                 <img className='img-h2s'src={borehole}/>

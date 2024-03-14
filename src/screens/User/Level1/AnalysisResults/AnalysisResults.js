@@ -36,7 +36,7 @@ function DataResults() {
     </div>;
 
     let h2s = <div>
-        <h2>Analysis: H2S</h2>
+        <h2>Analysis: H₂S</h2>
         <h3>Risk Characterization</h3>
         <div className='form-group'>
             <label>{DataAnalysis.risk_type}</label>

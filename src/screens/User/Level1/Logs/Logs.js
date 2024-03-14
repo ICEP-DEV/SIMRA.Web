@@ -114,7 +114,7 @@ function Logs() {
                 <th>Province Name</th>
                 <th>Municipality Name</th>
                 <th>Water Accessability</th>
-                <th>weather Condition</th>
+                <th>Weather Condition</th>
                 <th>Risk Type</th>
                 <th>Status</th>
             <tbody>

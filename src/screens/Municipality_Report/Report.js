@@ -92,7 +92,7 @@ function Report() {
                                 </div>
                             )}
                             {IsFoundSurvey === false && (<div>No Data Found</div>)}
-                            <h2>H2S</h2>
+                            <h2>H₂S</h2>
                             {IsFoundH2S === true && (
                                 <div className="summary_h2s_report">
 
