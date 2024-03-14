@@ -350,10 +350,9 @@ function User_MST_Logs() {
             <Navbar />
             <div className='main-all'>
                 <ToastContainer />
-                <div className='content'>
+                <div className='content text-center'>
                     <Header />
                     <h2 className='text-primary text-center'>MICROBIAL SOURCE TRACKING(MST) Logs</h2>
-                    <div className='container-wrap'>
                      
                     <div className='report-header  '>
             <div id='search_date ' >
@@ -574,7 +573,7 @@ function User_MST_Logs() {
                             }
                            
                         </div>
-                    </div>
+                   
                 </div>
             </div>
             <footer>

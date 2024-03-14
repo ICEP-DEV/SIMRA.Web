@@ -228,6 +228,14 @@ section {
 }
 
 @media screen and (max-width: 768px) {
+  .section-h2s
+  {
+    margin-top: 15%;
+  }
+  .section-events
+  {
+    margin-bottom: 10%;
+  }
   .carousel {
     height: 60vh;
   }

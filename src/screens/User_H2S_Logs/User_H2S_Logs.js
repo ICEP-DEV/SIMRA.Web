@@ -203,7 +203,46 @@ function User_H2S_Logs() {
       setReport(StoredReport)
     }
   }
+  function catchmentArea(catchment) {
+    var temp_array = StoredReport
+    console.log(temp_array)
+    var count = 0
+    if (catchment !== '') {
+        setReport(temp_array.filter(value => {
+            return value.type.toLocaleLowerCase().includes(catchment.toLocaleLowerCase())
+        }))
+        for (var k = 0; k < StoredReport.length; k++) {
+            if (StoredReport[k].type.toLocaleLowerCase() === catchment.toLocaleLowerCase()) {
+                count++
+            }
+        }
+        setTotalRecord(count)
+    }
+    else {
+        setReport(StoredReport)
+    }
+}
 
+
+function riskType(typeRisk) {
+    var temp_array = StoredReport
+    console.log(temp_array)
+    var count = 0
+    if (typeRisk !== '') {
+        setReport(temp_array.filter(value => {
+            return value.risk_type.toLocaleLowerCase().includes(typeRisk.toLocaleLowerCase())
+        }))
+        for (var k = 0; k < StoredReport.length; k++) {
+            if (StoredReport[k].risk_type.toLocaleLowerCase() === typeRisk.toLocaleLowerCase()) {
+                count++
+            }
+        }
+        setTotalRecord(count)
+    }
+    else {
+        setReport(StoredReport)
+    }
+}
   //change page 
   const paginate = (page_number) => setCurrentPage(page_number)
 
@@ -212,10 +251,9 @@ function User_H2S_Logs() {
       <Navbar />
       <div className='main-all'>
         <ToastContainer />
-        <div className='content'>
+        <div className='content text-center'>
           <Header />
-          <h2 className='text-primary text-center'>hydrogen Sulfide Logs</h2>
-          <div className='container-wrap '>
+          <h2 className='text-primary text-center'>hydrogen Sulfide Logs</h2>  
 
             <div className='report-header  '>
               <div id='search_date ' >
@@ -261,13 +299,14 @@ function User_H2S_Logs() {
                     <th scope="col " className='report-heading'>WeekDays</th>
                     <th scope="col" className='report-heading'>Province</th>
                     <th scope='col' className='report-heading'>Municipalities</th>
-
+                    <th scope='col' className='report-heading'>Catchment Area</th>
+                    <th scope='col' className='report-heading'>Risk Type</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr scope="row">
 
-                    <td className="w-25">
+                    <td className="w-15">
                       <select onChange={(event) => search_by_weekday(event.target.value)} className=" w-100 p-2">
                         <option value=''>All Weekdays</option>
                         <option value='Monday'>Monday</option>
@@ -282,7 +321,7 @@ function User_H2S_Logs() {
 
 
                     {/* <label>Province</label> */}
-                    <td className="w-25">
+                    <td className="w-15">
                       <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
                         <option value=''>All Provinces</option>
                         {Provinces.map((province, xid) => (
@@ -291,7 +330,7 @@ function User_H2S_Logs() {
                       </select>
 
                     </td>
-                    <td className="w-25">
+                    <td className="w-15">
                       <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
                         <option value=''>All Municipalities</option>
                         {Municipalities.map((muni, xid) => (
@@ -299,7 +338,30 @@ function User_H2S_Logs() {
                         ))}
                       </select>
                     </td>
+                    <td className="w-15">
+                                            <select onChange={(e) => catchmentArea(e.target.value)} className="w-100 p-2" >
+                                                <option value='' className="control-form">Water Source</option>
+                                                <option value='River' className="control-form">River</option>
+                                                <option value='Dam' className="control-form">Dam</option>
+                                                <option value='Spring' className="control-form">Spring</option>
+                                                <option value='Borehole' className="control-form">Borehole</option>
+                                                <option value='Dug Well' className="control-form">Dug Well</option>
+                                                <option value='Tap' className="control-form">Tap</option>
+                                                <option value='Housewater Stored Water' className="control-form">Housewater Stored Water</option>
+                                                <option value='Wastewater Treatment Plant' className="control-form">Wastewater Treatment Plant</option>
+                                                <option value='water Treatment Plant' className="control-form">water Treatment Plant</option>
+                                            </select>
+                                        </td>
 
+                                        <td className="w-15">
+                                            <select onChange={(e) => riskType(e.target.value)} className="w-100 p-2" >
+                                                <option value='' className="control-form">Risk Type</option>
+                                                <option value='No Risk' className="control-form">No Risk</option>
+                                                <option value='Risk' className="control-form">Risk</option>
+                                      
+                                            </select>
+
+                                        </td>
                     {/* <label>Municipalities</label> */}
                   </tr>
                 </tbody>
@@ -313,9 +375,9 @@ function User_H2S_Logs() {
 
             <div className='reports'>
               {(FoundReport === true) && (
-                <table className="table survay_table w-75">
+                <table className="table survay_table w-100">
                   <tr className="survey_tr">
-                    <th className="survey_th _th">Municipalities</th>
+                    <th className="survey_th">Municipalities</th>
                     <th className="survey_th">Date</th>
                     <th className="survey_th ">Catchment Area</th>
                     <th className="survey_th ">Status</th>
@@ -348,10 +410,11 @@ function User_H2S_Logs() {
                 )}
               </div>
                </div>
+{/*                
               <input className='form-control w-25' type="number" value={numIterations} onChange={(e) => setNumIterations(e.target.value)} />
-              <button onClick={runMonteCarloSimulation} className="btn btn-primary w-25 mb-5">Run Monte Carlo Simulation</button>
+              <button onClick={runMonteCarloSimulation} className="btn btn-primary w-25 mb-5">Run Monte Carlo Simulation</button> */}
 
-                  {isLoading ? (
+                  {/* {isLoading ? (
                     <p>Loading...</p>
                   ) : (
                     <div className="monte-carlo-results">
@@ -382,8 +445,8 @@ function User_H2S_Logs() {
                     </table>
                   </div>
                   )}                
-              
-        </div>
+               */}
+      
         
       </div>
       <footer>

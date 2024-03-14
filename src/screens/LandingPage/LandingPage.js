@@ -127,7 +127,7 @@ function LandingPage() {
      
 
       <section className='section-2'>
-      <section className=''>
+      <section className='section-events'>
 <div className='d-inline-flex p-2'> <div className='vl p-1'></div> <h2 className='text-dark'>Events</h2> </div>
 
         <div className="row">
@@ -157,7 +157,7 @@ function LandingPage() {
           ))}
         </div>
      
-          <div className='w-100' >
+          <div className='w-100 ' >
           <button className='btn btn-primary' style={{display:'block', marginLeft:'auto', marginRight:'auto'}} 
           onClick={() => navigate('/login')}>See More</button>
           </div>

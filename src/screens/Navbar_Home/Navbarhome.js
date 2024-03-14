@@ -66,7 +66,7 @@ function Navbarhome() {
                 <Link to={"/home"}> <img className="rounded-img" src={logo1} /></Link>
             </div>
             <div className={`nav-links1 ${showNav ? 'show' : ''}`}>
-                <li className="navbar-subs1" onClick={() => navigate('/login')}><span type="button" className="btn btn-success nav-label">Sign In</span></li>
+                <li className="navbar-subs1" onClick={() => navigate('/login')}><span type="button" className="btn btn-success nav-label mt-2">Sign In</span></li>
             </div>
             <div className="hamburger" onClick={toggleNav}>
                 <GiHamburgerMenu />

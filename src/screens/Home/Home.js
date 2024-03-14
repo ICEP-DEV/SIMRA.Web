@@ -50,6 +50,23 @@ function Home() {
 
     return resizedData;
   };
+  function formatDateAndTime(date) {
+    if (!date) return ''; // Handle the case where date is undefined or null
+  
+    // If date is already a string, parse it into a Date object
+    const dateObject = typeof date === 'string' ? new Date(date) : date;
+  
+    // Format the date and time
+    return dateObject.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    
+      hour12: false, // Use 24-hour format
+    });
+  }
 
   const resizeImage = (file, maxWidth, maxHeight) =>
     new Promise((resolve) => {
@@ -119,7 +136,7 @@ function Home() {
                       <Card.Title style={{ textAlign: 'center', textTransform: 'uppercase' }} className='text-secondary'>{item.title}</Card.Title>
                       <Card.Text className='text-center'>{item.description}</Card.Text>
                       <p className='text-center text-primary'>Venue: {item.venue}</p>
-                      <p className='text-center text-danger'>Date: {item.date}</p>
+                      <p>Date and Time: {formatDateAndTime(item.date)}</p>
                     </Card.Body>
                   </div>
                 </Card>

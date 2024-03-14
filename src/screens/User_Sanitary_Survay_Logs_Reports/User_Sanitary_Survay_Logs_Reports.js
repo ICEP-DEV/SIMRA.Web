@@ -274,10 +274,10 @@ const runMonteCarloSimulation = () => {
             <Navbar />
             <div className='main-all'>
                 <ToastContainer />
-                <div className='content'>
+                <div className='content text-center'>
                     <Header />
                     <h2 className='text-primary text-center'>Sanitary Inspections Logs</h2>
-                    <div className='container-wrap'>
+               
 
                         <div className='report-header  '>
                          
@@ -319,7 +319,7 @@ const runMonteCarloSimulation = () => {
                                 <tbody>
                                     <tr scope="row">
 
-                                        <td className="w-25">
+                                        <td className="w-15">
                                             <select onChange={(event) => search_by_weekday(event.target.value)} className="w-100 p-2">
                                                 <option value=''>All Weekdays</option>
                                                 <option value='Monday'>Monday</option>
@@ -331,7 +331,7 @@ const runMonteCarloSimulation = () => {
                                                 <option value='Sunday'>Sunday</option>
                                             </select>
                                         </td>
-                                        <td className="w-25">
+                                        <td className="w-15">
                                             <select onChange={(e) => filter_by_province(e.target.value)} className="w-100 p-2">
                                                 <option value=''>All Provinces</option>
                                                 {Provinces.map((province, xid) => (
@@ -340,7 +340,7 @@ const runMonteCarloSimulation = () => {
                                             </select>
 
                                         </td>
-                                        <td className="w-25">
+                                        <td className="w-15">
                                             <select onChange={(e) => filter_by_municipality(e.target.value)} className="w-100 p-2" >
                                                 <option value=''>All Municipalities</option>
                                                 {Municipalities.map((muni, xid) => (
@@ -348,9 +348,9 @@ const runMonteCarloSimulation = () => {
                                                 ))}
                                             </select>
                                         </td>
-                                        <td className="w-25">
+                                        <td className="w-15">
                                             <select onChange={(e) => catchmentArea(e.target.value)} className="w-100 p-2" >
-                                                <option value='' className="control-form">Select Water Source</option>
+                                                <option value='' className="control-form">Water Source</option>
                                                 <option value='River' className="control-form">River</option>
                                                 <option value='Dam' className="control-form">Dam</option>
                                                 <option value='Spring' className="control-form">Spring</option>
@@ -363,9 +363,9 @@ const runMonteCarloSimulation = () => {
                                             </select>
                                         </td>
 
-                                        <td className="w-25">
+                                        <td className="w-15">
                                             <select onChange={(e) => riskType(e.target.value)} className="w-100 p-2" >
-                                                <option value='' className="control-form">Select Risk Type</option>
+                                                <option value='' className="control-form">Risk Type</option>
                                                 <option value='Low Risk' className="control-form">Low Risk</option>
                                                 <option value='Medium Risk' className="control-form">Medium Risk</option>
                                                 <option value='High Risk' className="control-form">High Risk</option>
@@ -433,9 +433,9 @@ const runMonteCarloSimulation = () => {
                             </div>}
 
                             {/* <input className='form-control w-25' type="number" value={numIterations} onChange={handleIterationsChange} /> */}
-                            <button onClick={runMonteCarloSimulation} className="btn btn-primary w-25 mb-5">Run Monte Carlo Simulation</button>
+                            {/* <button onClick={runMonteCarloSimulation} className="btn btn-primary w-25 mb-5">Run Monte Carlo Simulation</button> */}
                         </div>
-                        <div className="monte-carlo-result">
+                        {/* <div className="monte-carlo-result">
                             <table className="table">
                                 <thead className="thead-dark">
                                     <tr>
@@ -454,8 +454,8 @@ const runMonteCarloSimulation = () => {
                                     ))}
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                        </div> */}
+                   
                 </div>
             </div>
             <footer>
