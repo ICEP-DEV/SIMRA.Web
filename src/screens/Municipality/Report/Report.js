@@ -12,6 +12,7 @@ import H2S_data from './H2S_data.PNG';
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { api } from "../../../Data/API";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -22,7 +23,7 @@ function Report() {
     const [SurveyRisktype, setSurveyRisktype] = useState([])
     const [SurveyColours, setSurveyColours] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:3001/api/get_survey_summary_report/ZA-GP/Oct-2023").then(response => {
+        axios.get(api+"get_survey_summary_report/ZA-GP/Oct-2023").then(response => {
             console.log(response.data)
             setSurveyValues(response.data.countValues)
             setSurveyRisktype(response.data.risk_type)

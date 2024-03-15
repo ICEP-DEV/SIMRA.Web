@@ -7,9 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import NavBar_Admin from '../NavBar_Admin/NavBar_Admin';
 import Register from '../../Registration/Registration';
 import { ToastContainer, toast } from 'react-toastify';
+import { api } from "../../../Data/API";
 
 function Users(){
-    const api = "http://localhost:3001/api/"
+    // const api = "http://localhost:3001/api/"
     let user_info = useSelector((state) => state.use)
     const dispatch = useDispatch();
 

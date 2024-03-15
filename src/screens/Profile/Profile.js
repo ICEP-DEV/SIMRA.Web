@@ -6,6 +6,7 @@ import { FiEdit2 } from 'react-icons/fi';
 import axios from 'axios';
 import { user_details } from "../../Redux/user";
 import Footer from '../Footer/Footer';
+import { api } from "../../Data/API";
 
 function UserProfileUpdate() {
   const user_info = useSelector((state) => state.user.value);
@@ -34,7 +35,7 @@ function UserProfileUpdate() {
     let token = localStorage.getItem('jsonwebtoken');
     console.log("jsonwebtoken", token);
 
-    axios.put('http://localhost:3001/api/updateProfile', updatedProfileData, {
+    axios.put(api+'updateProfile', updatedProfileData, {
       headers: {
         'authorization': token,
         'Accept': 'application/json',

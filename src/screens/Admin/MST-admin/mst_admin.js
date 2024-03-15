@@ -5,9 +5,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/SideBar';
+import { api } from "../../../Data/API";
+
 
 function Admin_MST() {
-    const api = "http://localhost:3001/api/"
+    // const api = "http://localhost:3001/api/"
  
    let user_info = useSelector((state) => state.user.value)
     const [Provinces, setProvinces] = useState([])

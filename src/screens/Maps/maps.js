@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Admin_NavBar/Admin_NavBar';
+import { api } from "../../Data/API";
 
 
 const apiKey = 'AIzaSyAuIftAMt7svFoGBDw_86NyBbH7sdTQjT4'; // Replace with your API key
@@ -32,7 +33,7 @@ const Map = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/coordinates');
+        const response = await axios.get(api+'coordinates');
         setMarkers(response.data);
       } catch (error) {
         console.error('Error fetching coordinates:', error.message);

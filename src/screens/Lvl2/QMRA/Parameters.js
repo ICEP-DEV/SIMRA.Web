@@ -184,6 +184,7 @@ export default QMRAApp;
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { api } from "../../../Data/API";
 /*const qmraParameters = {
   'Campylobacter jejun': { model: 'Beta-Poisson', alpha: 0.145, beta: 7.45 },
   'E-Coli O157:H7': { model: 'Beta-Poisson', alpha: 0.4, beta: 45.9 },
@@ -209,7 +210,7 @@ export default function QMRAApp() {
   const [TempPathogen, setTempPathogen] = useState([]);
   const [IsfoundPath, setIsfoundPath] = useState(false);
   useEffect(() => {
-    axios.get("http://localhost:3001/api/reference_pathogens").then(respond => {
+    axios.get(api+"reference_pathogens").then(respond => {
       console.log(respond.data)
       setPathogen(respond.data.reference_pathogens)
       setIsfoundPath(respond.data.success)

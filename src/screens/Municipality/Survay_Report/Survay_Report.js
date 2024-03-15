@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Survay_Report.css';
 import axios from 'axios';
 import AdminSideBar from '../Admin_Side_Bar/Admin_Side_Bar'
+import { api } from "../../../Data/API";
 
 function Survay_Report() {
 
@@ -40,7 +41,7 @@ function Survay_Report() {
 
     }
 
-    axios.get("http://localhost:3001/api/get_provinces").then(response => {
+    axios.get(api+"get_provinces").then(response => {
       setProvinces(response.data.results)
 
     }, err => {
@@ -54,7 +55,7 @@ function Survay_Report() {
       province_id: Province,
       date: CurrentMonth + '/' + CurrentYear
     }
-    var report_results = await axios.post('http://localhost:3001/api/get_monthly_reports', search_report)
+    var report_results = await axios.post(api+'get_monthly_reports', search_report)
     setReport(report_results.data.results)
     setFoundReport(report_results.data)
     console.log(report_results.data)

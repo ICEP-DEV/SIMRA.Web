@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../Admin_NavBar/Admin_NavBar';
 import Header from '../Header/Header';
 import './events_admin.css';
+import { api } from "../../Data/API";
 
 const Add_Events = () => {
   const [title, setTitle] = useState('');
@@ -52,7 +53,7 @@ const Add_Events = () => {
     formData.append('image', image);
 
     try {
-      const response = await axios.post('http://localhost:3001/api/addEvents', formData, {
+      const response = await axios.post(api+'/addEvents', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

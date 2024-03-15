@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Resizer from 'react-image-file-resizer'; // Import the library
+import { api } from '../../Data/API';
 
 const Events = () => {
   const [data, setData] = useState([]);
@@ -13,7 +14,7 @@ const Events = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/getEvents');
+        const response = await axios.get(api+'/getEvents');
         const resizedData = await resizeImages(response.data); // Resize the images
         setData(resizedData);
       } catch (error) {

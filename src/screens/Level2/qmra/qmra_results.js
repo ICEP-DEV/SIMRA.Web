@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { api } from "../../../Data/API";
+
 
 
 function Qmra_results(){
@@ -8,12 +10,12 @@ function Qmra_results(){
 
 
     useEffect(()=>{
-        axios.get('http://localhost:3001/api/qmra_group').then((respond)=>{
+        axios.get(api+'qmra_group').then((respond)=>{
         console.log(respond.data.results)
         setQMRA_Group(respond.data.results)
         }, err=>{console.log(err)})
 
-        axios.get('http://localhost:3001/api/qmra_results').then((respond)=>{
+        axios.get(api+'qmra_results').then((respond)=>{
         console.log(respond.data.results)
         setQMRA_Results(respond.data.results)
         }, err=>{console.log(err)})

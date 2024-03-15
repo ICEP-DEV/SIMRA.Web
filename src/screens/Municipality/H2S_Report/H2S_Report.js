@@ -3,12 +3,13 @@ import Header from '../../Header/Header';
 import './H2S_Report.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { api } from "../../../Data/API";
 
 function H2S_Report() {
     const [H2SReport, setH2SReport] = useState([])
     const [IsDataLoaded,setIsDataLoaded] = useState(false)
     useEffect(() => {
-        axios.get("http://localhost:3001/api/get_all_summary_h2s").then(response => {
+        axios.get(api+"get_all_summary_h2s").then(response => {
             setIsDataLoaded(response.data.success)
             if (response.data.success === true) {
                 setH2SReport(response.data.rows)

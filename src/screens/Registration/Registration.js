@@ -4,6 +4,7 @@ import "./Registration.css"
 // import SuccessPopup from './SuccessPopUp/SuccessPopUp';
 //import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import { api } from "../../Data/API";
 import { useNavigate } from 'react-router-dom';
 const UserRegistration = (props) => {
   const [username, setUsername] = useState('');
@@ -28,7 +29,7 @@ const UserRegistration = (props) => {
     setError(null);
 
 
-    axios.post('http://localhost:3001/api/UserRegister', { username, userSurname, email, userLevel, mobileNo, password, })
+    axios.post(api+'UserRegister', { username, userSurname, email, userLevel, mobileNo, password, })
       .then((response) => {
 
         console.log('User registered successfully');

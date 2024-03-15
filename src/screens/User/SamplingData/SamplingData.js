@@ -7,6 +7,7 @@ import Navbar from '../../Navbar/Navbar';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { sampling_details } from '../../../Redux/sampling_data'
+import { api } from "../../../Data/API";
 function SamplingData() {
     let user_info = useSelector((state) => state.user.value)
     const dispatch = useDispatch();
@@ -18,8 +19,9 @@ function SamplingData() {
     const [WeatherCondition, setWeatherCondition] = useState('');
     const [Municipality, setMunicipality] = useState('');
     const [Province, setProvince] = useState('');
+    
 
-    const api = 'http://localhost:3001/api/'
+    // const api = 'http://localhost:3001/api/'
 
     useEffect(() => {
         axios.get(api + 'get_provinces').then(response => {

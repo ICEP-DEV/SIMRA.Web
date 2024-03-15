@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from "../Sidebar/SideBar";
+import { api } from "../../../Data/API";
 
 function Survay_Report() {
 
@@ -16,7 +17,7 @@ function Survay_Report() {
   const [endDate, setEndDate] = useState('')
   const [FoundReport, setFoundReport] = useState(false)
 
-  const api = "http://localhost:3001/api/"
+  // const api = "http://localhost:3001/api/"
   useEffect(() => {
     var date = new Date()
     var current_date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')

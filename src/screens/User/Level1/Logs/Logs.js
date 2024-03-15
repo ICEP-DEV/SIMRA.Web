@@ -4,6 +4,7 @@ import Header from '../../../Header/Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { api } from "../../../Data/API";
 
 function Logs() {
 
@@ -23,7 +24,7 @@ function Logs() {
 
         async function getLogs() {
             var userId = user_info.userId
-            var logs = await axios.get('http://localhost:3001/api/get_userhistory_h2s/' + userId);
+            var logs = await axios.get(api+'get_userhistory_h2s/' + userId);
             if (logs.data.success) {
                 setFullLogs(logs.data.result)
                 setLogs(logs.data.result)

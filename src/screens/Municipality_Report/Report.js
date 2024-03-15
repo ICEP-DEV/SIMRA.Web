@@ -8,6 +8,7 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import Footer from '../Footer/Footer';
 import Admin_NavBar from '../Admin_NavBar/Admin_NavBar';
+import { api } from "../../Data/API";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
@@ -25,14 +26,14 @@ function Report() {
     const [IsFoundH2S, setIsFoundH2S] = useState(false)
 
     useEffect(() => {
-        axios.get("http://localhost:3001/api/get_survey_summary_report/ZA-GP/Oct-2023").then(response => {
+        axios.get(api+"get_survey_summary_report/ZA-GP/Oct-2023").then(response => {
             
             setSurveyValues(response.data.countValues)
             setSurveyRisktype(response.data.risk_type)
             setSurveyColours(response.data.colours)
             setIsFoundSurvey(response.data.success)
         }, err => console.log(err))
-        axios.get("http://localhost:3001/api/get_h2s_report/ZA-GP/Oct-2023").then(response => {
+        axios.get(api+"/get_h2s_report/ZA-GP/Oct-2023").then(response => {
             console.log(response.data)
             setH2SValues(response.data.countValues)
             setH2SRisktype(response.data.risk_type)

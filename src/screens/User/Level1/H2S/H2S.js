@@ -5,6 +5,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Header from '../../../Header/Header';
 import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
+import { api } from "../../../Data/API";
 
 function H2S() {
     const navigate = useNavigate();
@@ -68,7 +69,7 @@ function H2S() {
     }
     const handleButtonClick = (color) => {
 
-        axios.post("http://localhost:3001/api/sampling_data", sampling_info).then((response) => {
+        axios.post(api+"sampling_data", sampling_info).then((response) => {
             // Assign to Coordinates object
             var coordinates = {
                 latitude: Latitude,
@@ -76,7 +77,7 @@ function H2S() {
                 samplingId: response.data.insertedId
             }
             //Call in coordinates api
-            axios.post("http://localhost:3001/api/coordinates", coordinates).then((result) => {
+            axios.post(api+"coordinates", coordinates).then((result) => {
                 console.log(result)
             }, err => {
                 console.log(err)
@@ -89,7 +90,7 @@ function H2S() {
                 waterAccessability: sampling_info.waterAccessability
             }
             //Call in watersource api
-            axios.post("http://localhost:3001/api/watersource", watersource).then((result) => {
+            axios.post(api+"watersource", watersource).then((result) => {
                 console.log(result)
             }, err => {
                 console.log(err)
@@ -99,7 +100,7 @@ function H2S() {
                 status: IsContiminated.isContiminated,
                 samplingId: response.data.insertedId
             }
-            axios.post("http://localhost:3001/api/hydrogensulfide", h2s_test).then((result) => {
+            axios.post(api+"hydrogensulfide", h2s_test).then((result) => {
 
                 if (result.data.success === true) {
                     // navigate("/level1", { state: { temp } })
