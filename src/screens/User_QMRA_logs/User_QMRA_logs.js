@@ -367,8 +367,6 @@ function User_QMRA_logs() {
                                             </select>
                                         </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
 

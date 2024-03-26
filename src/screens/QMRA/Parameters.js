@@ -89,10 +89,9 @@ export default function QMRAApp() {
       pathogen: fib_mst_info.pathogen
     }
 
-    console.log(reference_path)
 
     //Call in sampling data api
-    axios.post(api+"sampling_data", sampling_info).then((response) => {
+    axios.post(api + "sampling_data", sampling_info).then((response) => {
       qmra_data.samplingId = response.data.insertedId
       mst_data.samplingId = response.data.insertedId
       reference_path.samplingId = response.data.insertedId
@@ -103,7 +102,7 @@ export default function QMRAApp() {
         samplingId: response.data.insertedId
       }
       //Call in coordinates api
-      axios.post(api+"coordinates", coordinates).then((result) => {
+      axios.post(api + "coordinates", coordinates).then((result) => {
       }, err => {
         console.log(err)
       })
@@ -114,13 +113,15 @@ export default function QMRAApp() {
         waterAccessability: sampling_info.waterAccessability
       }
       //Call in watersource api
-      axios.post(api+"watersource", watersource).then((result) => {
+      axios.post(api + "watersource", watersource).then((result) => {
       }, err => {
         console.log(err)
       })
 
       if (fib_mst_info.type === 'fib') {
-        axios.post(api+"add_indicator_qmra", qmra_data)
+        console.log(fib_mst_info)
+        console.log(qmra_data)
+        axios.post(api + "add_indicator_qmra", qmra_data)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {
@@ -143,7 +144,7 @@ export default function QMRAApp() {
           })
       }
       else if (fib_mst_info.type === 'mst') {
-        axios.post(api+"mst", mst_data)
+        axios.post(api + "mst", mst_data)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {
@@ -167,7 +168,7 @@ export default function QMRAApp() {
       }
 
       else if (fib_mst_info.type === 'ref_path') {
-        axios.post(api+"reference_pathogens_test", reference_path)
+        axios.post(api + "reference_pathogens_test", reference_path)
           .then((result) => {
             if (result.data.success === true) {
               toast.success("Successfully tested, the results will display on popup....", {
@@ -201,7 +202,7 @@ export default function QMRAApp() {
       duration_type: DurationType
     }
 
-    var resultsOfLikelihood = await axios.put(api+'likelihood_test/' + QmraId, data)
+    var resultsOfLikelihood = await axios.put(api + 'likelihood_test/' + QmraId, data)
     setIsLikelihoodTested(resultsOfLikelihood.data.success)
     console.log(resultsOfLikelihood.data.success)
     if (resultsOfLikelihood.data.success === true) {
