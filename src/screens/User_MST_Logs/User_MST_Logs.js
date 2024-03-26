@@ -357,7 +357,6 @@ function User_MST_Logs() {
           <Header />
           <h2 className='text-primary text-center'>MICROBIAL SOURCE TRACKING(MST) Logs</h2>
 
-
           <div className='report-header  '>
             <div id='search_date ' >
               <table className="table-logs table table-bordered w-75">
@@ -374,9 +373,7 @@ function User_MST_Logs() {
 
                     <td>  <input type='date' className='control-from  start_date w-100 p-2' onChange={(event) => setStartDate(event.target.value)} /></td>
                     <td> <input type='date' className='control-from end_date w-100 p-2' onChange={(event) => setEndDate(event.target.value)} /></td>
-
                   </tr>
-
 
                 </tbody>
               </table>
